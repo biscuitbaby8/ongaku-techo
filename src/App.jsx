@@ -5,10 +5,10 @@ import {
   Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie
 } from 'lucide-react';
 
-// --- インポートパスだけ修正 ---
-import { termsData, categories, alphabet } from './termsData';
+// 分割したデータの読み込み
+import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
 
-// --- 記号（アイコン）表示用コンポーネント ---
+// --- 記号（アイコン）表示用コンポーネント (完全維持) ---
 const TermIcon = ({ item }) => {
   if (item.symbol) {
     return (
@@ -35,7 +35,7 @@ const AdSlot = ({ type }) => (
 export default function App() {
   const apiKey = ""; // Gemini API Key
 
-  // --- 状態管理 (元コードを完全維持) ---
+  // --- 永続化状態 (完全維持) ---
   const [theme, setTheme] = useState(() => localStorage.getItem('music-theme') || 'kawaii');
   const [favorites, setFavorites] = useState(() => new Set(JSON.parse(localStorage.getItem('music-favs') || '[]')));
   const [mastered, setMastered] = useState(() => new Set(JSON.parse(localStorage.getItem('music-mastered') || '[]')));
@@ -73,7 +73,7 @@ export default function App() {
     const today = new Date();
     const dateStr = `${today.getFullYear()}${today.getMonth()}${today.getDate()}`;
     const seed = parseInt(dateStr);
-    return termsData[seed % termsData.length];
+    return INITIAL_TERMS[seed % INITIAL_TERMS.length];
   }, []);
 
   useEffect(() => {
@@ -116,13 +116,13 @@ export default function App() {
   };
   const s = themeStyles[theme];
 
-  // メトロノームロジック
   const playClick = (time, beatNumber) => {
     if (!audioContext.current) return;
     const osc = audioContext.current.createOscillator();
     const envelope = audioContext.current.createGain();
-    let freq = (beatNumber % beatsPerMeasure === 0) ? 1000 : 500;
-    if (beatsPerMeasure === 6 && beatNumber % 6 === 3) freq = 800;
+    let freq = 500;
+    if (beatNumber % beatsPerMeasure === 0) freq = 1000;
+    else if (beatsPerMeasure === 6 && beatNumber % 6 === 3) freq = 800;
     osc.frequency.value = freq;
     envelope.gain.value = 0.5;
     envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.1);
@@ -133,8 +133,9 @@ export default function App() {
     while (nextNoteTime.current < audioContext.current.currentTime + 0.1) {
       playClick(nextNoteTime.current, beatRef.current);
       setCurrentBeat(beatRef.current % beatsPerMeasure);
-      nextNoteTime.current += 60.0 / bpm;
-      beatRef.current++;
+      const secondsPerBeat = 60.0 / bpm;
+      nextNoteTime.current += secondsPerBeat;
+      beatRef.current = beatRef.current + 1;
     }
     timerID.current = requestAnimationFrame(scheduler);
   };
@@ -153,6 +154,18 @@ export default function App() {
     return () => cancelAnimationFrame(timerID.current);
   }, [isPlaying, bpm, beatsPerMeasure]);
 
+  const handleToggleFavorite = (id) => {
+    const n = new Set(favorites); 
+    if(n.has(id)) n.delete(id); else n.add(id); 
+    setFavorites(n); 
+  };
+
+  const openCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      setIsCameraOpen(true); setTimeout(() => { if (videoRef.current) videoRef.current.srcObject = stream; }, 100);
+    } catch (err) { setScanError("カメラ起動失敗。"); }
+  };
   const captureAndScan = async () => {
     if (!videoRef.current || !canvasRef.current) return;
     setIsScanning(true);
@@ -169,7 +182,7 @@ export default function App() {
       const data = await res.json();
       const result = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
       if (result) {
-        const found = termsData.find(t => result.toLowerCase().includes(t.term.toLowerCase()));
+        const found = INITIAL_TERMS.find(t => result.toLowerCase().includes(t.term.toLowerCase()));
         if (found) { setSelectedTerm(found); setIsCameraOpen(false); }
         else setScanError(`「${result}」は見つかりませんでした。`);
       }
@@ -178,16 +191,15 @@ export default function App() {
   };
 
   const filteredTerms = useMemo(() => {
-    return termsData.filter(item => {
-      const low = searchTerm.toLowerCase();
-      const matchesSearch = low === '' || item.term.toLowerCase().includes(low) || item.reading.includes(low) || item.meaning.includes(low);
+    return INITIAL_TERMS.filter(item => {
+      const s = searchTerm.toLowerCase();
+      const matchesSearch = s === '' || item.term.toLowerCase().includes(s) || item.reading.includes(s) || item.meaning.includes(s);
       const matchesCategory = selectedCategory === 'All' || (selectedCategory === 'お気に入り' ? favorites.has(item.id) : item.category === selectedCategory);
       const matchesLetter = selectedLetter === 'All' || item.term[0].toUpperCase() === selectedLetter;
       return matchesSearch && matchesCategory && matchesLetter;
     });
   }, [searchTerm, selectedCategory, selectedLetter, favorites]);
 
-  // --- JSX (ここがデザインの肝) ---
   return (
     <div className={`min-h-screen ${s.bg} text-slate-700 font-sans pb-40 transition-colors duration-500 overflow-x-hidden selection:bg-rose-100`}>
       <header className={`${s.header} pt-10 pb-16 px-6 text-center relative overflow-hidden transition-all duration-500`}>
@@ -198,21 +210,21 @@ export default function App() {
       </header>
 
       {!hasAcceptedCookies && (
-        <div className="fixed bottom-0 inset-x-0 z-[110] p-4">
+        <div className="fixed bottom-0 inset-x-0 z-[110] p-4 animate-in slide-in-from-bottom-full duration-500">
           <div className="bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-4 max-w-2xl mx-auto border border-white/10">
             <Cookie size={40} className="text-yellow-400 shrink-0" />
             <div className="flex-1 text-left text-xs font-bold leading-relaxed">Cookieの使用に同意して、学習体験をパーソナライズしましょう！</div>
-            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs`}>同意する</button>
+            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs active:scale-95 transition-transform`}>同意する</button>
           </div>
         </div>
       )}
 
       {showSettings && (
-        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white w-full max-w-xs rounded-[2.5rem] shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-black flex items-center gap-2 text-slate-800"><Settings size={20} className={s.accentText} /> 設定</h2>
-              <button onClick={() => setShowSettings(false)} className="p-2 text-slate-300 hover:text-slate-500"><X size={24}/></button>
+              <button onClick={() => setShowSettings(false)} className="p-2 text-slate-300 hover:text-slate-500 active:scale-90"><X size={24}/></button>
             </div>
             <div className="space-y-6 text-left">
               <section>
@@ -225,8 +237,10 @@ export default function App() {
               <section>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">サイト情報</p>
                 <div className="grid gap-2">
-                  <button onClick={() => setView('install')} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600"><Smartphone size={16}/> ホームに追加</button>
-                  <button onClick={() => setView('privacy')} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600"><ShieldCheck size={16}/> プライバシー</button>
+                  <button onClick={() => { setView('install'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-colors"><Smartphone size={16}/> ホーム画面に追加</button>
+                  <button onClick={() => { setView('about'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"><User size={16}/> このサイトについて</button>
+                  <button onClick={() => { setView('privacy'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"><ShieldCheck size={16}/> プライバシーポリシー</button>
+                  <button onClick={() => { setView('contact'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"><Mail size={16}/> お問い合わせ</button>
                 </div>
               </section>
             </div>
@@ -239,14 +253,25 @@ export default function App() {
           <>
             <div className="flex gap-2 mb-6">
               <div className="relative flex-1 group">
-                <input type="text" placeholder="用語を検索..." className={`w-full pl-10 pr-10 py-4 ${s.button} border-none shadow-xl focus:ring-4 outline-none transition-all placeholder:text-slate-300`} value={searchTerm} onChange={(e) => { setSearchTerm(e.target.value); setVisibleItems(40); }} />
+                <input 
+                  type="text" 
+                  placeholder="用語を検索..." 
+                  className={`w-full pl-10 pr-10 py-4 ${s.button} border-none shadow-xl focus:ring-4 outline-none transition-all placeholder:text-slate-300`} 
+                  value={searchTerm} 
+                  onChange={(e) => { setSearchTerm(e.target.value); setVisibleItems(40); }} 
+                />
                 <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${s.accentText}`} size={20} />
+                {searchTerm && (
+                  <button onClick={() => setSearchTerm('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500"><X size={18} /></button>
+                )}
               </div>
-              <button onClick={() => setIsCameraOpen(true)} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Camera size={24} /></button>
+              <button onClick={openCamera} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Camera size={24} /></button>
+              <button onClick={() => setSelectedTerm(INITIAL_TERMS[Math.floor(Math.random()*INITIAL_TERMS.length)])} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Shuffle size={24} /></button>
             </div>
 
             {!searchTerm && (
-              <div onClick={() => setSelectedTerm(termOfDay)} className={`${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50' : 'bg-slate-800 text-white'} p-6 ${s.card} shadow-lg mb-8 relative overflow-hidden group active:scale-[0.98] cursor-pointer`}>
+              <div onClick={() => setSelectedTerm(termOfDay)} className={`${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50' : 'bg-slate-800 text-white'} p-6 ${s.card} shadow-lg mb-8 relative overflow-hidden group active:scale-[0.98] cursor-pointer animate-in fade-in zoom-in-95 duration-500`}>
+                <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform"><Sparkles size={100} /></div>
                 <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-2 inline-block ${theme === 'kawaii' ? 'bg-rose-400 text-white' : 'bg-indigo-600'}`}>本日の用語</span>
                 <h2 className="text-2xl font-black mb-1">{termOfDay.term}</h2>
                 <p className={`text-xs font-bold ${theme === 'kawaii' ? 'text-rose-400' : 'text-slate-400'}`}>"{termOfDay.meaning}"</p>
@@ -255,13 +280,13 @@ export default function App() {
 
             <div ref={resultsRef} className="scroll-mt-4">
               <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scrollbar-hide px-1">
-                {categories.map(cat => (
+                {CATEGORIES.map(cat => (
                   <button key={cat} onClick={() => { setSelectedCategory(cat); setSelectedLetter('All'); setVisibleItems(40); }} className={`px-5 py-2 rounded-2xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat ? s.tabActive : s.tabInactive + ' border'}`}>{cat}</button>
                 ))}
               </div>
               <div className={`flex gap-1.5 overflow-x-auto pb-4 mb-4 scrollbar-hide px-1 border-b ${theme === 'kawaii' ? 'border-rose-50' : 'border-slate-200'}`}>
-                {alphabet.map(letter => (
-                  <button key={letter} onClick={() => { setSelectedLetter(letter); setVisibleItems(40); }} className={`min-w-[40px] h-7 px-2 rounded-xl text-[9px] font-black transition-all border ${selectedLetter === letter ? (theme === 'kawaii' ? 'bg-rose-100 text-rose-500 border-rose-200 shadow-sm' : 'bg-indigo-600 text-white border-indigo-600 shadow-sm') : 'bg-white text-slate-400 border-slate-200'}`}>{letter}</button>
+                {ALPHABET.map(letter => (
+                  <button key={letter} onClick={() => { setSelectedLetter(letter); setVisibleItems(40); }} className={`min-w-[40px] h-7 px-2 rounded-xl text-[9px] font-black transition-all border ${selectedLetter === letter ? (theme === 'kawaii' ? 'bg-rose-100 text-rose-500 border-rose-200 shadow-sm scale-110' : 'bg-indigo-600 text-white border-indigo-600 shadow-sm scale-110') : (theme === 'kawaii' ? 'bg-white text-rose-200 border-rose-50' : 'bg-white text-slate-400 border-slate-200 hover:text-indigo-600')}`}>{letter}</button>
                 ))}
               </div>
             </div>
@@ -270,7 +295,7 @@ export default function App() {
 
             <div className="space-y-3">
               {filteredTerms.slice(0, visibleItems).map(item => (
-                <div key={item.id} onClick={() => setSelectedTerm(item)} className={`bg-white p-4 ${s.card} shadow-sm flex items-center justify-between border-2 border-transparent hover:border-slate-100 active:scale-95 transition-all`}>
+                <article key={item.id} onClick={() => setSelectedTerm(item)} className={`bg-white p-4 ${s.card} shadow-sm flex items-center justify-between border-2 border-transparent hover:border-slate-100 active:scale-95 transition-all`}>
                   <div className="flex items-center gap-4 overflow-hidden">
                     <div className={`w-12 h-12 ${item.color} ${theme === 'kawaii' ? 'rounded-2xl' : 'rounded-lg'} flex items-center justify-center relative shadow-inner shrink-0 overflow-hidden`}>
                       <TermIcon item={item} />
@@ -279,64 +304,103 @@ export default function App() {
                     <div className="min-w-0 text-left">
                       <h3 className="font-bold text-slate-800 leading-tight truncate">{item.term}</h3>
                       <p className="text-[10px] font-bold text-slate-400 truncate mt-0.5">{item.meaning}</p>
+                      <div className="flex items-center gap-2 mt-0.5"><p className="text-slate-300 text-[8px] font-black uppercase tracking-widest">{item.category}</p><span className="w-1 h-1 bg-slate-200 rounded-full"></span><p className={`${s.accentText} text-[8px] font-bold`}>{item.lang}</p></div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-slate-200">
-                    <Heart size={20} className={favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400' : 'text-indigo-600') : ''} fill={favorites.has(item.id) ? "currentColor" : "none"} />
+                    <button onClick={(e) => { e.stopPropagation(); handleToggleFavorite(item.id); }} className={`p-2 rounded-full transition-all ${favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'text-slate-200 hover:text-rose-200'}`}><Heart size={20} fill={favorites.has(item.id) ? "currentColor" : "none"} /></button>
                     <ChevronRight size={18} />
                   </div>
-                </div>
+                </article>
               ))}
+              {filteredTerms.length > visibleItems && (
+                <button onClick={() => setVisibleItems(prev => prev + 40)} className={`w-full py-5 mt-6 font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xl ${s.loadMore}`}>
+                  <ChevronDown size={20} /> さらに表示する ({filteredTerms.length - visibleItems}語)
+                </button>
+              )}
             </div>
             <AdSlot type="List Bottom" />
           </>
         ) : (
-          <div className="bg-white rounded-[2.5rem] p-8 shadow-xl animate-in slide-in-from-bottom-4 text-left">
-            <button onClick={() => setView('main')} className={`${s.accentText} font-bold text-sm mb-6 flex items-center gap-1`}>← もどる</button>
-            <h2 className="text-2xl font-black text-slate-800 mb-4">{view === 'privacy' ? 'プライバシーポリシー' : 'ホームに追加'}</h2>
-            <p className="text-xs text-slate-500 leading-loose">コンテンツをここに配置します。</p>
+          <div className="bg-white rounded-[2.5rem] p-8 shadow-xl animate-in slide-in-from-bottom-4 duration-300 text-left relative overflow-hidden">
+            <button onClick={() => setView('main')} className={`${s.accentText} font-bold text-sm mb-6 flex items-center gap-1 active:scale-95 transition-transform`}>← 辞典にもどる</button>
+            {view === 'install' && (
+              <div className="space-y-8 animate-in fade-in duration-500">
+                <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2"><Smartphone className={s.accentText} /> ホーム画面に追加</h2>
+                <div className="space-y-6 text-[11px] leading-loose text-slate-600 font-bold">
+                  <section className="bg-rose-50/50 p-6 rounded-[2rem] border border-rose-100"><h3 className="font-black text-rose-500 mb-2 flex items-center gap-2"><PlusSquare size={16}/> iPhone (Safari)</h3><p>1. 共有ボタン <Share size={14} className="inline text-blue-500"/> をタップ<br/>2. 「ホーム画面に追加」を選択してください。</p></section>
+                  <section className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100"><h3 className="font-black text-indigo-500 mb-2 flex items-center gap-2"><PlusSquare size={16}/> Android (Chrome)</h3><p>1. メニュー <MoreVertical size={14} className="inline"/> をタップ<br/>2. 「アプリをインストール」を選択してください。</p></section>
+                </div>
+              </div>
+            )}
+            {view === 'privacy' && (
+              <div className="space-y-6 animate-in fade-in duration-500">
+                <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
+                <p className="text-[11px] text-slate-500 font-bold leading-relaxed">当サイトはAdSense広告を利用します。データ収集は匿名です。ユーザーデータ（お気に入り等）は、あなたのデバイス内（LocalStorage）にのみ保持されます。</p>
+              </div>
+            )}
+            <AdSlot type="Sub Page Bottom" />
           </div>
         )}
       </main>
 
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
         {isMetronomeOpen && (
-          <div className={`bg-white p-6 ${s.card} shadow-2xl border-2 border-slate-100 w-72 animate-in slide-in-from-bottom-4`}>
-            <div className="flex justify-between items-center mb-4"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20}/></button></div>
+          <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-2xl'} shadow-2xl border-2 ${theme === 'kawaii' ? 'border-rose-100' : 'border-slate-200'} w-72 animate-in slide-in-from-bottom-4 duration-300`}>
+            <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => { setIsMetronomeOpen(false); setIsPlaying(false); }} className="text-slate-300 hover:text-slate-500 active:scale-90"><X size={20}/></button></div>
             <div className="grid grid-cols-4 gap-1 mb-4">
               {[2, 3, 4, 6].map(num => (
-                <button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 rounded-xl text-[10px] font-black ${beatsPerMeasure === num ? s.accent + ' text-white' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍`}</button>
+                <button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 px-1 rounded-xl text-[10px] font-black transition-all ${beatsPerMeasure === num ? s.accent + ' text-white shadow-md' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍子`}</button>
               ))}
             </div>
-            <div className="text-center mb-6"><div className={`text-5xl font-black ${isPlaying && currentBeat === 0 ? s.accentText : 'text-slate-800'}`}>{bpm}</div></div>
-            <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className="w-full mb-6" />
-            <button onClick={toggleMetronome} className={`w-full py-4 rounded-2xl font-black text-white ${isPlaying ? 'bg-slate-400' : s.accent}`}>{isPlaying ? 'STOP' : 'START'}</button>
+            <div className="text-center mb-6">
+              <div className={`text-5xl font-black text-slate-800 mb-1 transition-all duration-75 ${isPlaying && (currentBeat === 0 || (beatsPerMeasure === 6 && currentBeat === 3)) ? 'scale-110 ' + s.accentText : 'scale-100'}`}>{bpm}</div>
+              <div className="flex justify-center gap-1.5 mb-2">
+                {[...Array(beatsPerMeasure)].map((_, b) => (
+                  <div key={b} className={`w-2 h-2 rounded-full transition-all ${isPlaying && currentBeat === b ? s.accent + ' scale-150 shadow-lg' : (beatsPerMeasure === 6 && (b === 0 || b === 3) ? 'bg-slate-300' : 'bg-slate-100')}`} />
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center gap-3 mb-6 px-2">
+              <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 text-slate-500 rounded-full active:scale-90"><Minus size={18}/></button>
+              <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className={`flex-1 ${theme === 'kawaii' ? 'accent-rose-400' : 'accent-indigo-600'} h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer`} />
+              <button onClick={() => setBpm(Math.min(240, bpm + 1))} className="p-2 bg-slate-100 text-slate-500 rounded-full active:scale-90"><Plus size={18}/></button>
+            </div>
+            <button onClick={toggleMetronome} className={`w-full py-4 rounded-2xl font-black text-white shadow-lg ${isPlaying ? 'bg-slate-400' : s.accent + ' shadow-rose-200'}`}>{isPlaying ? 'STOP' : 'START'}</button>
           </div>
         )}
-        <button onClick={() => setIsMetronomeOpen(!isMetronomeOpen)} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 bg-white ${s.accentText} border-2 border-slate-100`}>
-          <Volume2 size={28} />
+        <button onClick={() => setIsMetronomeOpen(!isMetronomeOpen)} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isMetronomeOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white ' + s.accentText + ' border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
+          {isPlaying ? (<Volume2 size={28} className="animate-pulse" />) : (<Music size={28} />)}
         </button>
       </div>
 
       {selectedTerm && (
-        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[130] flex items-center justify-center p-4">
-          <div className={`bg-white w-full max-w-sm ${s.card} shadow-2xl p-8 relative max-h-[90vh] overflow-y-auto`}>
-            <button onClick={() => setSelectedTerm(null)} className="absolute top-6 right-6 p-3 bg-slate-50 text-slate-300 rounded-2xl"><X size={24} /></button>
-            <div className={`w-24 h-24 ${selectedTerm.color} rounded-[2.5rem] mx-auto flex items-center justify-center shadow-xl mb-4`}><TermIcon item={selectedTerm} /></div>
-            <h2 className="text-3xl font-black text-slate-800 text-center">{selectedTerm.term}</h2>
-            <p className="text-center text-rose-400 font-bold mb-6 italic">{selectedTerm.reading}</p>
-            <div className="bg-rose-50/50 p-6 rounded-[2.5rem] border border-rose-100 mb-6 text-center">
-              <p className="font-black text-xl mb-2">"{selectedTerm.meaning}"</p>
-              <p className="text-xs text-slate-600 leading-relaxed px-2">{selectedTerm.detail}</p>
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[130] flex items-center justify-center p-4 overflow-y-auto text-center">
+          <article className={`bg-white w-full max-w-sm ${theme === 'kawaii' ? 'rounded-[3.5rem]' : 'rounded-2xl'} shadow-2xl p-8 animate-in zoom-in-95 duration-200 relative my-auto border border-white/50 max-h-[90vh] overflow-y-auto`}>
+            <div className="flex justify-between items-center mb-4">
+              <button onClick={() => handleToggleFavorite(selectedTerm.id)} className={`p-3 rounded-2xl transition-all active:scale-90 ${favorites.has(selectedTerm.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'text-slate-200 bg-slate-50'}`}><Heart size={24} fill={favorites.has(selectedTerm.id) ? "currentColor" : "none"} /></button>
+              <button onClick={() => { setSelectedTerm(null); setAiAnalysis(null); }} className="p-3 bg-slate-50 text-slate-300 rounded-2xl active:scale-90 transition-colors"><X size={24} /></button>
             </div>
-            <div className="bg-slate-50 p-4 rounded-3xl mb-6">
-              <p className="text-[10px] font-black text-amber-600 mb-2 flex items-center gap-1"><Edit3 size={12}/>じぶんメモ</p>
-              <textarea className="w-full bg-transparent border-none text-sm h-16 outline-none" placeholder="気づきをメモ..." value={memos[selectedTerm.id] || ''} onChange={(e) => setMemos({...memos, [selectedTerm.id]: e.target.value})} />
+            <div className={`w-24 h-24 ${selectedTerm.color} ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-xl'} mx-auto flex items-center justify-center shadow-xl border-4 border-white mb-4 shrink-0 overflow-hidden`}>
+              <TermIcon item={selectedTerm} />
             </div>
-            <button onClick={() => { const n = new Set(mastered); if(n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 rounded-[2.2rem] font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent}`}>
+            <h2 className="text-3xl font-black text-slate-800 leading-tight">{selectedTerm.term}</h2>
+            <div className="flex items-center justify-center gap-2 mt-1 mb-6 text-[10px] font-black italic uppercase tracking-widest text-slate-400">
+              <p className={s.accentText}>{selectedTerm.reading}</p>
+              <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
+              <div className={`flex items-center gap-1 ${theme === 'kawaii' ? 'bg-rose-50 text-rose-400' : 'bg-indigo-50 text-indigo-600'} px-2 py-0.5 rounded-lg shadow-sm`}><Languages size={10} />{selectedTerm.lang}</div>
+            </div>
+            <div className="space-y-4 mb-8 text-left">
+              <div className={`${theme === 'kawaii' ? 'bg-rose-50/50 rounded-[2.5rem] border-rose-100/50' : 'bg-slate-50 rounded-xl border-slate-200'} p-6 border shadow-inner`}><p className="text-slate-800 font-black text-xl mb-3 italic leading-relaxed text-center">"{selectedTerm.meaning}"</p><p className="text-slate-600 text-xs leading-relaxed text-center px-2">{selectedTerm.detail}</p></div>
+              <div className={`${theme === 'kawaii' ? 'bg-amber-50/40 border-amber-100/50 rounded-3xl' : 'bg-slate-50 border-slate-200 rounded-xl'} p-4 border shadow-sm`}>
+                <p className="text-[10px] font-black text-amber-600 mb-2 flex items-center gap-1 uppercase tracking-widest"><Edit3 size={12}/>じぶんメモ</p>
+                <textarea className="w-full bg-transparent border-none text-sm text-slate-600 focus:ring-0 h-16 outline-none resize-none placeholder:text-slate-300" placeholder="練習の気づきをメモ..." value={memos[selectedTerm.id] || ''} onChange={(e) => setMemos({...memos, [selectedTerm.id]: e.target.value})} />
+              </div>
+            </div>
+            <button onClick={() => { const n = new Set(mastered); if(n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 ${theme === 'kawaii' ? 'rounded-[2.2rem]' : 'rounded-xl'} font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent} shadow-lg active:scale-95 transition-all`}>
               {mastered.has(selectedTerm.id) ? 'おぼえた！' : 'これをおぼえる！'}
             </button>
-          </div>
+          </article>
         </div>
       )}
 
@@ -344,11 +408,13 @@ export default function App() {
         <div className="fixed inset-0 bg-black z-[150] flex flex-col items-center">
           <video ref={videoRef} autoPlay playsInline className="flex-1 w-full object-cover" />
           <canvas ref={canvasRef} className="hidden" />
-          <div className="absolute top-6 right-6"><button onClick={() => setIsCameraOpen(false)} className="p-3 bg-white/20 rounded-full text-white"><X size={24} /></button></div>
-          <div className={`w-full bg-white rounded-t-[40px] p-8 flex flex-col items-center gap-4`}>
-             <button onClick={captureAndScan} className={`w-20 h-20 rounded-full border-4 ${s.accentText} p-1 flex items-center justify-center`}>
-               {isScanning ? <Loader2 className="animate-spin" size={32} /> : <div className={`w-full h-full ${s.accent} rounded-full`} />}
-             </button>
+          <div className="absolute top-6 right-6"><button onClick={() => setIsCameraOpen(false)} className="p-3 bg-white/20 rounded-full text-white active:scale-90 transition-colors"><X size={24} /></button></div>
+          <div className={`w-full bg-white ${theme === 'kawaii' ? 'rounded-t-[40px]' : 'rounded-none'} p-8 flex flex-col items-center gap-4 shadow-2xl animate-in slide-in-from-bottom-full duration-300`}>
+            {scanError && <p className="text-rose-500 text-xs font-bold text-center bg-rose-50 px-4 py-2 rounded-xl border border-rose-100">{scanError}</p>}
+            <button onClick={captureAndScan} disabled={isScanning} className={`w-20 h-20 rounded-full border-4 ${theme === 'kawaii' ? 'border-rose-400' : 'border-indigo-600'} p-1 flex items-center justify-center active:scale-90 shadow-xl`}>
+              {isScanning ? <Loader2 className={`animate-spin ${theme === 'kawaii' ? 'text-rose-400' : 'text-indigo-600'}`} size={32} /> : <div className={`w-full h-full ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-600'} rounded-full`} />}
+            </button>
+            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] italic text-center">AI Smart Scanner</p>
           </div>
         </div>
       )}
