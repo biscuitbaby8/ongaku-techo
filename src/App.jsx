@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+// 冒頭のインポート部分を以下に変更
+import { termsData, categories, alphabet } from './termsData';
 import { 
   Search, Music, ChevronRight, X, Sparkles, Heart, CheckCircle, Edit3, 
   Shuffle, Camera, Loader2, Plus, Minus, BookOpen, Languages, Settings, 
