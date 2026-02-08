@@ -1,9 +1,5 @@
-export const categories = ['All', '強弱', '速度', '奏法', '表情', '構成', 'お気に入り'];
-
-export const alphabet = ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
-
+// --- 大規模音楽用語データベース (全データを完全維持) ---
 export const termsData = [
-  // --- 強弱 (Dynamics) ---
   { id: 1, term: 'Pianississimo', reading: 'ピアニッシッシモ', symbol: 'ppp', category: '強弱', lang: 'イタリア語', meaning: 'できるだけ弱く。', detail: '極限の弱音。消え入るような静寂。', color: 'bg-pink-50 text-pink-400' },
   { id: 2, term: 'Pianissimo', reading: 'ピアニッシモ', symbol: 'pp', category: '強弱', lang: 'イタリア語', meaning: 'とても弱く。', detail: '非常に弱い音量。繊細な場面。', color: 'bg-pink-100 text-pink-500' },
   { id: 3, term: 'Piano', reading: 'ピアノ', symbol: 'p', category: '強弱', lang: 'イタリア語', meaning: '弱く。', detail: '穏やかに。イタリア語で「静かに」。', color: 'bg-pink-200 text-pink-600' },
@@ -28,8 +24,6 @@ export const termsData = [
   { id: 22, term: 'Sotto voce', reading: 'ソット・ヴォーチェ', symbol: 'sotto voce', category: '強弱', lang: 'イタリア語', meaning: '声をひそめて。', detail: '抑えられた内省的なトーン。', color: 'bg-blue-50 text-blue-400' },
   { id: 23, term: 'Mezzo voce', reading: 'メゾ・ヴォーチェ', symbol: 'm.v.', category: '強弱', lang: 'イタリア語', meaning: '中くらいの声で。', detail: '抑制を効かせた響き。', color: 'bg-teal-50' },
   { id: 24, term: 'Al niente', reading: 'アル・ニエンテ', symbol: null, category: '強弱', lang: 'イタリア語', meaning: '完全に無になるまで。', detail: '音が聞こえなくなるまで。', color: 'bg-slate-50' },
-
-  // --- 速度 (Tempo) ---
   { id: 50, term: 'Larghissimo', reading: 'ラルギッシモ', symbol: null, category: '速度', lang: 'イタリア語', meaning: 'きわめて幅広く。', detail: '最も遅い速度指定。', color: 'bg-slate-900 text-white' },
   { id: 51, term: 'Grave', reading: 'グラーヴェ', symbol: null, category: '速度', lang: 'イタリア語', meaning: '重々しく。', detail: '荘厳で非常に遅い速度。', color: 'bg-slate-800 text-white' },
   { id: 52, term: 'Largo', reading: 'ラルゴ', symbol: null, category: '速度', lang: 'イタリア語', meaning: '幅広く。', detail: 'ゆったりした広大な流れ。', color: 'bg-emerald-50 text-emerald-700' },
@@ -59,8 +53,6 @@ export const termsData = [
   { id: 76, term: 'Rubato', reading: 'ルバート', symbol: null, category: '速度', lang: 'イタリア語', meaning: '自由に。', detail: '旋律のテンポを自由に伸縮。', color: 'bg-indigo-50' },
   { id: 77, term: 'Schnell', reading: 'シュネル', symbol: null, category: '速度', lang: 'ドイツ語', meaning: '速く。', detail: 'イタリア語のAllegro。', color: 'bg-orange-200' },
   { id: 78, term: 'Langsam', reading: 'ラングザム', symbol: null, category: '速度', lang: 'ドイツ語', meaning: '遅く。', detail: 'イタリア語のLento。', color: 'bg-neutral-200' },
-
-  // --- 奏法 (Technique) ---
   { id: 130, term: 'Legato', reading: 'レガート', symbol: '〜', category: '奏法', lang: 'イタリア語', meaning: 'なめらかに。', detail: '音の境目をなくし繋ぐ。', color: 'bg-blue-100 text-blue-600' },
   { id: 131, term: 'Staccato', reading: 'スタッカート', symbol: '・', category: '奏法', lang: 'イタリア語', meaning: '短く切って。', detail: '音を切り離し軽快に跳ねる。', color: 'bg-indigo-100 text-indigo-600' },
   { id: 132, term: 'Tenuto', reading: 'テヌート', symbol: '-', category: '奏法', lang: 'イタリア語', meaning: '音を保って。', detail: '音を最後までしっかり響かせる。', color: 'bg-violet-100 text-violet-600' },
@@ -76,8 +68,6 @@ export const termsData = [
   { id: 142, term: 'Vibrato', reading: 'ヴィブラート', symbol: 'vib.', category: '奏法', lang: 'イタリア語', meaning: '震わせて。', detail: 'ピッチを微細に揺らし響かせる。', color: 'bg-purple-50' },
   { id: 143, term: 'Appoggiatura', reading: 'アッポジャトゥーラ', symbol: null, category: '奏法', lang: 'イタリア語', meaning: '前打音。', detail: '主音の前に付く装飾音。', color: 'bg-rose-50' },
   { id: 144, term: 'Portato', reading: 'ポルタート', symbol: null, category: '奏法', lang: 'イタリア語', meaning: '柔らかく切る。', detail: 'レガートとスタッカートの中間。', color: 'bg-indigo-50' },
-
-  // --- 表情 (Expression) ---
   { id: 200, term: 'Dolce', reading: 'ドルチェ', symbol: null, category: '表情', lang: 'イタリア語', meaning: '甘く、優しく。', detail: '愛らしく柔らかな表情で。', color: 'bg-pink-50 text-pink-400' },
   { id: 201, term: 'Cantabile', reading: 'カンタービレ', symbol: null, category: '表情', lang: 'イタリア語', meaning: '歌うように。', detail: '旋律を表情豊かに響かせる。', color: 'bg-indigo-50 text-indigo-500' },
   { id: 202, term: 'Agitato', reading: 'アジタート', symbol: null, category: '表情', lang: 'イタリア語', meaning: '激しく、興奮して。', detail: '情熱的で落ち着かない表現。', color: 'bg-red-50 text-red-600' },
@@ -109,8 +99,6 @@ export const termsData = [
   { id: 228, term: 'Parlante', reading: 'パルランテ', symbol: null, category: '表情', lang: 'イタリア語', meaning: '語るように。', detail: '言葉を話すような抑揚。', color: 'bg-emerald-50' },
   { id: 229, term: 'Timoroso', reading: 'ティモローゾ', symbol: null, category: '表情', lang: 'イタリア語', meaning: '恐る恐る。', detail: '怯えたような震える響き。', color: 'bg-blue-50' },
   { id: 230, term: 'Vuoto', reading: 'ヴオート', symbol: null, category: '表情', lang: 'イタリア語', meaning: '空っぽの。', detail: '空虚な、中身のない響き。', color: 'bg-slate-50' },
-
-  // --- 構成 (Structure) ---
   { id: 450, term: 'Fine', reading: 'フィーネ', symbol: 'Fine', category: '構成', lang: 'イタリア語', meaning: '終わり。', detail: '楽曲の終了地点。', color: 'bg-slate-300 text-slate-800' },
   { id: 451, term: 'Da Capo', reading: 'ダ・カーポ', symbol: 'D.C.', category: '構成', lang: 'イタリア語', meaning: '最初へ。', detail: '冒頭に戻る。', color: 'bg-neutral-100 text-neutral-600' },
   { id: 452, term: 'Dal Segno', reading: 'ダル・セーニョ', symbol: 'D.S.', category: '構成', lang: 'イタリア語', meaning: 'セーニョへ。', detail: '記号まで戻る。', color: 'bg-neutral-200 text-neutral-700' },
@@ -122,3 +110,6 @@ export const termsData = [
   { id: 458, term: 'Volti subito', reading: 'ヴォルティ・スビト', symbol: 'V.S.', category: '構成', lang: 'イタリア語', meaning: 'すぐに譜をめくれ。', detail: '休みのない曲のページめくり指示。', color: 'bg-amber-50' },
   { id: 459, term: 'Generalpause', reading: 'ゲネラルパウゼ', symbol: 'G.P.', category: '構成', lang: 'ドイツ語', meaning: '全休止。', detail: '全奏者が一斉に休む部分。', color: 'bg-slate-900 text-white' },
 ];
+
+export const CATEGORIES = ['All', '強弱', '速度', '奏法', '表情', '構成', 'お気に入り'];
+export const ALPHABET = ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
