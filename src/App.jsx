@@ -315,7 +315,7 @@ export default function App() {
                 </div>
               </div>
             )}
-{/* プライバシービューの終了直後から最後まで */}
+{/* 1. プライバシービューのエリア（ここから） */}
       {view === 'privacy' && (
         <div className="space-y-4 animate-in fade-in duration-500">
           <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
@@ -323,8 +323,8 @@ export default function App() {
           <div className="text-left max-h-[400px] overflow-y-auto p-5 bg-slate-50 rounded-2xl text-sm text-slate-600 border border-slate-200 leading-relaxed shadow-inner">
             <h3 className="font-bold text-rose-500 mb-2">1. 個人情報の収集と利用目的</h3>
             <p className="mb-4">お問い合わせ時のお名前やメールアドレス等の個人情報は、回答や連絡以外の目的で利用することはありません。</p>
-            <h3 className="font-bold text-rose-500 mb-2">2. 広告の配信について（Google AdSense）</h3>
-            <p className="mb-4">当サイトは、第三者配信の広告サービス「Google AdSense」を利用しています。Cookieを使用して適切な広告を表示することがあります。</p>
+            <h3 className="font-bold text-rose-500 mb-2">2. 広告の配信について</h3>
+            <p className="mb-4">当サイトは、Google AdSenseを利用しています。広告配信事業者はCookieを使用して適切な広告を表示することがあります。</p>
             <h3 className="font-bold text-rose-500 mb-2">3. データの保存</h3>
             <p className="mb-4">入力データはブラウザのLocalStorageにのみ保存され、サーバーへ送信されることはありません。</p>
             <h3 className="font-bold text-rose-500 mb-2">4. 免責事項</h3>
@@ -337,9 +337,22 @@ export default function App() {
           </p>
           <AdSlot type="Sub Page Bottom" />
         </div>
-      )}
+      )} 
+      {/* 1. ここまでで条件分岐をしっかり閉じる */}
+
     </main>
 
+    {/* 2. フッター：どの画面でも一番下に出るように main の外に配置 */}
+    <footer className="text-center py-10 mt-10 border-t border-slate-100">
+      <div className="flex justify-center gap-8 mb-4">
+        <a href="https://forms.gle/WWrbB7uxuMHxg6VA9" target="_blank" rel="noopener noreferrer" className="text-rose-400 font-black text-xs uppercase tracking-widest hover:text-rose-600 transition-colors">Contact</a>
+        <button onClick={() => setView('privacy')} className="text-rose-400 font-black text-xs uppercase tracking-widest hover:text-rose-600 transition-colors cursor-pointer">Privacy</button>
+      </div>
+      <p className="text-slate-300 text-[10px] font-bold">© 2026 おんがく手帳 / MUSIC DIARY</p>
+    </footer>
+
+    {/* 3. メトロノームなどの固定要素（ここから下は既存のまま） */}
+    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
     {/* 【新設】全ページ共通フッター：Google審査に必須です */}
     <footer className="text-center py-10 mt-10 border-t border-slate-100 bg-white/50">
       <div className="flex justify-center gap-8 mb-4">
