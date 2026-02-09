@@ -315,15 +315,37 @@ export default function App() {
                 </div>
               </div>
             )}
-            {view === 'privacy' && (
-              <div className="space-y-4 animate-in fade-in duration-500">
-                <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
-                <p className="text-xs text-slate-500 font-bold leading-relaxed">当サイトはAdSense広告を利用します。詳細は /privacy.html を確認してください。</p>
-              </div>
-            )}
-            <AdSlot type="Sub Page Bottom" />
-          </div>
-        )}
+          {view === 'privacy' && (
+  <div className="space-y-4 animate-in fade-in duration-500">
+    <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
+    
+    {/* スクロール可能な全文エリア */}
+    <div className="text-left max-h-[400px] overflow-y-auto p-5 bg-slate-50 rounded-2xl text-sm text-slate-600 border border-slate-200 leading-relaxed shadow-inner">
+      <h3 className="font-bold text-rose-500 mb-2">1. 個人情報の収集と利用目的</h3>
+      <p className="mb-4">当サイトでは、お問い合わせ時に提供いただくお名前やメールアドレス等の個人情報を、回答や連絡以外の目的で利用することはありません。</p>
+
+      <h3 className="font-bold text-rose-500 mb-2">2. 広告の配信について（Google AdSense）</h3>
+      <p>当サイトは、第三者配信の広告サービス「Google AdSense」を利用しています。広告配信事業者は、ユーザーの興味に応じた広告を表示するため、Cookie（クッキー）を使用することがあります。</p>
+      <p className="mb-4">詳細や無効化の方法は、Googleの「広告－ポリシーと規約」をご確認ください。</p>
+
+      <h3 className="font-bold text-rose-500 mb-2">3. アクセス解析ツールについて</h3>
+      <p className="mb-4">当サイトではGoogleアナリティクスを利用し、トラフィックデータを匿名で収集しています。Cookieを無効にすることで収集を拒否できます。</p>
+
+      <h3 className="font-bold text-rose-500 mb-2">4. データの保存</h3>
+      <p className="mb-4">入力された「じぶんメモ」等のデータは、ブラウザのLocalStorageにのみ保存され、当方のサーバーへ送信されることはありません。</p>
+
+      <h3 className="font-bold text-rose-500 mb-2">5. 免責事項</h3>
+      <p className="mb-4">当サイトの利用により生じた損害等の一切の責任を負いかねますのでご了承ください。</p>
+
+      <p className="text-xs text-slate-400 mt-6">策定日：2026年2月9日</p>
+    </div>
+
+    {/* 外部ファイルへのリンクも残しておく（Googleロボット用） */}
+    <p className="text-xs text-slate-500 font-bold">
+      詳細は <a href="/privacy.html" target="_blank" className="text-rose-500 underline">独立したポリシーページ</a> でも確認できます。
+    </p>
+  </div>
+)}
       </main>
 
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
