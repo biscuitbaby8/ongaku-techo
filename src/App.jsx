@@ -315,66 +315,86 @@ export default function App() {
                 </div>
               </div>
             )}
-{/* 1. プライバシービューのエリア（ここから） */}
-      {view === 'privacy' && (
-        <div className="space-y-4 animate-in fade-in duration-500">
-          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
-          
-          <div className="text-left max-h-[400px] overflow-y-auto p-5 bg-slate-50 rounded-2xl text-sm text-slate-600 border border-slate-200 leading-relaxed shadow-inner">
-            <h3 className="font-bold text-rose-500 mb-2">1. 個人情報の収集と利用目的</h3>
-            <p className="mb-4">お問い合わせ時のお名前やメールアドレス等の個人情報は、回答や連絡以外の目的で利用することはありません。</p>
-            <h3 className="font-bold text-rose-500 mb-2">2. 広告の配信について</h3>
-            <p className="mb-4">当サイトは、Google AdSenseを利用しています。広告配信事業者はCookieを使用して適切な広告を表示することがあります。</p>
-            <h3 className="font-bold text-rose-500 mb-2">3. データの保存</h3>
-            <p className="mb-4">入力データはブラウザのLocalStorageにのみ保存され、サーバーへ送信されることはありません。</p>
-            <h3 className="font-bold text-rose-500 mb-2">4. 免責事項</h3>
-            <p className="mb-4">当サイトの利用により生じた損害等の一切の責任を負いかねます。</p>
-            <p className="text-xs text-slate-400 mt-6">策定日：2026年2月9日</p>
+            {view === 'privacy' && (
+              <div className="space-y-4 animate-in fade-in duration-500">
+                <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
+                <p className="text-xs text-slate-500 font-bold leading-relaxed">当サイトはAdSense広告を利用します。詳細は /privacy.html を確認してください。</p>
+              </div>
+            )}
+            <AdSlot type="Sub Page Bottom" />
           </div>
+        )}
+      </main>
 
-          <p className="text-xs text-slate-500 font-bold">
-            詳細は <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="text-rose-500 underline">独立したポリシーページ</a> でも確認できます。
-          </p>
-          {/* AdSlotコンポーネントがある場合はここに戻す */}
-          <div className="mt-4 border-2 border-dashed border-slate-200 rounded-xl p-8 text-center text-[10px] font-black text-slate-300 tracking-widest italic">SPONSORED</div>
+      <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
+        {isMetronomeOpen && (
+          <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-2xl'} shadow-2xl border-2 ${theme === 'kawaii' ? 'border-rose-100' : 'border-slate-200'} w-72 animate-in slide-in-from-bottom-4 duration-300`}>
+            <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20}/></button></div>
+            <div className="grid grid-cols-4 gap-1 mb-4">{[2, 3, 4, 6].map(num => (<button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 rounded-xl text-[10px] font-black transition-all ${beatsPerMeasure === num ? s.accent + ' text-white' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍`}</button>))}</div>
+            <div className="text-center mb-6"><div className={`text-5xl font-black text-slate-800 mb-1 transition-all duration-75 ${isPlaying && currentBeat === 0 ? 'scale-110 ' + s.accentText : 'scale-100'}`}>{bpm}</div></div>
+            <div className="flex items-center gap-3 mb-6 px-2">
+              <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Minus size={18}/></button>
+              <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className={`flex-1 ${theme === 'kawaii' ? 'accent-rose-400' : 'accent-indigo-600'} h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer`} />
+              <button onClick={() => setBpm(Math.min(240, bpm + 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Plus size={18}/></button>
+            </div>
+            <button onClick={toggleMetronome} className={`w-full py-4 rounded-2xl font-black text-white shadow-lg ${isPlaying ? 'bg-slate-400' : s.accent + ' shadow-rose-200'}`}>{isPlaying ? 'STOP' : 'START'}</button>
+          </div>
+        )}
+        <button onClick={() => setIsMetronomeOpen(!isMetronomeOpen)} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isMetronomeOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white ' + s.accentText + ' border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
+          {isPlaying ? (<Volume2 size={28} className="animate-pulse" />) : (<Music size={28} />)}
+        </button>
+      </div>
+
+      {selectedTerm && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[130] flex items-center justify-center p-4 overflow-y-auto">
+          <article className={`bg-white w-full max-w-sm ${theme === 'kawaii' ? 'rounded-[3.5rem]' : 'rounded-2xl'} shadow-2xl p-8 relative max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200 text-center`}>
+            <div className="flex justify-between items-center mb-4">
+              <button onClick={() => toggleFavorite(selectedTerm.id)} className={`p-3 rounded-2xl transition-all active:scale-90 ${favorites.has(selectedTerm.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'text-slate-200 bg-slate-50'}`}><Heart size={24} fill={favorites.has(selectedTerm.id) ? "currentColor" : "none"} /></button>
+              <button onClick={() => { setSelectedTerm(null); setAiAnalysis(null); }} className="p-3 bg-slate-50 text-slate-300 rounded-2xl active:scale-90 transition-colors"><X size={24} /></button>
+            </div>
+            <div className={`w-24 h-24 ${selectedTerm.color} ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-xl'} mx-auto flex items-center justify-center shadow-xl border-4 border-white mb-4 shrink-0 overflow-hidden`}>
+              <TermIcon item={selectedTerm} />
+            </div>
+            <h2 className="text-3xl font-black text-slate-800 leading-tight">{selectedTerm.term}</h2>
+            <div className="flex items-center justify-center gap-2 mt-1 mb-6 text-[10px] font-black italic uppercase tracking-widest text-slate-400">
+              <p className={s.accentText}>{selectedTerm.reading}</p>
+              <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
+              <div className={`flex items-center gap-1 ${theme === 'kawaii' ? 'bg-rose-50 text-rose-400' : 'bg-indigo-50 text-indigo-600'} px-2 py-0.5 rounded-lg shadow-sm`}><Languages size={10} />{selectedTerm.lang}</div>
+            </div>
+            <div className="space-y-4 mb-8 text-left">
+              <div className={`${theme === 'kawaii' ? 'bg-rose-50/50 rounded-[2.5rem]' : 'bg-slate-50 rounded-xl'} p-6 border shadow-inner text-center`}>
+                <p className="text-slate-800 font-black text-xl mb-3 italic">"{selectedTerm.meaning}"</p>
+                <p className="text-xs text-slate-600 px-2 leading-relaxed">{selectedTerm.detail}</p>
+              </div>
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-3xl border border-indigo-100">
+                <div className="flex justify-between items-center mb-2"><p className="text-[10px] font-black text-indigo-600 flex items-center gap-1 uppercase tracking-widest"><Sparkles size={12}/> AI名曲検索</p>{!aiAnalysis && !isAiLoading && <button onClick={() => getAiMusic(selectedTerm.term)} className="text-[10px] font-black bg-indigo-600 text-white px-3 py-1 rounded-lg">検索</button>}</div>
+                {isAiLoading && <div className="text-indigo-300 text-[10px] font-bold py-2 animate-pulse text-center">AI探索中...</div>}
+                {aiAnalysis && <p className="text-xs text-slate-600 font-bold leading-relaxed">{aiAnalysis}</p>}
+              </div>
+              <div className={`${theme === 'kawaii' ? 'bg-amber-50/40 border-amber-100 rounded-3xl' : 'bg-slate-50 border-slate-200 rounded-xl'} p-4 border shadow-sm`}>
+                <p className="text-[10px] font-black text-amber-600 mb-2 flex items-center gap-1 uppercase tracking-widest"><Edit3 size={12}/>じぶんメモ</p>
+                <textarea className="w-full bg-transparent border-none text-sm text-slate-600 h-16 outline-none resize-none" value={memos[selectedTerm.id] || ''} onChange={(e) => setMemos({...memos, [selectedTerm.id]: e.target.value})} />
+              </div>
+            </div>
+            <button onClick={() => { const n = new Set(mastered); if(n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 ${theme === 'kawaii' ? 'rounded-[2.2rem]' : 'rounded-xl'} font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent} shadow-lg active:scale-95 transition-all`}>{mastered.has(selectedTerm.id) ? 'おぼえた！' : 'これをおぼえる！'}</button>
+          </article>
         </div>
-      )} 
-      {/* 1. ここまでで条件分岐をしっかり閉じる */}
+      )}
 
-    </main>
+      {isCameraOpen && (
+        <div className="fixed inset-0 bg-black z-[150] flex flex-col items-center">
+          <video ref={videoRef} autoPlay playsInline className="flex-1 w-full object-cover" />
+          <canvas ref={canvasRef} className="hidden" />
+          <div className="absolute top-6 right-6"><button onClick={() => setIsCameraOpen(false)} className="p-3 bg-white/20 rounded-full text-white active:scale-90 transition-colors"><X size={24} /></button></div>
+          <div className={`w-full bg-white ${theme === 'kawaii' ? 'rounded-t-[40px]' : 'rounded-none'} p-8 flex flex-col items-center gap-4 shadow-2xl animate-in slide-in-from-bottom-full duration-300`}>
+            {scanError && <p className="text-rose-500 text-xs font-bold text-center bg-rose-50 px-4 py-2 rounded-xl border border-rose-100">{scanError}</p>}
+            <button onClick={captureAndScan} disabled={isScanning} className={`w-20 h-20 rounded-full border-4 ${theme === 'kawaii' ? 'border-rose-400' : 'border-indigo-600'} p-1 flex items-center justify-center active:scale-90 shadow-xl`}>{isScanning ? <Loader2 className={`animate-spin ${theme === 'kawaii' ? 'text-rose-400' : 'text-indigo-600'}`} size={32} /> : <div className={`w-full h-full ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-600'} rounded-full`} />}</button>
+            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] italic text-center">AI Smart Scanner</p>
+          </div>
+        </div>
+      )}
 
-    {/* 2. フッター：どの画面でも一番下に出るように main の外に配置 */}
-    <footer className="text-center py-10 mt-10 border-t border-slate-100 bg-white/30 backdrop-blur-sm">
-      <div className="flex justify-center gap-8 mb-4">
-        <a href="https://forms.gle/WWrbB7uxuMHxg6VA9" target="_blank" rel="noopener noreferrer" className="text-rose-400 font-black text-[10px] uppercase tracking-widest hover:text-rose-600 transition-colors">Contact</a>
-        <button onClick={() => setView('privacy')} className="text-rose-400 font-black text-[10px] uppercase tracking-widest hover:text-rose-600 transition-colors cursor-pointer">Privacy</button>
-      </div>
-      <p className="text-slate-300 text-[10px] font-bold">© 2026 おんがく手帳 / MUSIC DIARY</p>
-    </footer>
-
-    {/* 3. メトロノームなどの固定要素（ここから下は既存のまま） */}
-    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
-
-    {/* 2. フッター：どの画面でも一番下に出るように main の外に配置 */}
-    <footer className="text-center py-10 mt-10 border-t border-slate-100">
-      <div className="flex justify-center gap-8 mb-4">
-        <a href="https://forms.gle/WWrbB7uxuMHxg6VA9" target="_blank" rel="noopener noreferrer" className="text-rose-400 font-black text-xs uppercase tracking-widest hover:text-rose-600 transition-colors">Contact</a>
-        <button onClick={() => setView('privacy')} className="text-rose-400 font-black text-xs uppercase tracking-widest hover:text-rose-600 transition-colors cursor-pointer">Privacy</button>
-      </div>
-      <p className="text-slate-300 text-[10px] font-bold">© 2026 おんがく手帳 / MUSIC DIARY</p>
-    </footer>
-
-    {/* 3. メトロノームなどの固定要素（ここから下は既存のまま） */}
-    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
-    {/* 【新設】全ページ共通フッター：Google審査に必須です */}
-    <footer className="text-center py-10 mt-10 border-t border-slate-100 bg-white/50">
-      <div className="flex justify-center gap-8 mb-4">
-        <a href="https://forms.gle/WWrbB7uxuMHxg6VA9" target="_blank" rel="noopener noreferrer" className="text-rose-400 font-black text-xs uppercase tracking-widest hover:text-rose-600 transition-colors">Contact</a>
-        <button onClick={() => setView('privacy')} className="text-rose-400 font-black text-xs uppercase tracking-widest hover:text-rose-600 transition-colors">Privacy</button>
-      </div>
-      <p className="text-slate-300 text-[10px] font-bold">© 2026 おんがく手帳 / MUSIC DIARY</p>
-    </footer>
-
-    {/* メトロノーム、モーダル、スキャナー等の浮遊要素（変更なし） */}
-    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
-      {/* ...メトロノームのコード（中身はそのまま）... */}
+      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.5</p></div>
+    </div>
+  );
+}
