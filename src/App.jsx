@@ -8,7 +8,6 @@ import {
 // --- データのインポート ---
 import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
 
-// --- 記号（アイコン）表示用コンポーネント (完全復元) ---
 const TermIcon = ({ item }) => {
   if (item.symbol) {
     return (
@@ -24,7 +23,6 @@ const TermIcon = ({ item }) => {
   return null;
 };
 
-// --- 広告枠コンポーネント ---
 const AdSlot = ({ type }) => (
   <div className="my-6 p-4 bg-slate-100/50 border border-dashed border-slate-200 rounded-2xl text-center min-h-[100px] flex flex-col items-center justify-center">
     <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest mb-1">Sponsored</span>
@@ -33,11 +31,10 @@ const AdSlot = ({ type }) => (
 );
 
 export default function App() {
-  const apiKey = ""; // Gemini API Key
+  const apiKey = ""; 
   const contactEmail = "biscuitbaby.candy@gmail.com";
   const contactFormUrl = "https://forms.gle/WWrbB7uxuMHxg6VA9";
 
-  // --- 永続化状態 (完全復元) ---
   const [theme, setTheme] = useState(() => localStorage.getItem('music-theme') || 'kawaii');
   const [favorites, setFavorites] = useState(() => new Set(JSON.parse(localStorage.getItem('music-favs') || '[]')));
   const [mastered, setMastered] = useState(() => new Set(JSON.parse(localStorage.getItem('music-mastered') || '[]')));
@@ -71,15 +68,12 @@ export default function App() {
   const beatRef = useRef(0); 
   const timerID = useRef(null);
 
-  // --- 本日の用語 (復元) ---
   const termOfDay = useMemo(() => {
     const today = new Date();
     const dateStr = `${today.getFullYear()}${today.getMonth()}${today.getDate()}`;
-    const seed = parseInt(dateStr);
-    return INITIAL_TERMS[seed % INITIAL_TERMS.length];
+    return INITIAL_TERMS[parseInt(dateStr) % INITIAL_TERMS.length];
   }, []);
 
-  // --- 自動保存 ---
   useEffect(() => {
     localStorage.setItem('music-theme', theme);
     localStorage.setItem('music-favs', JSON.stringify([...favorites]));
@@ -88,41 +82,30 @@ export default function App() {
     localStorage.setItem('music-cookies', hasAcceptedCookies);
   }, [theme, favorites, mastered, memos, hasAcceptedCookies]);
 
-  // --- スタイル定義 (UI切り替え用・完全復元) ---
-  const themeStyles = {
-    kawaii: {
-      bg: 'bg-[#FFFDF9]',
-      header: 'bg-rose-300 rounded-b-[50px] shadow-inner text-white',
-      accent: 'bg-rose-400',
-      accentText: 'text-rose-400',
-      tabActive: 'bg-rose-400 text-white shadow-lg scale-105',
-      tabInactive: 'bg-white text-rose-300 border-rose-50',
-      button: 'rounded-3xl shadow-rose-100',
-      card: 'rounded-[2.2rem]',
-      loadMore: 'bg-rose-400 text-white shadow-rose-100 hover:bg-rose-500 rounded-3xl',
-    },
-    modern: {
-      bg: 'bg-slate-50',
-      header: 'bg-slate-900 rounded-none shadow-md text-slate-100',
-      accent: 'bg-indigo-600',
-      accentText: 'text-indigo-600',
-      tabActive: 'bg-indigo-600 text-white shadow-md',
-      tabInactive: 'bg-slate-200 text-slate-600 border-transparent',
-      button: 'rounded-xl shadow-slate-200',
-      card: 'rounded-xl',
-      loadMore: 'bg-indigo-600 text-white shadow-indigo-100 hover:bg-indigo-700 rounded-xl',
+  useEffect(() => {
+    if (searchTerm.length > 0 && resultsRef.current) {
+      resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
-  const s = themeStyles[theme];
+  }, [searchTerm]);
 
-  // --- AI 名曲検索 (復元) ---
+  const s = {
+    kawaii: { bg: 'bg-[#FFFDF9]', header: 'bg-rose-300 rounded-b-[50px] shadow-inner text-white', accent: 'bg-rose-400', accentText: 'text-rose-400', tabActive: 'bg-rose-400 text-white shadow-lg scale-105', tabInactive: 'bg-white text-rose-300 border-rose-50', button: 'rounded-3xl shadow-rose-100', card: 'rounded-[2.2rem]', loadMore: 'bg-rose-400 text-white shadow-rose-100 hover:bg-rose-500 rounded-3xl' },
+    modern: { bg: 'bg-slate-50', header: 'bg-slate-900 rounded-none shadow-md text-slate-100', accent: 'bg-indigo-600', accentText: 'text-indigo-600', tabActive: 'bg-indigo-600 text-white shadow-md', tabInactive: 'bg-slate-200 text-slate-600 border-transparent', button: 'rounded-xl shadow-slate-200', card: 'rounded-xl', loadMore: 'bg-indigo-600 text-white shadow-indigo-100 hover:bg-indigo-700 rounded-xl' }
+  }[theme];
+
+  const toggleFavorite = (id) => {
+    const n = new Set(favorites);
+    if(n.has(id)) n.delete(id); else n.add(id);
+    setFavorites(n);
+  };
+
   const getAiMusic = async (term) => {
     if (!apiKey) return setAiAnalysis("APIキーを設定してください。");
     setIsAiLoading(true);
     try {
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的な有名なクラシック曲を1つ挙げ、理由を30文字程度で解説。` }] }] })
+        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的なクラシック曲を1つ挙げ、理由を30文字程度で解説。` }] }] })
       });
       const data = await response.json();
       setAiAnalysis(data.candidates[0].content.parts[0].text);
@@ -130,7 +113,6 @@ export default function App() {
     finally { setIsAiLoading(false); }
   };
 
-  // --- メトロノーム (6/8対応・完全復元) ---
   const playClick = (time, beatNumber) => {
     if (!audioContext.current) return;
     const osc = audioContext.current.createOscillator();
@@ -164,7 +146,6 @@ export default function App() {
     return () => cancelAnimationFrame(timerID.current);
   }, [isPlaying, bpm, beatsPerMeasure]);
 
-  // --- カメラ/スキャン (復元) ---
   const openCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
@@ -213,8 +194,8 @@ export default function App() {
         <div className="fixed bottom-0 inset-x-0 z-[110] p-4 animate-in slide-in-from-bottom-full duration-500">
           <div className="bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-4 max-w-2xl mx-auto border border-white/10">
             <Cookie size={40} className="text-yellow-400 shrink-0" />
-            <p className="flex-1 text-xs font-bold leading-relaxed text-left">Cookieの使用に同意して、学習体験をパーソナライズしましょう！</p>
-            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs active:scale-95 transition-all`}>同意する</button>
+            <p className="flex-1 text-xs font-bold text-left">Cookieの使用に同意して、学習体験をパーソナライズしましょう！</p>
+            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs`}>同意する</button>
           </div>
         </div>
       )}
@@ -227,7 +208,6 @@ export default function App() {
               <button onClick={() => setShowSettings(false)} className="p-2 text-slate-300 hover:text-slate-500 active:scale-90"><X size={24}/></button>
             </div>
             <div className="space-y-6 text-left">
-              {/* テーマ切替セクション (完全復元) */}
               <section>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">テーマ切替</p>
                 <div className="grid grid-cols-2 gap-2">
@@ -238,9 +218,9 @@ export default function App() {
               <section>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">サイト情報</p>
                 <div className="grid gap-2">
-                  <button onClick={() => { setView('install'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-colors"><Smartphone size={16}/> ホーム画面に追加</button>
-                  <button onClick={() => { setView('privacy'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"><ShieldCheck size={16}/> プライバシーポリシー</button>
-                  <button onClick={() => { setView('contact'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"><Mail size={16}/> お問い合わせ</button>
+                  <button onClick={() => { setView('install'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Smartphone size={18} className={s.accentText}/> ホーム画面に追加</button>
+                  <button onClick={() => { setView('privacy'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><ShieldCheck size={18} className={s.accentText}/> プライバシーポリシー</button>
+                  <button onClick={() => { setView('contact'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Mail size={18} className={s.accentText}/> お問い合わせ</button>
                 </div>
               </section>
             </div>
@@ -261,7 +241,6 @@ export default function App() {
               <button onClick={() => { setSelectedTerm(INITIAL_TERMS[Math.floor(Math.random()*INITIAL_TERMS.length)]); setAiAnalysis(null); }} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Shuffle size={24} /></button>
             </div>
 
-            {/* 本日の用語カード (完全復元) */}
             {!searchTerm && (
               <div onClick={() => { setSelectedTerm(termOfDay); setAiAnalysis(null); }} className={`${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50' : 'bg-slate-800 text-white'} p-6 ${s.card} shadow-lg mb-8 relative overflow-hidden group active:scale-[0.98] cursor-pointer animate-in fade-in zoom-in-95 duration-500`}>
                 <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform"><Sparkles size={100} /></div>
@@ -279,7 +258,7 @@ export default function App() {
               </div>
               <div className={`flex gap-1.5 overflow-x-auto pb-4 mb-4 scrollbar-hide px-1 border-b ${theme === 'kawaii' ? 'border-rose-50' : 'border-slate-200'}`}>
                 {ALPHABET.map(letter => (
-                  <button key={letter} onClick={() => { setSelectedLetter(letter); setVisibleItems(40); }} className={`min-w-[40px] h-7 px-2 rounded-xl text-[9px] font-black transition-all border ${selectedLetter === letter ? (theme === 'kawaii' ? 'bg-rose-100 text-rose-500 border-rose-200 shadow-sm scale-110' : 'bg-indigo-600 text-white border-indigo-600 shadow-sm scale-110') : (theme === 'kawaii' ? 'bg-white text-rose-200 border-rose-50' : 'bg-white text-slate-400 border-slate-200 hover:text-indigo-600')}`}>{letter}</button>
+                  <button key={letter} onClick={() => { setSelectedLetter(letter); setVisibleItems(40); }} className={`min-w-[40px] h-7 px-2 rounded-xl text-[9px] font-black transition-all border ${selectedLetter === letter ? (theme === 'kawaii' ? 'bg-rose-100 text-rose-500 border-rose-200 shadow-sm scale-110' : 'bg-indigo-600 text-white border-indigo-600 shadow-sm scale-110') : 'bg-white text-slate-400 border-slate-200 hover:text-indigo-600'}`}>{letter}</button>
                 ))}
               </div>
             </div>
@@ -294,14 +273,14 @@ export default function App() {
                       <TermIcon item={item} />
                       {mastered.has(item.id) && <CheckCircle size={14} className="absolute -top-1 -right-1 text-green-500 bg-white rounded-full shadow-sm" fill="currentColor" />}
                     </div>
-                    <div className="min-w-0 text-left">
+                    <div className="min-w-0">
                       <h3 className="font-bold text-slate-800 leading-tight truncate text-base">{item.term}</h3>
                       <p className="text-[10px] font-bold text-slate-400 truncate mt-0.5">{item.meaning}</p>
                       <div className="flex items-center gap-2 mt-1"><span className="text-slate-300 text-[8px] font-black uppercase tracking-widest">{item.category}</span><span className="w-1 h-1 bg-slate-200 rounded-full"></span><span className={`${s.accentText} text-[8px] font-bold`}>{item.lang}</span></div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-slate-200 shrink-0">
-                    <button onClick={(e) => { e.stopPropagation(); const n = new Set(favorites); if(n.has(item.id)) n.delete(item.id); else n.add(item.id); setFavorites(n); }} className={`p-2 rounded-full transition-all ${favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'hover:text-rose-200'}`}>
+                    <button onClick={(e) => { e.stopPropagation(); toggleFavorite(item.id); }} className={`p-2 rounded-full transition-all ${favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'hover:text-rose-200'}`}>
                       <Heart size={20} fill={favorites.has(item.id) ? "currentColor" : "none"} />
                     </button>
                     <ChevronRight size={18} />
@@ -369,7 +348,10 @@ export default function App() {
       {selectedTerm && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[130] flex items-center justify-center p-4 overflow-y-auto">
           <article className={`bg-white w-full max-w-sm ${theme === 'kawaii' ? 'rounded-[3.5rem]' : 'rounded-2xl'} shadow-2xl p-8 relative max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200 text-center`}>
-            <button onClick={() => { setSelectedTerm(null); setAiAnalysis(null); }} className="absolute top-6 right-6 p-3 bg-slate-50 text-slate-300 rounded-2xl active:scale-90"><X size={24} /></button>
+            <div className="flex justify-between items-center mb-4">
+              <button onClick={() => toggleFavorite(selectedTerm.id)} className={`p-3 rounded-2xl transition-all active:scale-90 ${favorites.has(selectedTerm.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'text-slate-200 bg-slate-50'}`}><Heart size={24} fill={favorites.has(selectedTerm.id) ? "currentColor" : "none"} /></button>
+              <button onClick={() => { setSelectedTerm(null); setAiAnalysis(null); }} className="p-3 bg-slate-50 text-slate-300 rounded-2xl active:scale-90 transition-colors"><X size={24} /></button>
+            </div>
             <div className={`w-24 h-24 ${selectedTerm.color} ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-xl'} mx-auto flex items-center justify-center shadow-xl border-4 border-white mb-4 shrink-0 overflow-hidden`}>
               <TermIcon item={selectedTerm} />
             </div>
