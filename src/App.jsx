@@ -335,12 +335,25 @@ export default function App() {
           <p className="text-xs text-slate-500 font-bold">
             詳細は <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="text-rose-500 underline">独立したポリシーページ</a> でも確認できます。
           </p>
-          <AdSlot type="Sub Page Bottom" />
+          {/* AdSlotコンポーネントがある場合はここに戻す */}
+          <div className="mt-4 border-2 border-dashed border-slate-200 rounded-xl p-8 text-center text-[10px] font-black text-slate-300 tracking-widest italic">SPONSORED</div>
         </div>
       )} 
       {/* 1. ここまでで条件分岐をしっかり閉じる */}
 
     </main>
+
+    {/* 2. フッター：どの画面でも一番下に出るように main の外に配置 */}
+    <footer className="text-center py-10 mt-10 border-t border-slate-100 bg-white/30 backdrop-blur-sm">
+      <div className="flex justify-center gap-8 mb-4">
+        <a href="https://forms.gle/WWrbB7uxuMHxg6VA9" target="_blank" rel="noopener noreferrer" className="text-rose-400 font-black text-[10px] uppercase tracking-widest hover:text-rose-600 transition-colors">Contact</a>
+        <button onClick={() => setView('privacy')} className="text-rose-400 font-black text-[10px] uppercase tracking-widest hover:text-rose-600 transition-colors cursor-pointer">Privacy</button>
+      </div>
+      <p className="text-slate-300 text-[10px] font-bold">© 2026 おんがく手帳 / MUSIC DIARY</p>
+    </footer>
+
+    {/* 3. メトロノームなどの固定要素（ここから下は既存のまま） */}
+    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
 
     {/* 2. フッター：どの画面でも一番下に出るように main の外に配置 */}
     <footer className="text-center py-10 mt-10 border-t border-slate-100">
