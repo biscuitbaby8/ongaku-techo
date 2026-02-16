@@ -4,6 +4,7 @@ import {
   Sparkles, Heart, CheckCircle, Edit3,
   Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 // --- データのインポート ---
 import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
@@ -425,6 +426,7 @@ export default function App() {
       )}
 
       <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.5</p></div>
+      <Analytics />
     </div>
   );
 }
