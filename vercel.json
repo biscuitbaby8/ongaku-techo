@@ -1,3 +1,15 @@
 {
-    "redirects": []
+    "redirects": [
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.ongakutecho.com"
+                }
+            ],
+            "destination": "https://ongakutecho.com/:path*",
+            "permanent": true
+        }
+    ]
 }
