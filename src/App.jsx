@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { 
-  Search, Music, Info, ChevronRight, X, 
-  Sparkles, Heart, CheckCircle, Edit3, 
+import {
+  Search, Music, Info, ChevronRight, X,
+  Sparkles, Heart, CheckCircle, Edit3,
   Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink
 } from 'lucide-react';
 
@@ -11,11 +11,10 @@ import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsDa
 const TermIcon = ({ item }) => {
   if (item.symbol) {
     return (
-      <span className={`${
-        item.category === '強弱' 
-          ? 'font-serif italic font-black text-2xl tracking-tighter' 
+      <span className={`${item.category === '強弱'
+          ? 'font-serif italic font-black text-2xl tracking-tighter'
           : 'font-sans font-black text-[9px] md:text-[10px] leading-tight text-center uppercase'
-      } select-none text-current opacity-90 px-0.5 break-all line-clamp-2`}>
+        } select-none text-current opacity-90 px-0.5 break-all line-clamp-2`}>
         {item.symbol}
       </span>
     );
@@ -31,7 +30,7 @@ const AdSlot = ({ type }) => (
 );
 
 export default function App() {
-  const apiKey = ""; 
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
   const contactEmail = "biscuitbaby.candy@gmail.com";
   const contactFormUrl = "https://forms.gle/WWrbB7uxuMHxg6VA9";
 
@@ -41,14 +40,14 @@ export default function App() {
   const [memos, setMemos] = useState(() => JSON.parse(localStorage.getItem('music-memos') || '{}'));
   const [hasAcceptedCookies, setHasAcceptedCookies] = useState(() => localStorage.getItem('music-cookies') === 'true');
 
-  const [view, setView] = useState('main'); 
+  const [view, setView] = useState('main');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLetter, setSelectedLetter] = useState('All');
   const [selectedTerm, setSelectedTerm] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
   const [visibleItems, setVisibleItems] = useState(40);
-  
+
   const resultsRef = useRef(null);
   const [aiAnalysis, setAiAnalysis] = useState(null);
   const [isAiLoading, setIsAiLoading] = useState(false);
@@ -59,13 +58,13 @@ export default function App() {
   const canvasRef = useRef(null);
 
   const [bpm, setBpm] = useState(120);
-  const [beatsPerMeasure, setBeatsPerMeasure] = useState(4); 
+  const [beatsPerMeasure, setBeatsPerMeasure] = useState(4);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMetronomeOpen, setIsMetronomeOpen] = useState(false);
-  const [currentBeat, setCurrentBeat] = useState(0); 
+  const [currentBeat, setCurrentBeat] = useState(0);
   const audioContext = useRef(null);
   const nextNoteTime = useRef(0);
-  const beatRef = useRef(0); 
+  const beatRef = useRef(0);
   const timerID = useRef(null);
 
   const termOfDay = useMemo(() => {
@@ -95,7 +94,7 @@ export default function App() {
 
   const toggleFavorite = (id) => {
     const n = new Set(favorites);
-    if(n.has(id)) n.delete(id); else n.add(id);
+    if (n.has(id)) n.delete(id); else n.add(id);
     setFavorites(n);
   };
 
@@ -205,7 +204,7 @@ export default function App() {
           <div className="bg-white w-full max-w-xs rounded-[2.5rem] shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-black flex items-center gap-2 text-slate-800"><Settings size={20} className={s.accentText} /> 設定</h2>
-              <button onClick={() => setShowSettings(false)} className="p-2 text-slate-300 hover:text-slate-500 active:scale-90"><X size={24}/></button>
+              <button onClick={() => setShowSettings(false)} className="p-2 text-slate-300 hover:text-slate-500 active:scale-90"><X size={24} /></button>
             </div>
             <div className="space-y-6 text-left">
               <section>
@@ -218,9 +217,9 @@ export default function App() {
               <section>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">サイト情報</p>
                 <div className="grid gap-2">
-                  <button onClick={() => { setView('install'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Smartphone size={18} className={s.accentText}/> ホーム画面に追加</button>
-                  <button onClick={() => { setView('privacy'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><ShieldCheck size={18} className={s.accentText}/> プライバシーポリシー</button>
-                  <button onClick={() => { setView('contact'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Mail size={18} className={s.accentText}/> お問い合わせ</button>
+                  <button onClick={() => { setView('install'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Smartphone size={18} className={s.accentText} /> ホーム画面に追加</button>
+                  <button onClick={() => { setView('privacy'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><ShieldCheck size={18} className={s.accentText} /> プライバシーポリシー</button>
+                  <button onClick={() => { setView('contact'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Mail size={18} className={s.accentText} /> お問い合わせ</button>
                 </div>
               </section>
             </div>
@@ -238,7 +237,7 @@ export default function App() {
                 {searchTerm && <button onClick={() => setSearchTerm('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500"><X size={18} /></button>}
               </div>
               <button onClick={openCamera} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Camera size={24} /></button>
-              <button onClick={() => { setSelectedTerm(INITIAL_TERMS[Math.floor(Math.random()*INITIAL_TERMS.length)]); setAiAnalysis(null); }} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Shuffle size={24} /></button>
+              <button onClick={() => { setSelectedTerm(INITIAL_TERMS[Math.floor(Math.random() * INITIAL_TERMS.length)]); setAiAnalysis(null); }} className={`bg-white p-4 ${s.button} ${s.accentText} shadow-xl active:scale-90`}><Shuffle size={24} /></button>
             </div>
 
             {!searchTerm && (
@@ -301,8 +300,8 @@ export default function App() {
               <div className="space-y-8 animate-in fade-in duration-500">
                 <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2"><Smartphone className={s.accentText} /> ホーム画面に追加</h2>
                 <div className="space-y-6 text-[11px] leading-loose text-slate-600 font-bold">
-                  <section className="bg-rose-50/50 p-6 rounded-[2rem] border border-rose-100"><h3 className="font-black text-rose-500 mb-2 flex items-center gap-2"><PlusSquare size={16}/> iPhone (Safari)</h3><p>1. 共有ボタン <Share size={14} className="inline text-blue-500"/> をタップ<br/>2. 「ホーム画面に追加」を選択してください。</p></section>
-                  <section className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100"><h3 className="font-black text-indigo-500 mb-2 flex items-center gap-2"><PlusSquare size={16}/> Android (Chrome)</h3><p>1. メニュー <MoreVertical size={14} className="inline"/> をタップ<br/>2. 「アプリをインストール」を選択してください。</p></section>
+                  <section className="bg-rose-50/50 p-6 rounded-[2rem] border border-rose-100"><h3 className="font-black text-rose-500 mb-2 flex items-center gap-2"><PlusSquare size={16} /> iPhone (Safari)</h3><p>1. 共有ボタン <Share size={14} className="inline text-blue-500" /> をタップ<br />2. 「ホーム画面に追加」を選択してください。</p></section>
+                  <section className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100"><h3 className="font-black text-indigo-500 mb-2 flex items-center gap-2"><PlusSquare size={16} /> Android (Chrome)</h3><p>1. メニュー <MoreVertical size={14} className="inline" /> をタップ<br />2. 「アプリをインストール」を選択してください。</p></section>
                 </div>
               </div>
             )}
@@ -310,8 +309,8 @@ export default function App() {
               <div className="space-y-6 animate-in fade-in duration-500">
                 <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2">Contact</h2>
                 <div className="space-y-3">
-                  <a href={`mailto:${contactEmail}`} className={`flex items-center justify-between p-5 ${theme === 'kawaii' ? 'bg-rose-50 text-rose-500' : 'bg-slate-50 text-slate-600'} border-2 rounded-3xl font-black text-sm active:scale-95 transition-all shadow-sm`}><div className="flex items-center gap-3"><Mail size={20}/> メールを送る</div><ChevronRight size={18}/></a>
-                  <a href={contactFormUrl} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between p-5 ${theme === 'kawaii' ? 'bg-orange-50 text-orange-500' : 'bg-indigo-50 text-indigo-600'} border-2 rounded-3xl font-black text-sm active:scale-95 transition-all shadow-sm`}><div className="flex items-center gap-3"><ExternalLink size={20}/> 問い合わせフォーム</div><ChevronRight size={18}/></a>
+                  <a href={`mailto:${contactEmail}`} className={`flex items-center justify-between p-5 ${theme === 'kawaii' ? 'bg-rose-50 text-rose-500' : 'bg-slate-50 text-slate-600'} border-2 rounded-3xl font-black text-sm active:scale-95 transition-all shadow-sm`}><div className="flex items-center gap-3"><Mail size={20} /> メールを送る</div><ChevronRight size={18} /></a>
+                  <a href={contactFormUrl} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between p-5 ${theme === 'kawaii' ? 'bg-orange-50 text-orange-500' : 'bg-indigo-50 text-indigo-600'} border-2 rounded-3xl font-black text-sm active:scale-95 transition-all shadow-sm`}><div className="flex items-center gap-3"><ExternalLink size={20} /> 問い合わせフォーム</div><ChevronRight size={18} /></a>
                 </div>
               </div>
             )}
@@ -329,13 +328,13 @@ export default function App() {
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
         {isMetronomeOpen && (
           <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-2xl'} shadow-2xl border-2 ${theme === 'kawaii' ? 'border-rose-100' : 'border-slate-200'} w-72 animate-in slide-in-from-bottom-4 duration-300`}>
-            <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20}/></button></div>
+            <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20} /></button></div>
             <div className="grid grid-cols-4 gap-1 mb-4">{[2, 3, 4, 6].map(num => (<button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 rounded-xl text-[10px] font-black transition-all ${beatsPerMeasure === num ? s.accent + ' text-white' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍`}</button>))}</div>
             <div className="text-center mb-6"><div className={`text-5xl font-black text-slate-800 mb-1 transition-all duration-75 ${isPlaying && currentBeat === 0 ? 'scale-110 ' + s.accentText : 'scale-100'}`}>{bpm}</div></div>
             <div className="flex items-center gap-3 mb-6 px-2">
-              <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Minus size={18}/></button>
+              <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Minus size={18} /></button>
               <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className={`flex-1 ${theme === 'kawaii' ? 'accent-rose-400' : 'accent-indigo-600'} h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer`} />
-              <button onClick={() => setBpm(Math.min(240, bpm + 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Plus size={18}/></button>
+              <button onClick={() => setBpm(Math.min(240, bpm + 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Plus size={18} /></button>
             </div>
             <button onClick={toggleMetronome} className={`w-full py-4 rounded-2xl font-black text-white shadow-lg ${isPlaying ? 'bg-slate-400' : s.accent + ' shadow-rose-200'}`}>{isPlaying ? 'STOP' : 'START'}</button>
           </div>
@@ -367,16 +366,16 @@ export default function App() {
                 <p className="text-xs text-slate-600 px-2 leading-relaxed">{selectedTerm.detail}</p>
               </div>
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-3xl border border-indigo-100">
-                <div className="flex justify-between items-center mb-2"><p className="text-[10px] font-black text-indigo-600 flex items-center gap-1 uppercase tracking-widest"><Sparkles size={12}/> AI名曲検索</p>{!aiAnalysis && !isAiLoading && <button onClick={() => getAiMusic(selectedTerm.term)} className="text-[10px] font-black bg-indigo-600 text-white px-3 py-1 rounded-lg">検索</button>}</div>
+                <div className="flex justify-between items-center mb-2"><p className="text-[10px] font-black text-indigo-600 flex items-center gap-1 uppercase tracking-widest"><Sparkles size={12} /> AI名曲検索</p>{!aiAnalysis && !isAiLoading && <button onClick={() => getAiMusic(selectedTerm.term)} className="text-[10px] font-black bg-indigo-600 text-white px-3 py-1 rounded-lg">検索</button>}</div>
                 {isAiLoading && <div className="text-indigo-300 text-[10px] font-bold py-2 animate-pulse text-center">AI探索中...</div>}
                 {aiAnalysis && <p className="text-xs text-slate-600 font-bold leading-relaxed">{aiAnalysis}</p>}
               </div>
               <div className={`${theme === 'kawaii' ? 'bg-amber-50/40 border-amber-100 rounded-3xl' : 'bg-slate-50 border-slate-200 rounded-xl'} p-4 border shadow-sm`}>
-                <p className="text-[10px] font-black text-amber-600 mb-2 flex items-center gap-1 uppercase tracking-widest"><Edit3 size={12}/>じぶんメモ</p>
-                <textarea className="w-full bg-transparent border-none text-sm text-slate-600 h-16 outline-none resize-none" value={memos[selectedTerm.id] || ''} onChange={(e) => setMemos({...memos, [selectedTerm.id]: e.target.value})} />
+                <p className="text-[10px] font-black text-amber-600 mb-2 flex items-center gap-1 uppercase tracking-widest"><Edit3 size={12} />じぶんメモ</p>
+                <textarea className="w-full bg-transparent border-none text-sm text-slate-600 h-16 outline-none resize-none" value={memos[selectedTerm.id] || ''} onChange={(e) => setMemos({ ...memos, [selectedTerm.id]: e.target.value })} />
               </div>
             </div>
-            <button onClick={() => { const n = new Set(mastered); if(n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 ${theme === 'kawaii' ? 'rounded-[2.2rem]' : 'rounded-xl'} font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent} shadow-lg active:scale-95 transition-all`}>{mastered.has(selectedTerm.id) ? 'おぼえた！' : 'これをおぼえる！'}</button>
+            <button onClick={() => { const n = new Set(mastered); if (n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 ${theme === 'kawaii' ? 'rounded-[2.2rem]' : 'rounded-xl'} font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent} shadow-lg active:scale-95 transition-all`}>{mastered.has(selectedTerm.id) ? 'おぼえた！' : 'これをおぼえる！'}</button>
           </article>
         </div>
       )}
