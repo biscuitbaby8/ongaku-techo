@@ -12,8 +12,8 @@ const TermIcon = ({ item }) => {
   if (item.symbol) {
     return (
       <span className={`${item.category === '強弱'
-          ? 'font-serif italic font-black text-2xl tracking-tighter'
-          : 'font-sans font-black text-[9px] md:text-[10px] leading-tight text-center uppercase'
+        ? 'font-serif italic font-black text-2xl tracking-tighter'
+        : 'font-sans font-black text-[9px] md:text-[10px] leading-tight text-center uppercase'
         } select-none text-current opacity-90 px-0.5 break-all line-clamp-2`}>
         {item.symbol}
       </span>
@@ -315,9 +315,16 @@ export default function App() {
               </div>
             )}
             {view === 'privacy' && (
-              <div className="space-y-4 animate-in fade-in duration-500">
+              <div className="space-y-6 animate-in fade-in duration-500">
                 <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest">Privacy Policy</h2>
-                <p className="text-xs text-slate-500 font-bold leading-relaxed">当サイトはAdSense広告を利用します。詳細は /privacy.html を確認してください。</p>
+                <div className={`${theme === 'kawaii' ? 'bg-rose-50' : 'bg-slate-50'} p-6 rounded-[2rem] border border-rose-100/50`}>
+                  <p className="text-xs text-slate-600 font-bold leading-relaxed mb-4">
+                    「音楽手帳」では、ユーザーの皆様に安心してご利用いただけるよう、個人情報保護法に基づき詳細なプライバシーポリシーを定めています。
+                  </p>
+                  <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className={`w-full flex items-center justify-center gap-2 p-4 ${s.accent} text-white rounded-2xl font-black text-sm shadow-lg active:scale-95 transition-all`}>
+                    <ShieldCheck size={18} /> 全文を確認する (別タブ)
+                  </a>
+                </div>
               </div>
             )}
             <AdSlot type="Sub Page Bottom" />
