@@ -255,6 +255,15 @@ export default function App() {
               </div>
             )}
 
+            {!searchTerm && selectedCategory === 'All' && selectedLetter === 'All' && (
+              <section className={`${theme === 'kawaii' ? 'bg-white/50 border-rose-100' : 'bg-slate-50 border-slate-200'} p-6 rounded-[2.5rem] border-2 border-dashed mb-8 text-center`}>
+                <h3 className={`text-sm font-black ${s.accentText} uppercase tracking-widest mb-3 flex items-center justify-center gap-2`}><Info size={16} /> 音楽手帳について</h3>
+                <p className="text-[11px] text-slate-600 font-bold leading-relaxed px-2">
+                  1000語以上の膨大な用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。教育的価値を追求した、本格的な音楽家向けデジタル辞書プロジェクトです。
+                </p>
+              </section>
+            )}
+
             <div ref={resultsRef} className="scroll-mt-4">
               <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scrollbar-hide px-1">
                 {CATEGORIES.map(cat => (
@@ -337,6 +346,18 @@ export default function App() {
           </div>
         )}
       </main>
+
+      <footer className="max-w-md mx-auto px-6 py-12 text-center">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
+          <button onClick={() => setView('privacy')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Privacy Policy</button>
+          <button onClick={() => setView('contact')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Contact</button>
+          <button onClick={() => setView('install')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Install</button>
+        </div>
+        <div className="space-y-1">
+          <p className="text-[9px] font-black text-slate-300 uppercase tracking-widest">© 2026 ongaku-techo / biscuitbaby</p>
+          <p className="text-[8px] font-bold text-slate-300">All rights reserved. Designed for Musicians.</p>
+        </div>
+      </footer>
 
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
         {isMetronomeOpen && (
