@@ -40,7 +40,10 @@ export default function App() {
   const contactEmail = "biscuitbaby.candy@gmail.com";
   const contactFormUrl = "https://forms.gle/WWrbB7uxuMHxg6VA9";
 
-  const [theme, setTheme] = useState(() => localStorage.getItem('music-theme') || 'kawaii');
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('music-theme');
+    return (saved === 'kawaii' || saved === 'modern') ? saved : 'kawaii';
+  });
   const [favorites, setFavorites] = useState(() => new Set(JSON.parse(localStorage.getItem('music-favs') || '[]')));
   const [mastered, setMastered] = useState(() => new Set(JSON.parse(localStorage.getItem('music-mastered') || '[]')));
   const [memos, setMemos] = useState(() => JSON.parse(localStorage.getItem('music-memos') || '{}'));
@@ -93,10 +96,10 @@ export default function App() {
     }
   }, [searchTerm]);
 
-  const s = {
+  const s = ({
     kawaii: { bg: 'bg-[#FFFDF9]', header: 'bg-rose-300 rounded-b-[50px] shadow-inner text-white', accent: 'bg-rose-400', accentText: 'text-rose-400', tabActive: 'bg-rose-400 text-white shadow-lg scale-105', tabInactive: 'bg-white text-rose-300 border-rose-50', button: 'rounded-3xl shadow-rose-100', card: 'rounded-[2.2rem]', loadMore: 'bg-rose-400 text-white shadow-rose-100 hover:bg-rose-500 rounded-3xl' },
     modern: { bg: 'bg-slate-50', header: 'bg-slate-900 rounded-none shadow-md text-slate-100', accent: 'bg-indigo-600', accentText: 'text-indigo-600', tabActive: 'bg-indigo-600 text-white shadow-md', tabInactive: 'bg-slate-200 text-slate-600 border-transparent', button: 'rounded-xl shadow-slate-200', card: 'rounded-xl', loadMore: 'bg-indigo-600 text-white shadow-indigo-100 hover:bg-indigo-700 rounded-xl' }
-  }[theme];
+  }[theme]) || { bg: 'bg-[#FFFDF9]', header: 'bg-rose-300', accent: 'bg-rose-400', accentText: 'text-rose-400', tabActive: 'bg-rose-400 text-white', tabInactive: 'bg-white', button: 'rounded-3xl', card: 'rounded-[2.2rem]', loadMore: 'bg-rose-400 text-white' };
 
   const toggleFavorite = (id) => {
     const n = new Set(favorites);
@@ -447,7 +450,7 @@ export default function App() {
       )}
 
       <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.5</p></div>
-      <Analytics />
+      {/* <Analytics /> */}
     </div>
   );
 }
