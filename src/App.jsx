@@ -22,12 +22,17 @@ const TermIcon = ({ item }) => {
   return null;
 };
 
-const AdSlot = ({ type }) => (
-  <div className="my-6 p-4 bg-slate-100/50 border border-dashed border-slate-200 rounded-2xl text-center min-h-[100px] flex flex-col items-center justify-center">
-    <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest mb-1">Sponsored</span>
-    <div className="text-slate-300 text-xs italic">広告掲載エリア ({type})</div>
-  </div>
-);
+const AdSlot = ({ type }) => {
+  const SHOW_ADS = false; // AdSense審査に備え、一時的に非表示（審査通過後にtrueにする）
+  if (!SHOW_ADS) return null;
+
+  return (
+    <div className="my-6 p-4 bg-slate-100/50 border border-dashed border-slate-200 rounded-2xl text-center min-h-[100px] flex flex-col items-center justify-center">
+      <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest mb-1">Sponsored</span>
+      <div className="text-slate-300 text-xs italic">広告掲載エリア ({type})</div>
+    </div>
+  );
+};
 
 export default function App() {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
@@ -337,7 +342,26 @@ export default function App() {
           <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-2xl'} shadow-2xl border-2 ${theme === 'kawaii' ? 'border-rose-100' : 'border-slate-200'} w-72 animate-in slide-in-from-bottom-4 duration-300`}>
             <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20} /></button></div>
             <div className="grid grid-cols-4 gap-1 mb-4">{[2, 3, 4, 6].map(num => (<button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 rounded-xl text-[10px] font-black transition-all ${beatsPerMeasure === num ? s.accent + ' text-white' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍`}</button>))}</div>
-            <div className="text-center mb-6"><div className={`text-5xl font-black text-slate-800 mb-1 transition-all duration-75 ${isPlaying && currentBeat === 0 ? 'scale-110 ' + s.accentText : 'scale-100'}`}>{bpm}</div></div>
+            <div className="text-center mb-6">
+              <div className={`text-5xl font-black text-slate-800 mb-2 transition-all duration-75 ${isPlaying && currentBeat === 0 ? 'scale-110 ' + s.accentText : 'scale-100'}`}>
+                {bpm}
+              </div>
+
+              {/* ビジュアルインジケータ（ドット） */}
+              <div className="flex justify-center gap-2 mt-4">
+                {[...Array(beatsPerMeasure)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`transition-all duration-150 rounded-full ${i === 0 ? 'w-3 h-3' : 'w-2 h-2'
+                      } ${isPlaying && currentBeat === i
+                        ? (i === 0 ? s.accent : (theme === 'kawaii' ? 'bg-rose-300' : 'bg-indigo-400'))
+                        : 'bg-slate-100'
+                      } ${isPlaying && currentBeat === i && i === 0 ? 'ring-4 ring-rose-100' : ''
+                      }`}
+                  />
+                ))}
+              </div>
+            </div>
             <div className="flex items-center gap-3 mb-6 px-2">
               <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Minus size={18} /></button>
               <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className={`flex-1 ${theme === 'kawaii' ? 'accent-rose-400' : 'accent-indigo-600'} h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer`} />
