@@ -262,7 +262,7 @@ export default function App() {
               <section className={`${theme === 'kawaii' ? 'bg-white/50 border-rose-100' : 'bg-slate-50 border-slate-200'} p-6 rounded-[2.5rem] border-2 border-dashed mb-8 text-center`}>
                 <h3 className={`text-sm font-black ${s.accentText} uppercase tracking-widest mb-3 flex items-center justify-center gap-2`}><Info size={16} /> 音楽手帳について</h3>
                 <p className="text-[11px] text-slate-600 font-bold leading-relaxed px-2">
-                  1000語以上の膨大な用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。教育的価値を追求した、本格的な音楽家向けデジタル辞書プロジェクトです。
+                  1000語以上の膨大な用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。<br />さらに、日々の練習に必須の<strong>「高精度クロマチックチューナー」</strong>と<strong>「メトロノーム」</strong>を搭載。これひとつで音楽ライフをサポートする、本格的なデジタル音楽手帳プロジェクトです。
                 </p>
               </section>
             )}
