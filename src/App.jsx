@@ -362,43 +362,7 @@ export default function App() {
         </div>
       </footer>
 
-      <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
-        {isMetronomeOpen && (
-          <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-2xl'} shadow-2xl border-2 ${theme === 'kawaii' ? 'border-rose-100' : 'border-slate-200'} w-72 animate-in slide-in-from-bottom-4 duration-300`}>
-            <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20} /></button></div>
-            <div className="grid grid-cols-4 gap-1 mb-4">{[2, 3, 4, 6].map(num => (<button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 rounded-xl text-[10px] font-black transition-all ${beatsPerMeasure === num ? s.accent + ' text-white' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍`}</button>))}</div>
-            <div className="text-center mb-6">
-              <div className={`text-5xl font-black text-slate-800 mb-2 transition-all duration-75 ${isPlaying && currentBeat === 0 ? 'scale-110 ' + s.accentText : 'scale-100'}`}>
-                {bpm}
-              </div>
 
-              {/* ビジュアルインジケータ（ドット） */}
-              <div className="flex justify-center gap-2 mt-4">
-                {[...Array(beatsPerMeasure)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`transition-all duration-150 rounded-full ${i === 0 ? 'w-3 h-3' : 'w-2 h-2'
-                      } ${isPlaying && currentBeat === i
-                        ? (i === 0 ? s.accent : (theme === 'kawaii' ? 'bg-rose-300' : 'bg-indigo-400'))
-                        : 'bg-slate-100'
-                      } ${isPlaying && currentBeat === i && i === 0 ? 'ring-4 ring-rose-100' : ''
-                      }`}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="flex items-center gap-3 mb-6 px-2">
-              <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Minus size={18} /></button>
-              <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className={`flex-1 ${theme === 'kawaii' ? 'accent-rose-400' : 'accent-indigo-600'} h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer`} />
-              <button onClick={() => setBpm(Math.min(240, bpm + 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Plus size={18} /></button>
-            </div>
-            <button onClick={toggleMetronome} className={`w-full py-4 rounded-2xl font-black text-white shadow-lg ${isPlaying ? 'bg-slate-400' : s.accent + ' shadow-rose-200'}`}>{isPlaying ? 'STOP' : 'START'}</button>
-          </div>
-        )}
-        <button onClick={() => setIsMetronomeOpen(!isMetronomeOpen)} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isMetronomeOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white ' + s.accentText + ' border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
-          {isPlaying ? (<Volume2 size={28} className="animate-pulse" />) : (<Music size={28} />)}
-        </button>
-      </div>
 
       {selectedTerm && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[130] flex items-center justify-center p-4 overflow-y-auto">
@@ -451,6 +415,264 @@ export default function App() {
 
       <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.5</p></div>
       <Analytics />
+
+      {/* --- Tuner Logic & UI --- */}
+      <TunerModule
+        theme={theme}
+        s={s}
+        isMetronomeOpen={isMetronomeOpen}
+        setIsMetronomeOpen={setIsMetronomeOpen}
+        isPlaying={isPlaying}
+        toggleMetronome={toggleMetronome}
+        bpm={bpm}
+        setBpm={setBpm}
+        beatsPerMeasure={beatsPerMeasure}
+        setBeatsPerMeasure={setBeatsPerMeasure}
+        currentBeat={currentBeat}
+        beatRef={beatRef}
+        setCurrentBeat={setCurrentBeat}
+      />
     </div>
   );
 }
+
+// --- Tuner Component ---
+const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying, toggleMetronome, bpm, setBpm, beatsPerMeasure, setBeatsPerMeasure, currentBeat, beatRef, setCurrentBeat }) => {
+  const [isTunerOpen, setIsTunerOpen] = useState(false);
+  const [pitch, setPitch] = useState(0);
+  const [note, setNote] = useState('-');
+  const [cents, setCents] = useState(0);
+  const [isListening, setIsListening] = useState(false);
+  const audioContextTuner = useRef(null);
+  const analyser = useRef(null);
+  const rafId = useRef(null);
+  const source = useRef(null);
+
+  const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+  const autoCorrelate = (buf, sampleRate) => {
+    let SIZE = buf.length;
+    let rms = 0;
+    for (let i = 0; i < SIZE; i++) {
+      const val = buf[i];
+      rms += val * val;
+    }
+    rms = Math.sqrt(rms / SIZE);
+    if (rms < 0.01) return -1;
+
+    let r1 = 0, r2 = SIZE - 1, thres = 0.2;
+    for (let i = 0; i < SIZE / 2; i++)
+      if (Math.abs(buf[i]) < thres) { r1 = i; break; }
+    for (let i = 1; i < SIZE / 2; i++)
+      if (Math.abs(buf[SIZE - i]) < thres) { r2 = SIZE - i; break; }
+
+    buf = buf.slice(r1, r2);
+    SIZE = buf.length;
+
+    let c = new Array(SIZE).fill(0);
+    for (let i = 0; i < SIZE; i++)
+      for (let j = 0; j < SIZE - i; j++)
+        c[i] = c[i] + buf[j] * buf[j + i];
+
+    let d = 0; while (c[d] > c[d + 1]) d++;
+    let maxval = -1, maxpos = -1;
+    for (let i = d; i < SIZE; i++) {
+      if (c[i] > maxval) { maxval = c[i]; maxpos = i; }
+    }
+    let T0 = maxpos;
+
+    let x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
+    let a = (x1 + x3 - 2 * x2) / 2;
+    let b = (x3 - x1) / 2;
+    if (a) T0 = T0 - b / (2 * a);
+
+    return sampleRate / T0;
+  };
+
+  const getNote = (frequency) => {
+    const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2)) + 69;
+    return Math.round(noteNum) + 69; // MIDI note? No, wait.
+  };
+
+  const updatePitch = () => {
+    if (!analyser.current) return;
+    const buf = new Float32Array(2048);
+    analyser.current.getFloatTimeDomainData(buf);
+    const ac = autoCorrelate(buf, audioContextTuner.current.sampleRate);
+
+    if (ac !== -1) {
+      setPitch(ac);
+      const noteNum = 12 * (Math.log(ac / 440) / Math.log(2)) + 69;
+      const noteIndex = Math.round(noteNum) % 12;
+      setNote(noteStrings[noteIndex] || '-');
+      const detune = Math.floor(1200 * Math.log2(ac / (440 * Math.pow(2, (Math.round(noteNum) - 69) / 12))));
+      setCents(detune);
+    }
+    rafId.current = requestAnimationFrame(updatePitch);
+  };
+
+  const startTuner = async () => {
+    try {
+      if (!audioContextTuner.current) audioContextTuner.current = new (window.AudioContext || window.webkitAudioContext)();
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (audioContextTuner.current.state === 'suspended') await audioContextTuner.current.resume();
+
+      source.current = audioContextTuner.current.createMediaStreamSource(stream);
+      analyser.current = audioContextTuner.current.createAnalyser();
+      analyser.current.fftSize = 2048;
+      source.current.connect(analyser.current);
+
+      setIsListening(true);
+      updatePitch();
+    } catch (e) {
+      console.error("Tuner Error", e);
+      setIsListening(false);
+    }
+  };
+
+  const stopTuner = () => {
+    setIsListening(false);
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+    if (source.current) {
+      source.current.disconnect();
+      source.current = null;
+    }
+    setPitch(0);
+    setNote('-');
+    setCents(0);
+  };
+
+  useEffect(() => {
+    if (isTunerOpen && !isListening) startTuner();
+    if (!isTunerOpen && isListening) stopTuner();
+    return () => stopTuner();
+  }, [isTunerOpen]);
+
+  const toggleTuner = () => {
+    setIsTunerOpen(!isTunerOpen);
+    if (isMetronomeOpen) setIsMetronomeOpen(false);
+  }
+
+  // Handle metronome open to close tuner
+  useEffect(() => {
+    if (isMetronomeOpen && isTunerOpen) setIsTunerOpen(false);
+  }, [isMetronomeOpen]);
+
+
+  // Visual helpers
+  const isSharp = cents > 5;
+  const isFlat = cents < -5;
+  const isInTune = !isSharp && !isFlat && pitch > 0;
+
+  const statusColor = isInTune
+    ? 'text-emerald-500'
+    : (isSharp ? 'text-rose-500' : 'text-sky-500');
+
+  const bgColor = isInTune
+    ? 'bg-emerald-50'
+    : (isSharp ? 'bg-rose-50' : (isFlat ? 'bg-sky-50' : 'bg-slate-50'));
+
+  const needleRotation = Math.max(-45, Math.min(45, cents));
+
+  return (
+    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-[100]">
+      {/* Tuner Panel */}
+      {isTunerOpen && (
+        <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem] border-rose-100' : 'rounded-2xl border-slate-200'} shadow-2xl border-2 w-72 mb-2 animate-in slide-in-from-bottom-4 duration-300`}>
+          <div className="flex justify-between items-center mb-4">
+            <span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest flex items-center gap-1`}>
+              <Volume2 size={12} /> Tuner
+            </span>
+            <button onClick={() => setIsTunerOpen(false)}><X size={20} className="text-slate-300 hover:text-slate-500" /></button>
+          </div>
+
+          <div className="text-center mb-6">
+            <div className="relative inline-block">
+              <div className={`text-7xl font-black ${pitch > 0 ? 'text-slate-800' : 'text-slate-200'} leading-none`}>
+                {note}
+              </div>
+            </div>
+            <div className="text-xs font-bold text-slate-400 mt-1 font-mono">{pitch > 0 ? `${Math.round(pitch)} Hz` : 'Listening...'}</div>
+          </div>
+
+          <div className={`relative h-12 mb-4 mx-2`}>
+            <div className="flex justify-between text-[8px] text-slate-300 font-bold px-1 mb-1">
+              <span>FLAT</span>
+              <span className={isInTune ? 'text-emerald-500' : ''}>TUNE</span>
+              <span>SHARP</span>
+            </div>
+            <div className="absolute top-1/2 left-0 right-0 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+              <div className={`absolute top-0 bottom-0 left-1/2 w-0.5 bg-slate-200`}></div>
+            </div>
+
+            {/* Needle */}
+            <div
+              className={`absolute top-1/2 left-1/2 w-1 h-8 -translate-x-1/2 -translate-y-[80%] rounded-full origin-bottom shadow-lg z-10 transition-transform duration-75 ease-out ${isInTune ? 'bg-emerald-500' : 'bg-rose-400'}`}
+              style={{ transform: `translate(-50%, -80%) rotate(${needleRotation}deg)` }}
+            >
+              {isInTune && <div className="absolute -top-1 -left-1.5 w-4 h-4 bg-emerald-400/30 rounded-full animate-ping"></div>}
+            </div>
+          </div>
+
+          <div className="text-center h-6">
+            {isInTune && pitch > 0 && (
+              <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-600 rounded-lg text-[10px] font-black uppercase tracking-widest animate-bounce">
+                Perfect!
+              </span>
+            )}
+            {isSharp && pitch > 0 && <span className="text-[10px] font-black text-rose-400 uppercase tracking-widest">Too Sharp</span>}
+            {isFlat && pitch > 0 && <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">Too Flat</span>}
+          </div>
+        </div>
+      )}
+
+      {/* Metronome Panel (Existing) */}
+      {isMetronomeOpen && (
+        <div className={`bg-white p-6 ${theme === 'kawaii' ? 'rounded-[2.5rem]' : 'rounded-2xl'} shadow-2xl border-2 ${theme === 'kawaii' ? 'border-rose-100' : 'border-slate-200'} w-72 animate-in slide-in-from-bottom-4 duration-300`}>
+          <div className="flex justify-between items-center mb-2"><span className={`${s.accentText} font-black text-[10px] uppercase tracking-widest`}>Metronome</span><button onClick={() => setIsMetronomeOpen(false)}><X size={20} /></button></div>
+          <div className="grid grid-cols-4 gap-1 mb-4">{[2, 3, 4, 6].map(num => (<button key={num} onClick={() => { setBeatsPerMeasure(num); beatRef.current = 0; setCurrentBeat(0); }} className={`py-1 rounded-xl text-[10px] font-black transition-all ${beatsPerMeasure === num ? s.accent + ' text-white' : 'bg-slate-100 text-slate-400'}`}>{num === 6 ? '6/8' : `${num}拍`}</button>))}</div>
+          <div className="text-center mb-6">
+            <div className={`text-5xl font-black text-slate-800 mb-2 transition-all duration-75 ${isPlaying && currentBeat === 0 ? 'scale-110 ' + s.accentText : 'scale-100'}`}>
+              {bpm}
+            </div>
+
+            {/* ビジュアルインジケータ（ドット） */}
+            <div className="flex justify-center gap-2 mt-4">
+              {[...Array(beatsPerMeasure)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`transition-all duration-150 rounded-full ${i === 0 ? 'w-3 h-3' : 'w-2 h-2'
+                    } ${isPlaying && currentBeat === i
+                      ? (i === 0 ? s.accent : (theme === 'kawaii' ? 'bg-rose-300' : 'bg-indigo-400'))
+                      : 'bg-slate-100'
+                    } ${isPlaying && currentBeat === i && i === 0 ? 'ring-4 ring-rose-100' : ''
+                    }`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center gap-3 mb-6 px-2">
+            <button onClick={() => setBpm(Math.max(40, bpm - 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Minus size={18} /></button>
+            <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(parseInt(e.target.value))} className={`flex-1 ${theme === 'kawaii' ? 'accent-rose-400' : 'accent-indigo-600'} h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer`} />
+            <button onClick={() => setBpm(Math.min(240, bpm + 1))} className="p-2 bg-slate-100 rounded-full active:scale-90"><Plus size={18} /></button>
+          </div>
+          <button onClick={toggleMetronome} className={`w-full py-4 rounded-2xl font-black text-white shadow-lg ${isPlaying ? 'bg-slate-400' : s.accent + ' shadow-rose-200'}`}>{isPlaying ? 'STOP' : 'START'}</button>
+        </div>
+      )}
+
+      {/* Buttons */}
+      <button onClick={toggleTuner} className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all active:scale-90 overflow-hidden ${isTunerOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white text-slate-400 border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
+        {/* Tuning Fork SVG Icon */}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 18v3" />
+          <path d="M12 18a5 5 0 0 1-5-5V3" />
+          <path d="M12 18a5 5 0 0 0 5-5V3" />
+        </svg>
+      </button>
+
+      <button onClick={() => { setIsMetronomeOpen(!isMetronomeOpen); if (isTunerOpen) setIsTunerOpen(false); }} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isMetronomeOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white ' + s.accentText + ' border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
+        {isPlaying ? (<Volume2 size={28} className="animate-pulse" />) : (<Music size={28} />)}
+      </button>
+    </div>
+  );
+};
