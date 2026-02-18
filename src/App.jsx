@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Search, Music, Info, ChevronRight, X,
   Sparkles, Heart, CheckCircle, Edit3,
-  Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink
+  Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink, Activity
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -63,6 +63,7 @@ export default function App() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
   const [scanError, setScanError] = useState(null);
+  const [debugLog, setDebugLog] = useState("");
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -107,11 +108,21 @@ export default function App() {
     setFavorites(n);
   };
 
+  const checkModels = async () => {
+    if (!apiKey) return setDebugLog("Key missing");
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+      const data = await res.json();
+      const names = data.models?.map(m => m.name.replace('models/', '')) || [];
+      setDebugLog(names.join(', ') || "No models found");
+    } catch (e) { setDebugLog("Check failed: " + e.message); }
+  };
+
   const getAiMusic = async (term) => {
     if (!apiKey) return setAiAnalysis("APIキーを設定してください。");
     setIsAiLoading(true);
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] })
       });
@@ -182,7 +193,7 @@ export default function App() {
       ctx.drawImage(videoRef.current, 0, 0);
       const b64 = canvasRef.current.toDataURL('image/png').split(',')[1];
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{
@@ -309,6 +320,10 @@ export default function App() {
                 <p className="text-[11px] text-slate-600 font-bold leading-relaxed px-2">
                   1000語以上の膨大な用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。<br />さらに、日々の練習に必須の<strong>「高精度クロマチックチューナー」</strong>と<strong>「メトロノーム」</strong>を搭載。これひとつで音楽ライフをサポートする、本格的なデジタル音楽手帳プロジェクトです。
                 </p>
+                <button onClick={checkModels} className="mt-4 text-[9px] text-slate-300 flex items-center justify-center gap-1 mx-auto hover:text-slate-500 transition-colors">
+                  <Activity size={10} /> 互換性診断を実行
+                </button>
+                {debugLog && <div className="mt-2 p-2 bg-slate-100 rounded text-[9px] font-mono text-slate-500 break-all">{debugLog}</div>}
               </section>
             )}
 
