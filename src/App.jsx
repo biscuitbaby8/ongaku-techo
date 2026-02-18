@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
+  Search, Music, Info, ChevronRight, X,
   Sparkles, Heart, CheckCircle, Edit3,
   Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink
 } from 'lucide-react';
