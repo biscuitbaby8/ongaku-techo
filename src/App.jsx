@@ -113,11 +113,18 @@ export default function App() {
     try {
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的なクラシック曲を1つ挙げ、理由を30文字程度で解説。` }] }] })
+        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] })
       });
       const data = await response.json();
-      setAiAnalysis(data.candidates[0].content.parts[0].text);
-    } catch (e) { setAiAnalysis("AI検索エラー。"); }
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        setAiAnalysis(data.candidates[0].content.parts[0].text);
+      } else {
+        throw new Error("Invalid API response format");
+      }
+    } catch (e) {
+      console.error("AI Music Search Error:", e);
+      setAiAnalysis("AI検索でエラーが発生しました。時間を置いて再度お試しください。");
+    }
     finally { setIsAiLoading(false); }
   };
 
@@ -168,15 +175,42 @@ export default function App() {
       canvasRef.current.width = videoRef.current.videoWidth; canvasRef.current.height = videoRef.current.videoHeight;
       ctx.drawImage(videoRef.current, 0, 0);
       const b64 = canvasRef.current.toDataURL('image/png').split(',')[1];
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview:generateContent?key=${apiKey}`, {
+
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: "Identify ONE music term in this image. Output ONLY the term name." }, { inlineData: { mimeType: "image/png", data: b64 } }] }] })
+        body: JSON.stringify({
+          contents: [{
+            parts: [
+              { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）を1つ特定してください。出力は用語名のみとしてください。" },
+              { inlineData: { mimeType: "image/png", data: b64 } }
+            ]
+          }]
+        })
       });
       const data = await res.json();
       const resText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-      const found = INITIAL_TERMS.find(t => resText.toLowerCase().includes(t.term.toLowerCase()));
-      if (found) { setSelectedTerm(found); setIsCameraOpen(false); } else setScanError(`「${resText}」は見つかりませんでした。`);
-    } catch (e) { setScanError("解析エラー。"); } finally { setIsScanning(false); }
+
+      if (!resText) {
+        throw new Error("API did not return a term.");
+      }
+
+      console.log("AI Scanner detected:", resText);
+
+      const found = INITIAL_TERMS.find(t =>
+        resText.toLowerCase().includes(t.term.toLowerCase()) ||
+        t.term.toLowerCase().includes(resText.toLowerCase())
+      );
+
+      if (found) {
+        setSelectedTerm(found);
+        setIsCameraOpen(false);
+      } else {
+        setScanError(`「${resText}」という用語は辞典に登録されていません。`);
+      }
+    } catch (e) {
+      console.error("Camera Scan Error:", e);
+      setScanError("解析中にエラーが発生しました。");
+    } finally { setIsScanning(false); }
   };
 
   const filteredTerms = useMemo(() => {
