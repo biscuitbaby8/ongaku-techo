@@ -110,11 +110,16 @@ export default function App() {
   const getAiMusic = async (term) => {
     if (!apiKey) return setAiAnalysis("APIキーを設定してください。");
     setIsAiLoading(true);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒でタイムアウト
+
     try {
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] })
+        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] }),
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errData = await response.json().catch(() => ({}));
@@ -122,16 +127,20 @@ export default function App() {
       }
 
       const data = await response.json();
+      console.log("AI Music Data Raw:", data);
+
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
         setAiAnalysis(data.candidates[0].content.parts[0].text);
+      } else if (data.candidates?.[0]?.finishReason === "SAFETY") {
+        throw new Error("安全フィルターにより内容が制限されました。");
       } else {
         throw new Error("Invalid API response format");
       }
     } catch (e) {
       console.error("AI Music Search Error:", e);
-      setAiAnalysis(`エラー: ${e.message}`);
+      setAiAnalysis(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
     }
-    finally { setIsAiLoading(false); }
+    finally { setIsAiLoading(false); clearTimeout(timeoutId); }
   };
 
   const playClick = (time, beatNumber) => {
@@ -176,6 +185,9 @@ export default function App() {
   const captureAndScan = async () => {
     if (!videoRef.current || !canvasRef.current) return;
     setIsScanning(true);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // カメラは少し長めに15秒
+
     try {
       const ctx = canvasRef.current.getContext('2d');
       canvasRef.current.width = videoRef.current.videoWidth; canvasRef.current.height = videoRef.current.videoHeight;
@@ -191,14 +203,18 @@ export default function App() {
               { inlineData: { mimeType: "image/png", data: b64 } }
             ]
           }]
-        })
+        }),
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
+
       if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
         throw new Error(`API Error ${res.status}: ${errData.error?.message || res.statusText}`);
       }
 
       const data = await res.json();
+      console.log("AI Scanner Data Raw:", data);
       const resText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
       if (!resText) {
@@ -220,8 +236,8 @@ export default function App() {
       }
     } catch (e) {
       console.error("Camera Scan Error:", e);
-      setScanError(`エラー: ${e.message}`);
-    } finally { setIsScanning(false); }
+      setScanError(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
+    } finally { setIsScanning(false); clearTimeout(timeoutId); }
   };
 
   const filteredTerms = useMemo(() => {
@@ -240,7 +256,7 @@ export default function App() {
         <div className="absolute top-0 left-0 p-4 opacity-10 rotate-12"><BookOpen size={100} /></div>
         <button onClick={() => setShowSettings(true)} className="absolute top-10 right-6 p-2 bg-white/20 rounded-full hover:bg-white/30 z-30 transition-colors shadow-sm"><Settings size={20} /></button>
         <h1 className="text-2xl font-black tracking-widest relative z-10 flex items-center justify-center gap-2 cursor-pointer text-white" onClick={() => { setView('main'); setSearchTerm(''); }}><Music size={28} /> おんがく手帳</h1>
-        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v7.7</p>
+        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v7.8</p>
       </header>
 
       {!hasAcceptedCookies && (
@@ -458,7 +474,7 @@ export default function App() {
         </div>
       )}
 
-      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.7</p></div>
+      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.8</p></div>
       <Analytics />
 
       {/* --- Tuner Logic & UI --- */}
