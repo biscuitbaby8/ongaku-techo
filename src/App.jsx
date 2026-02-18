@@ -115,6 +115,12 @@ export default function App() {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] })
       });
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(`API Error ${response.status}: ${errData.error?.message || response.statusText}`);
+      }
+
       const data = await response.json();
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
         setAiAnalysis(data.candidates[0].content.parts[0].text);
@@ -123,7 +129,7 @@ export default function App() {
       }
     } catch (e) {
       console.error("AI Music Search Error:", e);
-      setAiAnalysis("AI検索でエラーが発生しました。時間を置いて再度お試しください。");
+      setAiAnalysis(`エラー: ${e.message}`);
     }
     finally { setIsAiLoading(false); }
   };
@@ -187,6 +193,11 @@ export default function App() {
           }]
         })
       });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(`API Error ${res.status}: ${errData.error?.message || res.statusText}`);
+      }
+
       const data = await res.json();
       const resText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
@@ -209,7 +220,7 @@ export default function App() {
       }
     } catch (e) {
       console.error("Camera Scan Error:", e);
-      setScanError("解析中にエラーが発生しました。");
+      setScanError(`エラー: ${e.message}`);
     } finally { setIsScanning(false); }
   };
 
