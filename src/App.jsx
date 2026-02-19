@@ -114,7 +114,7 @@ export default function App() {
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒でタイムアウト
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] }),
         signal: controller.signal
@@ -194,7 +194,7 @@ export default function App() {
       ctx.drawImage(videoRef.current, 0, 0);
       const b64 = canvasRef.current.toDataURL('image/png').split(',')[1];
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{
@@ -256,7 +256,7 @@ export default function App() {
         <div className="absolute top-0 left-0 p-4 opacity-10 rotate-12"><BookOpen size={100} /></div>
         <button onClick={() => setShowSettings(true)} className="absolute top-10 right-6 p-2 bg-white/20 rounded-full hover:bg-white/30 z-30 transition-colors shadow-sm"><Settings size={20} /></button>
         <h1 className="text-2xl font-black tracking-widest relative z-10 flex items-center justify-center gap-2 cursor-pointer text-white" onClick={() => { setView('main'); setSearchTerm(''); }}><Music size={28} /> おんがく手帳</h1>
-        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v7.8</p>
+        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v7.9</p>
       </header>
 
       {!hasAcceptedCookies && (
@@ -474,7 +474,7 @@ export default function App() {
         </div>
       )}
 
-      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.8</p></div>
+      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.9</p></div>
       <Analytics />
 
       {/* --- Tuner Logic & UI --- */}
