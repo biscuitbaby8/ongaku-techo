@@ -199,7 +199,7 @@ export default function App() {
         body: JSON.stringify({
           contents: [{
             parts: [
-              { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）を1つ特定してください。出力は用語名のみとしてください。" },
+              { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。複数の単語がある場合は、スペースまたは読点（、）で区切って、用語名のみを出力してください。" },
               { inlineData: { mimeType: "image/png", data: b64 } }
             ]
           }]
@@ -223,16 +223,32 @@ export default function App() {
 
       console.log("AI Scanner detected:", resText);
 
-      const found = INITIAL_TERMS.find(t =>
-        resText.toLowerCase().includes(t.term.toLowerCase()) ||
-        t.term.toLowerCase().includes(resText.toLowerCase())
-      );
+      // 複数単語に対応
+      const detectedWords = resText.split(/[ ,、\n\t]+/).filter(w => w.length > 1);
+      const matches = [];
 
-      if (found) {
-        setSelectedTerm(found);
-        setIsCameraOpen(false);
+      detectedWords.forEach(word => {
+        const found = INITIAL_TERMS.find(t =>
+          word.toLowerCase().includes(t.term.toLowerCase()) ||
+          t.term.toLowerCase().includes(word.toLowerCase())
+        );
+        if (found) matches.push(found);
+      });
+
+      if (matches.length > 0) {
+        // 重複を除去（同じ用語が別の単語でマッチした場合）
+        const uniqueMatches = Array.from(new Set(matches.map(m => m.id)))
+          .map(id => matches.find(m => m.id === id));
+
+        // 最初のヒットを表示し、検索欄にセット（複数ある場合は、スペース区切りでセット）
+        setSelectedTerm(uniqueMatches[0]);
+        setSearchTerm(uniqueMatches.map(m => m.term).join(' '));
+        setView('main');
+        setTimeout(() => {
+          if (resultsRef.current) resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
       } else {
-        setScanError(`「${resText}」という用語は辞典に登録されていません。`);
+        throw new Error(`用語が見つかりませんでした: ${resText}`);
       }
     } catch (e) {
       console.error("Camera Scan Error:", e);
@@ -256,7 +272,7 @@ export default function App() {
         <div className="absolute top-0 left-0 p-4 opacity-10 rotate-12"><BookOpen size={100} /></div>
         <button onClick={() => setShowSettings(true)} className="absolute top-10 right-6 p-2 bg-white/20 rounded-full hover:bg-white/30 z-30 transition-colors shadow-sm"><Settings size={20} /></button>
         <h1 className="text-2xl font-black tracking-widest relative z-10 flex items-center justify-center gap-2 cursor-pointer text-white" onClick={() => { setView('main'); setSearchTerm(''); }}><Music size={28} /> おんがく手帳</h1>
-        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v7.9</p>
+        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v8.0</p>
       </header>
 
       {!hasAcceptedCookies && (
@@ -474,7 +490,7 @@ export default function App() {
         </div>
       )}
 
-      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v7.9</p></div>
+      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v8.0</p></div>
       <Analytics />
 
       {/* --- Tuner Logic & UI --- */}
