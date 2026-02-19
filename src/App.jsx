@@ -186,21 +186,32 @@ export default function App() {
     if (!videoRef.current || !canvasRef.current) return;
     setIsScanning(true);
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // カメラは少し長めに15秒
+    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45秒に延長
 
     try {
       const ctx = canvasRef.current.getContext('2d');
-      canvasRef.current.width = videoRef.current.videoWidth; canvasRef.current.height = videoRef.current.videoHeight;
-      ctx.drawImage(videoRef.current, 0, 0);
-      const b64 = canvasRef.current.toDataURL('image/png').split(',')[1];
+      // リサイズ処理 (長辺1024px)
+      const MAX_SIZE = 1024;
+      let w = videoRef.current.videoWidth;
+      let h = videoRef.current.videoHeight;
+      if (w > h && w > MAX_SIZE) { h = (h * MAX_SIZE) / w; w = MAX_SIZE; }
+      else if (h > MAX_SIZE) { w = (w * MAX_SIZE) / h; h = MAX_SIZE; }
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
+      canvasRef.current.width = w;
+      canvasRef.current.height = h;
+      ctx.drawImage(videoRef.current, 0, 0, w, h);
+
+      // JPEG形式で圧縮送信 (品質0.8)
+      const b64 = canvasRef.current.toDataURL('image/jpeg', 0.8).split(',')[1];
+
+      // 安定性の高い 1.5-flash モデルを使用
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{
             parts: [
               { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。複数の単語がある場合は、スペースまたは読点（、）で区切って、用語名のみを出力してください。" },
-              { inlineData: { mimeType: "image/png", data: b64 } }
+              { inlineData: { mimeType: "image/jpeg", data: b64 } }
             ]
           }]
         }),
@@ -214,16 +225,12 @@ export default function App() {
       }
 
       const data = await res.json();
-      console.log("AI Scanner Data Raw:", data);
       const resText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
       if (!resText) {
         throw new Error("API did not return a term.");
       }
 
-      console.log("AI Scanner detected:", resText);
-
-      // 複数単語に対応
       const detectedWords = resText.split(/[ ,、\n\t]+/).filter(w => w.length > 1);
       const matches = [];
 
@@ -236,11 +243,9 @@ export default function App() {
       });
 
       if (matches.length > 0) {
-        // 重複を除去（同じ用語が別の単語でマッチした場合）
         const uniqueMatches = Array.from(new Set(matches.map(m => m.id)))
           .map(id => matches.find(m => m.id === id));
 
-        // 最初のヒットを表示し、検索欄にセット（複数ある場合は、スペース区切りでセット）
         setSelectedTerm(uniqueMatches[0]);
         setSearchTerm(uniqueMatches.map(m => m.term).join(' '));
         setView('main');
@@ -251,7 +256,6 @@ export default function App() {
         throw new Error(`用語が見つかりませんでした: ${resText}`);
       }
     } catch (e) {
-      console.error("Camera Scan Error:", e);
       setScanError(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
     } finally { setIsScanning(false); clearTimeout(timeoutId); }
   };
