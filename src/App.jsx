@@ -318,11 +318,21 @@ export default function App() {
 
   return (
     <div className={`min-h-screen ${s.bg} text-slate-700 font-sans pb-40 transition-colors duration-500 overflow-x-hidden selection:bg-rose-100`}>
-      <header className={`${s.header} pt-10 pb-16 px-6 text-center relative overflow-hidden transition-all duration-500`}>
+      <header className={`${s.header} pt-10 pb-16 px-6 relative overflow-hidden transition-all duration-500`}>
         <div className="absolute top-0 left-0 p-4 opacity-10 rotate-12"><BookOpen size={100} /></div>
-        <button onClick={() => setShowSettings(true)} className="absolute top-10 right-6 p-2 bg-white/20 rounded-full hover:bg-white/30 z-30 transition-colors shadow-sm"><Settings size={20} /></button>
-        <h1 className="text-2xl font-black tracking-widest relative z-10 flex items-center justify-center gap-2 cursor-pointer text-white" onClick={() => { setView('main'); setSearchTerm(''); }}><Music size={28} /> おんがく手帳</h1>
-        <p className="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic">Search Optimized v8.0</p>
+        <div className="flex justify-between items-center relative z-20 max-w-4xl mx-auto">
+          <h1 className="text-2xl font-black tracking-widest flex items-center gap-2 cursor-pointer text-white" onClick={() => { setView('main'); setSearchTerm(''); }}><Music size={28} /> おんがく手帳</h1>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setView('calendar')} className="p-3 bg-white/20 rounded-2xl hover:bg-white/30 z-30 transition-all active:scale-95 shadow-sm border border-white/10 group relative">
+              <Calendar size={22} className="text-white" />
+              {Object.keys(lessons).length > 0 && <span className="absolute top-2 right-2 w-2 h-2 bg-emerald-400 rounded-full border-2 border-slate-900 animate-pulse"></span>}
+            </button>
+            <button onClick={() => setShowSettings(true)} className="p-3 bg-white/20 rounded-2xl hover:bg-white/30 z-30 transition-all active:scale-95 shadow-sm border border-white/10">
+              <Settings size={22} className="text-white" />
+            </button>
+          </div>
+        </div>
+        <p className="text-[10px] font-bold mt-2 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic text-center">Search Optimized v8.0</p>
       </header>
 
       {!hasAcceptedCookies && (
@@ -705,9 +715,9 @@ const LessonCalendar = ({ theme, s, lessons, setLessons }) => {
               onClick={() => day && openDay(day)}
               disabled={!day}
               className={`aspect-square rounded-2xl flex flex-col items-center justify-center relative transition-all active:scale-90 ${!day ? 'bg-transparent' :
-                  (dateStr === formatDate(new Date().getDate()) && month === new Date().getMonth() && year === new Date().getFullYear()
-                    ? s.accent + ' text-white shadow-lg'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-600')
+                (dateStr === formatDate(new Date().getDate()) && month === new Date().getMonth() && year === new Date().getFullYear()
+                  ? s.accent + ' text-white shadow-lg'
+                  : 'bg-slate-50 hover:bg-slate-100 text-slate-600')
                 }`}
             >
               <span className="text-sm font-black">{day}</span>
