@@ -96,6 +96,45 @@ export default function App() {
     }
   }, [searchTerm]);
 
+  // --- JSON-LD 構造化データの動的埋め込み ---
+  useEffect(() => {
+    const scriptId = 'json-ld-sd';
+    let script = document.getElementById(scriptId);
+    if (script) script.remove();
+
+    script = document.createElement('script');
+    script.id = scriptId;
+    script.type = 'application/ld+json';
+
+    const baseSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "おんがく手帳",
+      "url": "https://ongaku-techo.vercel.app",
+      "description": "1000語以上の音楽用語を網羅した、音楽家・学生のためのデジタルツール。",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ongaku-techo Project",
+        "logo": "https://ongaku-techo.vercel.app/icon-192.png"
+      }
+    };
+
+    if (selectedTerm) {
+      baseSchema["@type"] = "DefinedTerm";
+      baseSchema["name"] = selectedTerm.term;
+      baseSchema["description"] = selectedTerm.meaning;
+      baseSchema["inDefinedTermSet"] = "https://ongaku-techo.vercel.app";
+    }
+
+    script.text = JSON.stringify(baseSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      const existing = document.getElementById(scriptId);
+      if (existing) existing.remove();
+    };
+  }, [selectedTerm]);
+
   const s = ({
     kawaii: { bg: 'bg-[#FFFDF9]', header: 'bg-rose-300 rounded-b-[50px] shadow-inner text-white', accent: 'bg-rose-400', accentText: 'text-rose-400', tabActive: 'bg-rose-400 text-white shadow-lg scale-105', tabInactive: 'bg-white text-rose-300 border-rose-50', button: 'rounded-3xl shadow-rose-100', card: 'rounded-[2.2rem]', loadMore: 'bg-rose-400 text-white shadow-rose-100 hover:bg-rose-500 rounded-3xl' },
     modern: { bg: 'bg-slate-50', header: 'bg-slate-900 rounded-none shadow-md text-slate-100', accent: 'bg-indigo-600', accentText: 'text-indigo-600', tabActive: 'bg-indigo-600 text-white shadow-md', tabInactive: 'bg-slate-200 text-slate-600 border-transparent', button: 'rounded-xl shadow-slate-200', card: 'rounded-xl', loadMore: 'bg-indigo-600 text-white shadow-indigo-100 hover:bg-indigo-700 rounded-xl' }
@@ -307,6 +346,7 @@ export default function App() {
               <section>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">サイト情報</p>
                 <div className="grid gap-2">
+                  <button onClick={() => { setView('about'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Info size={18} className={s.accentText} /> おんがく手帳について</button>
                   <button onClick={() => { setView('install'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Smartphone size={18} className={s.accentText} /> ホーム画面に追加</button>
                   <button onClick={() => { setView('privacy'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><ShieldCheck size={18} className={s.accentText} /> プライバシーポリシー</button>
                   <button onClick={() => { setView('contact'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Mail size={18} className={s.accentText} /> お問い合わせ</button>
@@ -395,12 +435,64 @@ export default function App() {
         ) : (
           <div className="bg-white rounded-[2.5rem] p-8 shadow-xl text-left relative overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
             <button onClick={() => setView('main')} className={`${s.accentText} font-bold text-sm mb-6 flex items-center gap-1 active:scale-95 transition-transform`}>← 辞典にもどる</button>
+            {view === 'about' && (
+              <div className="space-y-10 py-4">
+                <div className="text-center group">
+                  <div className={`w-20 h-20 ${s.accent} rounded-[2.5rem] flex items-center justify-center mx-auto text-white shadow-xl mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                    <Music size={40} />
+                  </div>
+                  <h2 className="text-3xl font-black text-slate-800 tracking-tighter">おんがく手帳について</h2>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2 italic">Vision & Mission</p>
+                </div>
+
+                <div className="space-y-6 text-sm leading-relaxed text-slate-600 font-bold">
+                  <section className="bg-rose-50/30 p-8 rounded-[3rem] border border-rose-100/50">
+                    <h3 className="font-black text-rose-500 mb-4 flex items-center gap-2 text-lg"><Heart size={20} /> 制作の想い</h3>
+                    <p>
+                      「昨日の自分より、音楽をもっと深く楽しみたい」<br />
+                      そんなすべての音楽学習者のために、この『おんがく手帳』は誕生しました。
+                    </p>
+                    <p className="mt-4">
+                      膨大な音楽用語の世界は、初心者にとっては少し難しく感じられることもあります。しかし、用語の一つひとつには作曲家の意図や豊かな表現が込められています。私たちは、それらを「単なる記号」ではなく「生きた音楽の言葉」として、視覚的にも直感的にも理解できるツールを目指しています。
+                    </p>
+                  </section>
+
+                  <section className="bg-indigo-50/30 p-8 rounded-[3rem] border border-indigo-100/50">
+                    <h3 className="font-black text-indigo-600 mb-4 flex items-center gap-2 text-lg"><Sparkles size={20} /> このアプリでできること</h3>
+                    <ul className="space-y-4 list-none">
+                      <li className="flex gap-3">
+                        <div className="w-5 h-5 bg-indigo-100 rounded-full flex items-center justify-center shrink-0 mt-1"><CheckCircle size={12} className="text-indigo-600" /></div>
+                        <span><strong>1000語以上の用語辞典</strong>: 独自に執筆した分かりやすい解説と、演奏に役立つアドバイスを掲載しています。</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <div className="w-5 h-5 bg-indigo-100 rounded-full flex items-center justify-center shrink-0 mt-1"><CheckCircle size={12} className="text-indigo-600" /></div>
+                        <span><strong>高精度チューナー & メトロノーム</strong>: 練習に妥協しない、プロ品質の精度を追求しました。</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <div className="w-5 h-5 bg-indigo-100 rounded-full flex items-center justify-center shrink-0 mt-1"><CheckCircle size={12} className="text-indigo-600" /></div>
+                        <span><strong>AIスマートスキャン</strong>: 楽譜の難しい言葉をカメラで撮るだけで即座に解析します。</span>
+                      </li>
+                    </ul>
+                  </section>
+
+                  <section className="bg-amber-50/30 p-8 rounded-[3rem] border border-amber-100/50">
+                    <h3 className="font-black text-amber-600 mb-4 flex items-center gap-2 text-lg"><User size={20} /> 運営からのメッセージ</h3>
+                    <p>
+                      音楽の道は終わりのない旅のようなものです。この手帳が、あなたの譜読みを助け、音を研ぎ澄ませ、毎日の練習を少しでも楽しく彩る存在になれば幸いです。
+                    </p>
+                    <p className="mt-4 text-[10px] opacity-60">
+                      ※このアプリは、現役の奏者や講師の監修を元に、biscuitbaby / ongaku-techo Projectが運営しています。
+                    </p>
+                  </section>
+                </div>
+              </div>
+            )}
             {view === 'install' && (
               <div className="space-y-8 animate-in fade-in duration-500">
                 <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2"><Smartphone className={s.accentText} /> ホーム画面に追加</h2>
                 <div className="space-y-6 text-[11px] leading-loose text-slate-600 font-bold">
                   <section className="bg-rose-50/50 p-6 rounded-[2rem] border border-rose-100"><h3 className="font-black text-rose-500 mb-2 flex items-center gap-2"><PlusSquare size={16} /> iPhone (Safari)</h3><p>1. 共有ボタン <Share size={14} className="inline text-blue-500" /> をタップ<br />2. 「ホーム画面に追加」を選択してください。</p></section>
-                  <section className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100"><h3 className="font-black text-indigo-500 mb-2 flex items-center gap-2"><PlusSquare size={16} /> Android (Chrome)</h3><p>1. メニュー <MoreVertical size={14} className="inline" /> をタップ<br />2. 「アプリをインストール」を選択してください。</p></section>
+                  <section className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100"><h3 className="font-black text-indigo-500 mb-2 flex items-center gap-2"><PlusSquare size={16} /> Android (Chrome)</h3><p>1. メニュースペース <MoreVertical size={14} className="inline" /> をタップ<br />2. 「アプリをインストール」を選択してください。</p></section>
                 </div>
               </div>
             )}
@@ -433,6 +525,7 @@ export default function App() {
 
       <footer className="max-w-md mx-auto px-6 py-12 text-center">
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
+          <button onClick={() => setView('about')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">About Us</button>
           <button onClick={() => setView('privacy')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Privacy Policy</button>
           <button onClick={() => setView('contact')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Contact</button>
           <button onClick={() => setView('install')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Install</button>
@@ -476,7 +569,30 @@ export default function App() {
                 <textarea className="w-full bg-transparent border-none text-sm text-slate-600 h-16 outline-none resize-none" value={memos[selectedTerm.id] || ''} onChange={(e) => setMemos({ ...memos, [selectedTerm.id]: e.target.value })} />
               </div>
             </div>
-            <button onClick={() => { const n = new Set(mastered); if (n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 ${theme === 'kawaii' ? 'rounded-[2.2rem]' : 'rounded-xl'} font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent} shadow-lg active:scale-95 transition-all`}>{mastered.has(selectedTerm.id) ? 'おぼえた！' : 'これをおぼえる！'}</button>
+            <button onClick={() => { const n = new Set(mastered); if (n.has(selectedTerm.id)) n.delete(selectedTerm.id); else n.add(selectedTerm.id); setMastered(n); }} className={`w-full py-5 ${theme === 'kawaii' ? 'rounded-[2.2rem]' : 'rounded-xl'} font-black text-white ${mastered.has(selectedTerm.id) ? 'bg-green-400' : s.accent} shadow-lg active:scale-95 transition-all mb-8`}>{mastered.has(selectedTerm.id) ? 'おぼえた！' : 'これをおぼえる！'}</button>
+
+            {/* 関連用語セクション */}
+            <div className="border-t border-slate-100 pt-8 text-left">
+              <h3 className={`text-[10px] font-black ${s.accentText} uppercase tracking-[0.2em] mb-4 flex items-center gap-2`}><Plus size={14} /> 関連する用語</h3>
+              <div className="grid gap-2">
+                {INITIAL_TERMS
+                  .filter(t => t.category === selectedTerm.category && t.id !== selectedTerm.id)
+                  .sort(() => 0.5 - Math.random())
+                  .slice(0, 3)
+                  .map(item => (
+                    <button key={item.id} onClick={() => { setSelectedTerm(item); setAiAnalysis(null); }} className={`flex items-center gap-3 p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-all active:scale-95 text-left`}>
+                      <div className={`w-8 h-8 ${item.color} rounded-lg flex items-center justify-center shrink-0`}>
+                        <TermIcon item={item} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-black text-slate-700 truncate">{item.term}</p>
+                        <p className="text-[9px] font-bold text-slate-400 truncate">{item.meaning}</p>
+                      </div>
+                      <ChevronRight size={14} className="text-slate-300" />
+                    </button>
+                  ))}
+              </div>
+            </div>
           </article>
         </div>
       )}
