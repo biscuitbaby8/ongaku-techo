@@ -323,9 +323,9 @@ export default function App() {
         <div className="flex justify-between items-center relative z-20 max-w-4xl mx-auto">
           <h1 className="text-2xl font-black tracking-widest flex items-center gap-2 cursor-pointer text-white" onClick={() => { setView('main'); setSearchTerm(''); }}><Music size={28} /> おんがく手帳</h1>
           <div className="flex items-center gap-2">
-            <button onClick={() => setView('calendar')} className="p-3 bg-white/20 rounded-2xl hover:bg-white/30 z-30 transition-all active:scale-95 shadow-sm border border-white/10 group relative">
-              <Calendar size={22} className="text-white" />
-              {Object.keys(lessons).length > 0 && <span className="absolute top-2 right-2 w-2 h-2 bg-emerald-400 rounded-full border-2 border-slate-900 animate-pulse"></span>}
+            <button onClick={() => setView('calendar')} className="p-3 bg-white text-rose-400 rounded-2xl hover:bg-slate-50 z-30 transition-all active:scale-95 shadow-lg border border-white/20 group relative">
+              <Calendar size={22} />
+              {Object.keys(lessons).length > 0 && <span className="absolute top-2 right-2 w-2 h-2 bg-emerald-400 rounded-full border-2 border-white animate-pulse"></span>}
             </button>
             <button onClick={() => setShowSettings(true)} className="p-3 bg-white/20 rounded-2xl hover:bg-white/30 z-30 transition-all active:scale-95 shadow-sm border border-white/10">
               <Settings size={22} className="text-white" />
@@ -720,12 +720,10 @@ const LessonCalendar = ({ theme, s, lessons, setLessons }) => {
                   : 'bg-slate-50 hover:bg-slate-100 text-slate-600')
                 }`}
             >
-              <span className="text-sm font-black">{day}</span>
+              <span className="text-sm font-black relative z-10">{day}</span>
               {hasLessons && (
-                <div className="absolute bottom-2 flex gap-0.5">
-                  {lessons[dateStr].slice(0, 3).map((_, idx) => (
-                    <div key={idx} className={`w-1 h-1 rounded-full ${dateStr === formatDate(new Date().getDate()) ? 'bg-white' : s.accent}`}></div>
-                  ))}
+                <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                  <Heart size={32} fill="currentColor" className="text-yellow-400" />
                 </div>
               )}
             </button>
