@@ -2,7 +2,8 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Search, Music, Info, ChevronRight, X,
   Sparkles, Heart, CheckCircle, Edit3,
-  Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink
+  Shuffle, Camera, Loader2, Play, Square, Plus, Minus, BookOpen, Languages, Palette, Settings, Mail, ShieldCheck, User, Volume2, Smartphone, Share, MoreVertical, PlusSquare, ChevronDown, Trophy, Cookie, ExternalLink,
+  Calendar, ChevronLeft, Trash2, Clock
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -49,6 +50,7 @@ export default function App() {
   const [favorites, setFavorites] = useState(() => new Set(JSON.parse(localStorage.getItem('music-favs') || '[]')));
   const [mastered, setMastered] = useState(() => new Set(JSON.parse(localStorage.getItem('music-mastered') || '[]')));
   const [memos, setMemos] = useState(() => JSON.parse(localStorage.getItem('music-memos') || '{}'));
+  const [lessons, setLessons] = useState(() => JSON.parse(localStorage.getItem('music-lessons') || '{}'));
   const [hasAcceptedCookies, setHasAcceptedCookies] = useState(() => localStorage.getItem('music-cookies') === 'true');
 
   const [view, setView] = useState('main');
@@ -86,11 +88,14 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem('music-theme', theme);
-    localStorage.setItem('music-favs', JSON.stringify([...favorites]));
-    localStorage.setItem('music-mastered', JSON.stringify([...mastered]));
-    localStorage.setItem('music-memos', JSON.stringify(memos));
+  }, [theme]);
+  useEffect(() => localStorage.setItem('music-favs', JSON.stringify([...favorites])), [favorites]);
+  useEffect(() => localStorage.setItem('music-mastered', JSON.stringify([...mastered])), [mastered]);
+  useEffect(() => localStorage.setItem('music-memos', JSON.stringify(memos)), [memos]);
+  useEffect(() => localStorage.setItem('music-lessons', JSON.stringify(lessons)), [lessons]);
+  useEffect(() => {
     localStorage.setItem('music-cookies', hasAcceptedCookies);
-  }, [theme, favorites, mastered, memos, hasAcceptedCookies]);
+  }, [hasAcceptedCookies]);
 
   useEffect(() => {
     if (searchTerm.length > 0 && resultsRef.current) {
@@ -520,6 +525,11 @@ export default function App() {
                 </div>
               </div>
             )}
+            {view === 'calendar' && (
+              <div className="animate-in fade-in duration-500">
+                <LessonCalendar theme={theme} s={s} lessons={lessons} setLessons={setLessons} />
+              </div>
+            )}
             <AdSlot type="Sub Page Bottom" />
           </div>
         )}
@@ -644,6 +654,190 @@ export default function App() {
 }
 
 // --- Tuner Component ---
+// --- レッスン予定管理カレンダーコンポーネント ---
+const LessonCalendar = ({ theme, s, lessons, setLessons }) => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+  const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
+  const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
+
+  const days = [];
+  for (let i = 0; i < firstDayOfMonth; i++) days.push(null);
+  for (let i = 1; i <= daysInMonth; i++) days.push(i);
+
+  const formatDate = (d) => `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+  const openDay = (d) => {
+    setSelectedDate(formatDate(d));
+    setIsModalOpen(true);
+  };
+
+  return (
+    <div className={`p-6 ${theme === 'kawaii' ? 'bg-white rounded-[2.5rem]' : 'bg-white rounded-2xl'} shadow-xl border border-slate-100`}>
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-xl font-black text-slate-800 flex items-center gap-2">
+          <Calendar className={s.accentText} /> {year}年 {month + 1}月
+        </h2>
+        <div className="flex gap-2">
+          <button onClick={prevMonth} className="p-2 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"><ChevronLeft size={20} /></button>
+          <button onClick={nextMonth} className="p-2 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"><ChevronRight size={20} /></button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-7 gap-2 mb-4">
+        {['日', '月', '火', '水', '木', '金', '土'].map(d => (
+          <div key={d} className="text-center text-[10px] font-black text-slate-300 uppercase tracking-widest pb-2">{d}</div>
+        ))}
+        {days.map((day, i) => {
+          const dateStr = day ? formatDate(day) : null;
+          const hasLessons = dateStr && lessons[dateStr] && lessons[dateStr].length > 0;
+          return (
+            <button
+              key={i}
+              onClick={() => day && openDay(day)}
+              disabled={!day}
+              className={`aspect-square rounded-2xl flex flex-col items-center justify-center relative transition-all active:scale-90 ${!day ? 'bg-transparent' :
+                  (dateStr === formatDate(new Date().getDate()) && month === new Date().getMonth() && year === new Date().getFullYear()
+                    ? s.accent + ' text-white shadow-lg'
+                    : 'bg-slate-50 hover:bg-slate-100 text-slate-600')
+                }`}
+            >
+              <span className="text-sm font-black">{day}</span>
+              {hasLessons && (
+                <div className="absolute bottom-2 flex gap-0.5">
+                  {lessons[dateStr].slice(0, 3).map((_, idx) => (
+                    <div key={idx} className={`w-1 h-1 rounded-full ${dateStr === formatDate(new Date().getDate()) ? 'bg-white' : s.accent}`}></div>
+                  ))}
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {isModalOpen && (
+        <LessonModal
+          date={selectedDate}
+          theme={theme}
+          s={s}
+          lessons={lessons}
+          setLessons={setLessons}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+    </div>
+  );
+};
+
+// --- レッスン登録モーダル ---
+const LessonModal = ({ date, theme, s, lessons, setLessons, onClose }) => {
+  const [name, setName] = useState('');
+  const [time, setTime] = useState('10:00');
+  const [note, setNote] = useState('');
+
+  const dayLessons = lessons[date] || [];
+
+  const addLesson = (e) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+    const newLesson = { id: Date.now(), name, time, note };
+    setLessons({
+      ...lessons,
+      [date]: [...dayLessons, newLesson].sort((a, b) => a.time.localeCompare(b.time))
+    });
+    setName('');
+    setNote('');
+  };
+
+  const deleteLesson = (id) => {
+    const filtered = dayLessons.filter(l => l.id !== id);
+    const newLessons = { ...lessons };
+    if (filtered.length === 0) {
+      delete newLessons[date];
+    } else {
+      newLessons[date] = filtered;
+    }
+    setLessons(newLessons);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[200] flex items-center justify-center p-4 animate-in fade-in duration-200">
+      <div className={`bg-white w-full max-w-sm ${theme === 'kawaii' ? 'rounded-[3.5rem]' : 'rounded-2xl'} shadow-2xl p-8 max-h-[90vh] overflow-y-auto`}>
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-xl font-black text-slate-800">{date.replace(/-/g, '/')} の予定</h3>
+          <button onClick={onClose} className="p-2 bg-slate-50 rounded-xl text-slate-300 hover:text-slate-500 transition-colors"><X size={24} /></button>
+        </div>
+
+        <form onSubmit={addLesson} className="space-y-4 mb-8">
+          <div className="space-y-1">
+            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">レッスン名</label>
+            <input
+              type="text"
+              placeholder="ピアノの先生の家、など"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className={`w-full p-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-rose-200 outline-none font-bold text-sm transition-all`}
+            />
+          </div>
+          <div className="flex gap-4">
+            <div className="flex-1 space-y-1">
+              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">時間</label>
+              <div className="relative">
+                <Clock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
+                <input
+                  type="time"
+                  value={time}
+                  onChange={e => setTime(e.target.value)}
+                  className={`w-full p-4 pl-11 rounded-2xl bg-slate-50 border-2 border-transparent outline-none font-bold text-sm`}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="space-y-1">
+            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">メモ</label>
+            <textarea
+              placeholder="ハノン3番、エリーゼのために..."
+              value={note}
+              onChange={e => setNote(e.target.value)}
+              className={`w-full p-4 rounded-2xl bg-slate-50 border-2 border-transparent outline-none font-bold text-sm h-24 resize-none`}
+            />
+          </div>
+          <button type="submit" className={`w-full py-4 ${s.accent} text-white rounded-2xl font-black shadow-lg active:scale-95 transition-all`}>予定を追加する</button>
+        </form>
+
+        <div className="space-y-3">
+          <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">登録済みの予定</h4>
+          {dayLessons.length === 0 ? (
+            <p className="text-center py-8 text-xs font-bold text-slate-300">予定はありません</p>
+          ) : (
+            dayLessons.map(lesson => (
+              <div key={lesson.id} className="p-4 bg-slate-50 rounded-2xl flex items-start gap-3 group animate-in slide-in-from-bottom-2">
+                <div className={`p-2 ${s.accent} bg-opacity-10 rounded-xl text-rose-500`}><Clock size={14} /></div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start">
+                    <p className="font-black text-slate-700 text-sm truncate">{lesson.name}</p>
+                    <span className="text-[10px] font-black text-slate-400">{lesson.time}</span>
+                  </div>
+                  {lesson.note && <p className="text-xs text-slate-500 font-bold mt-1 leading-relaxed">{lesson.note}</p>}
+                </div>
+                <button onClick={() => deleteLesson(lesson.id)} className="p-2 text-slate-200 hover:text-rose-400 transition-colors opacity-0 group-hover:opacity-100"><Trash2 size={16} /></button>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying, toggleMetronome, bpm, setBpm, beatsPerMeasure, setBeatsPerMeasure, currentBeat, beatRef, setCurrentBeat }) => {
   const [isTunerOpen, setIsTunerOpen] = useState(false);
   const [pitch, setPitch] = useState(0);
