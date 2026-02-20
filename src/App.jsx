@@ -489,6 +489,10 @@ export default function App() {
                         <div className="w-5 h-5 bg-indigo-100 rounded-full flex items-center justify-center shrink-0 mt-1"><CheckCircle size={12} className="text-indigo-600" /></div>
                         <span><strong>AIスマートスキャン</strong>: 楽譜の難しい言葉をカメラで撮るだけで即座に解析します。</span>
                       </li>
+                      <li className="flex gap-3">
+                        <div className="w-5 h-5 bg-indigo-100 rounded-full flex items-center justify-center shrink-0 mt-1"><CheckCircle size={12} className="text-indigo-600" /></div>
+                        <span><strong>レッスン予定管理カレンダー</strong>: 日々の練習やレッスンのスケジュールを可愛く管理。 localStorage保存でオフラインでも使えます。</span>
+                      </li>
                     </ul>
                   </section>
 
@@ -644,21 +648,23 @@ export default function App() {
       <Analytics />
 
       {/* --- Tuner Logic & UI --- */}
-      <TunerModule
-        theme={theme}
-        s={s}
-        isMetronomeOpen={isMetronomeOpen}
-        setIsMetronomeOpen={setIsMetronomeOpen}
-        isPlaying={isPlaying}
-        toggleMetronome={toggleMetronome}
-        bpm={bpm}
-        setBpm={setBpm}
-        beatsPerMeasure={beatsPerMeasure}
-        setBeatsPerMeasure={setBeatsPerMeasure}
-        currentBeat={currentBeat}
-        beatRef={beatRef}
-        setCurrentBeat={setCurrentBeat}
-      />
+      {view !== 'calendar' && (
+        <TunerModule
+          theme={theme}
+          s={s}
+          isMetronomeOpen={isMetronomeOpen}
+          setIsMetronomeOpen={setIsMetronomeOpen}
+          isPlaying={isPlaying}
+          toggleMetronome={toggleMetronome}
+          bpm={bpm}
+          setBpm={setBpm}
+          beatsPerMeasure={beatsPerMeasure}
+          setBeatsPerMeasure={setBeatsPerMeasure}
+          currentBeat={currentBeat}
+          beatRef={beatRef}
+          setCurrentBeat={setCurrentBeat}
+        />
+      )}
     </div>
   );
 }
@@ -827,16 +833,25 @@ const LessonModal = ({ date, theme, s, lessons, setLessons, onClose }) => {
             <p className="text-center py-8 text-xs font-bold text-slate-300">予定はありません</p>
           ) : (
             dayLessons.map(lesson => (
-              <div key={lesson.id} className="p-4 bg-slate-50 rounded-2xl flex items-start gap-3 group animate-in slide-in-from-bottom-2">
-                <div className={`p-2 ${s.accent} bg-opacity-10 rounded-xl text-rose-500`}><Clock size={14} /></div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex justify-between items-start">
-                    <p className="font-black text-slate-700 text-sm truncate">{lesson.name}</p>
-                    <span className="text-[10px] font-black text-slate-400">{lesson.time}</span>
+              <div key={lesson.id} className="p-5 bg-slate-50 rounded-3xl border border-slate-100 group animate-in slide-in-from-bottom-2">
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className={`p-2 ${s.accent} bg-opacity-20 rounded-xl text-rose-500`}><Clock size={16} /></div>
+                    <span className="text-xs font-black text-rose-500 uppercase tracking-wider">{lesson.time}</span>
                   </div>
-                  {lesson.note && <p className="text-xs text-slate-500 font-bold mt-1 leading-relaxed">{lesson.note}</p>}
+                  <button onClick={() => deleteLesson(lesson.id)} className="p-2 text-slate-300 hover:text-rose-400 transition-colors opacity-0 group-hover:opacity-100"><Trash2 size={18} /></button>
                 </div>
-                <button onClick={() => deleteLesson(lesson.id)} className="p-2 text-slate-200 hover:text-rose-400 transition-colors opacity-0 group-hover:opacity-100"><Trash2 size={16} /></button>
+                <div className="space-y-2">
+                  <h5 className="font-black text-slate-800 text-base leading-tight">
+                    {lesson.name}
+                  </h5>
+                  {lesson.note && (
+                    <div className="mt-3 pt-3 border-t border-slate-200/50">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 flex items-center gap-1"><Edit3 size={10} /> Memo</p>
+                      <p className="text-xs text-slate-600 font-bold leading-relaxed whitespace-pre-wrap">{lesson.note}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             ))
           )}
