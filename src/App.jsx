@@ -11,11 +11,13 @@ import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsDa
 
 const TermIcon = ({ item }) => {
   if (item.symbol) {
+    // 記号の長さに応じてフォントサイズを動的に調整
+    const fontSize = item.symbol.length > 3 ? 'text-lg' : (item.symbol.length > 2 ? 'text-xl' : 'text-2xl');
     return (
       <span className={`${item.category === '強弱'
-        ? 'font-serif italic font-black text-2xl tracking-tighter'
-        : 'font-sans font-black text-[9px] md:text-[10px] leading-tight text-center uppercase'
-        } select-none text-current opacity-90 px-0.5 break-all line-clamp-2`}>
+        ? `font-serif italic font-black ${fontSize} tracking-tighter`
+        : 'font-sans font-black text-[8px] md:text-[9px] leading-tight text-center uppercase'
+        } select-none text-current opacity-90 px-0.5 break-all line-clamp-2 max-w-full inline-block`}>
         {item.symbol}
       </span>
     );
@@ -540,7 +542,15 @@ export default function App() {
 
       {selectedTerm && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[130] flex items-center justify-center p-4 overflow-y-auto">
-          <article className={`bg-white w-full max-w-sm ${theme === 'kawaii' ? 'rounded-[3.5rem]' : 'rounded-2xl'} shadow-2xl p-8 relative max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200 text-center`}>
+          <article className={`bg-white w-full max-w-sm ${theme === 'kawaii' ? 'rounded-[3.5rem]' : 'rounded-2xl'} shadow-2xl p-8 pt-4 relative max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200 text-center group/modal`}>
+            {/* スクロール示唆用ハンドル */}
+            <div className={`w-12 h-1.5 ${theme === 'kawaii' ? 'bg-rose-100' : 'bg-slate-100'} rounded-full mx-auto mb-6 shrink-0 opacity-50`} />
+
+            {/* スクロール示唆用アイコン */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-300 animate-bounce opacity-0 group-hover/modal:opacity-100 transition-opacity pointer-events-none">
+              <ChevronDown size={20} />
+            </div>
+
             <div className="flex justify-between items-center mb-4">
               <button onClick={() => toggleFavorite(selectedTerm.id)} className={`p-3 rounded-2xl transition-all active:scale-90 ${favorites.has(selectedTerm.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'text-slate-200 bg-slate-50'}`}><Heart size={24} fill={favorites.has(selectedTerm.id) ? "currentColor" : "none"} /></button>
               <button onClick={() => { setSelectedTerm(null); setAiAnalysis(null); }} className="p-3 bg-slate-50 text-slate-300 rounded-2xl active:scale-90 transition-colors"><X size={24} /></button>
@@ -580,8 +590,8 @@ export default function App() {
                   .sort(() => 0.5 - Math.random())
                   .slice(0, 3)
                   .map(item => (
-                    <button key={item.id} onClick={() => { setSelectedTerm(item); setAiAnalysis(null); }} className={`flex items-center gap-3 p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-all active:scale-95 text-left`}>
-                      <div className={`w-8 h-8 ${item.color} rounded-lg flex items-center justify-center shrink-0`}>
+                    <button key={item.id} onClick={() => { setSelectedTerm(item); setAiAnalysis(null); }} className={`flex items-center gap-3 p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-all active:scale-95 text-left overflow-hidden group/item`}>
+                      <div className={`w-10 h-10 ${item.color} rounded-xl flex items-center justify-center shrink-0 shadow-sm border-2 border-white overflow-hidden group-hover/item:scale-105 transition-transform`}>
                         <TermIcon item={item} />
                       </div>
                       <div className="min-w-0 flex-1">
