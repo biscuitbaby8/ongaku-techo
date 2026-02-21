@@ -756,17 +756,43 @@ const LessonModal = ({ date, theme, s, lessons, setLessons, onClose }) => {
   const [name, setName] = useState('');
   const [time, setTime] = useState('10:00');
   const [note, setNote] = useState('');
+  const [editingId, setEditingId] = useState(null);
 
   const dayLessons = lessons[date] || [];
 
   const addLesson = (e) => {
     e.preventDefault();
     if (!name.trim()) return;
-    const newLesson = { id: Date.now(), name, time, note };
+
+    let updatedDayLessons;
+    if (editingId) {
+      updatedDayLessons = dayLessons.map(l =>
+        l.id === editingId ? { ...l, name, time, note } : l
+      );
+    } else {
+      const newLesson = { id: Date.now(), name, time, note };
+      updatedDayLessons = [...dayLessons, newLesson];
+    }
+
     setLessons({
       ...lessons,
-      [date]: [...dayLessons, newLesson].sort((a, b) => a.time.localeCompare(b.time))
+      [date]: updatedDayLessons.sort((a, b) => a.time.localeCompare(b.time))
     });
+
+    setName('');
+    setNote('');
+    setEditingId(null);
+  };
+
+  const startEdit = (lesson) => {
+    setEditingId(lesson.id);
+    setName(lesson.name);
+    setTime(lesson.time);
+    setNote(lesson.note || '');
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
     setName('');
     setNote('');
   };
@@ -824,7 +850,14 @@ const LessonModal = ({ date, theme, s, lessons, setLessons, onClose }) => {
               className={`w-full p-4 rounded-2xl bg-slate-50 border-2 border-transparent outline-none font-bold text-sm h-24 resize-none`}
             />
           </div>
-          <button type="submit" className={`w-full py-4 ${s.accent} text-white rounded-2xl font-black shadow-lg active:scale-95 transition-all`}>予定を追加する</button>
+          <div className="flex gap-2">
+            {editingId && (
+              <button type="button" onClick={cancelEdit} className="flex-1 py-4 bg-slate-100 text-slate-500 rounded-2xl font-black active:scale-95 transition-all">キャンセル</button>
+            )}
+            <button type="submit" className={`${editingId ? 'flex-[2]' : 'w-full'} py-4 ${s.accent} text-white rounded-2xl font-black shadow-lg active:scale-95 transition-all`}>
+              {editingId ? '変更を保存する' : '予定を追加する'}
+            </button>
+          </div>
         </form>
 
         <div className="space-y-3">
@@ -839,7 +872,10 @@ const LessonModal = ({ date, theme, s, lessons, setLessons, onClose }) => {
                     <div className={`p-2 ${s.accent} bg-opacity-20 rounded-xl text-rose-500`}><Clock size={16} /></div>
                     <span className="text-xs font-black text-rose-500 uppercase tracking-wider">{lesson.time}</span>
                   </div>
-                  <button onClick={() => deleteLesson(lesson.id)} className="p-2 text-slate-300 hover:text-rose-400 transition-colors opacity-0 group-hover:opacity-100"><Trash2 size={18} /></button>
+                  <div className="flex gap-1">
+                    <button onClick={() => startEdit(lesson)} className="p-2 text-slate-300 hover:text-emerald-400 transition-colors opacity-0 group-hover:opacity-100"><Edit3 size={18} /></button>
+                    <button onClick={() => deleteLesson(lesson.id)} className="p-2 text-slate-300 hover:text-rose-400 transition-colors opacity-0 group-hover:opacity-100"><Trash2 size={18} /></button>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <h5 className="font-black text-slate-800 text-base leading-tight">
