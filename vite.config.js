@@ -1,15 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  publicDir: './', // ここを追加：ルート直下のファイルを静的資産として扱う
+  publicDir: 'public', // 標準に戻す
   build: {
-    rollupOptions: {
-      input: {
-        main: './index.html',
-      },
-    },
+    outDir: 'dist', // 出力先を明示
   },
 })
