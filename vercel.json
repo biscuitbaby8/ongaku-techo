@@ -1,3 +1,8 @@
 {
-    "redirects": []
+  "rewrites": [
+    {
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
+    }
+  ]
 }
