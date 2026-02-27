@@ -7,6 +7,9 @@ import {
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 
+import AuthModal from './components/AuthModal';
+import { supabase } from './lib/supabaseClient';
+
 // --- データのインポート ---
 import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
 
@@ -53,6 +56,10 @@ export default function App() {
   const [lessons, setLessons] = useState(() => JSON.parse(localStorage.getItem('music-lessons') || '{}'));
   const [hasAcceptedCookies, setHasAcceptedCookies] = useState(() => localStorage.getItem('music-cookies') === 'true');
 
+  const [user, setUser] = useState(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
   const [view, setView] = useState('main');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -87,12 +94,78 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        loadCloudData(session.user.id);
+      } else {
+        setIsDataLoaded(true);
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        loadCloudData(session.user.id);
+      } else {
+        setIsDataLoaded(true);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const loadCloudData = async (userId) => {
+    try {
+      const { data, error } = await supabase.from('user_data').select('*').eq('user_id', userId).single();
+      if (data) {
+        setFavorites(prev => new Set([...prev, ...(data.favorites || [])]));
+        setMastered(prev => new Set([...prev, ...(data.mastered || [])]));
+        setMemos(prev => ({ ...prev, ...(data.memos || {}) }));
+        setLessons(prev => ({ ...prev, ...(data.lessons || {}) }));
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsDataLoaded(true);
+    }
+  };
+
+  const saveToCloud = async (key, value) => {
+    if (!user || !isDataLoaded) return;
+    try {
+      await supabase.from('user_data').upsert({
+        user_id: user.id,
+        [key]: value
+      }, { onConflict: 'user_id' });
+    } catch (e) {
+      console.error('Failed to sync', e);
+    }
+  };
+
+  useEffect(() => {
     localStorage.setItem('music-theme', theme);
   }, [theme]);
-  useEffect(() => localStorage.setItem('music-favs', JSON.stringify([...favorites])), [favorites]);
-  useEffect(() => localStorage.setItem('music-mastered', JSON.stringify([...mastered])), [mastered]);
-  useEffect(() => localStorage.setItem('music-memos', JSON.stringify(memos)), [memos]);
-  useEffect(() => localStorage.setItem('music-lessons', JSON.stringify(lessons)), [lessons]);
+  useEffect(() => {
+    if (!isDataLoaded) return;
+    localStorage.setItem('music-favs', JSON.stringify([...favorites]));
+    saveToCloud('favorites', [...favorites]);
+  }, [favorites, isDataLoaded]);
+  useEffect(() => {
+    if (!isDataLoaded) return;
+    localStorage.setItem('music-mastered', JSON.stringify([...mastered]));
+    saveToCloud('mastered', [...mastered]);
+  }, [mastered, isDataLoaded]);
+  useEffect(() => {
+    if (!isDataLoaded) return;
+    localStorage.setItem('music-memos', JSON.stringify(memos));
+    saveToCloud('memos', memos);
+  }, [memos, isDataLoaded]);
+  useEffect(() => {
+    if (!isDataLoaded) return;
+    localStorage.setItem('music-lessons', JSON.stringify(lessons));
+    saveToCloud('lessons', lessons);
+  }, [lessons, isDataLoaded]);
   useEffect(() => {
     localStorage.setItem('music-cookies', hasAcceptedCookies);
   }, [hasAcceptedCookies]);
@@ -361,6 +434,17 @@ export default function App() {
                 </div>
               </section>
               <section>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">アカウント（クラウド同期）</p>
+                {user ? (
+                  <div className="bg-slate-50 p-4 rounded-xl shadow-sm text-center">
+                    <p className="text-xs font-bold text-slate-600 mb-3 truncate">ログイン中: {user.email}</p>
+                    <button onClick={() => supabase.auth.signOut()} className={`w-full py-3 flex items-center justify-center gap-2 rounded-lg text-white font-bold text-xs ${s.accent}`}><User size={16} /> ログアウト</button>
+                  </div>
+                ) : (
+                  <button onClick={() => { setShowSettings(false); setShowAuthModal(true); }} className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white text-xs ${s.accent} shadow-sm`}><User size={18} /> ログインしてデータを保護</button>
+                )}
+              </section>
+              <section className="pt-4 border-t border-slate-100">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">サイト情報</p>
                 <div className="grid gap-2">
                   <button onClick={() => { setView('about'); setShowSettings(false); }} className="w-full flex items-center gap-3 p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all shadow-sm"><Info size={18} className={s.accentText} /> おんがく手帳について</button>
@@ -373,6 +457,8 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} s={s} theme={theme} />}
 
       <main className="max-w-md mx-auto px-4 -mt-8 relative z-20">
         {view === 'main' ? (
