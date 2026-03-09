@@ -525,7 +525,9 @@ export default function App() {
                     <button onClick={(e) => { e.stopPropagation(); toggleFavorite(item.id); }} className={`p-2 rounded-full transition-all ${favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'hover:text-rose-200'}`}>
                       <Heart size={20} fill={favorites.has(item.id) ? "currentColor" : "none"} />
                     </button>
-                    <ChevronRight size={18} />
+                    <Link to={`/term/${item.term.toLowerCase().replace(/\s+/g, '-')}`} onClick={(e) => e.stopPropagation()} className="p-2 text-slate-300 hover:text-rose-400 transition-colors bg-slate-50 hover:bg-rose-50 rounded-full" title="詳細ページを開く">
+                      <ExternalLink size={16} />
+                    </Link>
                   </div>
                 </article>
               ))}
