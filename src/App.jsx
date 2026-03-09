@@ -6,6 +6,7 @@ import {
   Calendar, ChevronLeft, Trash2, Clock
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
+import { Link } from 'react-router-dom';
 
 import AuthModal from './components/AuthModal';
 import { supabase } from './lib/supabaseClient';
@@ -637,6 +638,7 @@ export default function App() {
 
       <footer className="max-w-md mx-auto px-6 py-12 text-center">
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
+          <Link to="/index" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors no-underline">用語さくいん</Link>
           <button onClick={() => setView('about')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">About Us</button>
           <button onClick={() => setView('privacy')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Privacy Policy</button>
           <button onClick={() => setView('contact')} className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">Contact</button>

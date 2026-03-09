@@ -1,3 +1,17 @@
 {
-  "version": 2
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/term/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/index/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/index",
+      "destination": "/index.html"
+    }
+  ]
 }
