@@ -191,12 +191,12 @@ export default function App() {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "おんがく手帳",
-      "url": "https://ongaku-techo.vercel.app",
+      "url": "https://ongakutecho.com",
       "description": "1000語以上の音楽用語を網羅した、音楽家・学生のためのデジタルツール。",
       "publisher": {
         "@type": "Organization",
         "name": "ongaku-techo Project",
-        "logo": "https://ongaku-techo.vercel.app/icon-192.png"
+        "logo": "https://ongakutecho.com/icon-192.png"
       }
     };
 
@@ -204,7 +204,7 @@ export default function App() {
       baseSchema["@type"] = "DefinedTerm";
       baseSchema["name"] = selectedTerm.term;
       baseSchema["description"] = selectedTerm.meaning;
-      baseSchema["inDefinedTermSet"] = "https://ongaku-techo.vercel.app";
+      baseSchema["inDefinedTermSet"] = "https://ongakutecho.com";
     }
 
     script.text = JSON.stringify(baseSchema);
