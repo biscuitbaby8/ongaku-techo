@@ -31,15 +31,15 @@
   "rewrites": [
     {
       "source": "/term/:path*",
-      "destination": "/index.html"
+      "destination": "/term/:path*/index.html"
     },
     {
       "source": "/index/:path*",
-      "destination": "/index.html"
+      "destination": "/index/:path*/index.html"
     },
     {
       "source": "/index",
-      "destination": "/index.html"
+      "destination": "/index/index.html"
     }
   ]
 }
