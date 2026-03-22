@@ -9,10 +9,10 @@ const __dirname = path.dirname(__filename);
 const BASE_URL = 'https://ongakutecho.com';
 
 function generateSitemap() {
-    const termSlug = (t) => t.term.toLowerCase().replace(/\s+/g, '-');
-    const today = new Date().toISOString().split('T')[0];
+  const termSlug = (t) => t.term.toLowerCase().replace(/\s+/g, '-');
+  const today = new Date().toISOString().split('T')[0];
 
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${BASE_URL}/</loc>
@@ -21,7 +21,7 @@ function generateSitemap() {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${BASE_URL}/index</loc>
+    <loc>${BASE_URL}/index/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -34,33 +34,33 @@ function generateSitemap() {
   </url>
 `;
 
-    // Category index pages
-    CATEGORIES.filter(c => c !== 'All').forEach(cat => {
-        xml += `  <url>
-    <loc>${BASE_URL}/index/${encodeURIComponent(cat)}</loc>
+  // Category index pages
+  CATEGORIES.filter(c => c !== 'All').forEach(cat => {
+    xml += `  <url>
+    <loc>${BASE_URL}/index/${encodeURIComponent(cat)}/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 `;
-    });
+  });
 
-    // Individual term pages
-    termsData.forEach(term => {
-        xml += `  <url>
-    <loc>${BASE_URL}/term/${termSlug(term)}</loc>
+  // Individual term pages
+  termsData.forEach(term => {
+    xml += `  <url>
+    <loc>${BASE_URL}/term/${termSlug(term)}/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 `;
-    });
+  });
 
-    xml += `</urlset>`;
+  xml += `</urlset>`;
 
-    const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
-    fs.writeFileSync(outputPath, xml);
-    console.log(`Generated sitemap.xml with ${termsData.length + CATEGORIES.length + 1} URLs`);
+  const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
+  fs.writeFileSync(outputPath, xml);
+  console.log(`Generated sitemap.xml with ${termsData.length + CATEGORIES.length + 1} URLs`);
 }
 
 generateSitemap();
