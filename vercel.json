@@ -28,6 +28,10 @@
       ]
     }
   ],
-  "cleanUrls": true,
-  "trailingSlash": true
+  "rewrites": [
+    {
+      "source": "/((?!term|index|ads\\.txt|robots\\.txt|sitemap\\.xml|assets|privacy|manifest|icon|vite|google).*)",
+      "destination": "/index.html"
+    }
+  ]
 }
