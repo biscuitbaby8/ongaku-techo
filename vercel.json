@@ -28,18 +28,6 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/term/:path*",
-      "destination": "/term/:path*/index.html"
-    },
-    {
-      "source": "/index/:path*",
-      "destination": "/index/:path*/index.html"
-    },
-    {
-      "source": "/index",
-      "destination": "/index/index.html"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": true
 }
