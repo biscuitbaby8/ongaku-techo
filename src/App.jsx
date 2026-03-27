@@ -380,6 +380,7 @@ export default function App() {
         setSelectedTerm(uniqueMatches[0]);
         setSearchTerm(uniqueMatches.map(m => m.term).join(' '));
         setView('main');
+        setIsCameraOpen(false); // ★カメラを閉じる
         setTimeout(() => {
           if (resultsRef.current) resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
