@@ -330,7 +330,7 @@ export default function App() {
         body: JSON.stringify({
           contents: [{
             parts: [
-              { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。複数の単語がある場合は、スペースまたは読点（、）で区切って、用語名のみを出力してください。" },
+              { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。複数の用語がある場合は、カンマ（,）で区切って出力してください。「Poco a poco」や「A tempo」などの複数の単語から成る用語は、途中で区切らずに1つのまとまりとして出力してください。" },
               { inlineData: { mimeType: "image/jpeg", data: b64 } }
             ]
           }]
@@ -351,25 +351,39 @@ export default function App() {
         throw new Error("API did not return a term.");
       }
 
-      const detectedWords = resText.split(/[ ,、\n\t]+/).filter(w => w.length > 0);
+      // スペースで区切ると複数単語の用語が壊れるため、カンマと改行でのみ分割
+      const detectedPhrases = resText.split(/[,\n、]+/).map(w => w.trim()).filter(w => w.length > 0);
       const matches = [];
 
-      detectedWords.forEach(word => {
-        // AI出力のマークダウン記号等を除去
-        const cleanWord = word.replace(/[*#`\-_]/g, '').trim().toLowerCase();
-        if (!cleanWord) return;
+      detectedPhrases.forEach(phrase => {
+        // AI出力のマークダウン記号等を除去（スペースは維持）
+        const cleanPhrase = phrase.replace(/[*#`\-_]/g, '').trim().toLowerCase();
+        if (!cleanPhrase) return;
 
-        const found = INITIAL_TERMS.find(t => {
+        let found = INITIAL_TERMS.find(t => {
           const termL = t.term.toLowerCase();
           // 1文字の場合は完全一致のみ、2文字以上の場合は部分一致も許容してヒット率を上げる
-          const isTermMatch = termL === cleanWord || (cleanWord.length > 1 && termL.includes(cleanWord));
+          const isTermMatch = termL === cleanPhrase || (cleanPhrase.length > 1 && termL.includes(cleanPhrase));
           // 読みがなの部分一致（日本語で出力された対策：2文字以上のみ）
-          const isReadingMatch = cleanWord.length > 1 && t.reading.includes(cleanWord);
+          const isReadingMatch = cleanPhrase.length > 1 && t.reading.includes(cleanPhrase);
           // 楽譜記号(p, f, mpなど)の完全一致
-          const isSymbolMatch = t.symbol && t.symbol.toLowerCase() === cleanWord;
+          const isSymbolMatch = t.symbol && t.symbol.toLowerCase() === cleanPhrase;
           
           return isTermMatch || isReadingMatch || isSymbolMatch;
         });
+
+        // 完全フレーズで見つからなかった場合、スペース付きなら個別の単語でフォールバック検索
+        if (!found && cleanPhrase.includes(' ')) {
+           const singleWords = cleanPhrase.split(' ').filter(w => w.length > 2); // 短い単語の誤検知を防ぐ
+           for (const w of singleWords) {
+             const fallbackFound = INITIAL_TERMS.find(t => t.term.toLowerCase() === w || (w.length > 3 && t.term.toLowerCase().includes(w)));
+             if (fallbackFound) {
+               found = fallbackFound;
+               break; // いずれか1つの単語が見つかればそれを採用（検索欄崩壊を防ぐため）
+             }
+           }
+        }
+
         if (found) matches.push(found);
       });
 
