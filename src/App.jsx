@@ -324,8 +324,8 @@ export default function App() {
       // JPEG形式で圧縮送信 (品質0.8)
       const b64 = canvasRef.current.toDataURL('image/jpeg', 0.8).split(',')[1];
 
-      // 安定性の高い 1.5-flash-latest モデルを使用
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+      // 安定性の高い flash-lite モデルを使用
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{
