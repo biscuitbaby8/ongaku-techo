@@ -75,6 +75,7 @@ export default function App() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
   const [scanError, setScanError] = useState(null);
+  const [scanResultData, setScanResultData] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -330,7 +331,7 @@ export default function App() {
         body: JSON.stringify({
           contents: [{
             parts: [
-              { text: "この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。複数の用語がある場合は、カンマ（,）で区切って出力してください。「Poco a poco」や「A tempo」などの複数の単語から成る用語は、途中で区切らずに1つのまとまりとして出力してください。" },
+              { text: `この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。「Largo ma non tanto」や「Poco a poco」のような複数の単語から成る表現（フレーズ）は、途中で区切らずに1つのまとまりとして扱ってください。\n\n必ず以下のJSONフォーマットで出力してください。\n\`\`\`json\n{\n  "results": [\n    {\n      "original": "フレーズまたは単語（例：Largo ma non tanto）",\n      "translation": "日本語訳（例：ゆるやかに、しかし甚だしくなく）"\n    }\n  ]\n}\n\`\`\`` },
               { inlineData: { mimeType: "image/jpeg", data: b64 } }
             ]
           }]
@@ -351,56 +352,62 @@ export default function App() {
         throw new Error("API did not return a term.");
       }
 
-      // スペースで区切ると複数単語の用語が壊れるため、カンマと改行でのみ分割
-      const detectedPhrases = resText.split(/[,\n、]+/).map(w => w.trim()).filter(w => w.length > 0);
-      const matches = [];
+      // JSONを抽出・パース
+      let parsedResults = { results: [] };
+      try {
+        const jsonMatch = resText.match(/```json\n([\s\S]*?)\n```/) || resText.match(/{[\s\S]*}/);
+        if (jsonMatch) {
+          parsedResults = JSON.parse(jsonMatch[1] || jsonMatch[0]);
+        } else {
+          parsedResults = JSON.parse(resText);
+        }
+      } catch (e) {
+        throw new Error("AIの応答を解析できませんでした。");
+      }
 
-      detectedPhrases.forEach(phrase => {
-        // AI出力のマークダウン記号等を除去（スペースは維持）
+      if (!parsedResults.results || parsedResults.results.length === 0) {
+        throw new Error("用語が見つかりませんでした。");
+      }
+
+      const enrichedResults = parsedResults.results.map(item => {
+        const phrase = item.original || "";
         const cleanPhrase = phrase.replace(/[*#`\-_]/g, '').trim().toLowerCase();
-        if (!cleanPhrase) return;
-
-        let found = INITIAL_TERMS.find(t => {
+        
+        const foundTerms = [];
+        
+        let exactFound = INITIAL_TERMS.find(t => {
           const termL = t.term.toLowerCase();
-          // 1文字の場合は完全一致のみ、2文字以上の場合は部分一致も許容してヒット率を上げる
-          const isTermMatch = termL === cleanPhrase || (cleanPhrase.length > 1 && termL.includes(cleanPhrase));
-          // 読みがなの部分一致（日本語で出力された対策：2文字以上のみ）
-          const isReadingMatch = cleanPhrase.length > 1 && t.reading.includes(cleanPhrase);
-          // 楽譜記号(p, f, mpなど)の完全一致
-          const isSymbolMatch = t.symbol && t.symbol.toLowerCase() === cleanPhrase;
-          
-          return isTermMatch || isReadingMatch || isSymbolMatch;
+          return termL === cleanPhrase || 
+                 (cleanPhrase.length > 1 && termL.includes(cleanPhrase)) || 
+                 (cleanPhrase.length > 1 && t.reading.includes(cleanPhrase)) ||
+                 (t.symbol && t.symbol.toLowerCase() === cleanPhrase);
         });
 
-        // 完全フレーズで見つからなかった場合、スペース付きなら個別の単語でフォールバック検索
-        if (!found && cleanPhrase.includes(' ')) {
-           const singleWords = cleanPhrase.split(' ').filter(w => w.length > 2); // 短い単語の誤検知を防ぐ
-           for (const w of singleWords) {
-             const fallbackFound = INITIAL_TERMS.find(t => t.term.toLowerCase() === w || (w.length > 3 && t.term.toLowerCase().includes(w)));
-             if (fallbackFound) {
-               found = fallbackFound;
-               break; // いずれか1つの単語が見つかればそれを採用（検索欄崩壊を防ぐため）
-             }
-           }
+        if (exactFound) {
+          foundTerms.push(exactFound);
+        } else if (cleanPhrase.includes(' ')) {
+          // フレーズの場合は個別単語でも検索
+          const singleWords = cleanPhrase.split(/[\s,、]+/);
+          singleWords.forEach(w => {
+            if (w.length > 2 || /^[pfmPFM]+$/.test(w)) {
+              const fbFound = INITIAL_TERMS.find(t => {
+                const termL = t.term.toLowerCase();
+                return termL === w || (t.symbol && t.symbol.toLowerCase() === w) || (w.length > 3 && termL.includes(w));
+              });
+              if (fbFound && !foundTerms.find(existing => existing.id === fbFound.id)) {
+                foundTerms.push(fbFound);
+              }
+            }
+          });
         }
-
-        if (found) matches.push(found);
+        
+        return { ...item, foundTerms };
       });
 
-      if (matches.length > 0) {
-        const uniqueMatches = Array.from(new Set(matches.map(m => m.id)))
-          .map(id => matches.find(m => m.id === id));
+      setScanResultData(enrichedResults);
+      setIsCameraOpen(false); // カメラを閉じる 
 
-        setSelectedTerm(uniqueMatches[0]);
-        setSearchTerm(uniqueMatches.map(m => m.term).join(' '));
-        setView('main');
-        setIsCameraOpen(false); // ★カメラを閉じる
-        setTimeout(() => {
-          if (resultsRef.current) resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 300);
-      } else {
-        throw new Error(`用語が見つかりませんでした: ${resText}`);
-      }
+
     } catch (e) {
       setScanError(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
     } finally { setIsScanning(false); clearTimeout(timeoutId); }
@@ -1249,6 +1256,64 @@ const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying,
       <button onClick={() => { setIsMetronomeOpen(!isMetronomeOpen); if (isTunerOpen) setIsTunerOpen(false); }} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isMetronomeOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white ' + s.accentText + ' border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
         {isPlaying ? (<Volume2 size={28} className="animate-pulse" />) : (<Music size={28} />)}
       </button>
+
+      {scanResultData && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div className={`p-4 ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-600'} text-white flex justify-between items-center relative overflow-hidden`}>
+              <div className="absolute top-0 right-0 p-2 opacity-10 scale-150 rotate-12"><BookOpen size={64} /></div>
+              <h3 className="text-lg font-black tracking-widest flex items-center gap-2 relative z-10">
+                <Camera size={20} /> スキャン結果
+              </h3>
+              <button onClick={() => setScanResultData(null)} className="p-2 bg-black/10 hover:bg-black/20 rounded-full transition-colors relative z-10"><X size={20} /></button>
+            </div>
+
+            <div className="p-4 max-h-[70vh] overflow-y-auto">
+              {scanResultData.map((res, i) => (
+                <div key={i} className="mb-6 last:mb-2 bg-slate-50 p-4 rounded-2xl border border-slate-100 relative">
+                  <h4 className="text-xl font-bold text-slate-800 mb-1 pr-8">{res.original}</h4>
+                  <p className="text-sm font-medium text-slate-600 mb-4">{res.translation}</p>
+                  
+                  {res.foundTerms && res.foundTerms.length > 0 ? (
+                    <div className="space-y-2">
+                      <p className="text-xs font-bold text-slate-400 flex items-center gap-1"><BookOpen size={12}/> 辞書に確認できた関連用語</p>
+                      <div className="flex flex-col gap-2">
+                        {res.foundTerms.map(term => (
+                          <button
+                            key={term.id}
+                            onClick={() => {
+                              setScanResultData(null);
+                              setSelectedTerm(term);
+                            }}
+                            className={`text-left p-3 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-${theme === 'kawaii' ? 'rose' : 'indigo'}-300 hover:shadow-md transition-all group relative overflow-hidden`}
+                          >
+                            <div className={`absolute top-0 left-0 w-1 h-full ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="font-bold text-slate-700">{term.term}</span>
+                              {term.symbol && <span className="text-slate-400 italic font-black font-serif ml-2">{term.symbol}</span>}
+                            </div>
+                            <span className="text-xs text-slate-500 line-clamp-1">{term.reading} / {term.meaning}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400 italic flex items-center gap-1"><ShieldCheck size={12} className="text-slate-300"/> 辞書データと関連づけられる用語はありません。</p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="p-4 bg-slate-50 border-t border-slate-100">
+              <button 
+                onClick={() => setScanResultData(null)} 
+                className={`w-full py-3 rounded-2xl font-bold text-white shadow-xl active:scale-95 transition-all ${theme === 'kawaii' ? 'bg-rose-400 shadow-rose-200' : 'bg-indigo-600 shadow-indigo-200'}`}
+              >
+                閉じる
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
