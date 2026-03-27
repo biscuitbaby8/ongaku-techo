@@ -788,6 +788,64 @@ export default function App() {
           setCurrentBeat={setCurrentBeat}
         />
       )}
+
+      {scanResultData && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div className={`p-4 ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-600'} text-white flex justify-between items-center relative overflow-hidden`}>
+              <div className="absolute top-0 right-0 p-2 opacity-10 scale-150 rotate-12"><BookOpen size={64} /></div>
+              <h3 className="text-lg font-black tracking-widest flex items-center gap-2 relative z-10">
+                <Camera size={20} /> スキャン結果
+              </h3>
+              <button onClick={() => setScanResultData(null)} className="p-2 bg-black/10 hover:bg-black/20 rounded-full transition-colors relative z-10"><X size={20} /></button>
+            </div>
+
+            <div className="p-4 max-h-[70vh] overflow-y-auto">
+              {scanResultData.map((res, i) => (
+                <div key={i} className="mb-6 last:mb-2 bg-slate-50 p-4 rounded-2xl border border-slate-100 relative">
+                  <h4 className="text-xl font-bold text-slate-800 mb-1 pr-8">{res.original}</h4>
+                  <p className="text-sm font-medium text-slate-600 mb-4">{res.translation}</p>
+                  
+                  {res.foundTerms && res.foundTerms.length > 0 ? (
+                    <div className="space-y-2">
+                      <p className="text-xs font-bold text-slate-400 flex items-center gap-1"><BookOpen size={12}/> 辞書に確認できた関連用語</p>
+                      <div className="flex flex-col gap-2">
+                        {res.foundTerms.map(term => (
+                          <button
+                            key={term.id}
+                            onClick={() => {
+                              setScanResultData(null);
+                              setSelectedTerm(term);
+                            }}
+                            className={`text-left p-3 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-${theme === 'kawaii' ? 'rose' : 'indigo'}-300 hover:shadow-md transition-all group relative overflow-hidden`}
+                          >
+                            <div className={`absolute top-0 left-0 w-1 h-full ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="font-bold text-slate-700">{term.term}</span>
+                              {term.symbol && <span className="text-slate-400 italic font-black font-serif ml-2">{term.symbol}</span>}
+                            </div>
+                            <span className="text-xs text-slate-500 line-clamp-1">{term.reading} / {term.meaning}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400 italic flex items-center gap-1"><ShieldCheck size={12} className="text-slate-300"/> 辞書データと関連づけられる用語はありません。</p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="p-4 bg-slate-50 border-t border-slate-100">
+              <button 
+                onClick={() => setScanResultData(null)} 
+                className={`w-full py-3 rounded-2xl font-bold text-white shadow-xl active:scale-95 transition-all ${theme === 'kawaii' ? 'bg-rose-400 shadow-rose-200' : 'bg-indigo-600 shadow-indigo-200'}`}
+              >
+                閉じる
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1256,64 +1314,6 @@ const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying,
       <button onClick={() => { setIsMetronomeOpen(!isMetronomeOpen); if (isTunerOpen) setIsTunerOpen(false); }} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isMetronomeOpen ? s.accent + ' text-white ring-4 ring-rose-50' : 'bg-white ' + s.accentText + ' border-2 ' + (theme === 'kawaii' ? 'border-rose-100' : 'border-slate-100')}`}>
         {isPlaying ? (<Volume2 size={28} className="animate-pulse" />) : (<Music size={28} />)}
       </button>
-
-      {scanResultData && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            <div className={`p-4 ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-600'} text-white flex justify-between items-center relative overflow-hidden`}>
-              <div className="absolute top-0 right-0 p-2 opacity-10 scale-150 rotate-12"><BookOpen size={64} /></div>
-              <h3 className="text-lg font-black tracking-widest flex items-center gap-2 relative z-10">
-                <Camera size={20} /> スキャン結果
-              </h3>
-              <button onClick={() => setScanResultData(null)} className="p-2 bg-black/10 hover:bg-black/20 rounded-full transition-colors relative z-10"><X size={20} /></button>
-            </div>
-
-            <div className="p-4 max-h-[70vh] overflow-y-auto">
-              {scanResultData.map((res, i) => (
-                <div key={i} className="mb-6 last:mb-2 bg-slate-50 p-4 rounded-2xl border border-slate-100 relative">
-                  <h4 className="text-xl font-bold text-slate-800 mb-1 pr-8">{res.original}</h4>
-                  <p className="text-sm font-medium text-slate-600 mb-4">{res.translation}</p>
-                  
-                  {res.foundTerms && res.foundTerms.length > 0 ? (
-                    <div className="space-y-2">
-                      <p className="text-xs font-bold text-slate-400 flex items-center gap-1"><BookOpen size={12}/> 辞書に確認できた関連用語</p>
-                      <div className="flex flex-col gap-2">
-                        {res.foundTerms.map(term => (
-                          <button
-                            key={term.id}
-                            onClick={() => {
-                              setScanResultData(null);
-                              setSelectedTerm(term);
-                            }}
-                            className={`text-left p-3 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-${theme === 'kawaii' ? 'rose' : 'indigo'}-300 hover:shadow-md transition-all group relative overflow-hidden`}
-                          >
-                            <div className={`absolute top-0 left-0 w-1 h-full ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-                            <div className="flex justify-between items-center mb-1">
-                              <span className="font-bold text-slate-700">{term.term}</span>
-                              {term.symbol && <span className="text-slate-400 italic font-black font-serif ml-2">{term.symbol}</span>}
-                            </div>
-                            <span className="text-xs text-slate-500 line-clamp-1">{term.reading} / {term.meaning}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-xs text-slate-400 italic flex items-center gap-1"><ShieldCheck size={12} className="text-slate-300"/> 辞書データと関連づけられる用語はありません。</p>
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="p-4 bg-slate-50 border-t border-slate-100">
-              <button 
-                onClick={() => setScanResultData(null)} 
-                className={`w-full py-3 rounded-2xl font-bold text-white shadow-xl active:scale-95 transition-all ${theme === 'kawaii' ? 'bg-rose-400 shadow-rose-200' : 'bg-indigo-600 shadow-indigo-200'}`}
-              >
-                閉じる
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
