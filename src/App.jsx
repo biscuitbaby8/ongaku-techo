@@ -324,8 +324,8 @@ export default function App() {
       // JPEG形式で圧縮送信 (品質0.8)
       const b64 = canvasRef.current.toDataURL('image/jpeg', 0.8).split(',')[1];
 
-      // 安定性の高い 1.5-flash モデルを使用
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      // 安定性の高い 1.5-flash-latest モデルを使用
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{
@@ -351,14 +351,25 @@ export default function App() {
         throw new Error("API did not return a term.");
       }
 
-      const detectedWords = resText.split(/[ ,、\n\t]+/).filter(w => w.length > 1);
+      const detectedWords = resText.split(/[ ,、\n\t]+/).filter(w => w.length > 0);
       const matches = [];
 
       detectedWords.forEach(word => {
-        const found = INITIAL_TERMS.find(t =>
-          word.toLowerCase().includes(t.term.toLowerCase()) ||
-          t.term.toLowerCase().includes(word.toLowerCase())
-        );
+        // AI出力のマークダウン記号等を除去
+        const cleanWord = word.replace(/[*#`\-_]/g, '').trim().toLowerCase();
+        if (!cleanWord) return;
+
+        const found = INITIAL_TERMS.find(t => {
+          const termL = t.term.toLowerCase();
+          // 1文字の場合は完全一致のみ、2文字以上の場合は部分一致も許容してヒット率を上げる
+          const isTermMatch = termL === cleanWord || (cleanWord.length > 1 && termL.includes(cleanWord));
+          // 読みがなの部分一致（日本語で出力された対策：2文字以上のみ）
+          const isReadingMatch = cleanWord.length > 1 && t.reading.includes(cleanWord);
+          // 楽譜記号(p, f, mpなど)の完全一致
+          const isSymbolMatch = t.symbol && t.symbol.toLowerCase() === cleanWord;
+          
+          return isTermMatch || isReadingMatch || isSymbolMatch;
+        });
         if (found) matches.push(found);
       });
 
