@@ -87,6 +87,8 @@ function siteFooter() {
     <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
       <a href="/" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">Home</a>
       <a href="/index/" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">用語さくいん</a>
+      <a href="/about.html" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">About</a>
+      <a href="/contact.html" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">Contact</a>
       <a href="/privacy.html" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">Privacy</a>
     </nav>
     <p class="text-xs font-black text-slate-300 uppercase tracking-widest">&copy; 2026 ongaku-techo / biscuitbaby</p>
@@ -275,74 +277,83 @@ function generateHomepage() {
     const previewTerms = termsData.slice(0, 50);
     const cats = CATEGORIES.filter(c => c !== 'All' && c !== 'お気に入り');
 
-    // Read the existing dist/index.html to get the JS bundle reference
+    // Read the existing dist/index.html
     const existingHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
-    const scriptMatch = existingHtml.match(/<script type="module" crossorigin src="([^"]+)">/);
-    const jsBundle = scriptMatch ? scriptMatch[1] : '/assets/index.js';
 
-    // We'll enhance the existing index.html by adding a <noscript> section
-    // with visible content for crawlers, while keeping the React app working
-    const noscriptContent = `
-    <noscript>
-      <style>
-        .noscript-content { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-        .noscript-content h1 { font-size: 24px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
-        .noscript-content h2 { font-size: 18px; font-weight: 900; color: #1e293b; margin: 24px 0 12px; }
-        .noscript-content p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
-        .noscript-content a { color: #fb7185; font-weight: bold; }
-        .noscript-content ul { list-style: none; padding: 0; }
-        .noscript-content li { padding: 12px; margin-bottom: 8px; background: white; border-radius: 12px; border: 1px solid #f1f5f9; }
-        .noscript-content .term-name { font-weight: 900; color: #1e293b; font-size: 16px; }
-        .noscript-content .term-reading { font-size: 12px; color: #94a3b8; }
-        .noscript-content .term-meaning { font-size: 13px; color: #64748b; margin-top: 4px; }
-        .noscript-content .cat-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-        .noscript-content .cat-link { padding: 6px 16px; background: #fff1f2; color: #fb7185; border-radius: 20px; font-size: 13px; font-weight: 700; }
-      </style>
-      <div class="noscript-content">
-        <h1>🎵 おんがく手帳 — 音楽用語辞典</h1>
-        <p>1000語以上の音楽用語を網羅した、音楽家・学生のためのデジタル辞典。独自の解説や演奏に役立つアドバイスも掲載。高精度クロマチックチューナーとメトロノーム機能も搭載しています。</p>
-        
-        <h2>📁 カテゴリで探す</h2>
-        <div class="cat-links">
-          <a href="/index/" class="cat-link">全カテゴリ (${termsData.length}語)</a>
-          ${cats.map(cat => {
+    // SEO static content — visible to crawlers, hidden when React app mounts.
+    // Uses CSS: #root:not(:empty) ~ .seo-content { display: none; }
+    const seoContent = `
+    <style>
+      #root:not(:empty) ~ .seo-content { display: none !important; }
+      .seo-content { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+      .seo-content h1 { font-size: 24px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
+      .seo-content h2 { font-size: 18px; font-weight: 900; color: #1e293b; margin: 24px 0 12px; }
+      .seo-content p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
+      .seo-content a { color: #fb7185; font-weight: bold; }
+      .seo-content ul { list-style: none; padding: 0; }
+      .seo-content li { padding: 12px; margin-bottom: 8px; background: white; border-radius: 12px; border: 1px solid #f1f5f9; }
+      .seo-content .term-name { font-weight: 900; color: #1e293b; font-size: 16px; }
+      .seo-content .term-reading { font-size: 12px; color: #94a3b8; }
+      .seo-content .term-meaning { font-size: 13px; color: #64748b; margin-top: 4px; }
+      .seo-content .cat-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+      .seo-content .cat-link { padding: 6px 16px; background: #fff1f2; color: #fb7185; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; }
+      .seo-content nav a { margin: 0 8px; font-size: 12px; font-weight: 700; color: #94a3b8; text-decoration: none; }
+      .seo-content nav a:hover { color: #fb7185; }
+    </style>
+    <div class="seo-content">
+      <header style="background: #fda4af; border-radius: 0 0 30px 30px; padding: 32px 24px; margin: 0 -20px 24px; color: white;">
+        <h1 style="color: white; margin: 0;">🎵 おんがく手帳 — 音楽用語辞典</h1>
+        <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 12px;">1000語以上の音楽用語辞典 &amp; チューナー・メトロノーム</p>
+      </header>
+
+      <p>音楽家・学生のためのデジタル音楽用語辞典。1000語以上の用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。高精度クロマチックチューナーとメトロノーム機能も搭載しています。</p>
+      
+      <h2>📁 カテゴリで探す</h2>
+      <div class="cat-links">
+        <a href="/index/" class="cat-link">全カテゴリ (${termsData.length}語)</a>
+        ${cats.map(cat => {
         const count = termsData.filter(t => t.category === cat).length;
         return `<a href="/index/${encodeURIComponent(cat)}/" class="cat-link">${esc(cat)} (${count}語)</a>`;
-    }).join('\n          ')}
-        </div>
-
-        <h2>📖 音楽用語一覧（一部抜粋）</h2>
-        <ul>
-          ${previewTerms.map(t => `
-          <li>
-            <a href="/term/${termSlug(t)}/">
-              <span class="term-name">${esc(t.term)}</span>
-              <span class="term-reading">（${esc(t.reading)}）</span>
-              <p class="term-meaning">${esc(t.meaning)}。${esc(t.detail.substring(0, 100))}</p>
-            </a>
-          </li>`).join('')}
-        </ul>
-        <p><a href="/index/">→ 全${termsData.length}語の一覧を見る</a></p>
-
-        <h2>🔧 このアプリの機能</h2>
-        <ul>
-          <li><strong>1000語以上の音楽用語辞典</strong> — 独自に執筆した分かりやすい解説と、演奏に役立つアドバイスを掲載</li>
-          <li><strong>高精度クロマチックチューナー</strong> — 練習に妥協しない、プロ品質の精度を追求</li>
-          <li><strong>メトロノーム</strong> — 正確なリズム感を養うための必須ツール</li>
-          <li><strong>AIスマートスキャン</strong> — 楽譜をカメラで撮るだけで用語を即座に解析</li>
-          <li><strong>レッスン予定管理カレンダー</strong> — 日々のレッスンスケジュールを管理</li>
-        </ul>
-
-        <h2>ℹ️ サイト情報</h2>
-        <p><a href="/privacy.html">プライバシーポリシー</a></p>
-        <p>© 2026 ongaku-techo / biscuitbaby. 現役の奏者や講師の監修を元に制作されています。</p>
+    }).join('\n        ')}
       </div>
-    </noscript>`;
 
-    // Insert noscript content right after <div id="root"></div>
+      <h2>📖 音楽用語一覧（一部抜粋）</h2>
+      <ul>
+        ${previewTerms.map(t => `
+        <li>
+          <a href="/term/${termSlug(t)}/">
+            <span class="term-name">${esc(t.term)}</span>
+            <span class="term-reading">（${esc(t.reading)}）</span>
+            <p class="term-meaning">${esc(t.meaning)}。${esc(t.detail.substring(0, 100))}</p>
+          </a>
+        </li>`).join('')}
+      </ul>
+      <p><a href="/index/">→ 全${termsData.length}語の一覧を見る</a></p>
+
+      <h2>🔧 このアプリの機能</h2>
+      <ul>
+        <li><strong>1000語以上の音楽用語辞典</strong> — 独自に執筆した分かりやすい解説と、演奏に役立つアドバイスを掲載</li>
+        <li><strong>高精度クロマチックチューナー</strong> — 練習に妥協しない、プロ品質の精度を追求</li>
+        <li><strong>メトロノーム</strong> — 正確なリズム感を養うための必須ツール</li>
+        <li><strong>AIスマートスキャン</strong> — 楽譜をカメラで撮るだけで用語を即座に解析</li>
+        <li><strong>レッスン予定管理カレンダー</strong> — 日々のレッスンスケジュールを管理</li>
+      </ul>
+
+      <h2>ℹ️ サイト情報</h2>
+      <nav style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px;">
+        <a href="/">Home</a>
+        <a href="/index/">用語さくいん</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </nav>
+      <p style="text-align: center; font-size: 12px;">© 2026 ongaku-techo / biscuitbaby. 現役の奏者や講師の監修を元に制作されています。</p>
+    </div>`;
+
+    // Insert SEO content right after <div id="root"></div>
     const updatedHtml = existingHtml.replace(
         '<div id="root"></div>',
-        `<div id="root"></div>${noscriptContent}`
+        `<div id="root"></div>${seoContent}`
     );
 
     fs.writeFileSync(path.join(DIST, 'index.html'), updatedHtml);
