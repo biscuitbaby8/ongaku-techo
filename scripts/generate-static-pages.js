@@ -280,27 +280,29 @@ function generateHomepage() {
     // Read the existing dist/index.html
     const existingHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
 
-    // SEO static content — visible to crawlers, hidden when React app mounts.
-    // Uses CSS: #root:not(:empty) ~ .seo-content { display: none; }
+    // SEO static content — placed BEFORE #root so it's the first thing visible.
+    // When React mounts, a small inline script removes this content from the DOM.
+    // This approach works with Googlebot because:
+    //   - Googlebot renders JS but takes a "screenshot" of the initial visible content
+    //   - The SEO content is visible in the initial HTML before React hydrates
+    //   - Unlike CSS display:none, DOM removal happens AFTER Googlebot captures content
     const seoContent = `
-    <style>
-      #root:not(:empty) ~ .seo-content { display: none !important; }
-      .seo-content { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-      .seo-content h1 { font-size: 24px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
-      .seo-content h2 { font-size: 18px; font-weight: 900; color: #1e293b; margin: 24px 0 12px; }
-      .seo-content p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
-      .seo-content a { color: #fb7185; font-weight: bold; }
-      .seo-content ul { list-style: none; padding: 0; }
-      .seo-content li { padding: 12px; margin-bottom: 8px; background: white; border-radius: 12px; border: 1px solid #f1f5f9; }
-      .seo-content .term-name { font-weight: 900; color: #1e293b; font-size: 16px; }
-      .seo-content .term-reading { font-size: 12px; color: #94a3b8; }
-      .seo-content .term-meaning { font-size: 13px; color: #64748b; margin-top: 4px; }
-      .seo-content .cat-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-      .seo-content .cat-link { padding: 6px 16px; background: #fff1f2; color: #fb7185; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; }
-      .seo-content nav a { margin: 0 8px; font-size: 12px; font-weight: 700; color: #94a3b8; text-decoration: none; }
-      .seo-content nav a:hover { color: #fb7185; }
-    </style>
-    <div class="seo-content">
+    <div id="seo-content" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
+      <style>
+        #seo-content h1 { font-size: 24px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
+        #seo-content h2 { font-size: 18px; font-weight: 900; color: #1e293b; margin: 24px 0 12px; }
+        #seo-content p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
+        #seo-content a { color: #fb7185; font-weight: bold; }
+        #seo-content ul { list-style: none; padding: 0; }
+        #seo-content li { padding: 12px; margin-bottom: 8px; background: white; border-radius: 12px; border: 1px solid #f1f5f9; }
+        #seo-content .term-name { font-weight: 900; color: #1e293b; font-size: 16px; }
+        #seo-content .term-reading { font-size: 12px; color: #94a3b8; }
+        #seo-content .term-meaning { font-size: 13px; color: #64748b; margin-top: 4px; }
+        #seo-content .cat-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        #seo-content .cat-link { padding: 6px 16px; background: #fff1f2; color: #fb7185; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; }
+        #seo-content .seo-nav a { margin: 0 8px; font-size: 12px; font-weight: 700; color: #94a3b8; text-decoration: none; }
+        #seo-content .seo-nav a:hover { color: #fb7185; }
+      </style>
       <header style="background: #fda4af; border-radius: 0 0 30px 30px; padding: 32px 24px; margin: 0 -20px 24px; color: white;">
         <h1 style="color: white; margin: 0;">🎵 おんがく手帳 — 音楽用語辞典</h1>
         <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 12px;">1000語以上の音楽用語辞典 &amp; チューナー・メトロノーム</p>
@@ -340,7 +342,7 @@ function generateHomepage() {
       </ul>
 
       <h2>ℹ️ サイト情報</h2>
-      <nav style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px;">
+      <nav class="seo-nav" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px;">
         <a href="/">Home</a>
         <a href="/index/">用語さくいん</a>
         <a href="/about.html">About</a>
@@ -350,10 +352,23 @@ function generateHomepage() {
       <p style="text-align: center; font-size: 12px;">© 2026 ongaku-techo / biscuitbaby. 現役の奏者や講師の監修を元に制作されています。</p>
     </div>`;
 
-    // Insert SEO content right after <div id="root"></div>
+    // Insert SEO content BEFORE <div id="root"></div>, and add cleanup script
+    const cleanupScript = `<script>
+      // Remove SEO placeholder content once React app has mounted
+      var observer = new MutationObserver(function(mutations) {
+        var root = document.getElementById('root');
+        if (root && root.children.length > 0) {
+          var seo = document.getElementById('seo-content');
+          if (seo) seo.remove();
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById('root'), { childList: true });
+    </script>`;
+
     const updatedHtml = existingHtml.replace(
         '<div id="root"></div>',
-        `<div id="root"></div>${seoContent}`
+        `${seoContent}\n    <div id="root"></div>\n    ${cleanupScript}`
     );
 
     fs.writeFileSync(path.join(DIST, 'index.html'), updatedHtml);

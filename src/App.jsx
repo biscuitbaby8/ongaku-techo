@@ -443,8 +443,8 @@ export default function App() {
       </header>
 
       {!hasAcceptedCookies && (
-        <div className="fixed bottom-0 inset-x-0 z-[110] p-4 animate-in slide-in-from-bottom-full duration-500">
-          <div className="bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-4 max-w-2xl mx-auto border border-white/10">
+        <div className="max-w-md mx-auto px-4 mb-4">
+          <div className="bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-4 border border-white/10">
             <Cookie size={40} className="text-yellow-400 shrink-0" />
             <p className="flex-1 text-xs font-bold text-left">Cookieの使用に同意して、学習体験をパーソナライズしましょう！</p>
             <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs`}>同意する</button>
