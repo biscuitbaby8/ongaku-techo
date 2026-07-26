@@ -10,9 +10,29 @@ import { Link } from 'react-router-dom';
 
 import AuthModal from './components/AuthModal';
 import { supabase } from './lib/supabaseClient';
+import { buildTermIndex, findDictionaryMatches } from './lib/termMatcher';
 
 // --- データのインポート ---
 import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
+
+// カメラスキャン照合用のインデックス（モジュール読み込み時に一度だけ構築）
+const TERM_INDEX = buildTermIndex(INITIAL_TERMS);
+
+const cameraErrorMessage = (err) => {
+  switch (err?.name) {
+    case 'NotAllowedError':
+    case 'SecurityError':
+      return 'カメラの使用が許可されていません。ブラウザの設定でこのサイトのカメラを「許可」に変更してから、もう一度お試しください。';
+    case 'NotFoundError':
+    case 'OverconstrainedError':
+      return '利用できるカメラが見つかりませんでした。';
+    case 'NotReadableError':
+    case 'AbortError':
+      return 'カメラを他のアプリが使用中の可能性があります。他のアプリを閉じてからお試しください。';
+    default:
+      return `カメラを起動できませんでした（${err?.name || '原因不明'}）。ページを再読み込みしてお試しください。`;
+  }
+};
 
 const TermIcon = ({ item }) => {
   if (item.symbol) {
@@ -75,9 +95,11 @@ export default function App() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
   const [scanError, setScanError] = useState(null);
+  const [cameraError, setCameraError] = useState(null);
   const [scanResultData, setScanResultData] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const streamRef = useRef(null);
 
   const [bpm, setBpm] = useState(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = useState(4);
@@ -297,14 +319,64 @@ export default function App() {
     return () => cancelAnimationFrame(timerID.current);
   }, [isPlaying, bpm, beatsPerMeasure]);
 
-  const openCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-      setIsCameraOpen(true); setTimeout(() => { if (videoRef.current) videoRef.current.srcObject = stream; }, 100);
-    } catch (err) { setScanError("カメラ起動失敗。"); }
+  // カメラのトラックを明示的に停止する。これを忘れると端末のカメラが
+  // 点灯したままになり、再度開いたときに映像が取得できなくなる。
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    if (videoRef.current) videoRef.current.srcObject = null;
   };
+
+  const closeCamera = () => {
+    stopCamera();
+    setIsCameraOpen(false);
+    setScanError(null);
+  };
+
+  const openCamera = async () => {
+    setScanError(null);
+    setCameraError(null);
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setCameraError('このブラウザではカメラを利用できません。Safari または Chrome の最新版でお試しください。');
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } });
+      stopCamera();
+      streamRef.current = stream;
+      setIsCameraOpen(true);
+    } catch (err) {
+      console.error('Camera Error:', err);
+      setCameraError(cameraErrorMessage(err));
+    }
+  };
+
+  // video要素がマウントされてから映像を接続する（setTimeoutに頼らない）
+  useEffect(() => {
+    if (!isCameraOpen) return;
+    const video = videoRef.current;
+    if (!video || !streamRef.current) return;
+    video.srcObject = streamRef.current;
+    const played = video.play();
+    if (played?.catch) played.catch(() => { /* iOSでは自動再生が拒否されることがある */ });
+  }, [isCameraOpen]);
+
+  // アンマウント時にカメラを解放する
+  useEffect(() => () => stopCamera(), []);
+
   const captureAndScan = async () => {
     if (!videoRef.current || !canvasRef.current) return;
+    setScanError(null);
+    if (!apiKey) {
+      setScanError('AIスキャンが未設定のため利用できません（APIキー未設定）。お問い合わせページからご連絡ください。');
+      return;
+    }
+    if (!videoRef.current.videoWidth) {
+      setScanError('カメラの準備ができていません。数秒待ってからもう一度撮影してください。');
+      return;
+    }
     setIsScanning(true);
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 45000); // 45秒に延長
@@ -369,45 +441,13 @@ export default function App() {
         throw new Error("用語が見つかりませんでした。");
       }
 
-      const enrichedResults = parsedResults.results.map(item => {
-        const phrase = item.original || "";
-        const cleanPhrase = phrase.replace(/[*#`\-_]/g, '').trim().toLowerCase();
-        
-        const foundTerms = [];
-        
-        let exactFound = INITIAL_TERMS.find(t => {
-          const termL = t.term.toLowerCase();
-          return termL === cleanPhrase || 
-                 (cleanPhrase.length > 1 && termL.includes(cleanPhrase)) || 
-                 (cleanPhrase.length > 1 && t.reading.includes(cleanPhrase)) ||
-                 (t.symbol && t.symbol.toLowerCase() === cleanPhrase);
-        });
-
-        if (exactFound) {
-          foundTerms.push(exactFound);
-        } else if (cleanPhrase.includes(' ')) {
-          // フレーズの場合は個別単語でも検索
-          const singleWords = cleanPhrase.split(/[\s,、]+/);
-          singleWords.forEach(w => {
-            if (w.length > 2 || /^[pfmPFM]+$/.test(w)) {
-              const fbFound = INITIAL_TERMS.find(t => {
-                const termL = t.term.toLowerCase();
-                return termL === w || (t.symbol && t.symbol.toLowerCase() === w) || (w.length > 3 && termL.includes(w));
-              });
-              if (fbFound && !foundTerms.find(existing => existing.id === fbFound.id)) {
-                foundTerms.push(fbFound);
-              }
-            }
-          });
-        }
-        
-        return { ...item, foundTerms };
-      });
+      const enrichedResults = parsedResults.results.map(item => ({
+        ...item,
+        foundTerms: findDictionaryMatches(TERM_INDEX, item.original || ''),
+      }));
 
       setScanResultData(enrichedResults);
-      setIsCameraOpen(false); // カメラを閉じる 
-
-
+      closeCamera();
     } catch (e) {
       setScanError(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
     } finally { setIsScanning(false); clearTimeout(timeoutId); }
@@ -758,11 +798,24 @@ export default function App() {
         <div className="fixed inset-0 bg-black z-[150] flex flex-col items-center">
           <video ref={videoRef} autoPlay playsInline className="flex-1 w-full object-cover" />
           <canvas ref={canvasRef} className="hidden" />
-          <div className="absolute top-6 right-6"><button onClick={() => setIsCameraOpen(false)} className="p-3 bg-white/20 rounded-full text-white active:scale-90 transition-colors"><X size={24} /></button></div>
+          <div className="absolute top-6 right-6"><button onClick={closeCamera} className="p-3 bg-white/20 rounded-full text-white active:scale-90 transition-colors"><X size={24} /></button></div>
           <div className={`w-full bg-white ${theme === 'kawaii' ? 'rounded-t-[40px]' : 'rounded-none'} p-8 flex flex-col items-center gap-4 shadow-2xl animate-in slide-in-from-bottom-full duration-300`}>
             {scanError && <p className="text-rose-500 text-xs font-bold text-center bg-rose-50 px-4 py-2 rounded-xl border border-rose-100">{scanError}</p>}
             <button onClick={captureAndScan} disabled={isScanning} className={`w-20 h-20 rounded-full border-4 ${theme === 'kawaii' ? 'border-rose-400' : 'border-indigo-600'} p-1 flex items-center justify-center active:scale-90 shadow-xl`}>{isScanning ? <Loader2 className={`animate-spin ${theme === 'kawaii' ? 'text-rose-400' : 'text-indigo-600'}`} size={32} /> : <div className={`w-full h-full ${theme === 'kawaii' ? 'bg-rose-400' : 'bg-indigo-600'} rounded-full`} />}</button>
             <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] italic text-center">AI Smart Scanner</p>
+          </div>
+        </div>
+      )}
+
+      {cameraError && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-6 bg-slate-900/50 backdrop-blur-sm">
+          <div className="bg-white w-full max-w-xs rounded-[2rem] shadow-2xl p-6 text-center">
+            <div className="w-14 h-14 bg-rose-50 text-rose-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Camera size={26} />
+            </div>
+            <h2 className="text-sm font-black text-slate-800 mb-2">カメラを起動できません</h2>
+            <p className="text-[11px] font-bold text-slate-500 leading-relaxed mb-6">{cameraError}</p>
+            <button onClick={() => setCameraError(null)} className={`w-full py-3 rounded-2xl font-black text-white text-xs ${s.accent} active:scale-95 transition-all`}>閉じる</button>
           </div>
         </div>
       )}
@@ -1088,6 +1141,7 @@ const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying,
   const analyser = useRef(null);
   const rafId = useRef(null);
   const source = useRef(null);
+  const micStream = useRef(null);
 
   const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
@@ -1130,11 +1184,6 @@ const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying,
     return sampleRate / T0;
   };
 
-  const getNote = (frequency) => {
-    const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2)) + 69;
-    return Math.round(noteNum) + 69; // MIDI note? No, wait.
-  };
-
   const updatePitch = () => {
     if (!analyser.current) return;
     const buf = new Float32Array(2048);
@@ -1156,6 +1205,7 @@ const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying,
     try {
       if (!audioContextTuner.current) audioContextTuner.current = new (window.AudioContext || window.webkitAudioContext)();
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      micStream.current = stream;
       if (audioContextTuner.current.state === 'suspended') await audioContextTuner.current.resume();
 
       source.current = audioContextTuner.current.createMediaStreamSource(stream);
@@ -1177,6 +1227,11 @@ const TunerModule = ({ theme, s, isMetronomeOpen, setIsMetronomeOpen, isPlaying,
     if (source.current) {
       source.current.disconnect();
       source.current = null;
+    }
+    // マイクを解放する（停止しないと端末の録音インジケータが点灯し続ける）
+    if (micStream.current) {
+      micStream.current.getTracks().forEach(track => track.stop());
+      micStream.current = null;
     }
     setPitch(0);
     setNote('-');

@@ -280,17 +280,17 @@ function generateHomepage() {
     // Read the existing dist/index.html
     const existingHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
 
-    // SEO static content — placed BEFORE #root so it's the first thing visible.
-    // When React mounts, a small inline script removes this content from the DOM.
-    // This approach works with Googlebot because:
-    //   - Googlebot renders JS but takes a "screenshot" of the initial visible content
-    //   - The SEO content is visible in the initial HTML before React hydrates
-    //   - Unlike CSS display:none, DOM removal happens AFTER Googlebot captures content
+    // トップページに置く静的コンテンツ。
+    // ここは #root の「あと」に置き、JS実行後も DOM から削除しない。
+    // クローラーだけに見せて利用者から隠すと Google のクローキング
+    // （スパムポリシー違反 = AdSense 不承認の直接原因）になるため、
+    // 実際の訪問者もスクロールして読める通常のコンテンツとして扱う。
     const seoContent = `
     <div id="seo-content" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
       <style>
-        #seo-content h1 { font-size: 24px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
+        #seo-content { border-top: 1px solid #f1f5f9; margin-top: 24px; padding-bottom: 96px; }
         #seo-content h2 { font-size: 18px; font-weight: 900; color: #1e293b; margin: 24px 0 12px; }
+        #seo-content .section-title { font-size: 22px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
         #seo-content p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
         #seo-content a { color: #fb7185; font-weight: bold; }
         #seo-content ul { list-style: none; padding: 0; }
@@ -303,10 +303,7 @@ function generateHomepage() {
         #seo-content .seo-nav a { margin: 0 8px; font-size: 12px; font-weight: 700; color: #94a3b8; text-decoration: none; }
         #seo-content .seo-nav a:hover { color: #fb7185; }
       </style>
-      <header style="background: #fda4af; border-radius: 0 0 30px 30px; padding: 32px 24px; margin: 0 -20px 24px; color: white;">
-        <h1 style="color: white; margin: 0;">🎵 おんがく手帳 — 音楽用語辞典</h1>
-        <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 12px;">1000語以上の音楽用語辞典 &amp; チューナー・メトロノーム</p>
-      </header>
+      <p class="section-title">🎵 おんがく手帳 — 音楽用語辞典</p>
 
       <p>音楽家・学生のためのデジタル音楽用語辞典。1000語以上の用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。高精度クロマチックチューナーとメトロノーム機能も搭載しています。</p>
       
@@ -352,23 +349,10 @@ function generateHomepage() {
       <p style="text-align: center; font-size: 12px;">© 2026 ongaku-techo / biscuitbaby. 現役の奏者や講師の監修を元に制作されています。</p>
     </div>`;
 
-    // Insert SEO content BEFORE <div id="root"></div>, and add cleanup script
-    const cleanupScript = `<script>
-      // Remove SEO placeholder content once React app has mounted
-      var observer = new MutationObserver(function(mutations) {
-        var root = document.getElementById('root');
-        if (root && root.children.length > 0) {
-          var seo = document.getElementById('seo-content');
-          if (seo) seo.remove();
-          observer.disconnect();
-        }
-      });
-      observer.observe(document.getElementById('root'), { childList: true });
-    </script>`;
-
+    // #root のあとに挿入する（利用者もクローラーも同じものを見る）
     const updatedHtml = existingHtml.replace(
         '<div id="root"></div>',
-        `${seoContent}\n    <div id="root"></div>\n    ${cleanupScript}`
+        `<div id="root"></div>\n${seoContent}`
     );
 
     fs.writeFileSync(path.join(DIST, 'index.html'), updatedHtml);
@@ -380,6 +364,21 @@ function generateHomepage() {
 function main() {
     console.log('🔨 Generating static HTML pages for SEO...');
     console.log(`   Terms: ${termsData.length}`);
+
+    // 0. スラッグの重複チェック。重複を放置すると片方のページが
+    //    もう片方に上書きされて消え、sitemap と実ページが食い違う。
+    const slugOwners = new Map();
+    const collisions = [];
+    termsData.forEach(term => {
+        const slug = termSlug(term);
+        if (slugOwners.has(slug)) collisions.push(`${slug} (id:${slugOwners.get(slug)} と id:${term.id})`);
+        else slugOwners.set(slug, term.id);
+    });
+    if (collisions.length) {
+        console.error('❌ 重複したURLスラッグがあります。termsData.js を修正してください:');
+        collisions.forEach(c => console.error(`   - ${c}`));
+        process.exit(1);
+    }
 
     // 1. Generate all term pages
     let termCount = 0;
@@ -397,7 +396,7 @@ function main() {
 
     // 3. Enhance homepage with noscript content
     generateHomepage();
-    console.log('   ✅ Enhanced homepage with noscript content');
+    console.log('   ✅ Appended static term listing to the homepage');
 
     console.log(`\n🎉 Total: ${termCount + cats.length + 2} static pages generated!`);
     console.log('   Google crawler will now see full content on every page.');

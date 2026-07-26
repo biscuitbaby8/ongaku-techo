@@ -27,6 +27,18 @@ function generateSitemap() {
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>${BASE_URL}/about.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/contact.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>${BASE_URL}/privacy.html</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
@@ -35,7 +47,9 @@ function generateSitemap() {
 `;
 
   // Category index pages
-  CATEGORIES.filter(c => c !== 'All').forEach(cat => {
+  // 'All' と 'お気に入り' は静的ページを生成していない（お気に入りは端末内のデータ）。
+  // sitemap に載せると 404 URL を Google に申告することになるため除外する。
+  CATEGORIES.filter(c => c !== 'All' && c !== 'お気に入り').forEach(cat => {
     xml += `  <url>
     <loc>${BASE_URL}/index/${encodeURIComponent(cat)}/</loc>
     <lastmod>${today}</lastmod>
@@ -60,7 +74,8 @@ function generateSitemap() {
 
   const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
   fs.writeFileSync(outputPath, xml);
-  console.log(`Generated sitemap.xml with ${termsData.length + CATEGORIES.length + 1} URLs`);
+  const urlCount = (xml.match(/<loc>/g) || []).length;
+  console.log(`Generated sitemap.xml with ${urlCount} URLs`);
 }
 
 generateSitemap();
