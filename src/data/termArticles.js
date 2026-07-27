@@ -9543,6 +9543,882 @@ export const termArticles = {
       { title: 'マーラー 交響曲第4番 第3楽章', note: 'Ruhevoll（安らかに）。ドイツ語で tranquillo に相当する指示の代表例です。' },
     ],
   },
+
+  'schnell': {
+    lead: 'Schnell はドイツ語で「速く」。イタリア語の Allegro にあたる位置で使われ、19世紀のドイツ語圏の作曲家がイタリア語ではなく母語で速度を指示する伝統の中で用いられました。',
+    sections: [
+      {
+        heading: 'ドイツ語標語の伝統',
+        body: 'シューマンやマーラーなど19世紀のドイツ語圏の作曲家には、速度や表情の指示をイタリア語ではなくドイツ語で書く例が見られます。Schnell はその中で Allegro に相当する位置に置かれる語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Allegro', slug: 'allegro', note: 'イタリア語での対応語。速度自体に大きな違いはありません。' },
+    ],
+  },
+
+  'langsam': {
+    lead: 'Langsam はドイツ語で「遅く」。イタリア語の Lento にあたる位置で使われるドイツ語の速度標語です。',
+    sections: [
+      {
+        heading: 'ドイツ語標語の伝統',
+        body: 'Schnell と同様、Langsam もイタリア語ではなくドイツ語で速度を指示する19世紀ドイツ語圏の伝統に属する語です。マーラーの交響曲など、ドイツ語の速度・表情指示が多用される作品で見られます。',
+      },
+    ],
+    confusions: [
+      { term: 'Lento', slug: 'lento', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'molto': {
+    lead: 'Molto はイタリア語で「非常に、大いに」。ラテン語 multus に由来し、他の速度・表情標語に添えて度合いを強める語です。',
+    sections: [
+      {
+        heading: '前後どちらにも付く',
+        body: '「Allegro molto」「Molto allegro」のように主となる語の前後どちらにも置かれます。単独では使われず、常に別の標語を強調するための修飾語として機能します。',
+      },
+    ],
+  },
+
+  'assai': {
+    lead: 'Assai はイタリア語で「非常に、十分に」と訳されることが多い語ですが、この訳語には議論があります。',
+    sections: [
+      {
+        heading: '「十分に」か「非常に」か',
+        body: '現代イタリア語や他のロマンス諸語（フランス語 assez など）では「十分な、間に合う程度の」に近い意味を持ちます。一方、音楽用語としては後年「非常に」に近い強い意味で定着しました。「Allegro assai」を「十分に速く」と読むか「非常に速く」と読むかは、文献によって解釈が分かれます。',
+      },
+    ],
+  },
+
+  'non-troppo': {
+    lead: 'Non troppo はイタリア語で「甚だしくなく、すぎないように」。troppo（多すぎる、度が過ぎる）を否定する形で、主となる標語の行き過ぎを抑える働きをします。',
+    sections: [
+      {
+        heading: '行き過ぎにブレーキをかける語',
+        body: '「Allegro non troppo」のように、単独の速度標語だけでは伝わらない「ただし限度を超えない」という制約を加えます。Assai のように速度を強めるのではなく、逆に抑制する方向の修飾語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Poco', slug: 'poco', note: '「少し」。度合いを弱く示す点は似ていますが、troppo の否定という成り立ちは異なります。' },
+    ],
+  },
+
+  'poco': {
+    lead: 'Poco はイタリア語で「少し、わずかに」。ラテン語 paucus（少ない）に由来し、変化やニュアンスをわずかに加える指示に使われます。',
+    sections: [
+      {
+        heading: '単独と重ねた形',
+        body: '「Poco accelerando」のように単独で使われるほか、「poco a poco（少しずつ）」のように重ねることで、段階的・持続的な変化であることを示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Un poco', slug: 'un-poco', note: '不定冠詞 un を伴う同義の言い回し。' },
+    ],
+  },
+
+  'veloce': {
+    lead: 'Veloce はイタリア語で「速く、速やかに」。ラテン語 velox（速い）に由来し、気分や性格ではなく物理的な速さそのものを指す語です。',
+    sections: [
+      {
+        heading: '性格ではなく速さの指示',
+        body: 'Allegro や Vivace が性格・気分を含む語であるのに対し、Veloce は音型を素早く駆け抜けることを求める、より即物的な速度指示として使われます。音階やパッセージなど、技巧的な経過句に付されることが多い語です。',
+      },
+    ],
+  },
+
+  'l’istesso-tempo': {
+    lead: 'L’istesso tempo はイタリア語で「同じ速さで」。lo stesso（同じ）に由来し、拍子記号が変わっても拍の実際の速さを変えないことを指示します。',
+    sections: [
+      {
+        heading: '拍子が変わっても拍は変わらない',
+        body: '例えば4分の4拍子から8分の6拍子に変わる際、L’istesso tempo が指示されていれば、1拍として数える単位（4分音符や付点4分音符など）の実際の長さは変わりません。拍子の見た目が変化しても、体感するテンポの連続性を保つための指示です。',
+      },
+    ],
+  },
+
+  'l\'istesso-tempo': {
+    lead: 'L\'istesso tempo は L’istesso tempo と同じイタリア語「同じ速さで」を表す表記で、アポストロフィの字体（曲線か直線か）が異なるだけの同一の語です。',
+    sections: [
+      {
+        heading: '拍子が変わっても拍は変わらない',
+        body: '意味・用法は L’istesso tempo とまったく同じで、拍子記号が変わっても1拍の実際の長さを変えないことを指示します。楽譜の版や印刷方式によってアポストロフィの表記が揺れることがあります。',
+      },
+    ],
+    confusions: [
+      { term: 'L’istesso tempo', slug: 'l’istesso-tempo', note: 'アポストロフィの字体違いによる同一語の表記ゆれ。' },
+    ],
+  },
+
+  'sollecitando': {
+    lead: 'Sollecitando はイタリア語で「急いで、せき立てて」。動詞 sollecitare（急がせる、催促する）に由来します。',
+    sections: [
+      {
+        heading: 'Stringendo との近さ',
+        body: '意味の上では Stringendo（締めつけるように速める）や Affrettando（急いで）と近い一群の語ですが、使用頻度は低く、より切迫した催促のニュアンスを伴うとされます。',
+      },
+    ],
+    confusions: [
+      { term: 'Stringendo', slug: 'stringendo', note: '同様に速度を増す語ですが、より広く使われます。' },
+    ],
+  },
+
+  'adagio-religioso': {
+    lead: 'Adagio religioso は「非常に遅く、宗教的な雰囲気で」。Adagio（ad agio＝ゆとりをもって）に、性格を示す religioso（宗教的に）を組み合わせた複合標語です。',
+    sections: [
+      {
+        heading: '速度＋性格の複合標語',
+        body: 'Adagio 単独が速度のみを指定するのに対し、religioso を添えることで、静けさや敬虔さといった演奏の性格まで指定します。速度標語に性格を示す語を組み合わせる手法は、他の多くの標語にも共通して見られます。',
+      },
+    ],
+    confusions: [
+      { term: 'Adagio', slug: 'adagio', note: '性格を示す語を伴わない、速度のみの標語。' },
+    ],
+  },
+
+  'affrettando': {
+    lead: 'Affrettando はイタリア語で「急いで、せき立てて」。動詞 affrettare（急がせる）は fretta（急ぎ、慌ただしさ）に接頭辞が付いた形です。',
+    sections: [
+      {
+        heading: 'Accelerando との違い',
+        body: '一般的な加速を示す Accelerando に対し、Affrettando はより心理的な焦りや切迫感を伴う加速として説明されます。次第に速度を増しながら、緊張が高まっていく様子を表します。',
+      },
+    ],
+    confusions: [
+      { term: 'Accelerando', slug: 'accelerando', note: 'より中立的な、単なる加速の指示。' },
+    ],
+  },
+
+  'battuta': {
+    lead: 'Battuta はイタリア語で「拍、拍子、打ち方」。動詞 battere（打つ、叩く）に由来し、指揮者が拍を「打つ」動作そのものを指す語です。',
+    sections: [
+      {
+        heading: 'A battuta の使われ方',
+        body: '「A battuta」という形で、リタルダンドやフェルマータの後などに置かれ、揺れのない厳格な拍に戻ることを指示します。ルバートの直後に現れることが多い指示です。',
+      },
+    ],
+  },
+
+  'belebt': {
+    lead: 'Belebt はドイツ語で「命を吹き込まれた、活発な」。動詞 beleben（生き生きとさせる、活気づける）の過去分詞形です。',
+    sections: [
+      {
+        heading: 'Animato に相当',
+        body: 'イタリア語の Animato と同じ位置で使われるドイツ語の表情標語です。ドイツ語での速度・表情指示を好んだマーラーの作品などに見られます。',
+      },
+    ],
+    confusions: [
+      { term: 'Animato', slug: 'animato', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'breit': {
+    lead: 'Breit はドイツ語で「幅広く」。イタリア語の Largo にあたる位置で使われる、ゆったりとした速度を示すドイツ語標語です。',
+    sections: [
+      {
+        heading: 'Largo に相当',
+        body: '単に遅いだけでなく、時間的な「広がり」「余裕」を強調するニュアンスを持つ語とされます。',
+      },
+    ],
+    confusions: [
+      { term: 'Largo', slug: 'largo', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'a-bene-placito': {
+    lead: 'A bene placito はイタリア語で「演奏者の自由な速度で」。文字どおりには「良い気に入るところに従って」という意味です。',
+    sections: [
+      {
+        heading: 'Ad libitum との関係',
+        body: 'Ad libitum とほぼ同義で使われ、拍や速度を演奏者の裁量に委ねる指示です。イタリア語表現とラテン語表現という違いはありますが、演奏者に与える自由の内容は共通しています。',
+      },
+    ],
+    confusions: [
+      { term: 'Ad libitum', slug: 'ad-libitum', note: 'ラテン語での類義表現。' },
+    ],
+  },
+
+  'a-capriccio': {
+    lead: 'A capriccio はイタリア語で「気ままに」。capriccio（気まぐれ、奇想）に由来し、規則的な拍から離れて自由に演奏することを指示します。',
+    sections: [
+      {
+        heading: '自由さの内容',
+        body: '速度だけでなく、フレーズの伸び縮みや強弱の起伏まで含めて、その場の思いつきに従うことを認める語です。',
+      },
+    ],
+  },
+
+  'ad-libitum': {
+    lead: 'Ad libitum はラテン語で「自由に、望みのままに」。libet（心地よい、気に入る）から派生した語で、拍にとどまらない広い自由を認める標語です。',
+    sections: [
+      {
+        heading: '速度以外にも及ぶ自由',
+        body: 'テンポの自由だけでなく、楽器パートの追加・省略の可否、カデンツァの挿入といった、演奏形態そのものに関わる自由を指すこともある、適用範囲の広い語です。',
+      },
+    ],
+    confusions: [
+      { term: 'A bene placito', slug: 'a-bene-placito', note: 'イタリア語での類義表現。' },
+      { term: 'Senza tempo', slug: 'senza-tempo', note: '拍からの自由に絞った、より限定的な指示。' },
+    ],
+  },
+
+  'tempo': {
+    lead: 'Tempo はイタリア語で「時間、速さ」。ラテン語 tempus に由来し、音楽が進む速さ全般を指す最も基本的な語です。',
+    sections: [
+      {
+        heading: 'BPM による数値化',
+        body: 'メトロノームの普及以降、Tempo は1分間の拍数（BPM）という数値でも表されるようになりました。Allegro や Andante といった伝統的な速度標語は幅のある目安であるのに対し、BPM は具体的な1点の速さを示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Metronome', slug: 'metronome', note: 'テンポを正確に数値化して示すための道具。' },
+    ],
+  },
+
+  'metronome': {
+    lead: 'Metronome は正確な拍を刻む道具。現在一般的な振り子式のメトロノームは、1815年にヨハン・ネポムク・メルツェルが特許を取得した機構で、オランダのディートリヒ・ニコラウス・ヴィンケルの考案を基にしています。',
+    sections: [
+      {
+        heading: 'ベートーヴェンとメトロノーム',
+        body: 'ベートーヴェンはこのメルツェルのメトロノームをいち早く採り入れ、自作の交響曲に具体的な数値によるテンポ指示を付けたことで知られています。それ以前の速度標語だけでは伝わらなかった、正確な速さの共有が可能になりました。',
+      },
+    ],
+    confusions: [
+      { term: 'Metronome mark', slug: 'metronome-mark', note: 'メトロノームが示す数値そのものを楽譜に記した指示。' },
+    ],
+  },
+
+  'mäßig': {
+    lead: 'Mäßig はドイツ語で「適度に、中くらいの速さで」。イタリア語の Moderato にあたる位置で使われるドイツ語標語です。',
+    sections: [
+      {
+        heading: 'Moderato に相当',
+        body: '極端な速さを避け、自然な歩みの速度を保つことを指示する点で、Moderato と共通しています。',
+      },
+    ],
+    confusions: [
+      { term: 'Moderato', slug: 'moderato', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'bewegt': {
+    lead: 'Bewegt はドイツ語で「動きを持って、生き生きと」。動詞 bewegen（動かす）の過去分詞形で、マーラーをはじめドイツ語の表情指示を多用する作曲家の楽譜でよく見られる語です。',
+    sections: [
+      {
+        heading: 'Con moto・Animato に相当',
+        body: 'イタリア語の Con moto や Animato と同じ位置で使われ、静止した状態ではなく、絶えず動きのある音楽であることを示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Con moto', slug: 'con-moto', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'ruhig': {
+    lead: 'Ruhig はドイツ語で「静かに、安らかに」。名詞 Ruhe（静けさ、安らぎ）から派生した語で、イタリア語の Tranquillo にあたる位置で使われます。',
+    sections: [
+      {
+        heading: 'マーラーの楽譜で頻出',
+        body: 'ドイツ語の速度・表情指示を多く用いたマーラーの交響曲では、Ruhig のような語が頻繁に用いられ、単なる速度以上に、音楽全体の落ち着いた性格を示します。',
+      },
+    ],
+  },
+
+  'meno': {
+    lead: 'Meno はイタリア語で「より少なく」。直前に示された速度からの相対的な変化を示す比較級の語です。',
+    sections: [
+      {
+        heading: '相対的な指示',
+        body: '「Meno mosso（より動きを少なく＝より遅く）」のように、絶対的な速度を新たに定めるのではなく、直前の速度と比較して変化させることを指示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Più', slug: 'più', note: '逆方向、「より多く」を示す対になる語。' },
+    ],
+  },
+
+  'più': {
+    lead: 'Più はイタリア語で「より多く」。Meno と対になる比較級の語で、直前の速度からの相対的な変化を示します。',
+    sections: [
+      {
+        heading: '相対的な指示',
+        body: '「Più mosso（より動きを多く＝より速く）」のように、直前に示された速度と比較して、より速く・より強くといった変化を指示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Meno', slug: 'meno', note: '逆方向、「より少なく」を示す対になる語。' },
+    ],
+  },
+
+  'ma-non-troppo': {
+    lead: 'Ma non troppo はイタリア語で「しかしはなはだしくなく」。接続詞 ma（しかし）と Non troppo を組み合わせた形です。',
+    sections: [
+      {
+        heading: '主標語への制約',
+        body: '「Allegro ma non troppo」のように、主となる速度標語の直後に置かれ、「その速度ではあるが、行き過ぎないように」という制約を加えます。Non troppo 単独とほぼ同じ働きですが、ma を伴うことで対比のニュアンスがより明確になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Non troppo', slug: 'non-troppo', note: 'ma を伴わない、同じ働きを持つ語。' },
+    ],
+  },
+
+  'tempo-comodo': {
+    lead: 'Tempo comodo はイタリア語で「快適な速さで」。comodo（心地よい、無理のない）を伴い、演奏者が自然に感じる速度を選ぶことを許容する語です。',
+    sections: [
+      {
+        heading: '数値に縛られない指示',
+        body: '特定のメトロノーム数値を指定せず、演奏者やその場の響きに応じて無理のない速度を選ぶことを促す、裁量の幅を持った標語です。',
+      },
+    ],
+  },
+
+  'common-time': {
+    lead: 'Common time は4分の4拍子を示す英語名で、記号 C で表されます。この C は「common（一般的）」の略ではなく、中世の記譜法に由来する記号です。',
+    sections: [
+      {
+        heading: 'C の由来',
+        body: '中世の計量記譜法では、完全な円が3拍子系（完全拍子）を、円の一部が欠けた形が2拍子系（不完全拍子）を示していました。この不完全な円の名残が今日の C の記号であり、4分の4拍子を表す記号として定着しました。',
+      },
+    ],
+    confusions: [
+      { term: 'Cut time', slug: 'cut-time', note: '同じ C に縦線を加えた記号で、2分の2拍子を示します。' },
+    ],
+  },
+
+  'cut-time': {
+    lead: 'Cut time は2分の2拍子（Alla breve）の英語名。Common time の記号 C に縦線を加えた記号で表されます。',
+    sections: [
+      {
+        heading: '拍の単位が変わる',
+        body: '4分音符を1拍とする4分の4拍子に対し、Cut time では2分音符を1拍として数えます。同じ音符の並びでも、拍の数え方が半分になることで、実際に感じられる速さが増します。記号の縦線は、中世の記譜法で速さを2倍にする「ディミヌツィオ（減価）」を示した印の名残です。',
+      },
+    ],
+    confusions: [
+      { term: 'Common time', slug: 'common-time', note: '縦線のない、4分の4拍子を示す記号。' },
+    ],
+  },
+
+  'zunehmend': {
+    lead: 'Zunehmend はドイツ語で「次第に増していく」。動詞 zunehmen（増す、増える）の現在分詞形で、対象となる性質を指定して初めて意味が定まる語です。',
+    sections: [
+      {
+        heading: '何が増すかは前後の語で決まる',
+        body: '単独では「増していく」としか意味を持たず、「zunehmend lebhaft（次第に生き生きと＝クレッシェンドに近い）」のように、速さが増すのか、強さが増すのかは、組み合わされる語によって決まります。',
+      },
+    ],
+  },
+
+  'lent': {
+    lead: 'Lent はフランス語で「遅く」。イタリア語の Lento にあたる位置で使われる、フランス語の速度標語です。',
+    sections: [
+      {
+        heading: 'フランス語標語の伝統',
+        body: 'ドビュッシーやラヴェルなど、19世紀末以降のフランスの作曲家には、イタリア語ではなく母語であるフランス語で速度や表情を指示する傾向が見られ、Lent はその一例です。',
+      },
+    ],
+    confusions: [
+      { term: 'Lento', slug: 'lento', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'modéré': {
+    lead: 'Modéré はフランス語で「中くらいの速さで」。イタリア語の Moderato にあたる位置で使われるフランス語標語です。',
+    sections: [
+      {
+        heading: 'フランス語標語の伝統',
+        body: 'Lent と同様、フランス近代の作曲家が母語で速度を指示する伝統の中で使われる語で、行き過ぎない節度ある速さを指示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Moderato', slug: 'moderato', note: 'イタリア語での対応語。' },
+      { term: 'Modere', slug: 'modere', note: 'アクサン（アクセント記号）を省いた同一語の表記。' },
+    ],
+  },
+
+  'modere': {
+    lead: 'Modere は Modéré と同じフランス語「中くらいの速さで」を表す語で、本来 e の上に付くアクサン・テギュ（アクセント記号）が省かれた表記です。',
+    sections: [
+      {
+        heading: 'アクセント記号の有無',
+        body: '意味・発音上の違いはなく、印刷や入力の都合でアクセント記号が省略された表記と考えられます。指し示す速度は Modéré・Moderato と同じです。',
+      },
+    ],
+    confusions: [
+      { term: 'Modéré', slug: 'modéré', note: 'アクセント記号を伴う本来の表記。' },
+    ],
+  },
+
+  'vif': {
+    lead: 'Vif はフランス語で「快速に、生き生きと」。イタリア語の Vivace にあたる位置で使われるフランス語標語です。',
+    sections: [
+      {
+        heading: 'Vivace に相当',
+        body: '単なる速さだけでなく、はつらつとした生気を伴う点で Vivace と共通します。',
+      },
+    ],
+    confusions: [
+      { term: 'Vivace', slug: 'vivace', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'animé': {
+    lead: 'Animé はフランス語で「活気を持って」。イタリア語の Animato にあたる位置で使われるフランス語標語です。',
+    sections: [
+      {
+        heading: 'Animato に相当',
+        body: '速度そのものよりも、音楽に活気や躍動感を与えることを指示する語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Animato', slug: 'animato', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'calme': {
+    lead: 'Calme はフランス語で「静かに、穏やかに」。イタリア語の Tranquillo にあたる位置で使われるフランス語標語です。',
+    sections: [
+      {
+        heading: 'Tranquillo に相当',
+        body: '速度を落ち着かせるだけでなく、音楽全体に静穏な性格を求める語です。',
+      },
+    ],
+  },
+
+  'g.p.': {
+    lead: 'G.P. はドイツ語 Generalpause（総休止）の略号。全ての奏者が同時に演奏を止める箇所を示します。',
+    sections: [
+      {
+        heading: '通常の休符との違い',
+        body: '個々のパートの休符とは異なり、G.P. は合奏全体が一斉に静止することを示す指示です。直後に置かれる音や場面の対比を際立たせる効果を持ちます。',
+      },
+    ],
+    confusions: [
+      { term: 'Generalpause', slug: 'generalpause', note: 'G.P. の略さない元の語。' },
+    ],
+  },
+
+  'senza-tempo': {
+    lead: 'Senza tempo はイタリア語で「テンポなしで」。senza（〜なしに）と tempo（拍）を組み合わせ、拍そのものからの自由を指示する語です。',
+    sections: [
+      {
+        heading: 'Ad libitum との違い',
+        body: 'Ad libitum が速度以外の要素（楽器編成やカデンツァなど）にまで及ぶ広い自由を指すのに対し、Senza tempo は拍の規則性を離れることに絞った指示です。',
+      },
+    ],
+    confusions: [
+      { term: 'Ad libitum', slug: 'ad-libitum', note: 'より適用範囲の広い自由の指示。' },
+    ],
+  },
+
+  'metronome-mark': {
+    lead: 'Metronome mark は、1分間の拍数（BPM）を音符と数値で具体的に示す指示。略号 M.M. は「メルツェルのメトロノーム（Mälzel’s Metronome）」に由来します。',
+    sections: [
+      {
+        heading: '音符＝数値という形式',
+        body: '「4分音符＝120」のように、基準となる音符の種類と、1分間にその音符を何回刻むかという数値を組み合わせて表記します。Allegro のような伝統的な速度標語が幅を持つ目安であるのに対し、Metronome mark は1点の速さを指定します。',
+      },
+    ],
+    confusions: [
+      { term: 'Metronome', slug: 'metronome', note: 'この数値を刻むための道具そのもの。' },
+    ],
+  },
+
+  'alla-tedesca': {
+    lead: 'Alla tedesca はイタリア語で「ドイツ風に」。tedesco（ドイツの）に由来し、ドイツ・オーストリア風の素朴な性格を指定する語です。',
+    sections: [
+      {
+        heading: 'レントラー的な性格',
+        body: '3拍子の民俗舞曲であるレントラーを思わせる、素朴で率直なリズム感を指すことが多い語です。',
+      },
+    ],
+  },
+
+  'alla-zingarese': {
+    lead: 'Alla zingarese はイタリア語で「ジプシー（ロマ）風に」。zingaro（ロマの人）に由来し、19世紀の作曲家がロマ音楽の演奏様式を模した箇所に用いた語です。',
+    sections: [
+      {
+        heading: '「style hongrois」との関わり',
+        body: 'ブラームスやリストなど19世紀の作曲家が、ロマ音楽に想を得た「ハンガリー風様式（style hongrois）」として自由な速度変化や情熱的な性格を取り入れた際に使われた語です。',
+      },
+    ],
+  },
+
+  'metronomic': {
+    lead: 'Metronomic は英語で「メトロノームのように正確なテンポで」を表す形容詞。人間の演奏をメトロノームの機械的な規則性にたとえる語です。',
+    sections: [
+      {
+        heading: '評価は文脈による',
+        body: '正確さを評価する言葉として使われることもあれば、表情の揺れを欠いた硬い演奏を指して否定的に使われることもあり、どちらの意味かは前後の文脈によって決まります。',
+      },
+    ],
+  },
+
+  'agogic': {
+    lead: 'Agogic はギリシャ語 agoge（導き、進行）に由来する語で、ドイツ語 Agogik として19世紀末の音楽理論家フーゴー・リーマンによって体系づけられたとされます。',
+    sections: [
+      {
+        heading: '記譜されない時間の揺れ',
+        body: '強弱による通常のアクセント（ダイナミック・アクセント）とは異なり、Agogic はテンポや音価をわずかに伸縮させることで生まれる表情的な強調を指します。楽譜に明示的に記されないことが多く、演奏者の判断に委ねられる領域です。',
+      },
+    ],
+  },
+
+  'largamente': {
+    lead: 'Largamente はイタリア語で「幅広く、堂々と」。Largo の副詞形で、曲全体ではなく、特定の箇所を一時的に広げる指示として使われます。',
+    sections: [
+      {
+        heading: '一時的な広がり',
+        body: '曲全体の速度標語としての Largo とは異なり、Largamente はクライマックスや終結部など、限られた箇所で一時的にテンポを広げ、堂々とした響きを作る際に用いられます。',
+      },
+    ],
+    confusions: [
+      { term: 'Largo', slug: 'largo', note: '曲全体（または楽章全体）に適用される速度標語。' },
+    ],
+  },
+
+  'tres-vite': {
+    lead: 'Tres vite はフランス語で「とても速く」。本来はアクサン記号を伴う très vite（vite＝速い、を très＝とても、で強めた形）です。',
+    sections: [
+      {
+        heading: 'Vite を強める語',
+        body: 'vite 単独よりも強い速さを求める指示で、フランス語で書かれた楽譜、特にドビュッシーやラヴェルの作品に見られます。',
+      },
+    ],
+  },
+
+  'assez-vite': {
+    lead: 'Assez vite はフランス語で「十分に速く」。assez（十分に、まずまず）は très ほど強くない、控えめな強調を表します。',
+    sections: [
+      {
+        heading: 'Tres vite より穏やかな強調',
+        body: '同じ vite（速く）を強める語でも、assez は très より弱い度合いを示し、Allegro に近いニュアンスとされます。',
+      },
+    ],
+    confusions: [
+      { term: 'Tres vite', slug: 'tres-vite', note: 'より強く速さを強調する語。' },
+    ],
+  },
+
+  'tres-lent': {
+    lead: 'Tres lent はフランス語で「とても遅く」。本来はアクサン記号を伴う très lent（lent＝遅い、を très＝とても、で強めた形）です。',
+    sections: [
+      {
+        heading: 'Lent を強める語',
+        body: '通常の Lent よりもさらに遅く、間や静けさの広がりを強調する場面で使われます。',
+      },
+    ],
+    confusions: [
+      { term: 'Lent', slug: 'lent', note: '強調を伴わない基本形。' },
+    ],
+  },
+
+  'etwas-bewegt': {
+    lead: 'Etwas bewegt はドイツ語で「いくぶん動いて」。etwas（いくらか、多少）が Bewegt（動きを持って）を弱める形です。',
+    sections: [
+      {
+        heading: 'Bewegt を弱める語',
+        body: '完全に静止した状態ではないが、強く動的でもない、控えめな動きを指示する語で、Andante con moto に近い性格を持つとされます。',
+      },
+    ],
+    confusions: [
+      { term: 'Bewegt', slug: 'bewegt', note: '強調を伴わない基本形。' },
+    ],
+  },
+
+  'moving': {
+    lead: 'Moving は英語で「動いて」。特定の数値を持つ速度標語ではなく、静止せず絶えず前進していく性格を示す語です。',
+    sections: [
+      {
+        heading: '性格を示す語',
+        body: 'Allegro や Andante のような速度の目安を持つ語ではなく、音楽が滞ることなく前へ進んでいく感覚を言葉で表した表情的な指示です。',
+      },
+    ],
+  },
+
+  'flowing': {
+    lead: 'Flowing は英語で「流れるように」。速度の指定というより、音同士のつながりが滑らかであることを示す語です。',
+    sections: [
+      {
+        heading: 'レガートに近い性格',
+        body: '特定のテンポを定めるのではなく、途切れのない滑らかなフレージングを求める点で、レガート奏法の指示に近い性格を持ちます。',
+      },
+    ],
+  },
+
+  'un-poco': {
+    lead: 'Un poco はイタリア語で「少し、わずかに」。不定冠詞 un を伴う Poco と同義の言い回しです。',
+    sections: [
+      {
+        heading: 'Poco との関係',
+        body: '「Un poco più mosso（少しより速く）」のように、Poco 単独と同じ働きで使われ、意味上の違いはありません。',
+      },
+    ],
+    confusions: [
+      { term: 'Poco', slug: 'poco', note: '冠詞を伴わない同義の語。' },
+    ],
+  },
+
+  'al-rigore-di-tempo': {
+    lead: 'Al rigore di tempo はイタリア語で「厳格なテンポで」。rigore（厳格さ）を伴い、拍の揺れを許さない演奏を指示します。',
+    sections: [
+      {
+        heading: 'ルバートの否定',
+        body: 'テンポの伸縮（ルバート）を明確に禁じ、拍を機械的なまでに正確に保つことを求める、A battuta に近い性格の指示です。',
+      },
+    ],
+    confusions: [
+      { term: 'Battuta', slug: 'battuta', note: '同様に厳格な拍への回帰・維持を示す語。' },
+    ],
+  },
+
+  'as-sai': {
+    lead: 'As sai は Assai と同じイタリア語「非常に、十分に」を表す表記で、語の区切り方が異なるだけの同一語です。',
+    sections: [
+      {
+        heading: 'Assai との関係',
+        body: '意味・用法は Assai と変わらず、「Allegro assai」などと同じ位置で使われます。',
+      },
+    ],
+    confusions: [
+      { term: 'Assai', slug: 'assai', note: '通常の一語としての表記。' },
+    ],
+  },
+
+  'colla-parte': {
+    lead: 'Colla parte はイタリア語で「主声部と一緒に」。伴奏者や合奏が、独奏・独唱パートのテンポの揺れに合わせて演奏することを指示する語です。',
+    sections: [
+      {
+        heading: '主導権はソリストにある',
+        body: '指揮者やアンサンブル全体が独立したテンポを保つのではなく、ソリストの自由な間合いに追従することを求める指示で、協奏曲やオペラの伴奏でよく見られます。',
+      },
+    ],
+    confusions: [
+      { term: 'Col canto', slug: 'col-canto', note: '歌唱パートに合わせる、より限定的な同種の指示。' },
+    ],
+  },
+
+  'come-prima': {
+    lead: 'Come prima はイタリア語で「最初のように」。曲中で以前に示されたテンポや性格へ戻ることを指示する語です。',
+    sections: [
+      {
+        heading: 'Tempo Primo との関係',
+        body: 'Tempo Primo（最初の速さで）とほぼ同じ働きを持ち、冒頭または以前提示された速度・性格への回帰を求めます。',
+      },
+    ],
+    confusions: [
+      { term: 'Tempo Primo', slug: 'tempo-primo', note: '同じ働きを持つ、より一般的な言い回し。' },
+    ],
+  },
+
+  'eilen': {
+    lead: 'Eilen はドイツ語で「急ぐ、せき立てる」。イタリア語の Accelerando・Stringendo にあたる位置で使われるドイツ語の動詞です。',
+    sections: [
+      {
+        heading: '否定形での使用',
+        body: 'マーラーの楽譜などでは「nicht eilen（急がないように）」という否定形で、演奏者が無意識に速度を上げてしまわないよう注意を促す形でもよく用いられます。',
+      },
+    ],
+    confusions: [
+      { term: 'Accelerando', slug: 'accelerando', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'en-serrant': {
+    lead: 'En serrant はフランス語で「締めつけて、切迫させて」。動詞 serrer（締める、圧縮する）に由来し、イタリア語の Stringendo にあたる語です。',
+    sections: [
+      {
+        heading: 'Stringendo に相当',
+        body: '次第に速度を増しながら緊張を高めていく点で Stringendo と共通する、フランス語の速度標語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Stringendo', slug: 'stringendo', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'geschwind': {
+    lead: 'Geschwind はドイツ語で「速く」。Schnell と同様にドイツ語で速さを示す語で、バッハの時代など、より古い楽譜にも見られる語です。',
+    sections: [
+      {
+        heading: 'Schnell との関係',
+        body: '意味の上では Schnell とほぼ重なりますが、Geschwind の方がより古い時代から使われてきた語とされます。',
+      },
+    ],
+    confusions: [
+      { term: 'Schnell', slug: 'schnell', note: '同義のドイツ語で、より新しい時代に広く使われた語。' },
+    ],
+  },
+
+  'accellerato': {
+    lead: 'Accellerato は「速められた」という意味のイタリア語ですが、標準的なイタリア語の綴りは l が1つの accelerato です。',
+    sections: [
+      {
+        heading: 'Accelerando との違い',
+        body: 'Accelerando が「速めていく」という進行中の過程を示す動名詞的な形であるのに対し、Accelerato は「すでに速められた」という完了した状態を示す過去分詞形です。',
+      },
+    ],
+    confusions: [
+      { term: 'Accelerando', slug: 'accelerando', note: '速度を増していく過程そのものを示す語。' },
+    ],
+  },
+
+  'affrettoso': {
+    lead: 'Affrettoso はイタリア語で「急いだ、せっかちな」。動詞 affrettare（急がせる）から派生した形容詞形です。',
+    sections: [
+      {
+        heading: 'Affrettando との違い',
+        body: 'Affrettando が「次第に急いでいく」という変化の過程を示すのに対し、Affrettoso はその場の性格そのものが終始せわしないことを示す形容詞です。',
+      },
+    ],
+    confusions: [
+      { term: 'Affrettando', slug: 'affrettando', note: '次第に速度を増していく過程を示す語。' },
+    ],
+  },
+
+  'cede': {
+    lead: 'Cede はフランス語の動詞 céder（譲る、力を緩める）の命令形。イタリア語の Ritardando にあたる位置で使われます。',
+    sections: [
+      {
+        heading: '「譲る」という発想',
+        body: 'テンポに「ブレーキをかける」というより、緊張を保っていた力を「譲り渡す、緩める」という発想の語で、フランス語の速度標語に特有の言い回しです。',
+      },
+    ],
+    confusions: [
+      { term: 'Ritardando', slug: 'ritardando', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'col-canto': {
+    lead: 'Col canto はイタリア語で「歌に合わせて」。canto（歌、旋律）に由来し、伴奏パートが歌唱（または主旋律）のテンポに従うことを指示します。',
+    sections: [
+      {
+        heading: 'Colla parte との違い',
+        body: 'Colla parte が独奏楽器も含めた主声部一般に合わせる指示であるのに対し、Col canto は特に歌唱パートに追従する場合に使われる語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Colla parte', slug: 'colla-parte', note: '独奏楽器も含む、より広い主声部への追従指示。' },
+    ],
+  },
+
+  'comodamente': {
+    lead: 'Comodamente はイタリア語の副詞で「心地よく、適宜に」。形容詞 comodo（快適な、無理のない）から派生した語です。',
+    sections: [
+      {
+        heading: 'Tempo comodo との関係',
+        body: 'Tempo comodo が名詞句として「快適な速さで」と述べるのに対し、Comodamente は副詞として演奏全体の様子を修飾する語です。指し示す内容は共通しています。',
+      },
+    ],
+    confusions: [
+      { term: 'Tempo comodo', slug: 'tempo-comodo', note: '同じ「無理のない速さ」を名詞句で表した言い回し。' },
+    ],
+  },
+
+  'con-fretta': {
+    lead: 'Con fretta はイタリア語で「急いで」。fretta（急ぎ、慌ただしさ）に前置詞 con（〜を伴って）を付けた形です。',
+    sections: [
+      {
+        heading: '性急さを伴う速さ',
+        body: '単なる速さの指定ではなく、落ち着きのない、性急な性格を伴う速さを示す語です。',
+      },
+    ],
+  },
+
+  'con-vivo': {
+    lead: 'Con vivo はイタリア語で「いきいきと」。前置詞 con（〜を伴って）と Vivo（生き生きとした）を組み合わせた形です。',
+    sections: [
+      {
+        heading: '固定した慣用句ではない組み合わせ',
+        body: 'Con moto や Con brio のように前置詞 con と形容詞・名詞を組み合わせる型に沿った語で、Vivo が持つ「生気」を主となる速度標語に添える働きをします。',
+      },
+    ],
+    confusions: [
+      { term: 'Vivo', slug: 'vivo', note: 'con を伴わない基本形。' },
+    ],
+  },
+
+  'finalement': {
+    lead: 'Finalement はフランス語で「ついに、最後に」。速度そのものの指示ではなく、曲の終結部に差しかかったことを示す時間的な語です。',
+    sections: [
+      {
+        heading: '速度標語とともに使われる',
+        body: '単独では速さを指定せず、多くの場合、終結部での速度変化を示す他の標語と合わせて使われます。',
+      },
+    ],
+  },
+
+  'gravement': {
+    lead: 'Gravement はフランス語の副詞で「荘重に」。形容詞 grave（重々しい、深刻な）から派生した語です。',
+    sections: [
+      {
+        heading: 'Grave に相当',
+        body: 'イタリア語の Grave と同じく、重々しく厳粛な性格を伴う遅い速度を指示するフランス語の語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Grave', slug: 'grave', note: 'イタリア語での対応語。' },
+    ],
+  },
+
+  'calcando': {
+    lead: 'Calcando はイタリア語で「せき立てて、追い込んで」。動詞 calcare（強く踏む、押しつける）に由来する語です。',
+    sections: [
+      {
+        heading: '重みを伴う加速',
+        body: '単なる加速ではなく、体重をかけて押し進めるような、重みと圧力を伴う加速を示す語とされます。',
+      },
+    ],
+  },
+
+  'en-pressant': {
+    lead: 'En pressant はフランス語で「急いで、せき立てて」。動詞 presser（押す、急がせる）に由来し、イタリア語の Stringendo・Accelerando にあたる語です。',
+    sections: [
+      {
+        heading: 'Stringendo に相当',
+        body: '次第にテンポを前へ押し進めていく点で、Stringendo や En serrant と同じ系統に属するフランス語の標語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Stringendo', slug: 'stringendo', note: 'イタリア語での対応語。' },
+      { term: 'En serrant', slug: 'en-serrant', note: '同じくフランス語の類義語。' },
+    ],
+  },
+
+  'gravemente': {
+    lead: 'Gravemente はイタリア語の副詞で「荘重に、深刻に」。形容詞 grave の副詞形です。',
+    sections: [
+      {
+        heading: 'Grave に相当',
+        body: 'フランス語の Gravement と同じ語源・意味を持つイタリア語の語で、重々しい性格を示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Grave', slug: 'grave', note: '副詞形をとらない基本の形容詞。' },
+    ],
+  },
+
+  'rapidamente': {
+    lead: 'Rapidamente はイタリア語の副詞で「急速に」。形容詞 rapido（速い）の副詞形です。',
+    sections: [
+      {
+        heading: 'Veloce との違い',
+        body: '意味の上では Veloce に近い速さの指示ですが、固定的な速度標語としてよりも、演奏の様子を説明する副詞として使われることが多い語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Veloce', slug: 'veloce', note: '速さを示す、より定着した標語。' },
+    ],
+  },
+
+  'calandando': {
+    lead: 'Calandando はイタリア語で「弱めながら遅く」。動詞 calare（下げる、減じる）に由来し、速度と強さの両方が同時に落ちていくことを示す語です。',
+    sections: [
+      {
+        heading: 'Calando の進行形',
+        body: 'より広く使われる Calando と同じ語源を持ち、ディミヌエンドとリタルダンドが同時に進む様子を示す点で共通しています。',
+      },
+    ],
+  },
 };
 
 export const hasArticle = (slug) => Object.prototype.hasOwnProperty.call(termArticles, slug);
