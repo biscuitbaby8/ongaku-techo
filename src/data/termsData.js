@@ -1670,7 +1670,7 @@ export const termsData = [
     "category": "表情",
     "lang": "イタリア語",
     "meaning": "温かく、熱情を込めて",
-    "detail": "「calore (熱さ)」。内側からじんわりと温まってくるような、深い共感を呼ぶ豊かな音色を目指します。",
+    "detail": "「con（〜を伴って）」＋「calore（熱さ）」。Calorosoが奏者の性質そのものを指すのに対し、こちらは「熱を込めて弾く」という行為を促す指示です。音を強く出すのではなく、ヴィブラートやテヌート気味の発音で音の芯を厚くし、フレーズの頂点へ体温を乗せていくイメージで演奏します。",
     "color": "bg-orange-200"
   },
   {
@@ -3621,17 +3621,6 @@ export const termsData = [
     "color": "bg-slate-900 text-white"
   },
   {
-    "id": 330,
-    "term": "Coda-sign",
-    "reading": "コーダ記号",
-    "symbol": "𝄌",
-    "category": "構成",
-    "lang": "イタリア語",
-    "meaning": "コーダへのジャンプ先",
-    "detail": "D.C. al Codaなどの指示に従い、最終結尾部へと一気に跳躍するための目印です。",
-    "color": "bg-slate-400"
-  },
-  {
     "id": 331,
     "term": "Double bar line",
     "reading": "複縦線",
@@ -4992,7 +4981,7 @@ export const termsData = [
     "category": "構成",
     "lang": "イタリア語",
     "meaning": "終結部へジャンプする地点",
-    "detail": "「to Coda」から「Coda」へ飛びます。曲のエンディングを華やかに演出するための仕掛けです。",
+    "detail": "「to Coda」の指示から、この記号が置かれた結尾部へ一気に跳躍します。D.C. al Coda（頭に戻ってコーダへ）やD.S. al Coda（セーニョに戻ってコーダへ）と組み合わせて使われ、繰り返しのあとにエンディングを華やかに演出するための仕掛けです。",
     "color": "bg-red-600 text-white"
   },
   {
