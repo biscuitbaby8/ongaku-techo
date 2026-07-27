@@ -6,7 +6,6 @@ import {
   Calendar, ChevronLeft, Trash2, Clock
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
-import { Link } from 'react-router-dom';
 
 import AuthModal from './components/AuthModal';
 import { supabase } from './lib/supabaseClient';
@@ -14,6 +13,10 @@ import { buildTermIndex, findDictionaryMatches } from './lib/termMatcher';
 
 // --- データのインポート ---
 import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
+import { termArticles } from './data/termArticles';
+
+const slugOf = (term) => term.toLowerCase().replace(/\s+/g, '-');
+const articleOf = (item) => (item ? termArticles[slugOf(item.term)] : null);
 
 // カメラスキャン照合用のインデックス（モジュール読み込み時に一度だけ構築）
 const TERM_INDEX = buildTermIndex(INITIAL_TERMS);
@@ -557,7 +560,12 @@ export default function App() {
                       {mastered.has(item.id) && <CheckCircle size={14} className="absolute -top-1 -right-1 text-green-500 bg-white rounded-full shadow-sm" fill="currentColor" />}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="font-bold text-slate-800 leading-tight truncate text-base">{item.term}</h3>
+                      <div className="flex items-center gap-1.5">
+                        <h3 className="font-bold text-slate-800 leading-tight truncate text-base">{item.term}</h3>
+                        {articleOf(item) && (
+                          <span className={`shrink-0 px-1.5 py-0.5 rounded-md text-[8px] font-black tracking-wider ${theme === 'kawaii' ? 'bg-rose-100 text-rose-500' : 'bg-indigo-100 text-indigo-600'}`}>詳解</span>
+                        )}
+                      </div>
                       <p className="text-[10px] font-bold text-slate-400 truncate mt-0.5">{item.meaning}</p>
                       <div className="flex items-center gap-2 mt-1"><span className="text-slate-300 text-[8px] font-black uppercase tracking-widest">{item.category}</span><span className="w-1 h-1 bg-slate-200 rounded-full"></span><span className={`${s.accentText} text-[8px] font-bold`}>{item.lang}</span></div>
                     </div>
@@ -566,9 +574,9 @@ export default function App() {
                     <button onClick={(e) => { e.stopPropagation(); toggleFavorite(item.id); }} className={`p-2 rounded-full transition-all ${favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'hover:text-rose-200'}`}>
                       <Heart size={20} fill={favorites.has(item.id) ? "currentColor" : "none"} />
                     </button>
-                    <Link to={`/term/${item.term.toLowerCase().replace(/\s+/g, '-')}`} onClick={(e) => e.stopPropagation()} className="p-2 text-slate-300 hover:text-rose-400 transition-colors bg-slate-50 hover:bg-rose-50 rounded-full" title="詳細ページを開く">
+                    <a href={`/term/${slugOf(item.term)}/`} onClick={(e) => e.stopPropagation()} className="p-2 text-slate-300 hover:text-rose-400 transition-colors bg-slate-50 hover:bg-rose-50 rounded-full" title="詳細ページを開く">
                       <ExternalLink size={16} />
-                    </Link>
+                    </a>
                   </div>
                 </article>
               ))}
@@ -681,7 +689,7 @@ export default function App() {
 
       <footer className="max-w-md mx-auto px-6 py-12 text-center">
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
-          <Link to="/index" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors no-underline">用語さくいん</Link>
+          <a href="/index/" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors no-underline">用語さくいん</a>
           <a href="/about.html" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors no-underline">About Us</a>
           <a href="/privacy.html" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors no-underline">Privacy Policy</a>
           <a href="/contact.html" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors no-underline">Contact</a>
@@ -724,6 +732,23 @@ export default function App() {
                 <p className="text-slate-800 font-black text-xl mb-3 italic">"{selectedTerm.meaning}"</p>
                 <p className="text-xs text-slate-600 px-2 leading-relaxed">{selectedTerm.detail}</p>
               </div>
+
+              {articleOf(selectedTerm) && (
+                <a
+                  href={`/term/${slugOf(selectedTerm.term)}/`}
+                  className={`flex items-center justify-between gap-3 p-5 ${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50 border-rose-100 rounded-[2rem]' : 'bg-slate-50 border-slate-200 rounded-xl'} border-2 no-underline active:scale-95 transition-all`}
+                >
+                  <div className="text-left">
+                    <p className={`text-[10px] font-black ${s.accentText} uppercase tracking-widest mb-1 flex items-center gap-1`}>
+                      <BookOpen size={12} /> 詳しい解説
+                    </p>
+                    <p className="text-xs font-bold text-slate-600 leading-relaxed">
+                      語源・演奏のコツ・混同しやすい用語・使われている曲まで解説しています。
+                    </p>
+                  </div>
+                  <ChevronRight size={20} className="text-slate-300 shrink-0" />
+                </a>
+              )}
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-3xl border border-indigo-100">
                 <div className="flex justify-between items-center mb-2"><p className="text-[10px] font-black text-indigo-600 flex items-center gap-1 uppercase tracking-widest"><Sparkles size={12} /> AI名曲検索</p>{!aiAnalysis && !isAiLoading && <button onClick={() => getAiMusic(selectedTerm.term)} className="text-[10px] font-black bg-indigo-600 text-white px-3 py-1 rounded-lg">検索</button>}</div>
                 {isAiLoading && <div className="text-indigo-300 text-[10px] font-bold py-2 animate-pulse text-center">AI探索中...</div>}

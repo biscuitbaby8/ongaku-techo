@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeft, Heart, BookOpen, Music, Languages } from 'lucide-react';
 import { termsData as INITIAL_TERMS, CATEGORIES } from '../data/termsData';
+import { termArticles } from '../data/termArticles';
+import TermArticle from '../components/TermArticle';
 
 export default function TermPage() {
     const { termId } = useParams();
@@ -94,6 +96,9 @@ export default function TermPage() {
                         <p className="text-sm text-slate-600 font-bold leading-relaxed">{term.detail}</p>
                     </div>
                 </article>
+
+                {/* 詳しい解説（静的HTML版と同じ内容） */}
+                <TermArticle article={termArticles[termSlug(term)]} />
 
                 {/* Related Terms */}
                 {relatedTerms.length > 0 && (
