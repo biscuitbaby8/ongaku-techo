@@ -443,6 +443,21 @@ function main() {
         process.exit(1);
     }
 
+    // 0-1b. CATEGORIES に登録されていないカテゴリのチェック。
+    //       登録漏れがあると、そのカテゴリの一覧ページが生成されず、
+    //       用語ページのパンくずリンクが404になる。
+    const unknownCategories = new Map();
+    termsData.forEach(term => {
+        if (!CATEGORIES.includes(term.category)) {
+            unknownCategories.set(term.category, (unknownCategories.get(term.category) || 0) + 1);
+        }
+    });
+    if (unknownCategories.size) {
+        console.error('❌ CATEGORIES に登録されていないカテゴリがあります（一覧ページが作られず、パンくずが404になります）:');
+        unknownCategories.forEach((count, cat) => console.error(`   - "${cat}" (${count}語)`));
+        process.exit(1);
+    }
+
     // 0-2. 詳しい解説（termArticles.js）のリンク切れチェック。
     //      存在しないスラッグを指していると、リンク先が404になる。
     const brokenLinks = [];
