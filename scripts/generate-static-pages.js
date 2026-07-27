@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { termsData, CATEGORIES } from '../src/data/termsData.js';
+import { termArticles } from '../src/data/termArticles.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -105,17 +106,73 @@ function categoryNav(activeCategory) {
     </nav>`;
 }
 
+// --- 詳しい解説（termArticles.js に項目がある用語だけ） ---
+function articleHtml(article) {
+    if (!article) return '';
+
+    const sections = article.sections.map(sec => `
+      <section class="mb-8">
+        <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">${esc(sec.heading)}</h2>
+        <p class="text-sm text-slate-600 leading-loose">${esc(sec.body)}</p>
+      </section>`).join('');
+
+    const instruments = article.instruments?.length ? `
+      <section class="mb-8">
+        <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">演奏のヒント</h2>
+        <div class="grid gap-3">
+          ${article.instruments.map(i => `
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+            <p class="text-xs font-black text-rose-500 mb-1">${esc(i.name)}</p>
+            <p class="text-sm text-slate-600 leading-relaxed">${esc(i.tip)}</p>
+          </div>`).join('')}
+        </div>
+      </section>` : '';
+
+    const confusions = article.confusions?.length ? `
+      <section class="mb-8">
+        <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">混同しやすい用語</h2>
+        <div class="grid gap-3">
+          ${article.confusions.map(c => `
+          <a href="/term/${esc(c.slug)}/" class="block bg-white rounded-2xl p-4 border border-slate-100 hover:border-rose-200 transition-all">
+            <p class="text-sm font-black text-slate-800 mb-1">${esc(c.term)}</p>
+            <p class="text-sm text-slate-600 leading-relaxed">${esc(c.note)}</p>
+          </a>`).join('')}
+        </div>
+      </section>` : '';
+
+    const works = article.works?.length ? `
+      <section class="mb-8">
+        <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">この指示が使われる曲</h2>
+        <div class="grid gap-3">
+          ${article.works.map(w => `
+          <div class="bg-amber-50/50 rounded-2xl p-4 border border-amber-100">
+            <p class="text-sm font-black text-amber-700 mb-1">${esc(w.title)}</p>
+            <p class="text-sm text-slate-600 leading-relaxed">${esc(w.note)}</p>
+          </div>`).join('')}
+        </div>
+      </section>` : '';
+
+    return `
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-50 p-8 mb-8">
+      <p class="text-sm text-slate-700 font-bold leading-loose mb-8 pb-8 border-b border-slate-100">${esc(article.lead)}</p>
+      ${sections}${instruments}${confusions}${works}
+    </div>`;
+}
+
 // =============================================
 // 1. Generate Individual Term Pages
 // =============================================
 function generateTermPage(term) {
     const slug = termSlug(term);
+    const article = termArticles[slug];
     const related = termsData
         .filter(t => t.category === term.category && t.id !== term.id)
         .slice(0, 8);
 
     const title = `${term.term}（${term.reading}）の意味・解説 | おんがく手帳`;
-    const description = `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${term.detail.substring(0, 80)}`;
+    const description = article
+        ? `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${article.lead.substring(0, 90)}`
+        : `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${term.detail.substring(0, 80)}`;
 
     const html = `${htmlHead({ title, description, canonicalPath: `/term/${slug}/` })}
 <body class="bg-[#FFFDF9] text-slate-700">
@@ -156,6 +213,8 @@ function generateTermPage(term) {
         <p class="text-sm text-slate-600 font-bold leading-relaxed">${esc(term.detail)}</p>
       </section>
     </article>
+
+    ${articleHtml(article)}
 
     <!-- Related Terms -->
     ${related.length > 0 ? `
@@ -377,6 +436,21 @@ function main() {
     if (collisions.length) {
         console.error('❌ 重複したURLスラッグがあります。termsData.js を修正してください:');
         collisions.forEach(c => console.error(`   - ${c}`));
+        process.exit(1);
+    }
+
+    // 0-2. 詳しい解説（termArticles.js）のリンク切れチェック。
+    //      存在しないスラッグを指していると、リンク先が404になる。
+    const brokenLinks = [];
+    Object.entries(termArticles).forEach(([key, article]) => {
+        if (!slugOwners.has(key)) brokenLinks.push(`記事のキー "${key}" に対応する用語がありません`);
+        (article.confusions || []).forEach(c => {
+            if (!slugOwners.has(c.slug)) brokenLinks.push(`"${key}" の関連リンク "${c.slug}"（${c.term}）が存在しません`);
+        });
+    });
+    if (brokenLinks.length) {
+        console.error('❌ termArticles.js にリンク切れがあります:');
+        brokenLinks.forEach(b => console.error(`   - ${b}`));
         process.exit(1);
     }
 
