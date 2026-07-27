@@ -51,6 +51,9 @@ export default function TermPage() {
 
             {/* Breadcrumb */}
             <div className="max-w-md mx-auto px-6 pt-6">
+                <a href="/" className="inline-flex items-center gap-1.5 px-4 py-2.5 mb-4 bg-white text-rose-500 rounded-2xl font-black text-xs shadow-md border border-rose-100 hover:bg-rose-50 transition-all no-underline">
+                    <ChevronLeft size={14} /> 辞典にもどる
+                </a>
                 <nav className="flex items-center gap-1 text-[10px] font-bold text-slate-400 mb-4">
                     <Link to="/" className="hover:text-rose-400 transition-colors">トップ</Link>
                     <span>/</span>

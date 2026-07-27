@@ -179,8 +179,12 @@ function generateTermPage(term) {
   ${siteHeader()}
 
   <main class="max-w-2xl mx-auto px-6 -mt-8 relative z-20 pb-12">
+    <div class="pt-12 mb-4">
+      <a href="/" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white text-rose-500 rounded-2xl font-black text-xs shadow-md border border-rose-100 hover:bg-rose-50 transition-all">← 辞典にもどる</a>
+    </div>
+
     <!-- Breadcrumb -->
-    <nav class="flex items-center gap-1 text-xs font-bold text-slate-400 mb-4 pt-12">
+    <nav class="flex items-center gap-1 text-xs font-bold text-slate-400 mb-4">
       <a href="/" class="hover:text-rose-400">トップ</a>
       <span>/</span>
       <a href="/index/${encodeURIComponent(term.category)}/" class="hover:text-rose-400">${esc(term.category)}</a>
