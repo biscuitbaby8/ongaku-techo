@@ -48,7 +48,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!term|index|ads\\.txt|robots\\.txt|sitemap\\.xml|assets|privacy|about|contact|manifest|icon|vite|google).*)",
+      "source": "/((?!api|term|index|ads\\.txt|robots\\.txt|sitemap\\.xml|assets|privacy|about|contact|manifest|icon|vite|google).*)",
       "destination": "/index.html"
     }
   ]

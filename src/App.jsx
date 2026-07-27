@@ -18,6 +18,27 @@ import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsDa
 // カメラスキャン照合用のインデックス（モジュール読み込み時に一度だけ構築）
 const TERM_INDEX = buildTermIndex(INITIAL_TERMS);
 
+// Geminiへのリクエストはサーバー関数(api/gemini.js)経由で行う。
+// APIキーをクライアントに置くと、JSバンドルから誰でも取り出せてしまうため。
+const callGemini = async (payload, timeoutMs) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `エラーが発生しました（${res.status}）`);
+    if (!data.text) throw new Error('AIから有効な応答が得られませんでした。');
+    return data.text;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+};
+
 const cameraErrorMessage = (err) => {
   switch (err?.name) {
     case 'NotAllowedError':
@@ -63,7 +84,6 @@ const AdSlot = ({ type }) => {
 };
 
 export default function App() {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
   const contactEmail = "biscuitbaby.candy@gmail.com";
   const contactFormUrl = "https://forms.gle/WWrbB7uxuMHxg6VA9";
 
@@ -251,39 +271,15 @@ export default function App() {
   };
 
   const getAiMusic = async (term) => {
-    if (!apiKey) return setAiAnalysis("APIキーを設定してください。");
     setIsAiLoading(true);
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒でタイムアウト
-
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: `音楽用語「${term}」が象徴的に使われている、またはその用語を冠した有名なクラシック曲（または楽曲）を1つ挙げ、その理由を30文字程度で簡潔に解説してください。` }] }] }),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(`API Error ${response.status}: ${errData.error?.message || response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log("AI Music Data Raw:", data);
-
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        setAiAnalysis(data.candidates[0].content.parts[0].text);
-      } else if (data.candidates?.[0]?.finishReason === "SAFETY") {
-        throw new Error("安全フィルターにより内容が制限されました。");
-      } else {
-        throw new Error("Invalid API response format");
-      }
+      setAiAnalysis(await callGemini({ mode: 'music', term }, 15000));
     } catch (e) {
-      console.error("AI Music Search Error:", e);
+      console.error('AI Music Search Error:', e);
       setAiAnalysis(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
+    } finally {
+      setIsAiLoading(false);
     }
-    finally { setIsAiLoading(false); clearTimeout(timeoutId); }
   };
 
   const playClick = (time, beatNumber) => {
@@ -369,17 +365,11 @@ export default function App() {
   const captureAndScan = async () => {
     if (!videoRef.current || !canvasRef.current) return;
     setScanError(null);
-    if (!apiKey) {
-      setScanError('AIスキャンが未設定のため利用できません（APIキー未設定）。お問い合わせページからご連絡ください。');
-      return;
-    }
     if (!videoRef.current.videoWidth) {
       setScanError('カメラの準備ができていません。数秒待ってからもう一度撮影してください。');
       return;
     }
     setIsScanning(true);
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45秒に延長
 
     try {
       const ctx = canvasRef.current.getContext('2d');
@@ -397,32 +387,7 @@ export default function App() {
       // JPEG形式で圧縮送信 (品質0.8)
       const b64 = canvasRef.current.toDataURL('image/jpeg', 0.8).split(',')[1];
 
-      // 安定性の高い flash-lite モデルを使用
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { text: `この画像から音楽用語（イタリア語、記号、楽譜上の指示など）をすべて特定してください。「Largo ma non tanto」や「Poco a poco」のような複数の単語から成る表現（フレーズ）は、途中で区切らずに1つのまとまりとして扱ってください。\n\n必ず以下のJSONフォーマットで出力してください。\n\`\`\`json\n{\n  "results": [\n    {\n      "original": "フレーズまたは単語（例：Largo ma non tanto）",\n      "translation": "日本語訳（例：ゆるやかに、しかし甚だしくなく）"\n    }\n  ]\n}\n\`\`\`` },
-              { inlineData: { mimeType: "image/jpeg", data: b64 } }
-            ]
-          }]
-        }),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        throw new Error(`API Error ${res.status}: ${errData.error?.message || res.statusText}`);
-      }
-
-      const data = await res.json();
-      const resText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-
-      if (!resText) {
-        throw new Error("API did not return a term.");
-      }
+      const resText = (await callGemini({ mode: 'scan', image: b64 }, 45000)).trim();
 
       // JSONを抽出・パース
       let parsedResults = { results: [] };
@@ -450,7 +415,7 @@ export default function App() {
       closeCamera();
     } catch (e) {
       setScanError(`エラー: ${e.name === 'AbortError' ? 'タイムアウト（応答なし）' : e.message}`);
-    } finally { setIsScanning(false); clearTimeout(timeoutId); }
+    } finally { setIsScanning(false); }
   };
 
   const filteredTerms = useMemo(() => {
@@ -486,8 +451,11 @@ export default function App() {
         <div className="max-w-md mx-auto px-4 mb-4">
           <div className="bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-4 border border-white/10">
             <Cookie size={40} className="text-yellow-400 shrink-0" />
-            <p className="flex-1 text-xs font-bold text-left">Cookieの使用に同意して、学習体験をパーソナライズしましょう！</p>
-            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs`}>同意する</button>
+            <div className="flex-1 text-left">
+              <p className="text-xs font-bold">お気に入りや学習記録は、お使いのブラウザ内に保存されます。また広告配信のためにCookieが使用されることがあります。</p>
+              <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-yellow-400 underline mt-1 inline-block">プライバシーポリシーを見る</a>
+            </div>
+            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs shrink-0`}>OK</button>
           </div>
         </div>
       )}

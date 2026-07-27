@@ -196,7 +196,7 @@ Google は2024年1月以降、AdSense を利用するサイトが EEA（欧州�
 | `user-scalable=no` で拡大できない（ユーザビリティ・アクセシビリティ） | ✅ 修正済み |
 | Tailwind CSS を本番で CDN 読み込み（描画遅延・Core Web Vitals 悪化） | 未対応（Phase 3） |
 | JSバンドル 610KB（1,004語すべてを初回に読み込む） | 未対応（Phase 3） |
-| **Gemini API キーがクライアントのJSバンドルに露出**（第三者が抽出して課金枠を使える） | 未対応（Phase 3・セキュリティ） |
+| **Gemini API キーがクライアントのJSバンドルに露出**（第三者が抽出して課金枠を使える） | ✅ 修正済み（Phase 1の項目9） |
 | `package-lock.json` に `@vercel/speed-insights` が記録されておらず `npm ci` が壊れうる状態 | ✅ 修正済み |
 | 404ページが Vercel の素のテキスト表示 | 未対応（任意） |
 
@@ -216,6 +216,31 @@ Google は2024年1月以降、AdSense を利用するサイトが EEA（欧州�
 | 6 | 拡大可能な viewport | ✅ 完了 |
 | 7 | **不要な Vercel プロジェクト2件（m8lz / wm8h）を削除** | ⚠️ 要操作 |
 | 8 | **Search Console で sitemap を再送信し、主要ページのインデックス登録をリクエスト** | ⚠️ 要操作 |
+| 9 | Gemini APIキーをサーバー関数へ移動（キー露出の解消） | ✅ 完了 |
+| 10 | Cookieバナーの文言を実態に合わせる | ✅ 完了 |
+| 11 | **Vercelの環境変数を `VITE_GEMINI_API_KEY` → `GEMINI_API_KEY` にリネームし、キーを再発行** | ⚠️ 要操作 |
+
+#### Gemini APIキーの移行について（項目9・11）
+
+`api/gemini.js`（Vercelのサーバー関数）を追加し、ブラウザからGeminiを直接呼ぶのをやめました。
+キーはサーバー側だけが持つため、JSバンドルからは取り出せなくなります。
+
+サーバー関数は `GEMINI_API_KEY` を優先し、無ければ既存の `VITE_GEMINI_API_KEY` を使う実装にしてあるので、
+**デプロイ時点では環境変数を触らなくても動きます**。ただし `VITE_` で始まる変数はViteの仕様上
+ビルド時にクライアントへ露出しうるため、以下の対応をおすすめします。
+
+1. Vercel → Settings → Environment Variables で `GEMINI_API_KEY` を新規追加（値は同じでOK）
+2. `VITE_GEMINI_API_KEY` を削除
+3. 再デプロイ
+4. **Google AI Studio で既存のAPIキーを再発行（ローテーション）** — これまでバンドルに含まれていたキーは
+   すでに第三者が取得している可能性があるため
+
+あわせて、サーバー関数側には以下の保護を入れてあります。
+
+- POST以外は405
+- `Origin` / `Referer` が ongakutecho.com・*.vercel.app 以外の場合は403
+- 画像サイズ上限 2MB（超過は413）
+- 上流のエラーメッセージはそのまま返さない（キー情報が混ざる可能性があるため）
 
 ### Phase 2 — 本命。コンテンツの作り直し（これが最優先課題）
 
@@ -259,8 +284,7 @@ Phase 1 だけでは、2. の「平均46文字のページが1,004枚」とい�
 
 | 項目 | 理由 |
 |---|---|
-| Google認定CMP（AdSenseのGDPRメッセージ）を導入、Cookieバナーに拒否ボタン追加 | ポリシー要件（6.） |
-| Gemini API キーを Vercel の Serverless Function（例 `/api/scan`）に移す | キー露出の解消。クライアントからキーが消える |
+| Google認定CMP（AdSenseのGDPRメッセージ）を導入 | ポリシー要件（6.） |
 | Tailwind を CDN からビルド時生成に変更 | 表示速度・Core Web Vitals |
 | `termsData.js` を分割し、初回読み込みを軽くする | 同上（現状610KB） |
 | `AdSlot` の `SHOW_ADS` を `true` にする／自動広告を設定 | 承認後の広告表示 |
