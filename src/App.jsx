@@ -574,9 +574,7 @@ export default function App() {
                     <button onClick={(e) => { e.stopPropagation(); toggleFavorite(item.id); }} className={`p-2 rounded-full transition-all ${favorites.has(item.id) ? (theme === 'kawaii' ? 'text-rose-400 bg-rose-50' : 'text-indigo-600 bg-indigo-50') : 'hover:text-rose-200'}`}>
                       <Heart size={20} fill={favorites.has(item.id) ? "currentColor" : "none"} />
                     </button>
-                    <a href={`/term/${slugOf(item.term)}/`} onClick={(e) => e.stopPropagation()} className="p-2 text-slate-300 hover:text-rose-400 transition-colors bg-slate-50 hover:bg-rose-50 rounded-full" title="詳細ページを開く">
-                      <ExternalLink size={16} />
-                    </a>
+                    <ChevronRight size={18} className="text-slate-300" />
                   </div>
                 </article>
               ))}
@@ -733,22 +731,22 @@ export default function App() {
                 <p className="text-xs text-slate-600 px-2 leading-relaxed">{selectedTerm.detail}</p>
               </div>
 
-              {articleOf(selectedTerm) && (
-                <a
-                  href={`/term/${slugOf(selectedTerm.term)}/`}
-                  className={`flex items-center justify-between gap-3 p-5 ${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50 border-rose-100 rounded-[2rem]' : 'bg-slate-50 border-slate-200 rounded-xl'} border-2 no-underline active:scale-95 transition-all`}
-                >
-                  <div className="text-left">
-                    <p className={`text-[10px] font-black ${s.accentText} uppercase tracking-widest mb-1 flex items-center gap-1`}>
-                      <BookOpen size={12} /> 詳しい解説
-                    </p>
-                    <p className="text-xs font-bold text-slate-600 leading-relaxed">
-                      語源・演奏のコツ・混同しやすい用語・使われている曲まで解説しています。
-                    </p>
-                  </div>
-                  <ChevronRight size={20} className="text-slate-300 shrink-0" />
-                </a>
-              )}
+              <a
+                href={`/term/${slugOf(selectedTerm.term)}/`}
+                className={`flex items-center justify-between gap-3 p-5 ${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50 border-rose-100 rounded-[2rem]' : 'bg-slate-50 border-slate-200 rounded-xl'} border-2 no-underline active:scale-95 transition-all`}
+              >
+                <div className="text-left">
+                  <p className={`text-[10px] font-black ${s.accentText} uppercase tracking-widest mb-1 flex items-center gap-1`}>
+                    <BookOpen size={12} /> {articleOf(selectedTerm) ? '詳しい解説を読む' : '用語ページを開く'}
+                  </p>
+                  <p className="text-xs font-bold text-slate-600 leading-relaxed">
+                    {articleOf(selectedTerm)
+                      ? '語源・演奏のコツ・混同しやすい用語・使われている曲まで解説しています。'
+                      : '関連する用語と合わせて、この用語のページを開きます。'}
+                  </p>
+                </div>
+                <ChevronRight size={20} className="text-slate-300 shrink-0" />
+              </a>
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-3xl border border-indigo-100">
                 <div className="flex justify-between items-center mb-2"><p className="text-[10px] font-black text-indigo-600 flex items-center gap-1 uppercase tracking-widest"><Sparkles size={12} /> AI名曲検索</p>{!aiAnalysis && !isAiLoading && <button onClick={() => getAiMusic(selectedTerm.term)} className="text-[10px] font-black bg-indigo-600 text-white px-3 py-1 rounded-lg">検索</button>}</div>
                 {isAiLoading && <div className="text-indigo-300 text-[10px] font-bold py-2 animate-pulse text-center">AI探索中...</div>}
