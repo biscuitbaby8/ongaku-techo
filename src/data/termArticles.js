@@ -8618,22 +8618,6 @@ export const termArticles = {
     ],
   },
 
-  'dampfer': {
-    lead: 'Dämpfer（ダンパー、楽譜では Dampfer と表記されることも多い）はドイツ語で「弱音器」を意味する語。動詞 dämpfen（和らげる、弱める）に由来する。',
-    sections: [
-      {
-        heading: '同じ語がピアノのダンパーも指す',
-        body: 'ドイツ語の Dämpfer は、弦楽器や金管楽器に取り付ける弱音器だけでなく、ピアノで鍵盤を離したときに弦の振動を止める部品（ダンパー）も同じ語で呼ぶ。英語でも piano damper のように同根の語が使われており、「振動を和らげ、止める」という語の芯は共通している。',
-      },
-      {
-        heading: '楽譜での指示',
-        body: '弦楽器や金管楽器の楽譜では、Dämpfer auf（弱音器を付けて）、Dämpfer ab（弱音器を外して）という形で装着・取り外しの指示として現れる。',
-      },
-    ],
-    confusions: [
-      { term: 'Con sordino', slug: 'con-sordino', note: 'イタリア語での「弱音器を付けて」の指示。指す道具は同じ。' },
-    ],
-  },
 
   'dampfer-auf': {
     lead: 'Dämpfer auf（楽譜では Dampfer auf とも表記される）はドイツ語で「弱音器を付けて」の意。con sordino のドイツ語表記にあたる。',
@@ -9015,19 +8999,6 @@ export const termArticles = {
     ],
   },
 
-  'coll’-ottava': {
-    lead: 'Coll’ ottava はイタリア語で「オクターブを重ねて」の意。記された旋律に、1オクターブ上（または下）の音を重ねて演奏することを指示する。',
-    sections: [
-      {
-        heading: 'All’ ottava との違い',
-        body: 'all’ ottava が記譜より1オクターブ「移して」演奏する指示であるのに対し、coll’（con＋il の縮約形、「〜を伴って」の意）が付く coll’ ottava は、記譜された音をそのまま残しつつ、そこにオクターブ違いの音を「加えて」重ねる指示である。結果として鳴る音は、記譜そのままの音と、そのオクターブ違いの音の両方になる。',
-      },
-    ],
-    confusions: [
-      { term: 'All’ ottava', slug: 'all’-ottava', note: '記譜より1オクターブ「移して」演奏する指示。coll’ ottava は音を「重ねる」指示。' },
-      { term: 'Ottava', slug: 'ottava', note: '基本となる「オクターブ」の指示・記号。' },
-    ],
-  },
 
   'con-allegrezza': {
     lead: 'Con allegrezza は「喜びを持って」。allegrezza は形容詞 allegro（陽気な）の名詞形で、テンポ用語としての Allegro と同じラテン語 alacer（活発な、機敏な）に遡る。',
@@ -11054,18 +11025,6 @@ export const termArticles = {
     ],
   },
 
-  'l’istesso-tempo': {
-    lead: 'L’istesso tempo（リステッソ・テンポ）はイタリア語で「同じ速さで」を意味する指示。拍子記号が変わっても、1拍（または基準となる音符）の実際の長さを変えないことを示す。',
-    sections: [
-      {
-        heading: '拍子が変わる場面での役割',
-        body: 'たとえば4分の3拍子から8分の6拍子に変わる際、4分音符の長さをそのまま保つのか、拍の数え方だけを変えるのかは曲によって異なる。L’istesso tempoは、表記上の拍子が変化しても内部の速度感覚は連続していることを演奏者に伝える。',
-      },
-    ],
-    confusions: [
-      { term: 'Tempo', slug: 'tempo', note: '速度そのものを指す基本語。' },
-    ],
-  },
 
   'sollecitando': {
     lead: 'Sollecitando（ソレチタンド）はイタリア語で「急かして、せき立てて」を意味する速度指示。動詞sollecitare（催促する、急がせる）の現在分詞形で、次第にテンポを上げていくニュアンスを持つ。',
@@ -11396,14 +11355,9 @@ export const termArticles = {
         heading: '節度という含み',
         body: '語源に「限度を守る」という意味があるため、この指示は速度だけでなく表現の度合いにも及びます。極端に振らないこと、行きすぎないことが求められます。したがって、正しいテンポで弾いていても表情を過剰に付ければ、この語の方向から外れます。',
       },
-      {
-        heading: '表記の揺れ',
-        body: 'この辞典にはアクサン記号を省いた Modere という表記も別項目として収録されています。同じ語であり、意味に違いはありません。フランス語として正しい綴りは Modéré です。',
-      },
     ],
     confusions: [
       { term: 'Moderato', slug: 'moderato', note: '対応するイタリア語。同じ語根。' },
-      { term: 'Modere', slug: 'modere', note: 'アクサン記号を省いた同じ語の表記。' },
       { term: 'Comodo', slug: 'comodo', note: '無理のない速さで。こちらも modus を語根に持つ。' },
     ],
   },
@@ -11585,18 +11539,6 @@ export const termArticles = {
     ],
   },
 
-  'modere': {
-    lead: 'Modere（モデレ）は、フランス語Modéré（中くらいの速さで）からアクサン記号（´）を省いた表記。指し示す速度に違いはない。',
-    sections: [
-      {
-        heading: 'アクサンが省かれる理由',
-        body: '手書きの楽譜や版によっては、印刷上の制約や記譜の慣習からアクサン記号が省略されることがあり、Modereはその一例である。',
-      },
-    ],
-    confusions: [
-      { term: 'Moderato', slug: 'moderato', note: '同じ意味を持つイタリア語の標準的な指示。' },
-    ],
-  },
 
   'tres-lent': {
     lead: 'Très lent はフランス語で「とても遅く」。辞典にはアクサン記号のない Tres lent の形で収録されていますが、正しい綴りは Très lent です。',
@@ -11718,28 +11660,6 @@ export const termArticles = {
     ],
   },
 
-  'as-sai': {
-    lead: 'As sai は Assai（十分に、非常に）と同じ語です。辞典には語の途中に空白が入った形で収録されていますが、これは表記の揺れであり、別の用語ではありません。',
-    sections: [
-      {
-        heading: '正しい綴りは Assai',
-        body: 'イタリア語の assai は1語で綴ります。ad（〜へ）と satis（十分）に由来し、英語の satisfy や satisfaction と語根を共有します。原義は「十分なところまで」で、そこから「非常に」という強意の意味が生じました。',
-      },
-      {
-        heading: '程度を強める語として',
-        body: '単独では使われず、他の指示に添えて程度を強めます。Allegro assai なら「十分に速く」、Adagio assai なら「十分に遅く」です。molto（非常に）と近い働きをしますが、assai は「足りている」という含みを持つため、際限なく強めるのではなく、その語が指す性格が十分に出ている状態を求めます。',
-      },
-      {
-        heading: '前に付くか後に付くか',
-        body: 'assai は修飾する語の後ろに置かれるのが通例です（Allegro assai）。molto は前に置かれることが多く（Molto allegro）、この語順の差が両者を見分ける手がかりになります。',
-      },
-    ],
-    confusions: [
-      { term: 'Assai', slug: 'assai', note: '正しい綴り。内容はこちらを参照。' },
-      { term: 'Molto', slug: 'molto', note: '非常に。assai と近いが語順の慣習が異なる。' },
-      { term: 'Poco', slug: 'poco', note: '少し。assai の反対方向。' },
-    ],
-  },
 
   'colla-parte': {
     lead: 'Colla parte（コッラ・パルテ）はイタリア語で「その声部とともに」を意味し、伴奏者や合奏者に対して、自由なテンポを取る独奏者・主声部にテンポを合わせるよう指示する語。',
@@ -12043,18 +11963,6 @@ export const termArticles = {
     ],
   },
 
-  'calandando': {
-    lead: 'Calandando（カランダンド）はイタリア語Calando（弱めながら遅くして）の関連語で、意味は同じくテンポと音量を同時に落ち着かせていくことを示す。',
-    sections: [
-      {
-        heading: 'Calandoとの関係',
-        body: '標準的な表記はCalandoであり、Calandandoは同じ動詞calare（下げる、弱める）から作られた語形のバリエーションにあたる。',
-      },
-    ],
-    confusions: [
-      { term: 'Calando', slug: 'calando', note: '標準的な表記の形。' },
-    ],
-  },
 
   'note': {
     lead: 'Note（音符）は音の高さと長さを楽譜上に固定する記号。符頭の位置が音高を、符頭・符幹・符尾の形が長さを表します。',
@@ -18254,7 +18162,7 @@ export const termArticles = {
     ],
     confusions: [
       { term: 'Minuet', slug: 'minuet', note: 'メヌエット。ガランテリーとして最も多く用いられる舞曲です。' },
-      { term: 'Bourrée', slug: 'bourree', note: 'ブーレ。同じくガランテリーとして挿入される舞曲です。' },
+      { term: 'Bourrée', slug: 'bourrée', note: 'ブーレ。同じくガランテリーとして挿入される舞曲です。' },
       { term: 'Gavotte', slug: 'gavotte', note: 'ガヴォット。これもガランテリーに含まれます。' },
       { term: 'Galante', slug: 'galante', note: '「上品で親しみやすい」。同じ語源を持つ性格の指示です。' },
     ],
@@ -18356,33 +18264,6 @@ export const termArticles = {
     ],
   },
 
-  'bourree': {
-    lead: 'Bourrée（ブーレ）は、17世紀フランスに起源を持つ活発な2拍子の舞曲。バロック組曲の中で、任意で挿入される舞曲の一つです。',
-    sections: [
-      {
-        heading: '4分音符1つ分の弱起',
-        body: 'ブーレの最大の特徴は、小節線の前から始まる弱起です。多くの場合、4分音符1つ分だけ先に出ます。この出だしが舞曲の性格を決めており、1拍目から始めてしまうと、まったく別の舞曲に聞こえます。楽譜を読むとき、最初の音がどの拍にあたるかを確認することが、この舞曲を扱う出発点です。',
-      },
-      {
-        heading: '軽快さは音の終わりで作る',
-        body: '速い2拍子ですが、勢いだけで押すと粗くなります。ブーレの軽快さは、音を短めに切り上げ、次へ跳ねていく処理から生まれます。とくに弱起の音を長く保ちすぎると、足取りが重くなります。8分音符が続く箇所では、拍の裏を軽く扱うと自然に前へ進みます。',
-      },
-    ],
-    instruments: [
-      { name: 'ピアノ', tip: '左手を短めに切ります。踏みっぱなしのペダルは、この舞曲の軽さを最も損ないます。' },
-      { name: '弦楽器', tip: '弓を短く、中弓付近で。弱起の音は次の小節へ渡す弓使いにします。' },
-      { name: '管楽器', tip: 'タンギングを軽く。弱起で息を使いすぎると、1拍目で支えが足りなくなります。' },
-    ],
-    confusions: [
-      { term: 'Gavotte', slug: 'gavotte', note: '同じく2拍子系の舞曲ですが、2拍分の弱起から始まる点が異なります。' },
-      { term: 'Galliard', slug: 'galliard', note: '活発な3拍子の舞曲。拍子が異なります。' },
-      { term: 'Minuet', slug: 'minuet', note: 'メヌエット。3拍子で、より優雅な性格を持ちます。' },
-    ],
-    works: [
-      { title: 'バッハ「無伴奏チェロ組曲第3番」ブーレ', note: '2つのブーレが対になった構成で、性格の対比が明快です。' },
-      { title: 'バッハ「管弦楽組曲第2番」ブーレ', note: '軽快な弱起が、この舞曲の性格をよく示します。' },
-    ],
-  },
 
   'galliard': {
     lead: 'Galliard（ガリアルド）は、16世紀の宮廷で踊られた活発な3拍子の舞曲。ゆったりしたパヴァーヌと組で演奏されるのが慣習でした。',
