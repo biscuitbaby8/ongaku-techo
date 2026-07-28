@@ -9,6 +9,753 @@
  */
 
 export const termArticles = {
+
+  'con-allegrezza': {
+    lead: 'Con allegrezza は「喜びを持って」。allegrezza は形容詞 allegro（陽気な）の名詞形で、テンポ用語としての Allegro と同じラテン語 alacer（活発な、機敏な）に遡る。',
+    sections: [
+      {
+        heading: 'Allegro と語源を共有する',
+        body: 'Allegro が単独でテンポと性格の両方を兼ねる語であるのに対し、allegrezza はその性格面だけを抽象名詞として取り出し、con を添えて別の速度指示に付加するための語形。同じ語根から、テンポ語と抽象名詞という文法的に異なる2つの形が枝分かれしている。',
+      },
+    ],
+    confusions: [
+      { term: 'Con brio', slug: 'con-brio', note: '同じ「con＋抽象名詞」の構文。brio は輝きと推進力、allegrezza は喜びに重心がある。' },
+    ],
+  },
+
+  'con-audacia': {
+    lead: 'Con audacia は「大胆に」。audacia はラテン語 audacia（大胆さ）そのままの借用で、動詞 audere（あえて〜する）から派生した名詞。',
+    sections: [
+      {
+        heading: '形容詞形との対応',
+        body: '同じ語根を持つ形容詞 audace（大胆な）は単独で表情指示として使われる一方、audacia は con を伴って別のテンポ・性格用語に大胆さを付け足す働きをする。英語の audacity, audacious も同じラテン語根の子孫にあたる。',
+      },
+    ],
+    confusions: [
+      { term: 'Audace', slug: 'audace', note: '形容詞形。単独で使われる場合はこちら。' },
+      { term: 'Con franchezza', slug: 'con-franchezza', note: '「率直に、大胆に」。恐れのなさより、飾らない率直さに重心がある。' },
+    ],
+  },
+
+  'con-bravura': {
+    lead: 'Con bravura は「妙技を持って」。bravura は形容詞 bravo（見事な、腕の立つ）の名詞形で、技巧的な輝きを誇示するように演奏することを求める。',
+    sections: [
+      {
+        heading: 'bravo の語源は諸説あり',
+        body: 'bravo の語源はイタリア語の語源辞典でも確定していない。ラテン語 barbarus（異邦人、野蛮な）が変化したとする説と、ラテン語 pravus（曲がった、よこしまな）が「恐れを知らぬ」という肯定的な意味に転じたとする説があり、どちらか一方に定まっていない。「悪い」意味の語が「見事な」という賞賛の語に転じた点だけは共通している。',
+      },
+    ],
+    confusions: [
+      { term: 'Bravura', slug: 'bravura', note: '名詞形。単独で「技巧的なパッセージ」そのものを指すことが多い。' },
+      { term: 'Con brio', slug: 'con-brio', note: '「活気をもって」。輝きの質が近いが、bravura はより技巧の誇示に寄る。' },
+    ],
+  },
+
+  'con-entusiasmo': {
+    lead: 'Con entusiasmo は「熱中して」。entusiasmo はギリシャ語 enthousiasmos（神が内に宿ること）に由来し、en（中に）と theos（神）が組み合わさった語。',
+    sections: [
+      {
+        heading: '「神懸かり」から「熱中」へ',
+        body: '古代ギリシャでは、詩人や巫女が神霊に取り憑かれたような状態を enthousiasmos と呼んだ。この「自分を超えた力に突き動かされている」という語の核が、現在の「我を忘れるほどの熱中」という意味に受け継がれている。英語の enthusiasm も同じ語根から。',
+      },
+    ],
+    confusions: [
+      { term: 'Con fervore', slug: 'con-fervore', note: '「熱烈に」。fervore は「内側で燃える熱」、entusiasmo は「我を忘れる高揚」に重心がある。' },
+    ],
+  },
+
+  'con-espansione': {
+    lead: 'Con espansione は「広がりを持って」。espansione はラテン語 expandere（外へ広げる。ex＋pandere「広げる」）に由来し、音を空間的に広げていくような表現を指す。',
+    sections: [
+      {
+        heading: '英語 expansion と同じ語根',
+        body: 'expandere は英語の expand, expansion とまったく同じ語根で、意味の隔たりも小さい。音楽での con espansione は、音量を単に大きくするというより、フレーズが内側から膨らみ、時間的にも間を広く取るような演奏を求める指示として使われる。',
+      },
+    ],
+    confusions: [
+      { term: 'Expansion', slug: 'expansion', note: '英語での同義語。強弱法の文脈で使われる。' },
+      { term: 'Con vigore', slug: 'con-vigore', note: '「活力に満ちて」。広がりではなく力の量に重心がある。' },
+    ],
+  },
+
+  'con-fervore': {
+    lead: 'Con fervore は「熱烈に」。fervore はラテン語 fervor（沸騰、燃えるような熱）、動詞 fervere（煮え立つ）に由来する。',
+    sections: [
+      {
+        heading: '「煮え立つ」が語の芯',
+        body: 'fervere は文字通り液体が沸騰する様子を表す動詞で、そこから転じて感情が内側で沸き立つ状態を指すようになった。英語の fervent, fervor も同じ語根。con calore（温かさを持って）が穏やかな熱であるのに対し、con fervore はより沸き立つような切迫感を伴う。',
+      },
+    ],
+    confusions: [
+      { term: 'Calore', slug: 'calore', note: '「熱さ、温かみ」。fervore より穏やかで、内側の温もりに寄る。' },
+      { term: 'Con entusiasmo', slug: 'con-entusiasmo', note: '「熱中して」。fervore が燃える熱そのものなら、entusiasmo は我を忘れる高揚感。' },
+    ],
+  },
+
+  'con-franchezza': {
+    lead: 'Con franchezza は「率直に、大胆に」。franchezza は形容詞 franco（率直な、自由な）の名詞形で、この franco はゲルマン系部族フランク人の名に由来する。',
+    sections: [
+      {
+        heading: '民族名が「自由」の意味になった経緯',
+        body: '中世、フランク王国の支配層であったフランク人は、被支配民と異なり課税や賦役を免除された自由身分だった。この歴史的背景から中世ラテン語 francus は「フランク人の」と同時に「自由な」を意味するようになり、そこから「束縛のない、率直な」という現在の意味が育った。英語の frank（率直な）、franchise（特権、加盟権）も同じ語根を持つ。',
+      },
+    ],
+    confusions: [
+      { term: 'Con audacia', slug: 'con-audacia', note: '「大胆に」。franchezza は飾らなさ、audacia は恐れのなさに重心がある。' },
+    ],
+  },
+
+  'con-garbo': {
+    lead: 'Con garbo は「優雅に、礼儀正しく」。garbo はゲルマン系の語根に遡ると言われるが、細部は辞典によって説が分かれ確定していない。',
+    sections: [
+      {
+        heading: '節度のある優雅さ',
+        body: 'garbo が指す優雅さは、grazioso のような身のこなしの優雅さよりも、振る舞いの節度や礼儀正しさに重心がある。イタリア語には形容詞形 garbato（上品な、礼儀正しい）も存在し、con garbo はその名詞形に con を添えたもの。',
+      },
+    ],
+    confusions: [
+      { term: 'Grazioso', slug: 'grazioso', note: '「優雅に」。garbo は礼儀・節度、grazioso は身のこなしのしなやかさに寄る。' },
+      { term: 'Con suavita', slug: 'con-suavita', note: '「優雅に、快く」。suavita は心地よさ、garbo は礼儀正しさに重心がある。' },
+    ],
+  },
+
+  'con-gusto': {
+    lead: 'Con gusto は「趣味良く、味わい深く」。gusto はラテン語 gustus（味、味覚）に由来し、味わうように演奏することを求める指示。',
+    sections: [
+      {
+        heading: '「味覚」から「センス」へ',
+        body: 'gustus はもともと文字通りの味覚を指すラテン語で、そこから「物事を見分ける感覚」「趣味の良さ」へと意味が広がった。英語の gusto, gustatory（味覚の）も同じ語根。演奏における con gusto は、単に楽譜通りに弾くのではなく、演奏者自身の解釈や工夫を味わい深く加えることを求める。',
+      },
+    ],
+    confusions: [
+      { term: 'Con espressione', slug: 'con-espressione', note: '表現を込めて演奏する点は共通するが、gusto はより演奏者個人の趣味・工夫に寄る。' },
+    ],
+  },
+
+  'con-rabbia': {
+    lead: 'Con rabbia は「怒り狂って」。rabbia はラテン語 rabies（狂気、激しい怒り）そのままの子孫で、英語で狂犬病を指す rabies も同じ語源。',
+    sections: [
+      {
+        heading: '「狂気」を意味した語',
+        body: 'ラテン語 rabies は本来、動物や人が理性を失って荒れ狂う状態を指した。狂犬病にかかった動物の狂暴な様子からこの病名が生まれ、同じ語がイタリア語では感情としての「激しい怒り」を意味するようになった。con rabbia は数ある怒りの表現の中でも、抑制を失った激しさを指す点で際立つ。',
+      },
+    ],
+    confusions: [
+      { term: 'Con afflizione', slug: 'con-afflizione', note: '「苦しみを持って」。怒りではなく内向きの苦悩に重心がある。' },
+    ],
+  },
+
+  'con-slancio': {
+    lead: 'Con slancio は「躍動して」。slancio は動詞 slanciare（勢いよく投げ出す）の名詞形で、さらに槍を意味する lancia（ランス）に遡る。',
+    sections: [
+      {
+        heading: '「槍を投げる」勢い',
+        body: 'lancia（槍）に、完了・放出のニュアンスを持つ接頭辞 s- が付いた slanciare は、槍を勢いよく投げ放つ様子を表す動詞。そこから、それまで溜め込んでいたエネルギーを一気に解き放つ躍動感を指す名詞 slancio が生まれた。',
+      },
+    ],
+    confusions: [
+      { term: 'Slancio', slug: 'slancio', note: '前置詞のない名詞形。単独で指示として置かれることもある。' },
+      { term: 'Con bravura', slug: 'con-bravura', note: '「妙技を持って」。技巧の誇示に寄る点が、勢いそのものを表す slancio と異なる。' },
+    ],
+  },
+
+  'con-suavita': {
+    lead: 'Con suavita は「優雅に、快く」。suavita はラテン語 suavis（甘美な、心地よい）の名詞形で、英語の suave（洗練された、如才ない）と同じ語根を持つ。',
+    sections: [
+      {
+        heading: 'soave との関係',
+        body: '形容詞 soave（甘美な、柔らかな）は suavis がイタリア語として定着した形で、suavita はその名詞形にあたる。con suavita は soave が持つ音色の柔らかさを、抽象名詞として con に添える形で表現している。',
+      },
+    ],
+    confusions: [
+      { term: 'Soave', slug: 'soave', note: '形容詞形。同じ語根で、単独の表情指示として使われる。' },
+      { term: 'Dolce', slug: 'dolce', note: '「甘く、柔らかく」。suavita はより上品さ・洗練を含む点が dolce と異なる。' },
+    ],
+  },
+
+  'con-tristezza': {
+    lead: 'Con tristezza は「悲しみを伴って」。tristezza はラテン語 tristitia（悲しみ）、形容詞 tristis（悲しい）に由来する名詞。',
+    sections: [
+      {
+        heading: '静かな悲しみ',
+        body: 'tristezza が指す悲しみは、lamentoso のような嘆きの表出や、patetico のような悲劇性の強調とは異なり、より静かで内向きな沈んだ心情に近い。フランス語 triste（悲しい）も同じラテン語根から。',
+      },
+    ],
+    confusions: [
+      { term: 'Con afflizione', slug: 'con-afflizione', note: '「苦しみを持って」。afflizione はより苦痛が強く、tristezza は静かな沈鬱さに寄る。' },
+    ],
+  },
+
+  'con-vigore': {
+    lead: 'Con vigore は「活力に満ちて」。vigore はラテン語 vigor（活力、生命力）、動詞 vigere（生き生きとしている、盛んである）に由来する。',
+    sections: [
+      {
+        heading: '「みなぎる力」の系統',
+        body: '英語の vigor, vigorous と同じ語根で、体力・生命力が満ちている状態が語の核にある。con brio が輝きや推進力を含むのに対し、con vigore はより単純に力強さそのものを指す点で用途が異なる。',
+      },
+    ],
+    confusions: [
+      { term: 'Con brio', slug: 'con-brio', note: '「活気をもって」。brio は輝きを伴う勢い、vigore は力そのもの。' },
+      { term: 'Con espansione', slug: 'con-espansione', note: '「広がりを持って」。vigore は力の量、espansione は空間的な広がりに重心がある。' },
+    ],
+  },
+
+  'con-zelo': {
+    lead: 'Con zelo は「熱心に、精出して」。zelo はギリシャ語 zelos（熱心、競争心）がラテン語 zelus を経てイタリア語に入った語。',
+    sections: [
+      {
+        heading: '「熱意」の語源',
+        body: 'ギリシャ語 zelos はもともと、優れたものに対する強い憧れや競争心を意味した。英語の zeal, zealous も同じ語根から。con zelo はひたむきに、集中力を保ちながら演奏することを求める指示で、entusiasmo のような高揚感よりも、地道な熱心さに重心がある。',
+      },
+    ],
+    confusions: [
+      { term: 'Zelo', slug: 'zelo', note: '前置詞のない名詞形。単独で指示として置かれることもある。' },
+      { term: 'Con entusiasmo', slug: 'con-entusiasmo', note: '「熱中して」。entusiasmo は高揚感、zelo は地道な熱心さに寄る。' },
+    ],
+  },
+
+  'con-afflizione': {
+    lead: 'Con afflizione は「苦しみを持って、悲痛に」。afflizione はラテン語 afflictio、動詞 affligere（ad＋fligere「打ちのめす」）に由来する。',
+    sections: [
+      {
+        heading: '「打ちのめされる」が語の芯',
+        body: 'affligere は文字通り「何かに打ちつける、打ちのめす」という動詞で、そこから精神的に打ちのめされた苦痛の状態を指す afflizione が生まれた。英語の affliction も同じ語根。tristezza が静かな悲しみであるのに対し、afflizione はより強い苦悩・苦痛を伴う。',
+      },
+    ],
+    confusions: [
+      { term: 'Con tristezza', slug: 'con-tristezza', note: '「悲しみを伴って」。afflizione より穏やかで静かな悲しみ。' },
+      { term: 'Con rabbia', slug: 'con-rabbia', note: '「怒り狂って」。afflizione が内向きの苦痛なら、rabbia は外に向かう激情。' },
+    ],
+  },
+
+  'con-calma': {
+    lead: 'Con calma は「冷静に、落ち着いて」。calma はラテン語 cauma（真昼の焼けつく暑さ）、さらにギリシャ語 kauma（灼熱）に由来し、意味が大きく転じた語。',
+    sections: [
+      {
+        heading: '「焼けつく暑さ」から「凪」へ',
+        body: 'ギリシャ語 kauma は本来、船乗りが使った言葉で、真昼の暑さで風が止み、海面が凪いだ状態を指した。この「暑さで動きが止まる」というイメージが、俗ラテン語の段階で「静止・静けさ」の意味に転じ、現在の「穏やかさ、落ち着き」を意味する calma が生まれた。暑さを表す語が、正反対に見える静けさの語に転じた点が興味深い。',
+      },
+    ],
+    confusions: [
+      { term: 'Placido', slug: 'placido', note: '「静かに、穏やかな」。calma は興奮を抑える動的な落ち着き、placido はもとから静かな状態を指す。' },
+    ],
+  },
+
+  'abbandono': {
+    lead: 'Abbandono は「気ままに、身を任せて」。動詞 abbandonare（委ねる、見捨てる）の名詞形で、前置詞なしに単独の指示として楽譜に置かれることもある。',
+    sections: [
+      {
+        heading: 'con を伴わない単独の使われ方',
+        body: 'イタリア語の演奏指示には、dolce や cantabile のように、文法上は名詞・形容詞であっても前置詞なしに単独で副詞的に置かれる語が多くある。abbandono もその一つで、con abbandono と同じ意味を、より簡潔な単語一つで表す。',
+      },
+    ],
+    confusions: [
+      { term: 'Con abbandono', slug: 'con-abbandono', note: '前置詞を伴う形。語源の説明はこちら。' },
+    ],
+  },
+
+  'bravura': {
+    lead: 'Bravura は「技巧的、華麗」。単独では、超絶技巧を誇示する派手なパッセージそのものを指す名詞として使われることが多い。',
+    sections: [
+      {
+        heading: '「妙技」を指す名詞として',
+        body: 'con bravura が演奏の性格を指定する副詞句であるのに対し、bravura は単独では「妙技を要する華麗な部分」そのものを指す名詞として使われる場面が多い。「bravura passage（妙技的な楽句）」のような言い方はその典型。',
+      },
+    ],
+    confusions: [
+      { term: 'Con bravura', slug: 'con-bravura', note: '前置詞を伴う演奏指示の形。語源の説明はこちら。' },
+      { term: 'Virtuoso', slug: 'virtuoso', note: '「超絶技巧の演奏家」。bravura が楽句の性質を指すのに対し、virtuoso は演奏者本人を指す。' },
+    ],
+  },
+
+  'slancio': {
+    lead: 'Slancio は「跳躍、はずみ、一気呵成」。con slancio と同じ語源を持つが、単独では溜め込まれたエネルギーの解放そのものを指す名詞として使われる。',
+    sections: [
+      {
+        heading: '槍投げのイメージ',
+        body: '動詞 slanciare（勢いよく投げ出す）の名詞形で、根には「槍（lancia）を投げ放つ」イメージがある。con slancio が演奏の性格を指定する副詞句であるのに対し、slancio 単独では「その一気呵成の勢い」自体を指す名詞として扱われる。',
+      },
+    ],
+    confusions: [
+      { term: 'Con slancio', slug: 'con-slancio', note: '前置詞を伴う演奏指示の形。語源の説明はこちら。' },
+    ],
+  },
+
+  'zelo': {
+    lead: 'Zelo は「熱心に、熱烈に」。ギリシャ語 zelos に由来する名詞で、con zelo と同様、地道な熱心さを表す。',
+    sections: [
+      {
+        heading: '単独での使われ方',
+        body: 'con zelo が「con＋名詞」という明示的な構文であるのに対し、zelo 単独で楽譜に置かれる場合は、dolce や cantabile と同じように前置詞を省いた慣用的な指示として機能する。意味そのものに大きな違いはない。',
+      },
+    ],
+    confusions: [
+      { term: 'Con zelo', slug: 'con-zelo', note: '前置詞を伴う形。語源の説明はこちら。' },
+    ],
+  },
+  'dolcemente': {
+    lead: 'Dolcemente は「甘く、優しく」。形容詞 dolce（甘い）に副詞語尾 -mente を付けた副詞形。',
+    sections: [
+      {
+        heading: '-mente 語尾の由来',
+        body: 'イタリア語の -mente 副詞語尾は、ラテン語で「〜な心・様子で」を意味した mente（mens「心」の奪格形）が、形容詞に付く決まり文句として定着し、やがて語尾として化石化したもの。dolcemente は文字通りには「甘い心で」に近い成り立ちを持つ。',
+      },
+      {
+        heading: '形容詞形との使い分け',
+        body: 'dolce は単独でも副詞的に「甘く弾け」という指示として通用するため、dolcemente とほぼ同じ場面で使われる。ただし dolcemente のほうが副詞であることが文法上明示される分、フレーズ全体にかかる指示であることがはっきりする。',
+      },
+    ],
+    confusions: [
+      { term: 'Dolce', slug: 'dolce', note: '形容詞形。単独でも副詞的に使われ、意味はほぼ同じ。' },
+      { term: 'Teneramente', slug: 'teneramente', note: '「優しく、慈しんで」。dolcemente より庇護的な柔らかさを含む。' },
+    ],
+  },
+
+  'teneramente': {
+    lead: 'Teneramente は「優しく、慈しんで」。形容詞 tenero（柔らかい、幼い）の副詞形で、ラテン語 tener に由来する。',
+    sections: [
+      {
+        heading: '「若く柔らかいもの」への視線',
+        body: 'ラテン語 tener はもともと、若い植物や幼い生き物のような、傷つきやすく柔らかいものを指した。英語の tender も同じ語根。teneramente が表す優しさには、対象を壊れやすいものとして慈しむニュアンスが込められている。',
+      },
+    ],
+    confusions: [
+      { term: 'Tenero', slug: 'tenero', note: '形容詞形。壊れやすさ、柔らかさそのものを指す。' },
+      { term: 'Dolcemente', slug: 'dolcemente', note: '「甘く、優しく」。teneramente より庇護・慈しみの色合いが強い。' },
+    ],
+  },
+
+  'appassionatamente': {
+    lead: 'Appassionatamente は「情熱的に、熱烈に」。appassionato の副詞形で、ラテン語 passio（苦しみを受けること）に遡る passione（情熱）を語根に持つ。',
+    sections: [
+      {
+        heading: '「受苦」が「情熱」になった経緯',
+        body: 'ラテン語 passio は本来、動詞 pati（耐え忍ぶ、苦しみを受ける）から派生した「受苦」を意味する語で、英語の passion も patient（忍耐強い）も同じ語根を持つ。キリスト教で「キリストの受難（Passion）」を指したこの語が、中世以降「強い感情に突き動かされる状態」全般を指すよう意味を広げ、現在の「情熱」の意味が定着した。',
+      },
+    ],
+    confusions: [
+      { term: 'Appassionato', slug: 'appassionato', note: '形容詞形。単独でも副詞的に使われ、意味はほぼ同じ。' },
+      { term: 'Con fervore', slug: 'con-fervore', note: '「熱烈に」。fervore は沸き立つ熱、passione はより広く強い感情全般を指す。' },
+    ],
+  },
+
+  'ardentemente': {
+    lead: 'Ardentemente は「燃えるように」。形容詞 ardente（燃えている）の副詞形で、ラテン語 ardere（燃える）の現在分詞に由来する。',
+    sections: [
+      {
+        heading: '燃焼のイメージが今も生きている',
+        body: 'ardere はラテン語で文字通り炎が燃える様子を表す動詞。そこから転じた ardente / ardentemente は、比喩としての「情熱」ではなく、絶えず燃え続ける火のような熱量の持続を指すニュアンスが強い。英語の ardent, ardor も同じ語根。',
+      },
+    ],
+    confusions: [
+      { term: 'Ardente', slug: 'ardente', note: '形容詞形。単独でも副詞的に使われる。' },
+      { term: 'Con fuoco', slug: 'con-fuoco', note: '「火のように」。fuoco は火そのもの、ardente は燃え続ける状態を指す。' },
+    ],
+  },
+
+  'armonioso': {
+    lead: 'Armonioso は「調和のとれた、和声豊かな」。armonia（和声、調和）から派生した形容詞で、armonia はギリシャ語 harmonia（結合、調和）に由来する。',
+    sections: [
+      {
+        heading: '「継ぎ目を合わせる」が語の芯',
+        body: 'ギリシャ語 harmonia は動詞 harmozein（継ぎ合わせる、はめ込む）に由来し、もとは大工仕事で部材の継ぎ目をぴったり合わせることを指した。そこから「異なる音や要素がぴったり調和する」という音楽用語としての意味が育った。英語の harmony, harmonic も同じ語根を持つ。',
+      },
+    ],
+    confusions: [
+      { term: 'Sonore', slug: 'sonore', note: '「朗々と」。armonioso が声部間のバランスを指すのに対し、sonore は音の豊かな響きそのものを指す。' },
+    ],
+  },
+
+  'animo': {
+    lead: 'Animo は「魂、精神」。con animo（魂を込めて）の形で使われることが多い名詞で、ラテン語 animus（精神、気概、意志）に由来する。',
+    sections: [
+      {
+        heading: 'animus と anima の違い',
+        body: 'ラテン語には似た語形の名詞が2つある。animus は理性・気概・意志を担う「精神」、anima は生命そのものを支える「息・魂」を指し、両者は本来役割が異なっていた。イタリア語 animo はこのうち animus の系統を継ぎ、勇気や気概を伴う「精神」を意味する。',
+      },
+    ],
+    confusions: [
+      { term: 'Animoso', slug: 'animoso', note: '形容詞形。「魂の込もった、勇壮な」状態そのものを形容する。' },
+    ],
+  },
+
+  'animoso': {
+    lead: 'Animoso は「いきいきと、勇壮に」。animo（魂、精神）に形容詞語尾 -oso を付けた語で、精神が満ち満ちている状態を表す。',
+    sections: [
+      {
+        heading: '「満ちている」を表す -oso',
+        body: '-oso はラテン語 -osus に由来する形容詞語尾で、「〜に満ちた」という意味を付け加える。animoso は文字通りには「精神・気概に満ちた」であり、単なる元気の良さよりも、内面の意志の強さを伴ういきいきとした状態を指す。',
+      },
+    ],
+    confusions: [
+      { term: 'Animo', slug: 'animo', note: '名詞形。con animo の形でよく使われる。' },
+      { term: 'Con vigore', slug: 'con-vigore', note: '「活力に満ちて」。vigore は身体的な力、animoso は精神面のいきいきとした強さに寄る。' },
+    ],
+  },
+
+  'graziosamente': {
+    lead: 'Graziosamente は「優雅に」。grazioso の副詞形で、意味の内容は grazioso とほぼ変わらない。',
+    sections: [
+      {
+        heading: '形容詞形と何が違うのか',
+        body: 'grazioso はそれ自体、単独で副詞的に演奏指示として使われる語であるため、graziosamente との違いは実質的な意味よりも文法上の明示性にある。副詞語尾 -mente が付くことで「優雅な仕方で（弾け）」という副詞的な働きが文法的にはっきりする分、graziosamente のほうがやや形式張った書き方になる。',
+      },
+    ],
+    confusions: [
+      { term: 'Grazioso', slug: 'grazioso', note: '形容詞形。単独でも副詞的に使われ、演奏上のヒントはこちらに詳しい。' },
+    ],
+  },
+
+  'focoso': {
+    lead: 'Focoso は「燃えるような、熱烈な」。fuoco（火）から派生した形容詞で、con fuoco とほぼ同じ性格を単語一つで表す。',
+    sections: [
+      {
+        heading: 'fuoco は「炉」から「火」へ',
+        body: 'fuoco の語源であるラテン語 focus は、本来「炉、暖炉」を指す語で、「火」そのものを意味するようになったのは後の意味の広がりによる。この focus という語は、天文学者ケプラーが1604年の光学書で、レンズが光を集める点を「炉（燃焼点）」に見立てて命名したことから、英語の焦点を意味する focus としても定着した。「熱烈さ」の語と、光学・数学の「焦点」がまったく別の道筋で同じラテン語から枝分かれしている。',
+      },
+    ],
+    confusions: [
+      { term: 'Con fuoco', slug: 'con-fuoco', note: '「火のように」。同じ語根を持つ前置詞句の形。' },
+    ],
+  },
+
+  'audace': {
+    lead: 'Audace は「大胆に、無謀なほど勇敢に」。ラテン語 audax（大胆な）、動詞 audere（あえて〜する）に由来する形容詞。',
+    sections: [
+      {
+        heading: '「あえてする」勇気',
+        body: 'audere は「恐れず、あえて行動する」という意味の動詞で、英語の audacity, audacious も同じ語根を持つ。audace が指す大胆さは、無鉄砲さというより、困難を承知であえて踏み込む意志の強さに重心がある。',
+      },
+    ],
+    confusions: [
+      { term: 'Con audacia', slug: 'con-audacia', note: '名詞形に con を添えた形。語源はこちらで詳述。' },
+    ],
+  },
+
+  'bizzarro': {
+    lead: 'Bizzarro は「奇妙な、風変わりな、奇抜な」。イタリア語の語源辞典でも由来が確定していない、成り立ちに議論のある語。',
+    sections: [
+      {
+        heading: '語源に複数の説がある',
+        body: 'bizzarro の語源は諸説あり定まっていない。スペイン語 bizarro（勇敢な、りりしい）が変化したという説では、さらにバスク語で「ひげ」を意味する bizar に遡るとされ、ひげを蓄えた男の勇ましい見た目が語源になったと説明される。一方、イタリア語内部の「かんしゃく、むら気」を意味する bizza に由来するという説もあり、両者のどちらが正しいかは確定していない。',
+      },
+    ],
+    confusions: [],
+  },
+
+  'brio': {
+    lead: 'Brio は「活気、元気」。con brio の名詞部分で、比較言語学ではケルト語系の語根 *brigos（力、強さ）に遡ると考えられている。',
+    sections: [
+      {
+        heading: 'ケルト語からスペイン語を経て',
+        body: 'brio はイタリア語が直接ラテン語から受け継いだ語ではなく、スペイン語・カタルーニャ語の brío を経由してイタリア語に入ったと考えられている。その大元は、アイルランド語 brí（力、意義）などに残るケルト祖語の語根 *brigos に遡るとされる。ラテン語系の語彙が多いイタリア語の音楽用語の中で、ケルト語系の語根を持つ点は brio の際立った特徴。',
+      },
+    ],
+    confusions: [
+      { term: 'Con brio', slug: 'con-brio', note: '前置詞を伴う演奏指示の形。演奏上のヒントはこちらに詳しい。' },
+    ],
+  },
+
+  'buffo': {
+    lead: 'Buffo は「喜劇的な、こっけいな」。動詞 buffare（頬を膨らませて息を吹く）に由来するとされる語で、道化が頬を膨らませる仕草から意味が育った。',
+    sections: [
+      {
+        heading: '英語 buffoon の親戚',
+        body: 'buffare は音や動作を写し取った擬態的な語とされ、頬を膨らませて滑稽な顔をする様子を表した。この buffo からイタリア語 buffone（道化者）が生まれ、フランス語 bouffon を経て英語の buffoon になった。「オペラ・ブッファ（opera buffa、喜劇オペラ）」の buffa も同じ語根。',
+      },
+    ],
+    confusions: [
+      { term: 'Opera buffa', slug: 'opera-buffa', note: '喜劇オペラという様式名。buffo はその形容詞・登場人物を指す語として使われる。' },
+    ],
+  },
+
+  'calore': {
+    lead: 'Calore は「熱さ、熱情、温かみ」。ラテン語 calor（熱）に由来し、con calore（温かく、熱情を込めて）の形でよく使われる。',
+    sections: [
+      {
+        heading: '「熱」を表す語族',
+        body: 'ラテン語 calor は英語 calorie（カロリー、熱量の単位）や calorific（発熱の）と同じ語根を持つ。音楽用語としての calore は、con fuoco のような燃え上がる激しさとは異なり、内側からじんわりと伝わる温もりに近い熱を指す。',
+      },
+    ],
+    confusions: [
+      { term: 'Con fervore', slug: 'con-fervore', note: '「熱烈に」。fervore は沸き立つ熱、calore はより穏やかな温もり。' },
+    ],
+  },
+
+  'affettuoso': {
+    lead: 'Affettuoso は「愛情を込めて、優しく」。名詞 affetto（愛情）から派生した形容詞で、affetto はラテン語 affectus（動詞 afficere「働きかける、影響を与える」の過去分詞）に由来する。',
+    sections: [
+      {
+        heading: '「働きかけられた状態」が「愛情」に',
+        body: 'afficere は「〜に影響を与える、働きかける」という意味の動詞で、その過去分詞 affectus は本来「(何かに)働きかけられて生じた状態」を広く指した。ここから「心に働きかけられて生まれる情愛」という意味の affetto が育ち、affettuoso はその形容詞形にあたる。英語の affection, affectionate も同じ語根。',
+      },
+    ],
+    confusions: [
+      { term: 'Con affetto', slug: 'con-affetto', note: '名詞 affetto に con を添えた前置詞句の形。意味はほぼ同じ。' },
+      { term: 'Teneramente', slug: 'teneramente', note: '「優しく、慈しんで」。affettuoso は愛情そのもの、teneramente は壊れやすいものへの慈しみに寄る。' },
+    ],
+  },
+
+  'deciso': {
+    lead: 'Deciso は「きっぱりと、決然と」。動詞 decidere（決定する）の過去分詞で、decidere はラテン語 de（〜から離して）と caedere（切る）の合成語。',
+    sections: [
+      {
+        heading: '「切り離す」ことが「決める」こと',
+        body: 'decidere は文字通りには「切り落とす」という意味の動詞で、他の選択肢を断ち切ることで結論に至る、という発想から「決定する」の意味が生まれた。deciso が求めるのは、迷いなく音を切り出すような明確なアタックであり、語源の「切る」イメージとも重なる。',
+      },
+    ],
+    confusions: [
+      { term: 'Rigoroso', slug: 'rigoroso', note: '「厳格に、正確に」。deciso が意志の明確さなら、rigoroso は規律の厳しさに寄る。' },
+    ],
+  },
+
+  'delicato': {
+    lead: 'Delicato は「繊細に、優美に」。ラテン語 delicatus に由来し、快楽・喜びを意味する deliciae と語根を共有すると考えられている。',
+    sections: [
+      {
+        heading: '「快さ」から「繊細さ」へ',
+        body: 'delicatus はもともと「快さに耽った、贅沢な」というニュアンスを含んだ語で、そこから「壊れやすいほど上質な」という意味を経て、現在の「繊細な」という意味に定着したとされる。英語の delicate, delicious（美味な）も同じ語根の子孫にあたる。',
+      },
+    ],
+    confusions: [
+      { term: 'Dolce', slug: 'dolce', note: '「甘く、柔らかく」。delicato は壊れやすさへの丁寧な扱い、dolce は音そのものの甘さを指す。' },
+    ],
+  },
+
+  'virtuoso': {
+    lead: 'Virtuoso は「達人、超絶技巧の演奏家」。ラテン語 virtus（卓越性、力量。もとは vir「男」に由来し「男らしさ、武勇」を意味した）から派生した語。',
+    sections: [
+      {
+        heading: '「学識ある人」から「名演奏家」へ',
+        body: 'ルネサンス期のイタリアで virtuoso は当初、音楽に限らず学問・芸術全般に通じた博識な人物を指す語だった。ガリレオのような学者も virtuoso と呼ばれた記録が残っている。この語が特に音楽の卓越した技巧を持つ演奏家を指すよう意味を狭めていったのは、18世紀以降のこととされる。',
+      },
+    ],
+    confusions: [
+      { term: 'Bravura', slug: 'bravura', note: '「技巧的、華麗」。virtuoso が演奏者を指すのに対し、bravura は楽句や演奏の性質を指す。' },
+    ],
+  },
+
+  'prima-donna': {
+    lead: 'Prima Donna は「第一の女性」を意味し、オペラ一座で主役を歌う女性歌手を指す。prima（第一の、女性形）と donna（女性、貴婦人。ラテン語 domina「女主人」に由来）の複合語。',
+    sections: [
+      {
+        heading: 'オペラの序列を反映した呼称',
+        body: '17〜18世紀のオペラ・セリアでは、歌手の序列がはっきりしており、主役の女性歌手が prima donna、その次に位置づけられる役が seconda donna（第二の女性）と呼ばれた。プリマドンナという呼称そのものが、当時の一座の階層構造をそのまま言葉にしたもの。',
+      },
+    ],
+    confusions: [],
+  },
+
+  'sturm-und-drang': {
+    lead: 'Sturm und Drang（疾風怒濤）は「嵐と衝動」を意味するドイツ語で、1776年に出版されたクリンガーの戯曲の題名に由来する、18世紀後半ドイツの文学運動の呼称。',
+    sections: [
+      {
+        heading: '文学運動としての疾風怒濤',
+        body: '啓蒙主義の理性偏重への反発として、若きゲーテやシラーらが個人の激しい感情や主観を重んじた1760〜80年代の潮流を指す。理性より情念を、規範より個の衝動を前面に出す姿勢が特徴とされる。',
+      },
+      {
+        heading: '音楽への適用は議論がある',
+        body: 'ハイドンの中期の短調交響曲などを「Sturm und Drang 期の作品」と呼ぶ慣習が20世紀の音楽学で広まったが、これはこの文学運動の名を後から音楽作品に当てはめたものであり、当の作品の多くは文学運動の中心的な時期より前に書かれている。文学運動と音楽の激情的な作品群を直接結びつけてよいかどうかは、音楽学者の間で見解が分かれている。',
+      },
+    ],
+    confusions: [],
+  },
+  'empfindsamer-stil': {
+    lead: 'Empfindsamer Stil（多感様式）はドイツ語で「感じやすい様式」を意味し、C.P.E.バッハらが確立した、18世紀半ばの北ドイツを中心とする様式。',
+    sections: [
+      {
+        heading: '一瞬ごとの感情の揺れを描く',
+        body: '同時代のギャラント様式が優美で均整の取れた表現を志向したのに対し、多感様式は突然の休止や予期しない和声の変化、細かい強弱の揺れを用いて、瞬間ごとに移ろう繊細な心の動きを描き出そうとした。C.P.E.バッハの独奏用ファンタジアや幻想曲的な楽章に、この様式の特徴が顕著に表れる。',
+      },
+    ],
+    confusions: [
+      { term: 'Sturm und Drang', slug: 'sturm-und-drang', note: '同じ18世紀ドイツ語圏の潮流だが、多感様式が繊細な機微、Sturm und Drang はより激しい情念に寄る。' },
+      { term: 'Affektenlehre', slug: 'affektenlehre', note: 'バロック期の情念論。多感様式はその後、より個人的で流動的な感情表現へと展開した様式。' },
+    ],
+  },
+
+  'affektenlehre': {
+    lead: 'Affektenlehre（情念論）はドイツ語で、バロック時代に広まった、特定の音型や調性が特定の感情（アフェクト）を表すとする理論の総称。',
+    sections: [
+      {
+        heading: '感情を客観的な記号として扱う',
+        body: '情念論では、喜び・悲しみ・怒りといった感情はそれぞれ固有の音楽的な型（急速な上行音型、半音階的な下行、特定の調性など）と結びつくと考えられた。作曲家個人の主観的な表現というより、聴き手に共通して特定の感情を呼び起こすための、いわば客観的な語彙・記号の体系として音型が用いられた点が特徴。',
+      },
+      {
+        heading: '多感様式との対比',
+        body: '情念論が1曲・1楽章を通じて単一の感情を描くことを基本とするのに対し、後の多感様式（Empfindsamer Stil）は同じ楽章の中でも感情が刻々と移ろうことを許容する。バロックから前古典派への様式変化は、この「単一の情念」から「揺れ動く感情」への移行としても説明される。',
+      },
+    ],
+    confusions: [
+      { term: 'Doctrine of Affections', slug: 'doctrine-of-affections', note: '同じ理論の英語名。' },
+      { term: 'Empfindsamer Stil', slug: 'empfindsamer-stil', note: '情念論の後に広まった、より繊細で流動的な感情表現の様式。' },
+    ],
+  },
+
+  'doctrine-of-affections': {
+    lead: 'Doctrine of Affections はドイツ語 Affektenlehre の英語名で、指している理論の内容は同じ。バロック音楽が聴き手の心に特定の感情状態を引き起こすとする理論的基盤を指す。',
+    sections: [
+      {
+        heading: '英語圏での呼び方',
+        body: 'この理論はドイツの音楽理論家たち（マッテゾンら）によって体系化されたが、英語圏の音楽学では Doctrine of Affections という訳語で広く言及される。affection は現代英語の「愛情」ではなく、より広く「情念・感情の状態」を指す古い語義で使われている。',
+      },
+    ],
+    confusions: [
+      { term: 'Affektenlehre', slug: 'affektenlehre', note: '同じ理論のドイツ語名。内容の説明はこちらに詳しい。' },
+    ],
+  },
+
+  'madrigalism': {
+    lead: 'Madrigalism（マドリガリズム）は、歌詞の内容を音そのもので描写する技法を指す英語で、ルネサンス期のマドリガーレ（多声世俗歌曲）で特に発達した。',
+    sections: [
+      {
+        heading: '言葉を音で「絵に描く」',
+        body: '「天に昇る」という歌詞で旋律を上行させる、「ため息」という歌詞で音を短く区切る、「死」という歌詞で不協和音を用いるなど、歌詞の意味そのものを聴覚的なイメージに翻訳する手法を指す。ルネサンス期のマドリガーレ作曲家たちがこの技法を洗練させ、後の時代の作曲家にも影響を与えた。',
+      },
+    ],
+    confusions: [
+      { term: 'Word painting', slug: 'word-painting', note: '同じ技法を指す、より一般的な英語表現。' },
+    ],
+  },
+
+  'word-painting': {
+    lead: 'Word painting（ワード・ペインティング）は、歌詞の意味を音楽で視覚的・感覚的に描写する技法を指す一般的な英語表現。',
+    sections: [
+      {
+        heading: 'madrigalism との関係',
+        body: 'madrigalism がルネサンス期のマドリガーレという特定の様式・時代に結びついた呼び方であるのに対し、word painting はより時代を問わず使われる一般名称。同じ技法を指しているが、madrigalism はその技法が最も洗練された歴史的文脈を強調する呼び方であり、word painting はその文脈を問わない広い括りにあたる。',
+      },
+    ],
+    confusions: [
+      { term: 'Madrigalism', slug: 'madrigalism', note: 'ルネサンスのマドリガーレに結びついた、より限定的な呼び方。' },
+    ],
+  },
+
+  'mannheim-sigh': {
+    lead: 'Mannheim sigh（マンハイムの溜息）は、下降する2度の音型に、前の音へアクセントを置くことでため息のような効果を生む古典派の音型。18世紀のマンハイム楽派の管弦楽様式と結びつけて呼ばれる。',
+    sections: [
+      {
+        heading: '前打音に重みを置く仕組み',
+        body: '通常のアクセントが小節や拍の頭に置かれるのに対し、マンハイムの溜息では下降する2音のうち前の音（多くは非和声音である前打音・掛留音）に重みが置かれ、後の音へ抜けるように収まる。この重心の位置がずれることで、ため息をつくような脱力感が生まれる。',
+      },
+    ],
+    confusions: [],
+  },
+
+  'aumentando': {
+    lead: 'Aumentando は「増しながら、強くしながら」。動詞 aumentare（増やす、増大する）の現在分詞形で、ラテン語 augere（増やす）に由来する。',
+    sections: [
+      {
+        heading: 'crescendo との違い',
+        body: 'crescendo も aumentando も音量が増していく点は同じだが、crescendo が「育つ、成長する」という動詞 crescere に由来するのに対し、aumentando は「量として増える」という動詞 augere に由来する。前者が有機的な成長のイメージ、後者が物理的な増大のイメージという語感の違いを持つが、実際の演奏指示としての効果はほぼ同じ。',
+      },
+    ],
+    confusions: [
+      { term: 'Crescendo', slug: 'crescendo', note: '同じく音量の増大を指すが、より一般的に使われる語。' },
+    ],
+  },
+
+  'dynamics': {
+    lead: 'Dynamics（ダイナミクス）は、楽曲における音量の変化全般を指す英語。ギリシャ語 dynamis（力、能力）に由来する。',
+    sections: [
+      {
+        heading: '「力」を意味した語根',
+        body: 'ギリシャ語 dynamis は物理的な「力」を意味し、英語の dynamic, dynamite（ダイナマイト）も同じ語根を持つ。音楽における dynamics は、fortissimo から pianissimo までの音量の幅とその変化を指す包括的な用語で、個々の記号（f、p、crescendo など）を束ねる上位概念にあたる。',
+      },
+    ],
+    confusions: [],
+  },
+
+  'leise': {
+    lead: 'Leise はドイツ語で「静かに、弱く」を意味し、イタリア語の piano に相当する。',
+    sections: [
+      {
+        heading: 'piano との使い分け',
+        body: 'ドイツ語圏の作曲家でも演奏指示自体はイタリア語で書くのが伝統的な慣習であり、leise が実際の楽譜に強弱記号として書き込まれる例は piano ほど多くない。leise はむしろ、曲名や発想標語、歌曲の歌詞の中で「静かに」という意味を表す際に使われることが多い語。',
+      },
+    ],
+    confusions: [
+      { term: 'Piano', slug: 'piano', note: 'イタリア語での同義語。強弱記号としてはこちらが標準的に使われる。' },
+    ],
+  },
+
+  'fort': {
+    lead: 'Fort はフランス語で「強く」を意味し、イタリア語の forte に相当する。ともにラテン語 fortis（強い）に由来する。',
+    sections: [
+      {
+        heading: '各国語に共通する語根',
+        body: 'ラテン語 fortis は、イタリア語 forte、フランス語 fort、そして英語の fort（要塞）、force（力）に至るまで、ロマンス諸語と英語の双方に語根を残している。フランス語の楽譜で fort が使われる場合も、実際にはイタリア語の演奏指示が国際的な慣習として優先されることが多く、fort 単独での表記は限定的。',
+      },
+    ],
+    confusions: [
+      { term: 'Forte', slug: 'forte', note: 'イタリア語での同義語。強弱記号としてはこちらが標準的に使われる。' },
+    ],
+  },
+
+  'sotto-piano': {
+    lead: 'Sotto piano は「極めて弱いピアノ」。sotto（〜の下に）と piano（弱く）の組み合わせで、文字通りには「piano より下」を意味する。',
+    sections: [
+      {
+        heading: '「下」で強弱を表す発想',
+        body: 'sotto はラテン語 subtus（下に）に由来する前置詞で、音量の強弱を上下の位置関係になぞらえる発想がここにも表れている。pianissimo が piano の最上級（-issimo）という文法的な強調であるのに対し、sotto piano は「piano のさらに下」という空間的な比喩で弱音を表す点が異なる。',
+      },
+    ],
+    confusions: [
+      { term: 'Pianissimo', slug: 'pianissimo', note: '同じく piano より弱い音量を指すが、最上級による表現。' },
+    ],
+  },
+
+  'diluendo': {
+    lead: 'Diluendo は「消えゆくように」。動詞 diluire（薄める、希釈する）の現在分詞形で、ラテン語 diluere（洗い流す、薄める）に由来する。',
+    sections: [
+      {
+        heading: '「薄まる」という発想',
+        body: 'diluire は英語の dilute（薄める）と同じ語根を持つ動詞で、液体が薄まっていく様子を表す。diluendo が指す音の消え方は、morendo（死にゆくように）のような重さを伴う消え方ではなく、音がだんだん希薄になり、輪郭を失いながら透明になっていくイメージに近い。',
+      },
+    ],
+    confusions: [
+      { term: 'Morendo', slug: 'morendo', note: '「死にゆくように」。diluendo より重く、生命が絶えるイメージを伴う。' },
+    ],
+  },
+
+  'estinto': {
+    lead: 'Estinto は「絶え入るように」。動詞 estinguere（消す、絶やす）の過去分詞で、ラテン語 exstinguere（ex＋stinguere「消す」）に由来する。',
+    sections: [
+      {
+        heading: '「火を消す」動詞から',
+        body: 'stinguere はもともと燃えている火を消す動作を指す動詞で、英語の extinguish, extinct（絶滅した）も同じ語根を持つ。estinto が求める弱音は、単に音量が小さいだけでなく、命の火が消え入るような、音の存在感そのものが消滅する寸前の状態を指す。',
+      },
+    ],
+    confusions: [
+      { term: 'Morendo', slug: 'morendo', note: '「死にゆくように」。estinto は消滅の瞬間、morendo は消えていく過程を指す。' },
+    ],
+  },
+
+  'expansion': {
+    lead: 'Expansion（エクスパンション）は「広がり、拡張」を意味する英語で、con espansione のイタリア語 espansione と同じくラテン語 expandere に由来する。',
+    sections: [
+      {
+        heading: 'con espansione との関係',
+        body: 'expansion は英語の音楽用語として使われる場合、イタリア語 con espansione とほぼ同じ内容、すなわち音量だけでなく間やフレーズの広がりを指す。語根はまったく同じで、単に言語が異なるだけの関係にある。',
+      },
+    ],
+    confusions: [
+      { term: 'Con espansione', slug: 'con-espansione', note: 'イタリア語での同義語。演奏上のヒントはこちらに詳しい。' },
+    ],
+  },
+
+  'abnehmend': {
+    lead: 'Abnehmend はドイツ語で「だんだん弱く」を意味し、イタリア語の diminuendo に相当する。動詞 abnehmen（減る、取り去る）の現在分詞形。',
+    sections: [
+      {
+        heading: 'ab- が持つ「離れる」イメージ',
+        body: 'ドイツ語の接頭辞 ab- は「〜から離れて、外れて」という方向を表し、nehmen（取る）と組み合わさった abnehmen は「取り去る、減っていく」を意味する。diminuendo がラテン語 minuere（小さくする）に由来し「小さくなっていく」ことに重心を置くのに対し、abnehmend は「量が引かれていく」という発想の違いがある。',
+      },
+    ],
+    confusions: [
+      { term: 'Diminuendo', slug: 'diminuendo', note: 'イタリア語での同義語。強弱記号としてはこちらが標準的に使われる。' },
+    ],
+  },
   'allemande': {
     lead: 'Allemande（アルマンド）はフランス語で「ドイツの（舞曲）」を意味し、バロック組曲の冒頭に置かれることが多い4拍子の器楽曲。18世紀には実際に踊られる舞曲ではなく、様式化された抽象的な楽章になっていた。',
     sections: [
