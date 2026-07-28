@@ -20,6 +20,19 @@ const DIST = path.resolve(__dirname, '../dist');
 const BASE_URL = 'https://ongakutecho.com';
 const ADSENSE_ID = 'ca-pub-2953839366795600';
 
+// vite build が出力したCSSファイル名はハッシュ付きで毎回変わるため、
+// dist/assets を実際に見て見つける（決め打ちしない）。
+function findBuiltCssHref() {
+    const assetsDir = path.join(DIST, 'assets');
+    const files = fs.readdirSync(assetsDir);
+    const cssFile = files.find((f) => f.endsWith('.css'));
+    if (!cssFile) {
+        throw new Error('ビルド済みのCSSファイルが dist/assets に見つかりません。vite build が先に実行されているか確認してください。');
+    }
+    return `/assets/${cssFile}`;
+}
+const BUILT_CSS_HREF = findBuiltCssHref();
+
 // --- Helper: Escape HTML ---
 function esc(str) {
     if (!str) return '';
@@ -59,7 +72,7 @@ function htmlHead({ title, description, canonicalPath, ogImagePath }) {
   <link rel="apple-touch-icon" href="/icon-192.png">
   <meta name="theme-color" content="#E11D48">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="${BUILT_CSS_HREF}">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}" crossorigin="anonymous"></script>
 
   <style>
