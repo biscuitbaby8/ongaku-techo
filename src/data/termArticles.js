@@ -10,6 +10,2129 @@
 
 export const termArticles = {
 
+  'bene': {
+    lead: 'Bene はイタリア語で「よく、十分に」。単独ではなく、後に続く指示の程度を強めるために使われます。',
+    sections: [
+      {
+        heading: 'ben という短縮形',
+        body: '子音の前では ben に短縮されます。ben marcato（十分に際立たせて）、ben tenuto（十分に保って）、ben ritmato（十分にリズミカルに）といった形が楽譜に現れます。母音の前や単独では bene の形が保たれます。楽譜では ben のほうが圧倒的に多く見られます。',
+      },
+      {
+        heading: 'molto との違い',
+        body: 'molto（非常に）は量の増大を示します。bene は「十分に、しっかりと」という完全性を示す語です。ben marcato は際立たせ方をより強くするというより、中途半端に済ませないという意味になります。したがって、音量を上げることが答えとは限りません。',
+      },
+      {
+        heading: '語源',
+        body: 'ラテン語の bene（よく）に由来し、bonus（良い）と同じ語根です。英語の benefit（利益＝よく為すこと）、benevolent（善意の）、benediction（祝福）も同じ語根を持ちます。反対の male（悪く）からは malicious、malady が派生しています。',
+      },
+    ],
+    confusions: [
+      { term: 'Ben', slug: 'ben', note: '短縮形。楽譜ではこちらが一般的。' },
+      { term: 'Ben marcato', slug: 'ben-marcato', note: '十分に際立たせて。この語を用いた指示。' },
+      { term: 'Molto', slug: 'molto', note: '非常に。量の増大を示す。' },
+    ],
+  },
+
+  'lieto': {
+    lead: 'Lieto は「楽しい、うれしい」。ラテン語の laetus（喜ばしい）に由来し、晴れやかな喜びを指します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の laetus は、喜ばしい、豊かな、肥沃なという意味を持つ語です。植物が生き生きしている状態にも使われました。イタリア語の lieto はこの語を受け継いでいます。オペラの台本で lieto fine（幸福な結末）という表現が使われるのは、この語です。',
+      },
+      {
+        heading: '他の明るさの語との違い',
+        body: 'giocoso（遊び心のある）には冗談の要素があり、gaudioso（喜びの）は祝祭的な華やかさを含みます。lieto は素直な晴れやかさを指し、装飾的な要素を持ちません。曇りのない気分そのものを述べる語です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '素直な喜びが性質であるため、技巧を見せたり誇張したりする扱いは方向から外れます。濁りのない響きを保ち、テンポを重くせず、無理のない流れで進めることが語に合います。',
+      },
+    ],
+    confusions: [
+      { term: 'Gaudioso', slug: 'gaudioso', note: '喜びの。祝祭的な華やかさを含む。' },
+      { term: 'Giocoso', slug: 'giocoso', note: '遊び心をもって。冗談の要素がある。' },
+      { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+    ],
+  },
+
+  'gaudioso': {
+    lead: 'Gaudioso は「喜びの、歓喜に満ちた」。gaudio（喜び）から派生し、gioia と同じラテン語の語根を持ちます。',
+    sections: [
+      {
+        heading: 'gioia と同じ語源',
+        body: 'ラテン語の gaudium（喜び）に由来します。この語はイタリア語で2つの経路に分かれました。学問的な借用として gaudio が入り、日常語としては古フランス語 joie を経て gioia になりました。したがって gaudioso と gioioso は同じ語根から生まれた別系統の語です。英語の joy、rejoice、そして gaudy（派手な）も同じ gaudium に連なります。',
+      },
+      {
+        heading: '祝祭的な性格',
+        body: 'ラテン語系の借用語であるため、gaudio には宗教的・儀式的な語感が伴います。教会音楽の歌詞に現れる gaudete（喜べ）も同じ語です。したがって gaudioso は、私的な喜びより公的な歓喜、祝祭の喜びに寄ります。',
+      },
+    ],
+    confusions: [
+      { term: 'Giojoso', slug: 'giojoso', note: '喜ばしい。同じラテン語源の別系統。' },
+      { term: 'Lieto', slug: 'lieto', note: '楽しい。素直な晴れやかさ。' },
+      { term: 'Festivo', slug: 'festivo', note: '祝祭的に。' },
+    ],
+  },
+
+  'pensieroso': {
+    lead: 'Pensieroso は「物思いに沈んだ」。pensare（考える）から派生し、思索的で内向きな性格を指します。',
+    sections: [
+      {
+        heading: '「重さを量る」という語源',
+        body: 'ラテン語の pensare は、もともと「重さを量る」を意味する語でした（pendere = 吊るす、量るの反復形）。そこから「よく考える、思案する」という意味が生じています。英語の pensive、そして pension、compensate、ponder も同じ語根です。考えることを重さを量ることとして捉えた語です。',
+      },
+      {
+        heading: 'ミルトンとヘンデル',
+        body: 'ミルトンの詩《L\'Allegro》と《Il Penseroso》は、陽気な性格と思索的な性格を対比させた一対の作品です。ヘンデルはこの2篇に自作の第3部を加え、《L\'Allegro, il Moderato ed il Penseroso》として作曲しています。この語が性格の類型として音楽に取り入れられた例です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '内向きの性格であるため、聴き手に向けて提示するのではなく、考えている過程が見えるような扱いになります。テンポを追わず、フレーズの区切りに間を残し、音量を抑えます。ただし停滞すると思索ではなく空白になるため、進んでいることは保ちます。',
+      },
+    ],
+    confusions: [
+      { term: 'Malinconico', slug: 'malinconico', note: '憂鬱に。晴れない状態を指す。' },
+      { term: 'Con sentimento', slug: 'con-sentimento', note: '感情をもって。内側の状態。' },
+      { term: 'Semplice', slug: 'semplice', note: '素朴に。飾りを排する。' },
+    ],
+  },
+
+  'solenne': {
+    lead: 'Solenne は「厳かに、荘重に」。語源は「年に一度の」で、宗教的な儀式に結びついた語です。',
+    sections: [
+      {
+        heading: '「年に一度」という語源',
+        body: 'ラテン語の sollemnis は、sollus（全体の）と annus（年）から成ると説明されます。年に一度決まって行われる祭儀を指す語で、そこから「厳粛な、公式の」という意味が生じました。英語の solemn も同じ語です。annus は annual、anniversary の語根でもあります。定期的に繰り返される儀式という原義が、厳粛さの語になっています。',
+      },
+      {
+        heading: 'Missa solemnis',
+        body: 'ラテン語形の solemnis は、ミサの種別を指す用語としても使われます。荘厳ミサ（Missa solemnis）は、簡素な形式に対して、より大規模で儀式的に整えられた形式を指します。ベートーヴェンの《ミサ・ソレムニス》作品123 がこの名で知られる作品です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '儀式的な性格であるため、テンポは落ち着き、一歩ごとに重みが置かれます。速く駆け抜けると厳粛さが失われます。同時に、個人的な感情の表出を抑えることが求められます。maestoso が威厳、religioso が信仰を主体とするのに対して、solenne は儀式としての形式性が中心にあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Maestoso', slug: 'maestoso', note: '荘厳に。威厳が主体。' },
+      { term: 'Religioso', slug: 'religioso', note: '宗教的に。信仰が主体。' },
+      { term: 'Devoto', slug: 'devoto', note: '敬虔に。祈りの態度。' },
+    ],
+  },
+
+  'devoto': {
+    lead: 'Devoto は「敬虔に、献身的に」。ラテン語の devovere（誓って捧げる）に由来します。',
+    sections: [
+      {
+        heading: '「誓って捧げる」という語源',
+        body: 'de（完全に）と vovere（誓う）から成る devovere の過去分詞に遡ります。原義は「誓いによって捧げられた」です。英語の devout、devote、devotion、そして vow（誓い）も同じ語根です。自己を差し出すという含みが語の成り立ちに含まれています。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '自己を差し出す方向の語であるため、演奏者の表現を前に出すこととは逆になります。個人的な感情の表出を抑え、音そのものを澄んだ状態で置くことが指示に沿った扱いです。音量を落とすことより、雑味のない響きを作ることが要点になります。',
+      },
+      {
+        heading: '近い語との関係',
+        body: 'con devozione（献身をもって）が名詞形を用いた同内容の指示です。religioso（宗教的に）は信仰そのもの、solenne（厳かに）は儀式の形式性を指します。devoto は態度としての献身が中心にあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Con devozione', slug: 'con-devozione', note: '献身をもって。名詞形を用いた指示。' },
+      { term: 'Religioso', slug: 'religioso', note: '宗教的に、厳かに。' },
+      { term: 'Solenne', slug: 'solenne', note: '厳かに。儀式の形式性。' },
+    ],
+  },
+
+  'campanella': {
+    lead: 'Campanella は「小さな鐘」。campana（鐘）に縮小辞 -ella が付いた形で、高音域の澄んだ響きを指します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の campana（鐘）に由来します。この語はイタリアのカンパニア地方に由来するという説が古くから伝えられています。英語の campanology（鐘楽学）、campanile（鐘楼）も同じ語根です。縮小辞 -ella が付くことで小さな鐘、鈴を指します。',
+      },
+      {
+        heading: 'ラ・カンパネッラ',
+        body: 'パガニーニのヴァイオリン協奏曲第2番の終楽章は、鐘の音を模した書法から《ラ・カンパネッラ》と呼ばれています。リストはこの主題を用いて《パガニーニによる大練習曲》の第3曲を書いており、こちらも同じ名で知られています。高音域で同じ音を繰り返し、鐘の響きを模す書法が用いられています。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '鐘の音は、打撃の瞬間が明確で、その後に長い余韻が残ります。したがってこの効果を作るには、立ち上がりを鋭くしつつ、音を切らずに残すことが必要です。ピアノではペダルの扱いが要点になります。濁らせずに残響を保つため、和声の変わり目でペダルを踏み替えます。',
+      },
+    ],
+    confusions: [
+      { term: 'Campana', slug: 'campana', note: '鐘。campanella はその縮小形。' },
+      { term: 'Celeste', slug: 'celeste', note: '天上の。澄んだ響きという点で近い。' },
+      { term: 'Harmonics', slug: 'harmonics', note: '倍音。鐘の音色に関わる。' },
+    ],
+  },
+
+  'aperto': {
+    lead: 'Aperto は「開かれた」。aprire（開く）の過去分詞で、陰のない明快な響きを指します。楽器によっては具体的な奏法も意味します。',
+    sections: [
+      {
+        heading: '表情の指示として',
+        body: '開かれているという性質から、抑えたり閉じたりしない響きを求めます。音を内に籠らせず、外へ向けて放つ扱いです。chiuso（閉じた）が反対にあたり、この2語は対で使われます。',
+      },
+      {
+        heading: '奏法としての意味',
+        body: 'ホルンでは、ベルに差し込んでいた手を離して通常の状態に戻すことを指します。金管楽器では弱音器を外すことを意味します。オルガンでは、開いた音管（開管）を指す用法もあります。楽器と文脈によって指す内容が変わるため、直前にどの指示が出ていたかを見て判断します。',
+      },
+      {
+        heading: '声楽での用法',
+        body: '声楽では、母音を開いた形で発声することを指す場合があります。イタリア語の e と o には開いた音と閉じた音の区別があり、これを aperto / chiuso と呼びます。歌唱の指示として現れる場合、この音声学的な区別を指している可能性があります。',
+      },
+    ],
+    confusions: [
+      { term: 'Chiuso', slug: 'chiuso', note: '閉じた。aperto の反対。' },
+      { term: 'Open', slug: 'open', note: '英語で開いた状態。弱音器を外す指示。' },
+      { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+    ],
+  },
+
+  'chiaro': {
+    lead: 'Chiaro は「澄んだ、明瞭な」。ラテン語の clarus に由来し、濁りのない響きを求めます。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の clarus は、明るい、輝く、明瞭な、有名なといった意味を持つ語です。英語の clear、clarify、declare、そして clarinet（もともと明るい音を出す楽器の意）も同じ語根です。視覚の明るさと、聴覚の明瞭さの両方に使われる語です。',
+      },
+      {
+        heading: 'キアロスクーロ',
+        body: '美術用語のキアロスクーロ（chiaroscuro）は、chiaro（明）と oscuro（暗）を組み合わせた語で、明暗の対比による表現を指します。音楽でも oscuro（暗く）が指示として使われ、この2語は対をなします。',
+      },
+      {
+        heading: '演奏で濁りを消す',
+        body: '澄んだ響きを作るには、余分な音を混ぜないことが基本です。ピアノではペダルの踏み替えを正確に行い、和声の変わり目で前の響きを残さないようにします。低音を厚くしすぎないことも効果があります。弦楽器では弓の圧力を過剰にせず、雑音成分を抑えます。音量を上げても濁れば明瞭にはなりません。',
+      },
+    ],
+    confusions: [
+      { term: 'Oscuro', slug: 'oscuro', note: '暗く。chiaro と対をなす。' },
+      { term: 'Aperto', slug: 'aperto', note: '開かれた。陰のない響き。' },
+      { term: 'Brilliant', slug: 'brilliant', note: '輝かしく。倍音の煌めきを含む。' },
+    ],
+  },
+
+  'flessibile': {
+    lead: 'Flessibile は「柔軟に」。ラテン語の flectere（曲げる）に由来し、硬直しないことを求めます。',
+    sections: [
+      {
+        heading: '「曲げる」という語源',
+        body: 'ラテン語の flectere から派生した語です。英語の flexible、reflect（曲げ返す）、inflection（語形変化＝語を曲げること）、deflect も同じ語根です。原義は物理的に曲がることで、そこから融通が利くという意味が生じました。',
+      },
+      {
+        heading: '何が柔軟なのか',
+        body: 'この指示が求めるのは、多くの場合テンポとフレーズの扱いです。拍を機械的に刻まず、旋律の要求に応じて伸縮させます。ただし枠を捨てることではありません。曲がるためには芯が必要で、芯がなければ曲がるのではなく崩れます。テンポの骨格を保ちながら、その中で余裕を持たせるという扱いです。',
+      },
+      {
+        heading: '身体の使い方',
+        body: '柔軟さは、実際に体が固まっていない状態から生まれます。手首や腕の力が抜けていることが音の質に直結します。関節が固まった状態では、この指示の求める音は出ません。フランス語の souple（しなやかに）が同じ方向の指示です。',
+      },
+    ],
+    confusions: [
+      { term: 'Souple', slug: 'souple', note: 'しなやかに。フランス語で同じ方向。' },
+      { term: 'Rubato', slug: 'rubato', note: 'テンポを揺らす。手段として関わる。' },
+      { term: 'Libero', slug: 'libero', note: '自由に。枠から離れる度合いが大きい。' },
+    ],
+  },
+
+  'discrezione': {
+    lead: 'Discrezione は「慎み、控えめさ」。con discrezione の形で、出すぎないことを求めます。',
+    sections: [
+      {
+        heading: '「見分ける」という語源',
+        body: 'ラテン語の discernere（分ける、見分ける）に由来します。dis（離して）と cernere（ふるい分ける）から成る語です。英語の discretion、discern、discriminate も同じ語根です。原義は区別する能力で、そこから「わきまえる、慎む」という意味が生じました。慎み深さが判断力の語から来ている点が特徴です。',
+      },
+      {
+        heading: '何をわきまえるのか',
+        body: '語源が「見分ける」であることから、この指示は単に控えることではありません。何を出し、何を抑えるかを判断することです。伴奏の声部にこの指示があれば、主旋律との関係で自分の位置を判断することが求められます。全体を一律に小さくすることとは違います。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: 'アンサンブルでは、他のパートが何をしているかを聞いたうえで自分の音量と音色を決めることになります。独奏曲でも、複数の声部のあいだで同じ判断が必要です。出すぎないことが目的ではなく、適切な関係を作ることが目的です。',
+      },
+    ],
+    confusions: [
+      { term: 'Decorum', slug: 'decorum', note: '適切さ。行き過ぎを戒める。' },
+      { term: 'Sotto voce', slug: 'sotto-voce', note: '押し殺した声で。抑える質を指す。' },
+      { term: 'Semplice', slug: 'semplice', note: '素朴に。飾りを排する。' },
+    ],
+  },
+
+  'distinto': {
+    lead: 'Distinto は「はっきりと、明瞭に」。distinguere（区別する）の過去分詞で、各音が区別されることを求めます。',
+    sections: [
+      {
+        heading: '「区別された」という語源',
+        body: 'ラテン語の distinguere は、dis（離して）と stinguere（刺す、印を付ける）から成る語です。原義は印を付けて分けることです。英語の distinct、distinguish、そして extinguish（消す）も同じ stinguere に連なります。したがって distinto は、境目が付いている状態を指します。',
+      },
+      {
+        heading: '切ることとは違う',
+        body: 'この指示は音を短く切ることではありません。求められているのは、それぞれの音の始まりが聞き取れることです。レガートの中でも distinto は成立し、その場合はつながっていながら各音の輪郭が保たれている状態になります。切ることで明瞭さを作ると、フレーズが途切れます。',
+      },
+      {
+        heading: '楽器ごとの手段',
+        body: 'ピアノでは指の打鍵の立ち上がりをそろえることで各音が聞こえます。速いパッセージで音が埋もれるのは、指の独立が足りず打鍵の瞬間が曖昧になるためです。管楽器では舌の使い方、弦楽器では弓の圧力の変化、声楽では子音の明瞭さが対応します。',
+      },
+    ],
+    confusions: [
+      { term: 'Articolato', slug: 'articolato', note: 'はっきりと区切って。近い内容の指示。' },
+      { term: 'Ben marcato', slug: 'ben-marcato', note: '十分に際立たせて。輪郭を作る。' },
+      { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+    ],
+  },
+
+  'confidenza': {
+    lead: 'Confidenza は「確信、親しさ」。ラテン語の fides（信頼）を語根に持ち、2つの意味を併せ持つ語です。',
+    sections: [
+      {
+        heading: '「ともに信じる」という語源',
+        body: 'con（ともに）と fidere（信じる、頼る）から成ります。fides（信頼、信義）が語根で、英語の confidence、faith、fidelity、そして音響用語の hi-fi（high fidelity）も同じ系統です。原義は信頼することで、そこから「自信」と「親密さ」という2つの意味が生じました。',
+      },
+      {
+        heading: '2つの意味',
+        body: 'イタリア語の confidenza は、自信・確信を意味すると同時に、打ち明けられるほどの親しさも意味します。楽譜の指示としてどちらを指しているかは文脈で判断します。前者なら迷いのない提示、後者なら親密で近い距離の語りかけになります。両者は方向が違うため、この判断は演奏に直接影響します。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '確信の意味なら、テンポを揺らさず輪郭を明確にします。親しさの意味なら、音量を抑えて近い距離で語る扱いになります。周囲の指示（音量記号や他の表情語）が手がかりになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Risoluto', slug: 'risoluto', note: '決然と。確信の方向。' },
+      { term: 'Affabile', slug: 'affabile', note: '親しみやすく。親密さの方向。' },
+      { term: 'Lo-fi', slug: 'lo-fi', note: 'fidelity は同じ fides を語根に持つ。' },
+    ],
+  },
+
+  'generoso': {
+    lead: 'Generoso は「寛大な、豊かな」。ラテン語の genus（生まれ、種族）に由来し、もともとは「良い生まれの」を意味しました。',
+    sections: [
+      {
+        heading: '「良い生まれ」から「寛大」へ',
+        body: 'ラテン語の generosus は「高貴な生まれの」を意味する語でした。高貴な者は気前がよいという観念から、「寛大な、気前のよい」という意味へ移りました。英語の generous も同じ変化を経ています。genus は gene、genus、genre、general の語根でもあります。穏やかさや寛大さが身分の語から生まれるのは、gentle（gentilis）と同じ構造です。',
+      },
+      {
+        heading: '出し惜しみしない響き',
+        body: '寛大さという性質から、この指示は音を出し惜しみしないことを求めます。響きを十分に鳴らし、フレーズを大きく取り、音を縮めません。ただし乱暴に鳴らすことではなく、余裕をもって豊かに出すという扱いです。',
+      },
+    ],
+    confusions: [
+      { term: 'Nobile', slug: 'nobile', note: '高貴に。品格が主体。' },
+      { term: 'Gently', slug: 'gently', note: '穏やかに。同じく身分の語から発達した。' },
+      { term: 'Grandioso', slug: 'grandioso', note: '壮大に。規模が主体。' },
+    ],
+  },
+
+  'galante': {
+    lead: 'Galante は「優雅な、上品で親しみやすい」。18世紀のギャラント様式を指す語としても用いられます。',
+    sections: [
+      {
+        heading: 'ギャラント様式',
+        body: '18世紀前半から中頃にかけて、バロックの複雑な対位法から離れ、明快な旋律と単純な伴奏を重んじる様式が広まりました。これをギャラント様式（style galant）と呼びます。親しみやすさ、優美さ、軽やかさを重んじ、学問的な厳密さを避ける方向でした。バロックと古典派のあいだに位置づけられる様式です。',
+      },
+      {
+        heading: '語源',
+        body: '古フランス語の galer（楽しむ、浮かれる）に由来する galant から来ています。英語の gallant も同じ語で、こちらは勇敢さと 女性への丁重さの両方を意味します。イタリア語の galante は主に優美さ、上品さを指します。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '重厚さや厳密さを避ける方向の様式です。したがって、旋律を明快に歌わせ、伴奏を軽く保ち、対位法的に各声部を対等に扱わないことが語に合います。テンポを重くせず、装飾は軽やかに扱います。',
+      },
+    ],
+    confusions: [
+      { term: 'Galanterie', slug: 'galanterie', note: '組曲に挿入される軽い舞曲。同じ語根。' },
+      { term: 'Grazioso', slug: 'grazioso', note: '優雅に。' },
+      { term: 'Minuet', slug: 'minuet', note: 'この様式と結びついた舞曲。' },
+    ],
+  },
+
+  'scatenato': {
+    lead: 'Scatenato は「鎖を解かれた」。catena（鎖）を語根に持ち、抑制を失った奔放な力を指します。',
+    sections: [
+      {
+        heading: '「鎖を外す」という語源',
+        body: 'ラテン語の catena（鎖）から動詞 scatenare（鎖を解く、解き放つ）が作られ、その過去分詞が scatenato です。s- は分離を示す接頭辞です。英語の chain、concatenate（連鎖させる）も同じ catena に連なります。したがってこの語が示すのは、それまで拘束されていたものが解放された状態です。',
+      },
+      {
+        heading: '前提としての拘束',
+        body: '鎖を解かれたという語であるため、その前に拘束があったことが前提になります。したがってこの指示は、それまで抑えられていた箇所の後に置かれるときに最も効果を持ちます。抑制のない状態が続いた後では、解放として聞こえません。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '奔放さを表すためには、実際に崩れてしまってはいけません。制御を失っているように聞こえるためには、リズムと音程が保たれている必要があります。振れ幅を最大に取り、しかし骨格は保つという扱いになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Furioso', slug: 'furioso', note: '荒れ狂って。我を失った激しさ。' },
+      { term: 'Con abbandono', slug: 'con-abbandono', note: '身を任せて。委ねる方向。' },
+      { term: 'Bacchante', slug: 'bacchante', note: '熱狂的に。我を忘れた状態。' },
+    ],
+  },
+
+  'smanioso': {
+    lead: 'Smanioso は「狂おしく、いらだって」。smania（狂乱、渇望）から派生し、焦燥を伴う激情を指します。',
+    sections: [
+      {
+        heading: 'smania という語',
+        body: 'イタリア語の smania は、抑えられない渇望、いらだち、狂乱を意味します。何かを激しく求めながら得られない状態を指す語です。したがって smanioso が示すのは、単なる怒りや激しさではなく、満たされないことによる焦燥です。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'agitato（落ち着かない）は外から揺さぶられている状態、inquieto（落ち着けない）は静止できない状態を指します。smanioso には「求めている」という方向が加わります。したがって、ただ不安定なのではなく、何かへ向かって届かないという性質になります。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '届かないという性質を出すには、向かう方向を保ったまま到達させないことが要点です。フレーズが頂点へ向かいながら達しない、解決が遅らされるといった書法があれば、それを生かします。均等に激しくすると、焦燥ではなく単なる荒れになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Agitato', slug: 'agitato', note: '興奮して。外から揺さぶられる。' },
+      { term: 'Inquieto', slug: 'inquieto', note: '落ち着かない。静止できない状態。' },
+      { term: 'Languente', slug: 'languente', note: '衰えて。求めながら力を失う。' },
+    ],
+  },
+
+  'gemendo': {
+    lead: 'Gemendo は「うめくように」。gemere（うめく、嘆く）の現在分詞です。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の gemere（うめく、嘆く）に由来します。声にならない、あるいは言葉にならない嘆きを指す語です。英語には直接の同語源語が定着していませんが、ラテン語からの借用として gemination とは別系統です。',
+      },
+      {
+        heading: '声にならない嘆き',
+        body: 'lamentoso が声に出した嘆き、piangendo が泣く動作を指すのに対して、gemendo は言葉にならない声を指します。したがって、旋律として歌い上げるより、途切れる音、抑えきれずに漏れる音として扱うほうが語に合います。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: 'うめきには、抑えようとして抑えきれないという二重の動きがあります。したがって、音量を落としながらも張りを残し、フレーズが続かずに切れるという扱いになります。滑らかに繋いでしまうと、うめきではなく歌になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Lamentoso', slug: 'lamentoso', note: '嘆き悲しんで。声に出した嘆き。' },
+      { term: 'Piangendo', slug: 'piangendo', note: '泣きながら。泣く動作を指す。' },
+      { term: 'Klagend', slug: 'klagend', note: '嘆くように。ドイツ語。' },
+    ],
+  },
+
+  'civettando': {
+    lead: 'Civettando は「媚びるように、気取って」。civetta（フクロウ、そして色目を使う女性）を語根に持ちます。',
+    sections: [
+      {
+        heading: 'フクロウという語源',
+        body: 'イタリア語の civetta はフクロウを指す語であり、同時に「男の気を引こうとする女性」という比喩的な意味も持ちます。動詞 civettare は「色目を使う、媚びる」を意味します。フランス語の coquette（女たらしの女性、コケティッシュ）が近い語感を持ちます。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '媚びるという行為は、相手の反応を引き出そうとする働きかけです。したがってこの指示は聴き手に向かう方向を持ちます。押しつけるのではなく、余地を残して誘い込む扱いになります。フレーズを言い切らず、わずかに引くことで効果が出ます。強く提示すると、誘いではなく主張になります。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'lusingando（おもねるように）も聴き手に働きかける語ですが、こちらは甘く取り入る方向です。civettando には気取りやわざとらしさという含みがあり、少し戯れの要素が入ります。',
+      },
+    ],
+    confusions: [
+      { term: 'Lusingando', slug: 'lusingando', note: 'おもねるように。甘く誘い込む。' },
+      { term: 'Scherzando', slug: 'scherzando', note: 'おどけて。戯れの要素。' },
+      { term: 'Grazioso', slug: 'grazioso', note: '優雅に。' },
+    ],
+  },
+
+  'gesticulante': {
+    lead: 'Gesticulante は「身振りたっぷりに」。gesto（身振り）を語根に持ち、視覚的な動きを感じさせる演奏を求めます。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の gerere（行う、運ぶ）から gestus（身振り、動作）が生まれ、そこから gesticulari（身振りをする）が派生しました。英語の gesture、gesticulate、そして register、digest も同じ gerere に連なります。',
+      },
+      {
+        heading: '音で身振りを作る',
+        body: '身振りは、方向と大きさと速度を持つ動きです。音楽でこれに対応するのは、旋律の跳躍、音量の急な変化、リズムの区切り方です。滑らかに流れる音楽より、動きの区切りがはっきりした音楽のほうが身振りとして聞こえます。したがってこの指示のある箇所では、フレーズごとに性格を変え、輪郭を明確にする扱いになります。',
+      },
+      {
+        heading: '演劇との関係',
+        body: 'オペラやバレエの音楽では、実際の舞台上の動きに音が対応します。器楽曲にこの指示がある場合、そこに見えない動作があることが示唆されています。何が起きているかを想定して弾くことで、動きが伝わります。',
+      },
+    ],
+    confusions: [
+      { term: 'Declamando', slug: 'declamando', note: '朗読するように。語りとしての扱い。' },
+      { term: 'Parlante', slug: 'parlante', note: '語るように。' },
+      { term: 'Drammatico', slug: 'drammatico', note: '劇的に。出来事が起きている感覚。' },
+    ],
+  },
+
+  'affascinante': {
+    lead: 'Affascinante は「魅力的な、うっとりさせる」。語源をたどると「魔法をかける」に行き着きます。',
+    sections: [
+      {
+        heading: '「魔法をかける」という語源',
+        body: 'ラテン語の fascinare（魔法をかける、呪う）に由来します。その名詞 fascinum は、邪視から身を守るために用いられた護符を指す語でした。英語の fascinate も、もともとは「魔力で動けなくする」という意味でした。現在の「魅了する」という用法は、この呪縛の意味が和らいだものです。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '語源が「動けなくする」であることから、この指示は聴き手を引き込み、その場に留めることを求めていると読めます。押しつけて注意を引くのではなく、離れられなくするという方向です。したがって、音量や動きを大きくするより、音色の質と時間の扱いで惹きつける扱いになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Lusingando', slug: 'lusingando', note: 'おもねるように。誘い込む方向。' },
+      { term: 'Estatico', slug: 'estatico', note: '恍惚として。' },
+      { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。' },
+    ],
+  },
+
+  'frivolo': {
+    lead: 'Frivolo は「軽薄な、気楽な」。ラテン語の frivolus（つまらない、無価値な）に由来します。',
+    sections: [
+      {
+        heading: '「砕けやすい」という語源',
+        body: 'ラテン語の frivolus は、もともと壊れた陶器のかけらを指す語だったと説明されます。friare（砕く）に連なるとされ、そこから「価値のない、取るに足らない」という意味が生じました。英語の frivolous、そして friable（崩れやすい）も同じ系統です。',
+      },
+      {
+        heading: '真面目でないことが指示になる',
+        body: 'この語は、重みを持たせないことを求めます。深刻に扱わない、意味を込めすぎない、軽く通り過ぎるという扱いです。serioso（まじめに）の反対方向にあります。演奏では、音を保たず、表情を作りこまず、次へ移っていくことが語に合います。',
+      },
+      {
+        heading: '軽さの種類',
+        body: 'leggero（軽く）は物理的な重さのなさ、giocoso（遊び心のある）は冗談の要素、frivolo は内容の軽さを指します。3つは方向が違うため、重い音でも frivolo でありえますし、軽い音でも真面目でありえます。',
+      },
+    ],
+    confusions: [
+      { term: 'Serioso', slug: 'serioso', note: 'まじめに。frivolo の反対。' },
+      { term: 'Giocoso', slug: 'giocoso', note: '遊び心をもって。冗談の要素。' },
+      { term: 'Leggero', slug: 'leggero', note: '軽く。物理的な重さのなさ。' },
+    ],
+  },
+
+  'deselegante': {
+    lead: '優雅さを欠いた状態、すなわちわざと粗野に演奏することを求める指示として辞典に収録されています。',
+    sections: [
+      {
+        heading: '語形について',
+        body: 'elegante（優雅な）に否定の接頭辞を付けた形です。イタリア語で一般的な否定形は inelegante で、des- を用いる形は標準的とは言えません。楽譜での使用例も限られます。いずれにしても、優雅さの否定を意味する語として読めます。',
+      },
+      {
+        heading: '否定であることの意味',
+        body: 'この指示は、通常なら優雅に演奏される箇所であることを前提としています。つまり作曲者は、期待される扱いを外すよう求めています。したがって単に粗く弾くのではなく、優雅さが期待される文脈でそれを裏切ることが効果になります。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '粗野さを作るには、整えないことを意図的に行います。フレーズの形を滑らかにせず、音量の変化を唐突にし、音色に角を残します。ただし音程やリズムが崩れると、意図した粗さではなく不正確さになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Elegante', slug: 'elegante', note: '優雅に。この語が否定する対象。' },
+      { term: 'Asperamente', slug: 'asperamente', note: '厳しく、荒々しく。意図的な粗さ。' },
+      { term: 'Barbaro', slug: 'barbaro', note: '未開の。洗練を排する。' },
+    ],
+  },
+
+  'exaltation': {
+    lead: '高揚、有頂天の状態を指す語です。ラテン語の altus（高い）を語根に持ち、上へ持ち上げられることを原義とします。',
+    sections: [
+      {
+        heading: '「高く上げる」という語源',
+        body: 'ラテン語の exaltare は、ex（外へ、上へ）と altus（高い）から成ります。英語の exalt、altitude、alto（高い声部）も同じ altus に連なります。原義は物理的に持ち上げることで、そこから精神の高揚という意味が生じました。',
+      },
+      {
+        heading: '上へ向かう高揚',
+        body: '語源が「高く上げる」であるため、この語には上方向の含みがあります。estatico（恍惚として）が「外に立つ」を語源とし、通常の意識の外へ出ることを指すのに対して、exaltation は上へ昇る動きです。音楽では、音域が上がる、和声が明るくなる、音量が増すといった書法と対応します。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '上へ向かう動きが性質であるため、フレーズが頂点へ向かうことを明確に示す扱いになります。到達点を設計し、そこへ向けて配分することが要点です。始めから最大にすると、上がる余地がなくなります。',
+      },
+    ],
+    confusions: [
+      { term: 'Estatico', slug: 'estatico', note: '恍惚として。「外に立つ」が語源。' },
+      { term: 'Enthousiasme', slug: 'enthousiasme', note: '熱狂。「神が内にある」が語源。' },
+      { term: 'Grandioso', slug: 'grandioso', note: '壮大に。規模が主体。' },
+    ],
+  },
+
+  'fiavole': {
+    lead: 'イタリア語で「か弱い、消え入りそうな」を意味する fievole の表記です。語源をたどると「泣く」に行き着きます。',
+    sections: [
+      {
+        heading: 'flebile と同じ語源',
+        body: 'イタリア語の fievole は、ラテン語の flebilis（涙を誘う、嘆かわしい）に由来します。これは動詞 flere（泣く）から派生した語です。したがって fievole は、辞典に別項目として収録されている flebile と同じラテン語源を持ちます。flebile は学問的な借用形、fievole は日常語として音が変化した形です。',
+      },
+      {
+        heading: '求められる音',
+        body: '語源が「泣く」であることから、この語が指すのは単に音量が小さいことではありません。声にならず途切れそうな状態です。したがって音量は弱く、しかも安定していないという方向になります。',
+      },
+      {
+        heading: '弱さを保つこと',
+        body: '弱く演奏すると音が失われがちですが、この指示が求めているのは音が消えることではなく、か細いままで存在し続けることです。支えが抜けて鳴らなくなると、指示に応えていないことになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Flebile', slug: 'flebile', note: '同じラテン語源。学問的な借用形。' },
+      { term: 'Piangendo', slug: 'piangendo', note: '泣きながら。' },
+      { term: 'Gemendo', slug: 'gemendo', note: 'うめくように。' },
+    ],
+  },
+
+  'angosciamento': {
+    lead: 'Angosciamento は「苦悶」。angoscia（苦悩）から派生した名詞で、語源は「狭さ」です。',
+    sections: [
+      {
+        heading: '「狭い」という語源',
+        body: 'ラテン語の angustia（狭さ、窮屈さ）に由来します。英語の anguish、anxiety、ドイツ語の Angst も同じ語根です。語源が示すのは、締めつけられて逃げ場がない状態です。悲しみではなく、圧迫による苦しさを指す語です。',
+      },
+      {
+        heading: '演奏で何を作るか',
+        body: '締めつけられている状態なので、開放的な響きとは逆の方向になります。音を広く鳴らすのではなく、緊張を保ったまま出口を与えない扱いです。テンポの切迫、和声の解決の遅延といった書法がこの指示と組み合わされることがあります。',
+      },
+      {
+        heading: '語形',
+        body: '同じ語根から angoscioso（形容詞）、angosciosamente（副詞）、angosciamento（名詞）が作られています。楽譜での使用頻度は形容詞形が最も高く、名詞形は con angosciamento のような形で現れることになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Angoscioso', slug: 'angoscioso', note: '苦悶して。形容詞形。' },
+      { term: 'Angosciosamente', slug: 'angosciosamente', note: '苦しげに。副詞形。' },
+      { term: 'Disperato', slug: 'disperato', note: '絶望した。希望の欠如。' },
+    ],
+  },
+
+  'angosciosamente': {
+    lead: 'Angosciosamente は angoscioso の副詞形で「苦しげに」。ラテン語の angustia（狭さ）を語源に持ちます。',
+    sections: [
+      {
+        heading: '-mente という副詞語尾',
+        body: 'イタリア語では形容詞の女性形に -mente を付けて副詞を作ります。angoscioso → angosciosa → angosciosamente という形です。ラテン語の mens（心）の奪格 mente（〜な心で）に由来する語尾で、フランス語の -ment、スペイン語の -mente も同じ起源です。',
+      },
+      {
+        heading: '語源が示す性質',
+        body: 'angustia（狭さ）に由来するため、この語は締めつけられて逃げ場がない苦しさを指します。悲しみではなく圧迫です。したがって、開放的に鳴らす扱いは方向から外れます。緊張を保ったまま出口を与えないことが求められます。',
+      },
+    ],
+    confusions: [
+      { term: 'Angoscioso', slug: 'angoscioso', note: '形容詞形。詳しい説明はこちら。' },
+      { term: 'Angosciamento', slug: 'angosciamento', note: '名詞形。' },
+    ],
+  },
+
+  'agitatamente': {
+    lead: 'Agitatamente は agitato の副詞形で「激しく、昂ぶって」。落ち着きのなさを指します。',
+    sections: [
+      {
+        heading: '「揺り動かす」という語源',
+        body: 'ラテン語の agitare（揺り動かす、駆り立てる）に由来し、これは agere（動かす）の反復形です。英語の agitate、agitation も同じ語根です。示しているのは速さではなく、外から揺さぶられて落ち着かない状態です。したがって遅いテンポの中でも成立します。',
+      },
+      {
+        heading: '副詞形であること',
+        body: '形容詞 agitato が状態を述べるのに対して、副詞形の agitatamente は演奏の仕方を述べます。実際の演奏上の差はほとんどなく、作曲者の表記の選択によるものです。同じ語根から agitatissimo（最上級）も作られています。',
+      },
+      {
+        heading: '崩れないこと',
+        body: '落ち着きのなさを表すためには、実際に演奏が崩れてはいけません。制御を失っているように聞こえるためには、リズムと音程が保たれている必要があります。',
+      },
+    ],
+    confusions: [
+      { term: 'Agitato', slug: 'agitato', note: '形容詞形。詳しい説明はこちら。' },
+      { term: 'Agitatissimo', slug: 'agitatissimo', note: '最上級。きわめて激しく。' },
+      { term: 'Inquieto', slug: 'inquieto', note: '落ち着かない。静止できない状態。' },
+    ],
+  },
+
+  'amabilmente': {
+    lead: 'Amabilmente は amabile の副詞形で「愛らしく、優しく」。amare（愛する）を語根に持ちます。',
+    sections: [
+      {
+        heading: '「愛されるにふさわしい」',
+        body: 'amabile は amare に「〜されうる」を意味する接尾辞が付いた形です。したがって、演奏者が愛情を注ぐ（con amore）のではなく、音楽そのものが好ましく感じられる状態を指します。英語の amiable、amenable と同じ語源です。指示の向きが聴き手の側にある点が要点です。',
+      },
+      {
+        heading: '副詞形であること',
+        body: '形容詞の女性形 amabile に -mente が付いた形です（-le で終わる形容詞では l が落ちて amabilmente になります）。指示内容は amabile と同じで、作曲者の表記の選択によるものです。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '聴き手にとって心地よい響きが目標なので、強い主張や激しい感情の表出とは方向が違います。音を押しつけず、角を立てないことがこの指示に沿った扱いになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Amabile', slug: 'amabile', note: '形容詞形。詳しい説明はこちら。' },
+      { term: 'Amarevole', slug: 'amarevole', note: '同じ語根の別の語形。' },
+      { term: 'Piacevole', slug: 'piacevole', note: '心地よく。聴き手の側に立つ語。' },
+    ],
+  },
+
+  'garbatamente': {
+    lead: 'Garbatamente は garbato の副詞形で「上品に、しとやかに」。garbo（品位）を語根に持ちます。',
+    sections: [
+      {
+        heading: 'garbo という語',
+        body: 'garbo は、立ち居振る舞いの美しさや礼儀正しさを指すイタリア語です。単なる美しさではなく、他者への配慮を含んだ洗練を意味します。この点が、grazia（恵み）や eleganza（選び抜かれたこと）を語根とする語との違いです。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '礼儀正しさが含まれる語であるため、自己主張を前に出すこととは方向が違います。過剰な表情、極端な音量、粗い打鍵を避け、整った形を保つことがこの指示に沿った扱いです。',
+      },
+    ],
+    confusions: [
+      { term: 'Garbato', slug: 'garbato', note: '形容詞形。詳しい説明はこちら。' },
+      { term: 'Grazioso', slug: 'grazioso', note: '優雅に。「恵み」が語源。' },
+      { term: 'Elegante', slug: 'elegante', note: '優雅に。「選び出す」が語源。' },
+    ],
+  },
+
+  'giocosamente': {
+    lead: 'Giocosamente は giocoso の副詞形で「陽気に、おどけて」。gioco（遊び）を語根に持ちます。',
+    sections: [
+      {
+        heading: '「遊び」という語源',
+        body: 'ラテン語の iocus（冗談、遊び）に由来します。英語の joke、jocular も同じ語根です。したがってこの語には冗談の要素が含まれます。gioia（喜び）を語根とする giojoso とは語源が違い、こちらには「ふざける」という含みがあります。字面が近いため混同されやすい2語です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '冗談は、予想を軽く外すところに生じます。したがって、この指示のある箇所ではリズムや音色のわずかな仕掛けを見つけて生かすことが効果になります。力任せに元気よく弾くと、この含みは消えます。真面目に整えすぎるのも方向から外れます。',
+      },
+    ],
+    confusions: [
+      { term: 'Giocoso', slug: 'giocoso', note: '形容詞形。' },
+      { term: 'Giojoso', slug: 'giojoso', note: '喜ばしい。語源が違う。' },
+      { term: 'Scherzando', slug: 'scherzando', note: 'おどけて。同じ方向の指示。' },
+    ],
+  },
+
+  'energicamente': {
+    lead: 'Energicamente は energico の副詞形で「精力的に」。ギリシャ語の energeia（活動、働き）を語根に持ちます。',
+    sections: [
+      {
+        heading: '「働きの中にある」',
+        body: 'ギリシャ語の energeia は、en（内に）と ergon（仕事、働き）から成り、「仕事の中にある状態」を意味します。英語の energy、そして ergonomics（人間工学）も同じ ergon に連なります。示しているのは音量ではなく、動きに力が込められていることです。',
+      },
+      {
+        heading: 'forte との違い',
+        body: 'forte は音量、energicamente は質の指示です。したがって弱音の中でも成立します。この指示だけが書かれている箇所で音量を上げると、指示していないことを加えることになります。リズムの明確さや音の立ち上がりの鋭さが、この指示に応える手段です。',
+      },
+    ],
+    confusions: [
+      { term: 'Energico', slug: 'energico', note: '形容詞形。詳しい説明はこちら。' },
+      { term: 'Con forza', slug: 'con-forza', note: '力をもって。力の投入を指す。' },
+      { term: 'Kraftvoll', slug: 'kraftvoll', note: '力強く。ドイツ語。' },
+    ],
+  },
+
+  'focosamente': {
+    lead: 'Focosamente は「熱烈に、火のように」。fuoco（火）を語根に持つ副詞形です。',
+    sections: [
+      {
+        heading: '火と熱の区別',
+        body: 'fuoco（火）を語根とする語は、燃え上がる激しさを指します。calore（熱）を語根とする caloroso が、じんわり伝わる温かさを指すのに対して、こちらは外へ向かう炎です。同じ「熱い」でも方向が違います。focoso と fuocoso はどちらも用いられる綴りで、意味に違いはありません。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '燃え上がるという性質から、高い緊張と推進力を保つことが求められます。音量だけでなく、音の立ち上がりの鋭さと、フレーズが前へ向かう力の両方が必要です。途中で緩めると、火が消えたように聞こえます。',
+      },
+    ],
+    confusions: [
+      { term: 'Con fuoco', slug: 'con-fuoco', note: '火をもって。同じ語根。' },
+      { term: 'Fuocoso', slug: 'fuocoso', note: '火のように。形容詞形。' },
+      { term: 'Caloroso', slug: 'caloroso', note: '温かく。炎ではなく伝わる熱。' },
+    ],
+  },
+
+  'determinatamente': {
+    lead: 'Determinatamente は「決然と、きっぱりと」。determinare（定める）を語根に持ち、迷いのなさを指します。',
+    sections: [
+      {
+        heading: '「境界を定める」という語源',
+        body: 'ラテン語の determinare は、de（完全に）と terminus（境界、限界）から成ります。原義は「境界を定める」です。英語の determine、terminal、terminate も同じ terminus に連なります。したがってこの語が示すのは、範囲が確定して曖昧さが残っていない状態です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '決まっているという性質から、テンポの揺れやためらいを排することになります。リズムを正確に刻み、音の輪郭を明確にし、フレーズの向かう先をはっきり示します。音量を上げる指示ではないため、弱音の中でも成立します。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'risoluto は risolvere（解決する）を語根に持ち、決意が固まった状態を指します。decisivo は decidere（切り落とす、決める）で、決断する行為を指します。determinatamente は境界が定まっていることを指し、いずれも近い方向にありますが強調点が違います。',
+      },
+    ],
+    confusions: [
+      { term: 'Risoluto', slug: 'risoluto', note: '決然と。決意が固まった状態。' },
+      { term: 'Bestimmt', slug: 'bestimmt', note: 'ドイツ語で決然と。「定められた」が原義。' },
+      { term: 'Distinto', slug: 'distinto', note: 'はっきりと。輪郭の明確さ。' },
+    ],
+  },
+
+  'grandemente': {
+    lead: 'Grandemente は「雄大に、非常に」。grande（大きい）の副詞形で、規模の大きさを指します。',
+    sections: [
+      {
+        heading: '2つの用法',
+        body: 'イタリア語の grandemente は、規模の大きさを指す場合と、程度を強める「非常に」を指す場合があります。後者の場合は molto や assai と同じ働きになり、単独ではなく他の語に添えられます。楽譜で見たときは、単独か修飾かで判断します。',
+      },
+      {
+        heading: '規模を作るには時間が要る',
+        body: '規模の大きさを指す場合、音量を上げるだけでは達成されません。テンポをやや広く取り、音を十分に鳴らしきることで大きさが感じられます。速く駆け抜けると、音量が大きくても雄大には聞こえません。grandioso と同じ方向の指示です。',
+      },
+    ],
+    confusions: [
+      { term: 'Grandioso', slug: 'grandioso', note: '壮大に。同じ語根。' },
+      { term: 'Molto', slug: 'molto', note: '非常に。程度を強める用法と重なる。' },
+      { term: 'Maestoso', slug: 'maestoso', note: '荘厳に。威厳と格式を含む。' },
+    ],
+  },
+
+  'puramente': {
+    lead: 'Puramente は「純粋に、ありのままに」。puro（純粋な）の副詞形で、過剰な味付けを排することを求めます。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の purus（清らかな、混じりのない）に由来します。英語の pure、purify、そして puritan も同じ語根です。原義は不純物が混じっていないことで、そこから清らかさ、率直さという意味が広がりました。',
+      },
+      {
+        heading: '何を排するのか',
+        body: 'この指示が求めるのは、演奏者が加える装飾的な要素を減らすことです。過剰なルバート、大きな音量の起伏、濃いビブラートといった要素を控え、書かれた音をそのまま鳴らす方向です。ただし何もしないことではありません。飾りを外すと基礎が露出するため、音程、音色、リズムの精度が問われることになります。',
+      },
+      {
+        heading: 'semplice との違い',
+        body: 'semplice（素朴に）は簡素であることを指します。puramente は混じりがないことを指します。近い方向ですが、後者は「不純物を除く」という含みを持つため、音の質そのものの清らかさに重点があります。',
+      },
+    ],
+    confusions: [
+      { term: 'Semplice', slug: 'semplice', note: '素朴に。簡素さが主体。' },
+      { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+      { term: 'Religioso', slug: 'religioso', note: '宗教的に。澄んだ響きを求める。' },
+    ],
+  },
+
+  'quietamente': {
+    lead: 'Quietamente は「静かに」。ラテン語の quietus（静止した）を語根に持ち、深い平穏を指します。',
+    sections: [
+      {
+        heading: '「休んでいる」という語源',
+        body: 'ラテン語の quies（休息、静けさ）から派生した quietus に由来します。英語の quiet、quiescent、そして requiem（安息を＝死者のための安らぎ）も同じ語根です。原義は動きが止まって休んでいる状態です。',
+      },
+      {
+        heading: '反対語との関係',
+        body: '同じ語根に否定の接頭辞が付いた inquieto（落ち着かない）が反対にあたります。この2語が同じ曲の中に現れる場合、その対比が構造の一部になっています。',
+      },
+      {
+        heading: '静けさは音量ではない',
+        body: '弱く弾いても落ち着きがなければ静けさは生まれず、ある程度の音量があっても動きが収まっていれば静けさは成立します。テンポの安定、音の立ち上がりの穏やかさ、フレーズの起伏の小ささが、この語に応える要素です。',
+      },
+    ],
+    confusions: [
+      { term: 'Inquieto', slug: 'inquieto', note: '落ち着かない。同じ語根の否定形。' },
+      { term: 'Tranquillo', slug: 'tranquillo', note: '静かに。' },
+      { term: 'Calma', slug: 'calma', note: '静けさ。「真昼の暑さ」が語源。' },
+    ],
+  },
+
+  'cantando': {
+    lead: 'Cantando は「歌いながら」。cantare（歌う）の現在分詞で、cantabile と同じ内容の指示です。',
+    sections: [
+      {
+        heading: '現在分詞であること',
+        body: 'cantabile は「歌うことができる、歌うように」という形容詞、cantando は「歌いながら」という現在分詞です。楽譜での使用頻度は cantabile のほうが高く、指示内容の違いはありません。同じ語根から canto（歌）、cantata（歌われるもの）、canzone（歌曲）が派生しています。',
+      },
+      {
+        heading: '器楽で歌うこと',
+        body: '器楽曲にこの指示がある場合、旋律を声のように扱うことが求められます。具体的には、フレーズを息の長さで区切る、音と音をつなぐ、旋律の頂点へ向かう方向を作る、という扱いです。声は息が続く範囲でしか歌えないため、その制約を意識することが器楽での「歌う」につながります。',
+      },
+      {
+        heading: 'parlante との対',
+        body: 'parlante（語るように）が反対方向の指示です。歌は音の長さと高さが旋律線を作り、それ自体が形を持ちます。語りでは言葉の意味に応じて強弱と間が変わります。同じ旋律をどちらとして扱うかで、演奏が変わります。',
+      },
+    ],
+    confusions: [
+      { term: 'Cantabile', slug: 'cantabile', note: '歌うように。こちらが一般的な表記。' },
+      { term: 'Parlante', slug: 'parlante', note: '語るように。cantando と対になる。' },
+      { term: 'Canto', slug: 'canto', note: '歌。同じ語根。' },
+    ],
+  },
+
+  'ballando': {
+    lead: 'Ballando は「踊りながら」。ballare（踊る）の現在分詞で、舞曲のリズムを感じて演奏することを求めます。',
+    sections: [
+      {
+        heading: '語源',
+        body: '後期ラテン語の ballare（踊る）に由来します。英語の ball（舞踏会）、ballet、ballad はいずれも同じ語根です。バラッドが「歌」を意味するようになったのは、もともと踊りながら歌われたものだったためです。',
+      },
+      {
+        heading: '身体の動きとしてのリズム',
+        body: '踊りは身体の動きであるため、実際に動ける速度と重心の周期が前提になります。したがってこの指示は、拍が明確であること、重心が規則的に来ること、テンポが動ける範囲に収まることを求めます。舞曲の性格は、どの拍に重心が来るかで決まります。メヌエットの3拍子、ガヴォットの2拍子など、種類ごとに重心の置き方が違います。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: 'テンポが揺れると踊れなくなります。ただし機械的に均等にすると、踊りの弾みが失われます。実際の舞曲では、拍の内部でわずかな重心の偏りがあり、それが弾みを作ります。ウィンナワルツの2拍目が早めに来る慣習がその例です。',
+      },
+    ],
+    confusions: [
+      { term: 'Ballata', slug: 'ballata', note: '同じ語根の楽曲形式。' },
+      { term: 'Minuet', slug: 'minuet', note: '3拍子の舞曲。' },
+      { term: 'Alla marcia', slug: 'alla-marcia', note: '行進曲風に。歩みという点で近い。' },
+    ],
+  },
+
+  'carezzando': {
+    lead: 'Carezzando は「愛撫しながら」。carezza（愛撫）を語根に持つ現在分詞で、触れ方の柔らかさを求めます。',
+    sections: [
+      {
+        heading: '触れる動作としての指示',
+        body: 'carezza は手で優しく撫でる動作を指す語で、英語の caress も同じ語源です。この指示が求めているのは感情ではなく、触れ方です。したがって、鍵盤や弦に接触する瞬間の扱いが直接この指示に対応します。押すのではなく撫でるという動作の違いが、音の立ち上がりに現れます。',
+      },
+      {
+        heading: '語形の違い',
+        body: 'carezzevole（形容詞）、accarezzevole（接頭辞付きの形容詞）、carezzando（現在分詞）はいずれも同じ語根から派生した語で、指示内容の違いはありません。現在分詞形は動作が続いていることを示します。',
+      },
+    ],
+    confusions: [
+      { term: 'Carezzevole', slug: 'carezzevole', note: '愛撫するように。形容詞形。' },
+      { term: 'Accarezzevole', slug: 'accarezzevole', note: '同じ語根の形容詞形。' },
+      { term: 'Zart', slug: 'zart', note: '優しく。ドイツ語。' },
+    ],
+  },
+
+  'addolcendo': {
+    lead: 'Addolcendo は「和らげながら」。dolce（甘い、柔らかい）を語根に持つ現在分詞で、表情が軟化していく過程を示します。',
+    sections: [
+      {
+        heading: '現在分詞であること',
+        body: 'dolce から動詞 addolcire（甘くする、和らげる）が作られ、その現在分詞が addolcendo です。現在分詞であるため、状態ではなく変化していく過程を示します。dolce が到達点、addolcendo がそこへ向かう道筋です。',
+      },
+      {
+        heading: '何が和らぐのか',
+        body: 'この指示は、直前に硬さや緊張があったことを前提としています。角のあった音が丸くなり、張っていた表情が緩んでいく過程です。音量が下がることを伴う場合が多いのですが、指示しているのは音量ではなく質の変化です。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '和らげるには、打鍵や弓の立ち上がりを段階的に穏やかにしていきます。同時に、テンポの張りも緩めることが多くなります。ただし支えを失うと、和らぐのではなく崩れます。',
+      },
+    ],
+    confusions: [
+      { term: 'Dolce', slug: 'dolce', note: '甘く、柔らかく。到達点。' },
+      { term: 'Beruhigend', slug: 'beruhigend', note: '静まっていく。ドイツ語で同種の過程。' },
+      { term: 'Calando', slug: 'calando', note: '弱めながら遅く。' },
+    ],
+  },
+
+  'abbandonatamente': {
+    lead: 'Abbandonatamente は「身を任せて」。abbandonare（委ねる、放棄する）を語根に持つ副詞形です。',
+    sections: [
+      {
+        heading: '委ねるという指示',
+        body: 'この語が求めるのは、制御しようとする意識を手放すことです。英語の abandon も同じ語で、「自制を捨てる」という用法があります。感情を作るのではなく、流れに委ねるという方向です。',
+      },
+      {
+        heading: '崩すことではない',
+        body: '委ねるという指示は、テンポやリズムを自由に扱ってよいという意味ではありません。委ねているように聞こえるためには、実際には構造が保たれている必要があります。崩れると、委ねた印象ではなく不安定な演奏になります。',
+      },
+      {
+        heading: '語形',
+        body: '同じ語根から con abbandono（身を任せて）という前置詞句、abbandonato（委ねられた）という過去分詞も作られています。指示内容の違いはなく、作曲者の表記の選択によるものです。',
+      },
+    ],
+    confusions: [
+      { term: 'Con abbandono', slug: 'con-abbandono', note: '身を任せて。前置詞句の形。' },
+      { term: 'Scatenato', slug: 'scatenato', note: '鎖を解かれて。解放が主体。' },
+      { term: 'Libero', slug: 'libero', note: '自由に。' },
+    ],
+  },
+
+  'con-abandono': {
+    lead: 'Con abbandono の表記です。b が1つになっていますが、イタリア語として正しい綴りは abbandono で、意味に違いはありません。',
+    sections: [
+      {
+        heading: '内容は con abbandono と同じ',
+        body: '「身を任せて、奔放に」を意味し、制御しようとする意識を手放すことを求めます。感情を作るのではなく、流れに委ねるという方向です。詳しい説明は con abbandono のページにあります。',
+      },
+      {
+        heading: '委ねることと崩れることの違い',
+        body: '委ねているように聞こえるためには、実際には構造が保たれている必要があります。テンポやリズムが崩れると、委ねた印象ではなく不安定な演奏になります。この点はどの表記でも同じです。',
+      },
+    ],
+    confusions: [
+      { term: 'Con abbandono', slug: 'con-abbandono', note: '正しい綴り。詳しい説明はこちら。' },
+      { term: 'Abbandonatamente', slug: 'abbandonatamente', note: '副詞形。' },
+    ],
+  },
+
+  'con-abandone': {
+    lead: 'Con abbandono の表記です。語尾が -one になっていますが、イタリア語として正しい形は abbandono です。',
+    sections: [
+      {
+        heading: '内容は con abbandono と同じ',
+        body: '「身を任せて」を意味し、自制を手放して音楽の流れに委ねることを求めます。詳しい説明は con abbandono のページにあります。',
+      },
+      {
+        heading: '表記の揺れについて',
+        body: 'この辞典には con abbandono、con abandono、con abandone という3つの表記が別項目として収録されています。いずれも同じ指示を指しており、正しい綴りは con abbandono です。b の数と語尾が異なるだけの差です。',
+      },
+    ],
+    confusions: [
+      { term: 'Con abbandono', slug: 'con-abbandono', note: '正しい綴り。詳しい説明はこちら。' },
+      { term: 'Con abandono', slug: 'con-abandono', note: '同じ語の別の表記。' },
+    ],
+  },
+
+  'come-sopra': {
+    lead: 'Come sopra は「上の（前の）ように」。直前に書かれた指示や奏法をそのまま続けることを示します。',
+    sections: [
+      {
+        heading: '何を参照しているのか',
+        body: 'sopra は「上に」を意味し、楽譜の上方、すなわち直前に書かれたものを指します。奏法の指示、強弱、音型のいずれについても使われます。書き写す手間を省くための記法で、come prima（最初のように）が曲の冒頭を参照するのに対して、come sopra は直前を参照します。',
+      },
+      {
+        heading: '範囲が曖昧になりやすい',
+        body: 'どこまでが「上の」なのか、どの要素を引き継ぐのかは明示されないことが多くあります。演奏者が判断することになり、アンサンブルでは解釈をそろえておく必要があります。奏法が変わる新しい指示が出るまで、と読むのが一般的です。',
+      },
+      {
+        heading: '関連する記法',
+        body: 'simile（同様に）が同じ目的の語です。8va sopra（1オクターブ上で）のように、sopra は位置を示す語としても使われるため、文脈で判断します。',
+      },
+    ],
+    confusions: [
+      { term: 'Come prima', slug: 'come-prima', note: '最初のように。曲の冒頭を参照する。' },
+      { term: 'Simile', slug: 'simile', note: '同様に。同じ扱いを続ける。' },
+    ],
+  },
+
+  'leidenschaftlich': {
+    lead: 'Leidenschaftlich はドイツ語で「情熱的に」。イタリア語の appassionato に相当しますが、語の成り立ちを見ると両者が同じ構造を持っていることが分かります。',
+    sections: [
+      {
+        heading: '「苦しむ」から作られた語',
+        body: 'Leidenschaft（情熱）は、動詞 leiden（苦しむ、耐える）に名詞を作る接尾辞 -schaft が付いた語です。つまりドイツ語では「苦しむこと」から情熱という語が作られています。イタリア語の passione もラテン語 passio（受けること、受難）に由来し、同じく苦しみを語根に持ちます。二つの言語が独立に、情熱を「耐えるもの」として名づけたことになります。',
+      },
+      {
+        heading: '語源から読める性質',
+        body: 'どちらの語も、能動的に振るう感情ではなく、抑えきれずに襲ってくるものを指しています。したがってこの指示は、感情を作って見せることではありません。枠の中で抑えきれずに溢れているように聞こえることが目標であり、その枠、すなわちテンポとリズムの骨格が保たれていることが前提になります。',
+      },
+      {
+        heading: 'ドイツ語の表情語彙',
+        body: 'ドイツ語圏の作曲家は、イタリア語の定型に加えて自国語で細かい指示を書くことがあります。leidenschaftlich、zart（優しく）、kraftvoll（力強く）、ruhig（静かに）、bewegt（動きをもって）などがその語彙です。マーラーの楽譜は、この種のドイツ語による指示が特に詳細に書き込まれた例として知られています。',
+      },
+    ],
+    confusions: [
+      { term: 'Appassionato', slug: 'appassionato', note: 'イタリア語で情熱的に。同じく「苦しむ」を語根に持つ。' },
+      { term: 'Begeistert', slug: 'begeistert', note: '感激して。Geist（精神）を語根に持つ。' },
+      { term: 'Kraftvoll', slug: 'kraftvoll', note: '力強く。' },
+    ],
+  },
+
+  'begeistert': {
+    lead: 'Begeistert はドイツ語で「感激して、霊感を受けて」。Geist（精神、霊）を語根に持つ語です。',
+    sections: [
+      {
+        heading: 'Geist という語',
+        body: 'begeistern は「Geist を吹き込む」という構造の動詞で、その過去分詞が begeistert です。Geist は精神、霊、才気を意味し、英語の ghost と同じ語根です。したがってこの語が指すのは、単なる興奮ではなく、外から霊感が入ってきたような高揚です。',
+      },
+      {
+        heading: 'enthousiasme との共通性',
+        body: 'ギリシャ語由来の enthousiasmos は en（内に）と theos（神）から成り、「神が内にある状態」を意味します。ドイツ語の begeistert も「霊が吹き込まれた」という構造で、両者は発想が一致しています。高揚を、自分の内から出るものではなく外から与えられたものとして捉える見方です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '与えられた高揚という性質から、この指示は計算された表現とは方向が違います。ただし制御を失うことでもありません。音量やテンポの振れ幅を大きく取りながら、骨格は保つという扱いになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Enthousiasme', slug: 'enthousiasme', note: 'フランス語で熱狂。「神が内にある」が語源。' },
+      { term: 'Leidenschaftlich', slug: 'leidenschaftlich', note: '情熱的に。「苦しむ」を語根に持つ。' },
+      { term: 'Con brio', slug: 'con-brio', note: '活気をもって。' },
+    ],
+  },
+
+  'enthousiasme': {
+    lead: 'Enthousiasme はフランス語で「熱狂、情熱」。ギリシャ語 enthousiasmos に由来し、原義は「神が内にある状態」です。',
+    sections: [
+      {
+        heading: '「神が内にある」',
+        body: 'en（内に）と theos（神）から成る語です。古代ギリシャでは、詩人や予言者が神に憑かれて語る状態を指しました。英語の enthusiasm、そして theology、atheist も同じ theos を語根に持ちます。原義は、自分の意志ではなく外から与えられた高揚です。',
+      },
+      {
+        heading: 'ドイツ語 begeistert との一致',
+        body: 'ドイツ語の begeistert は「Geist（霊）を吹き込まれた」という構造で、同じ発想に基づいています。二つの言語が別の語で同じ捉え方をしていることになります。高揚を外から来るものと見る点が共通しています。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '与えられた高揚という性質から、抑制された表現とは方向が違います。音量と動きの幅を大きく取ることが語に合いますが、骨格が崩れると熱狂ではなく混乱になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Begeistert', slug: 'begeistert', note: 'ドイツ語で感激して。同じ発想の語。' },
+      { term: 'Exaltation', slug: 'exaltation', note: '高揚。より上へ向かう含み。' },
+      { term: 'Appassionato', slug: 'appassionato', note: '情熱的に。' },
+    ],
+  },
+
+  'behaglich': {
+    lead: 'Behaglich はドイツ語で「心地よく、悠々と」。くつろいだ満足感を指す語で、他の言語に対応する定型句を持ちません。',
+    sections: [
+      {
+        heading: '訳しにくい語',
+        body: 'Behagen（快適さ、満足）から派生した語で、居心地のよさ、気の置けない安らぎを意味します。イタリア語の tranquillo（静かに）や comodo（無理のない）が近いのですが、behaglich には「くつろいでいる」という生活感が含まれます。静けさではなく、満ち足りていることが中心です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: 'くつろぎが性質であるため、緊張を作る要素を避けることになります。テンポを追わず、フレーズを急がず、音量の起伏を控えます。ただし平坦にすると退屈になるため、余裕のある動きは保ちます。急いでいないことが聴き手に伝わる状態が目標です。',
+      },
+      {
+        heading: 'ドイツ語の生活語彙',
+        body: 'ドイツ語で書かれた指示には、behaglich のように日常の感覚に根ざした語が現れます。gemütlich（居心地よく）も同じ系統の語です。イタリア語の定型が音楽の専門語彙であるのに対して、これらは日常語をそのまま持ち込んでいる点が特徴です。',
+      },
+    ],
+    confusions: [
+      { term: 'Comodo', slug: 'comodo', note: '無理のない速さで。余裕という点で近い。' },
+      { term: 'Tranquillo', slug: 'tranquillo', note: '静かに。静けさが主体。' },
+      { term: 'Heiter', slug: 'heiter', note: '朗らかに。明るさが主体。' },
+    ],
+  },
+
+  'beruhigend': {
+    lead: 'Beruhigend はドイツ語で「静まっていく」。beruhigen（落ち着かせる）の現在分詞で、平穏を取り戻す過程を示します。',
+    sections: [
+      {
+        heading: '現在分詞であること',
+        body: 'Ruhe（静けさ、休息）を語根とし、be- を付けて「静かにする」という動詞になり、その現在分詞がこの形です。現在分詞であるため、静かな状態ではなく、静かになっていく過程を指します。ruhig（静かに）が状態を示すのに対して、こちらは変化です。',
+      },
+      {
+        heading: '何が静まるのか',
+        body: 'この指示は、直前に高まりがあったことを前提としています。興奮した状態から落ち着いていく箇所に置かれるため、音量とテンポの両方が緩む場合が多くあります。イタリア語の calando（弱めながら遅く）が近い内容ですが、beruhigend は「鎮まる」という心理的な方向を明示している点が違います。',
+      },
+      {
+        heading: '関連するドイツ語の指示',
+        body: 'ruhig（静かに）が到達点、beruhigend がそこへ向かう過程です。反対方向には bewegt（動きをもって）、drängend（急いて）があります。ドイツ語では現在分詞の -end 形で変化の過程を示すことが多く、この語形を知っておくと読み取れる範囲が広がります。',
+      },
+    ],
+    confusions: [
+      { term: 'Calando', slug: 'calando', note: '弱めながら遅く。近い内容のイタリア語。' },
+      { term: 'Pacato', slug: 'pacato', note: '穏やかに。鎮まった状態を指す。' },
+      { term: 'Tranquillo', slug: 'tranquillo', note: '静かに。到達点としての静けさ。' },
+    ],
+  },
+
+  'bestimmt': {
+    lead: 'Bestimmt はドイツ語で「決然と、はっきりと」。bestimmen（定める、決定する）の過去分詞です。',
+    sections: [
+      {
+        heading: '「定められた」',
+        body: 'Stimme（声）を語根とする bestimmen は、もともと投票で決めることを指す語でした。そこから「定める、決定する」という意味になり、その過去分詞が bestimmt です。したがってこの語が示すのは、迷いが残っていない、すでに決まっている状態です。日常のドイツ語では「確かに、きっと」という副詞としても使われます。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '決まっているという性質から、テンポの揺れやためらいを排することになります。リズムを正確に刻み、音の輪郭を明確にし、フレーズの向かう先をはっきり示します。音量を上げる指示ではないため、弱音の中でも成立します。',
+      },
+      {
+        heading: 'イタリア語との対応',
+        body: 'risoluto（決然と）、deciso（きっぱりと）が対応する語です。risoluto は risolvere（解決する）を語根に持ち、決意が固まった状態を指します。bestimmt は「定められた」で、外から見て確定していることを指す点にわずかな違いがあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Risoluto', slug: 'risoluto', note: '決然と。決意が固まった状態。' },
+      { term: 'Determinatamente', slug: 'determinatamente', note: 'きっぱりと。イタリア語の副詞形。' },
+      { term: 'Kraftvoll', slug: 'kraftvoll', note: '力強く。力が主体。' },
+    ],
+  },
+
+  'zart': {
+    lead: 'Zart はドイツ語で「優しく、繊細に」。イタリア語の dolce や delicato に相当し、壊れやすいものを扱うような扱いを求めます。',
+    sections: [
+      {
+        heading: '語の含み',
+        body: 'zart は、柔らかい、傷つきやすい、繊細なという意味を持つ形容詞です。人の肌や若い植物に対しても使われる日常語で、抵抗の少ないもの、力を加えると損なわれるものを指します。したがってこの指示は、音量を落とすことではなく、扱いに注意を要するという質を求めています。',
+      },
+      {
+        heading: '音量ではなく動作',
+        body: '弱く弾いても打鍵や弓が乱暴であれば zart にはなりません。逆にある程度の音量があっても、立ち上がりが穏やかで角がなければこの質は出ます。指や弓が弦や鍵に触れる瞬間の扱いが、この指示に直接対応します。',
+      },
+      {
+        heading: '関連するドイツ語',
+        body: 'zärtlich（優しく、愛情深く）という副詞形もあり、こちらは人への愛情という含みが強くなります。sehr zart（非常に繊細に）のように sehr と組み合わせて強められることもあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Dolce', slug: 'dolce', note: '甘く、柔らかく。対応するイタリア語。' },
+      { term: 'Delicatamente', slug: 'delicatamente', note: '繊細に。細心の扱いを求める。' },
+      { term: 'Carezzevole', slug: 'carezzevole', note: '愛撫するように。触れ方を述べる。' },
+    ],
+  },
+
+  'sehr': {
+    lead: 'Sehr はドイツ語で「非常に」。イタリア語の molto や assai に相当し、単独ではなく他の語に添えて程度を強めます。',
+    sections: [
+      {
+        heading: '英語の sore と同じ語根',
+        body: 'sehr はゲルマン語系の語で、英語の sore と語源を共有します。もともとは「痛みを伴って、激しく」という意味で、そこから程度を強める副詞へ変化しました。英語でも古い言い方に sore afraid（ひどく恐れて）という用法が残っており、同じ変化の跡が見られます。程度の強調が痛みの語から生まれるのは、複数の言語で見られる現象です。',
+      },
+      {
+        heading: '組み合わせの例',
+        body: 'sehr langsam（非常に遅く）、sehr zart（非常に繊細に）、sehr kräftig（非常に力強く）のように使われます。ドイツ語で指示を書く楽譜では、この語が頻繁に現れます。マーラーの楽章表示のように、複数の語を連ねた長い指示の中で程度を調整する役割を担います。',
+      },
+      {
+        heading: '対になる語',
+        body: 'wenig（少し）、etwas（やや）、nicht zu（〜しすぎないで）が程度を抑える側の語です。sehr との対で、指示の強さが調整されます。',
+      },
+    ],
+    confusions: [
+      { term: 'Molto', slug: 'molto', note: '非常に。対応するイタリア語。' },
+      { term: 'Assai', slug: 'assai', note: '十分に。「足りている」という含み。' },
+      { term: 'Wenig', slug: 'wenig', note: '少し。sehr の反対方向。' },
+    ],
+  },
+
+  'wenig': {
+    lead: 'Wenig はドイツ語で「少し」。イタリア語の poco に相当し、他の語に添えて程度を抑えます。',
+    sections: [
+      {
+        heading: '組み合わせの例',
+        body: 'ein wenig langsamer（少し遅く）、ein wenig zurückhaltend（少し控えて）のように使われます。ドイツ語では ein（不定冠詞）を伴って ein wenig とする形が一般的で、これはイタリア語の un poco と同じ構造です。どちらの言語も、冠詞の有無で意味は変わりません。',
+      },
+      {
+        heading: '程度を抑える語の階層',
+        body: 'ドイツ語では、弱いほうから kaum（かろうじて）、etwas（やや）、ein wenig（少し）、ziemlich（かなり）、sehr（非常に）という順に並びます。イタリア語の appena、poco、assai、molto に対応する体系です。楽譜で複数の程度指示が現れる箇所では、この相対関係で読むことになります。',
+      },
+      {
+        heading: '語の広がり',
+        body: 'wenig は英語の wane（衰える）と語根を共有すると考えられています。減ること、足りないことを指す語根から、程度の少なさを表す副詞になっています。',
+      },
+    ],
+    confusions: [
+      { term: 'Poco', slug: 'poco', note: '少し。対応するイタリア語。' },
+      { term: 'Sehr', slug: 'sehr', note: '非常に。wenig の反対方向。' },
+      { term: 'Appena', slug: 'appena', note: 'かろうじて。より弱い。' },
+    ],
+  },
+
+  'heiter': {
+    lead: 'Heiter はドイツ語で「朗らかに、晴れ晴れと」。天候について「晴れた」という意味でも使われる語です。',
+    sections: [
+      {
+        heading: '天気の語でもある',
+        body: 'ドイツ語の heiter は、人の気分について「朗らかな」を意味し、同時に天候について「晴れた、雲のない」を意味します。この二つは別の用法ではなく、曇りがないという同じ性質を指しています。したがってこの指示は、明るさの中に濁りや影がないことを求めていると読めます。',
+      },
+      {
+        heading: '他の明るさの語との違い',
+        body: 'イタリア語の giocoso（遊び心のある）には冗談の要素があり、brillante（輝かしく）には技巧の華やかさが含まれます。heiter にはそのどちらもありません。曇りのない澄んだ明るさそのものを指す語です。したがって、おどけたり技巧を見せたりする扱いは方向から外れます。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '濁りのない響きが求められるため、ペダルで音を混ぜすぎない、低音を重くしない、テンポを重くしないといった扱いになります。音量を上げる指示ではなく、質の指定です。',
+      },
+    ],
+    confusions: [
+      { term: 'Giocoso', slug: 'giocoso', note: '遊び心をもって。冗談の要素がある。' },
+      { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+      { term: 'Behaglich', slug: 'behaglich', note: '心地よく。くつろぎが主体。' },
+    ],
+  },
+
+  'klagend': {
+    lead: 'Klagend はドイツ語で「嘆くように」。klagen（嘆く、訴える）の現在分詞で、イタリア語の lamentoso に相当します。',
+    sections: [
+      {
+        heading: '「訴える」という含み',
+        body: 'ドイツ語の klagen には、嘆くという意味と、法的に訴えるという意味の両方があります（Klage は訴状も意味します）。したがってこの語には、悲しみを内に籠らせるのではなく、外へ向けて訴えるという方向が含まれます。英語の claim も同じ語根に連なります。',
+      },
+      {
+        heading: '内へ籠る悲しみとの違い',
+        body: 'mesto（沈んだ）や malinconico（憂鬱な）が内向きの悲しみを指すのに対して、klagend は外へ向かいます。したがって、抑えて小さくするのではなく、訴えとして聞こえることが求められます。音量を落としても、向かう方向が失われると語から外れます。',
+      },
+      {
+        heading: '現在分詞であること',
+        body: '-end で終わる現在分詞は、その動作が進行中であることを示します。したがって klagend が置かれた区間では、嘆きが続いている状態になります。ドイツ語の指示は現在分詞形が多く、状態ではなく進行を示すものとして読めます。',
+      },
+    ],
+    confusions: [
+      { term: 'Lamentoso', slug: 'lamentoso', note: '嘆き悲しんで。対応するイタリア語。' },
+      { term: 'Mesto', slug: 'mesto', note: '沈んだ悲しみ。内向き。' },
+      { term: 'Gemendo', slug: 'gemendo', note: 'うめくように。' },
+    ],
+  },
+
+  'kraftvoll': {
+    lead: 'Kraftvoll はドイツ語で「力強く」。Kraft（力）に voll（満ちた）を付けた語で、内から満ちている力を指します。',
+    sections: [
+      {
+        heading: '「力に満ちた」という構造',
+        body: 'Kraft は力、体力、エネルギーを意味する語で、英語の craft と語根を共有します。英語の craft が現在では技能を指すのは、もともと「力、能力」を意味していたものが技術の意味へ移ったためです。voll は英語の full に対応します。したがって kraftvoll は「力で満たされた」という構造で、外から加える力ではなく、内側に満ちている力を指します。',
+      },
+      {
+        heading: '音量との違い',
+        body: '力が満ちていることは、音量が大きいこととは別です。弱音の中でも、音に芯があり張りが保たれていれば kraftvoll は成立します。逆に、大きな音でも支えが抜けていれば力を感じさせません。体幹から支えて音を出すことが、この指示に応える方法です。',
+      },
+      {
+        heading: '関連するドイツ語',
+        body: 'kräftig（力強い）がほぼ同義で、こちらのほうが楽譜での使用頻度が高くなります。energisch（精力的に）、markig（芯のある）も近い方向の語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Kräftig', slug: 'kräftig', note: '力強い。ほぼ同義でより一般的な語形。' },
+      { term: 'Energico', slug: 'energico', note: '精力的に。対応するイタリア語。' },
+      { term: 'Con forza', slug: 'con-forza', note: '力をもって。力の投入を指す。' },
+    ],
+  },
+
+  'niederschlagend': {
+    lead: 'Niederschlagend はドイツ語で「意気消沈して」。nieder（下へ）と schlagen（打つ）から成り、打ちひしがれた状態を指します。',
+    sections: [
+      {
+        heading: '「下へ打つ」という構造',
+        body: 'niederschlagen は物理的に「打ち倒す」を意味し、そこから精神的に「落胆させる」という意味が生じました。名詞の Niederschlag は、化学の沈殿や気象の降水を指す語でもあります。いずれも「下へ落ちる」という共通の像を持っています。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '打ちひしがれた状態には、力を失っていることと、下へ向かっていることの両方が含まれます。したがって、音量を落とすだけでなく、フレーズが上へ向かわない扱いが語に合います。低音を重く扱い、旋律の頂点を作らないことで、沈んだ響きになります。',
+      },
+      {
+        heading: '指揮用語との区別',
+        body: 'Niederschlag は指揮において腕を下へ振り下ろす動作（英語の downbeat）を指す語でもあります。楽譜の表情指示としての niederschlagend とは意味が違うため、文脈で判断する必要があります。',
+      },
+    ],
+    confusions: [
+      { term: 'Mesto', slug: 'mesto', note: '沈んだ悲しみ。イタリア語。' },
+      { term: 'Downbeat', slug: 'downbeat', note: '強拍。Niederschlag は指揮用語でこれを指す。' },
+      { term: 'Languente', slug: 'languente', note: '衰えて。力が抜けていく状態。' },
+    ],
+  },
+
+  'edel': {
+    lead: 'Edel はドイツ語で「気高く、高貴に」。イタリア語の nobile に相当し、節度と品格を求めます。',
+    sections: [
+      {
+        heading: '語の広がり',
+        body: 'ドイツ語の edel は、生まれの高貴さ、性質の高潔さ、素材の上質さのいずれにも使われます。Edelstein（宝石）、Edelmetall（貴金属）、Edelweiß（エーデルワイス、高貴な白）がその例です。英語の noble が持つ意味の幅とほぼ重なります。',
+      },
+      {
+        heading: '感情を出しすぎないこと',
+        body: '高貴さは、感情をそのまま表に出さないところに現れます。したがってこの指示のある箇所では、表情を強く付けることが逆効果になります。抑制を保ちながら空虚にならないという扱いが求められます。音量や規模とは関係なく成立する指示です。',
+      },
+    ],
+    confusions: [
+      { term: 'Nobile', slug: 'nobile', note: '高貴に。対応するイタリア語。' },
+      { term: 'Dignitoso', slug: 'dignitoso', note: '威厳をもって。自らを高く保つ姿勢。' },
+      { term: 'Garbato', slug: 'garbato', note: '上品に。他者への配慮を含む。' },
+    ],
+  },
+
+  'festlich': {
+    lead: 'Festlich はドイツ語で「祝祭的に」。Fest（祝祭、祭り）から派生した語で、イタリア語の festivo に相当します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の festum（祝祭）に由来する Fest から作られた形容詞です。英語の festival、feast、fair（定期市）も同じ語根です。ドイツ語の Fest は宗教的な祝日から私的な祝いまで広く指す語で、festlich もそれに応じた広さを持ちます。',
+      },
+      {
+        heading: '音楽上の慣習',
+        body: '祝祭を描く音楽では、金管楽器の輝かしい響き、打楽器を加えた編成、明るい調が用いられてきました。この指示のある箇所がそうした書法を伴っている場合、その明るさを前に出すことが指示に沿った扱いになります。速く駆け抜けるより、堂々とした歩みを保つほうが祝祭の性格に合う場合が多くあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Festivo', slug: 'festivo', note: '祝祭的に。対応するイタリア語。' },
+      { term: 'Pomposo', slug: 'pomposo', note: '壮麗に。行列という語源。' },
+      { term: 'Brillante', slug: 'brillante', note: '輝かしく。技巧の華やかさを含む。' },
+    ],
+  },
+
+  'frorich': {
+    lead: 'ドイツ語で「楽しく、陽気に」を意味する fröhlich の表記です。辞典にはウムラウトのない形で収録されていますが、正しい綴りは fröhlich です。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'froh（うれしい、喜ばしい）に形容詞を作る接尾辞 -lich を付けた形です。froh はゲルマン語系の語で、跳ねる、生き生きしているという語根に遡ると考えられています。英語の frolic（はしゃぐ）と語根を共有します。',
+      },
+      {
+        heading: 'heiter との違い',
+        body: 'heiter は曇りのない澄んだ明るさを指し、天候の「晴れ」にも使われます。fröhlich は喜びが外に現れている状態で、より活動的です。前者が静かな明るさでも成立するのに対して、後者には動きが伴います。',
+      },
+      {
+        heading: 'ドイツ語の表記について',
+        body: 'ウムラウト（ö）は、ASCII 環境では oe と書き換えるのが慣習です（froehlich）。ウムラウトを単に省いて o と書くと別の語になってしまうため、正しくは fröhlich または froehlich です。',
+      },
+    ],
+    confusions: [
+      { term: 'Heiter', slug: 'heiter', note: '朗らかに。静かな明るさでも成立する。' },
+      { term: 'Giocoso', slug: 'giocoso', note: '遊び心をもって。イタリア語。' },
+      { term: 'Gaudioso', slug: 'gaudioso', note: '喜びの。' },
+    ],
+  },
+
+  'expressif': {
+    lead: 'Expressif はフランス語で「表情豊かに」。イタリア語の espressivo に相当します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の exprimere（押し出す、表現する）に由来します。ex（外へ）と premere（押す）から成り、原義は「押し出す」です。英語の express、expression、そして press も同じ語根です。内にあるものを外へ押し出すという構造が、表現という語の成り立ちです。',
+      },
+      {
+        heading: '何を求めている指示か',
+        body: 'この語は具体的な操作を示していません。悲しく弾くのか喜ばしく弾くのかも指定していません。指示しているのは、音を並べるだけで終わらせず、その箇所が何かを語っている状態にすることです。何を表現するかは、和声、旋律の形、調、前後の文脈から読み取ることになります。',
+      },
+      {
+        heading: 'フランス語の指示の書き方',
+        body: 'フランス語で指示を書く作曲家の楽譜では、expressif が単独で置かれるだけでなく、他の語と組み合わせて文のように書かれることがあります（très expressif、doux et expressif など）。イタリア語の定型より柔軟に、文として書かれる傾向があります。',
+      },
+    ],
+    confusions: [
+      { term: 'Espressivo', slug: 'espressivo', note: '表情豊かに。対応するイタリア語。' },
+      { term: 'Espressione', slug: 'espressione', note: '表情。名詞形。' },
+      { term: 'Con sentimento', slug: 'con-sentimento', note: '感情をもって。内側の状態を指す。' },
+    ],
+  },
+
+  'espressione': {
+    lead: 'Espressione はイタリア語で「表情、表現」。espressivo の名詞形で、con espressione の形で用いられます。',
+    sections: [
+      {
+        heading: '語形の関係',
+        body: 'espressivo が形容詞、espressione がその名詞形です。楽譜では con espressione（表情をもって）という前置詞句として現れます。指示内容は espressivo と同じで、作曲者の表記の選択によるものです。楽譜では espressivo または espr. の略記が一般的で、名詞形のほうが少なくなります。',
+      },
+      {
+        heading: '語源',
+        body: 'ラテン語の exprimere（押し出す）に由来します。ex（外へ）と premere（押す）から成り、内にあるものを外へ出すという構造です。英語の expression、フランス語の expression も同じ語です。',
+      },
+      {
+        heading: '関連する組み合わせ',
+        body: 'senza espressione（表情なしで）という否定形もあり、あえて無表情に演奏することを求めます。20世紀以降の作品で、感情の表出を排する目的で用いられることがあります。指示の存在は、通常なら表情を付ける箇所であることの裏返しでもあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Espressivo', slug: 'espressivo', note: '形容詞形。こちらが一般的な表記。' },
+      { term: 'Con espressione', slug: 'con-espressione', note: '前置詞句としての形。' },
+      { term: 'Expressif', slug: 'expressif', note: 'フランス語で表情豊かに。' },
+    ],
+  },
+
+  'sombre': {
+    lead: 'Sombre はフランス語で「暗い、陰気な」。イタリア語の oscuro に相当し、影の濃い響きを求めます。',
+    sections: [
+      {
+        heading: '「影」を語根に持つ',
+        body: 'ラテン語の umbra（影）に接頭辞が付いた形から発達したと考えられています。英語の somber（somber / sombre）、umbrella（小さな影＝日傘）、umbrage も同じ umbra に連なります。したがってこの語が指すのは、光がないことより、影が差していることです。',
+      },
+      {
+        heading: '演奏で影を作る',
+        body: '暗い響きは音量を落とすことでは作れません。倍音の構成を変えることで色が変わります。弦楽器では弓を指板寄りで弾いて高い倍音を減らす、管楽器では息の速度を落とす、ピアノでは打鍵の立ち上がりを鈍らせるといった方法があります。低音域を厚く使うことも暗さに寄与します。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'misterioso（神秘的に）は隠されていることが主体で、輪郭をぼかす方向にあります。sombre は暗さそのものであり、輪郭は明確なままでも成立します。freddo（冷たく）は温度の語で、感情の欠如を含みます。sombre には感情があり、それが暗いという点が違います。',
+      },
+    ],
+    confusions: [
+      { term: 'Oscuro', slug: 'oscuro', note: '暗く。対応するイタリア語。' },
+      { term: 'Mystérieux', slug: 'mystérieux', note: '神秘的に。輪郭をぼかす方向。' },
+      { term: 'Freddo', slug: 'freddo', note: '冷たく。感情の欠如を含む。' },
+    ],
+  },
+
+  'mystérieux': {
+    lead: 'Mystérieux はフランス語で「神秘的に」。ギリシャ語 mystērion に由来し、原義は秘儀に関わる語です。',
+    sections: [
+      {
+        heading: '「口を閉じる」という語源',
+        body: 'ギリシャ語の myein（口や目を閉じる）から派生した mystēs は、秘儀に加わった者を指します。秘儀の内容を口外しないという義務がこの語に含まれています。したがって mystērion の原義は「語ってはならないこと」です。英語の mystery、mystic も同じ語根です。単に分からないことではなく、隠されていることを指す語です。',
+      },
+      {
+        heading: '隠すという演奏',
+        body: '隠されているという性質から、この指示は輪郭をぼかす方向にあります。音の立ち上がりを鮮明にせず、拍を明確に刻まず、ペダルや残響で縁を和らげます。すべてを聞かせないことが目的であり、明瞭に演奏すると神秘性が失われます。',
+      },
+      {
+        heading: '暗さとは別',
+        body: 'sombre（暗い）は影が差している状態で、輪郭は明確でも成立します。mystérieux は隠されている状態で、輪郭が不明瞭であることが要件です。両者は組み合わせられますが、指しているものが違います。',
+      },
+    ],
+    confusions: [
+      { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。対応するイタリア語。' },
+      { term: 'Sombre', slug: 'sombre', note: '暗く。輪郭は明確でも成立する。' },
+      { term: 'Lontano', slug: 'lontano', note: '遠くから。輪郭をぼかす点で近い。' },
+    ],
+  },
+
+  'timbre': {
+    lead: '音色のことで、同じ高さ・同じ音量でも楽器や声によって異なる音の性質を指します。この違いは倍音の構成で説明できます。',
+    sections: [
+      {
+        heading: '倍音の配分が音色を決める',
+        body: '楽器が出す音は、基音だけでなく多数の倍音を含んでいます。どの倍音がどれだけ強く含まれるかの配分が、音色の違いを生みます。クラリネットが独特の音色を持つのは、片側が閉じた管の構造から奇数倍音が中心になるためです。同じドの音でもピアノとフルートで違って聞こえるのは、この配分が違うためです。',
+      },
+      {
+        heading: '立ち上がりも音色の一部',
+        body: '倍音の配分だけでなく、音の出だしの数十ミリ秒に含まれる情報も音色の認識に関わります。持続音の部分だけを切り出して聞くと、どの楽器か判別しにくくなることが知られています。したがって音色は、静的な性質ではなく時間的な変化を含む現象です。',
+      },
+      {
+        heading: '語源',
+        body: 'フランス語の timbre は、もともと太鼓や鈴を指す語でした。ギリシャ語の tympanon（太鼓）に遡ります。フランス語では現在も「切手、印章」の意味を持ちます。音色という用法は比較的新しく、19世紀に定着したものです。',
+      },
+      {
+        heading: '演奏で音色を変える',
+        body: '奏者が音色を変えるのは、倍音の配分を変える操作です。弦楽器で弓を弾く位置を変える（駒寄りで倍音が増え、指板寄りで減る）、管楽器で息の速度や口の形を変える、ピアノで打鍵の速度と指の当て方を変えるといった方法があります。いずれも物理的な操作に基づいています。',
+      },
+    ],
+    confusions: [
+      { term: 'Harmonics', slug: 'harmonics', note: '倍音。音色を決める要素。' },
+      { term: 'Nuance', slug: 'nuance', note: '微妙な変化。音色の細部に関わる。' },
+      { term: 'Register', slug: 'register', note: '音域。音色が変わる区分。' },
+    ],
+  },
+
+  'nuance': {
+    lead: 'Nuance は「微妙な差異」。フランス語の nue（雲）に由来し、原義は雲の色合いの移り変わりです。',
+    sections: [
+      {
+        heading: '「雲の色合い」という語源',
+        body: 'ラテン語の nubes（雲）からフランス語の nue が生まれ、そこから nuer（色合いをつける）、nuance が派生しました。雲は境目のない濃淡の連続でできています。したがってこの語が指すのは、段階に分けられない連続的な差異です。段階として区切れるものは nuance ではありません。',
+      },
+      {
+        heading: '記号で書けない領域',
+        body: '強弱記号は pp から ff までの段階を示しますが、その段階のあいだにある無数の状態は記号で書けません。テンポも同様です。nuance が指すのは、この記号の網目からこぼれる領域です。したがってこの語は、演奏者の判断に委ねられる部分を名指す語でもあります。',
+      },
+      {
+        heading: '何で作るのか',
+        body: '音量とテンポだけでは nuance は作れません。音色、音の立ち上がり、音の終わり方、和音の中の各音のバランス、わずかな時間の伸縮といった要素が関わります。これらは連続的に変えられるため、段階を持ちません。楽譜に書かれていない部分がここに属します。',
+      },
+    ],
+    confusions: [
+      { term: 'Timbre', slug: 'timbre', note: '音色。nuance の主要な要素。' },
+      { term: 'Espressivo', slug: 'espressivo', note: '表情豊かに。nuance を求める指示。' },
+      { term: 'Dynamics', slug: 'dynamics', note: '強弱法。段階を持つ体系。' },
+    ],
+  },
+
+  'quasi': {
+    lead: 'Quasi はラテン語由来で「〜のように、ほとんど」。単独ではなく、後に続く語と組み合わせて比喩的な指示を作ります。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の quam（〜のように）と si（もし）から成り、原義は「あたかも〜であるかのように」です。英語でも quasi- という接頭辞として使われ、「準〜、擬似〜」を意味します。完全にそうではないが、それに近いという含みを持ちます。',
+      },
+      {
+        heading: '組み合わせの例',
+        body: 'quasi una fantasia（幻想曲のように）、quasi recitativo（レチタティーヴォのように）、quasi niente（ほとんど無音で）、quasi cadenza（カデンツァのように）といった形で使われます。ベートーヴェンのピアノソナタ作品27の2曲には、いずれも Sonata quasi una fantasia という副題が付されています。第2番が《月光》として知られる作品です。',
+      },
+      {
+        heading: '「そのものではない」ことの意味',
+        body: 'quasi が付いているということは、完全にそうではないという留保です。quasi recitativo なら、レチタティーヴォのように自由に扱いながらも、拍節の枠は保つという読みになります。この留保を無視して完全にその様式で演奏すると、指示を超えることになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Come prima', slug: 'come-prima', note: '前と同じように。比較の指示。' },
+      { term: 'Fantasie', slug: 'fantasie', note: '幻想曲。quasi una fantasia の参照先。' },
+      { term: 'Recitative', slug: 'recitative', note: 'レチタティーヴォ。quasi recitativo の参照先。' },
+    ],
+  },
+
+  'eco': {
+    lead: 'Eco は「こだま」。直前の楽句を音量を落として繰り返す書法、およびそのように演奏する指示を指します。',
+    sections: [
+      {
+        heading: 'エコーという書法',
+        body: '同じ楽句を、1回目は通常の音量で、2回目は弱く繰り返します。こだまが返ってくるように聞かせる書法で、バロック期に広く用いられました。チェンバロやオルガンでは、鍵盤を持ち替えたりストップを切り替えたりして音量差を作ります。この楽器では連続的なクレッシェンドが作れないため、段階的な音量差を利用したエコーが有効な手段でした。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '単に小さく繰り返すだけでは、こだまには聞こえません。こだまは遠くから返ってくる音であり、音量が下がるだけでなく輪郭がぼやけます。したがって、立ち上がりを鈍らせ、倍音を減らす扱いが有効です。また、1回目と2回目のあいだにわずかな間があると、距離が感じられます。',
+      },
+      {
+        heading: '語源',
+        body: 'ギリシャ神話の妖精エコーの名に由来します。この妖精は自分から語ることができず、他者の言葉の末尾を繰り返すだけの存在にされたと伝えられます。繰り返すことしかできないという性質が、そのまま音響現象の名になっています。',
+      },
+    ],
+    confusions: [
+      { term: 'Terraced dynamics', slug: 'terraced-dynamics', note: '段階的な強弱。エコーの前提となる。' },
+      { term: 'Lontano', slug: 'lontano', note: '遠くから。距離を作る扱いが共通する。' },
+      { term: 'Simile', slug: 'simile', note: '同様に。繰り返しを示す語。' },
+    ],
+  },
+
+  'decorum': {
+    lead: 'Decorum はラテン語で「ふさわしいこと」。行き過ぎを戒め、その様式に適した演奏を保つことを求めます。',
+    sections: [
+      {
+        heading: '修辞学の用語',
+        body: 'ラテン語の decere（ふさわしい）から派生した語です。古代の修辞学では、語り方が場と主題にふさわしいことを decorum と呼び、重要な原則としていました。英語の decorate、decent も同じ語根で、「ふさわしく整える」という原義を共有します。',
+      },
+      {
+        heading: '音楽における意味',
+        body: 'その曲の様式にふさわしい範囲を守ることを指します。バロック作品にロマン派的な大きなルバートを持ち込む、古典派のソナタに過剰な音量差を付けるといった扱いは、この原則から外れます。何が適切かは様式によって変わるため、この語は絶対的な基準ではなく、対象に応じた判断を求めています。',
+      },
+      {
+        heading: '抑制と無表情の違い',
+        body: '行き過ぎを避けることは、表情を消すことではありません。その様式の中で使える手段を十分に使ったうえで、枠を越えないという判断です。抑えすぎて何も伝わらなければ、それも decorum を満たしていないことになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Giusto', slug: 'giusto', note: '適切な。行き過ぎを戒める点で近い。' },
+      { term: 'Semplice', slug: 'semplice', note: '素朴に。飾りを排する。' },
+      { term: 'Nobile', slug: 'nobile', note: '高貴に。節度を含む。' },
+    ],
+  },
+
+  'piacere': {
+    lead: 'Piacere はイタリア語で「喜び、好み」。a piacere（好きなように）という形で、演奏者の裁量を示します。',
+    sections: [
+      {
+        heading: '動詞と名詞',
+        body: 'piacere は「気に入る、喜ばせる」という動詞であり、同時に「喜び、好み」という名詞でもあります。楽譜では名詞として a piacere の形で現れ、「好みに任せて」を意味します。イタリア語の挨拶 piacere（はじめまして＝お会いできて喜びです）も同じ語です。',
+      },
+      {
+        heading: '自由には設計が要る',
+        body: 'a piacere が求めているのは、演奏者が判断することです。判断を放棄することではありません。どこで伸ばし、どこで詰め、どこへ向かうかを決めずに弾くと、自由ではなく散漫になります。作曲者が指示を手放した分、演奏者が引き受ける責任が増えます。',
+      },
+      {
+        heading: '同じ語根の別の指示',
+        body: 'piacevole（心地よく）も同じ動詞から来ていますが、こちらは聴き手にとって心地よいという状態を指す語で、演奏者の裁量とは関係ありません。字面が近いため混同されやすい2語です。',
+      },
+    ],
+    confusions: [
+      { term: 'A piacere', slug: 'a-piacere', note: '好きなように。この語を用いた指示。' },
+      { term: 'Piacevole', slug: 'piacevole', note: '心地よく。同じ語根だが内容が違う。' },
+      { term: 'Libero', slug: 'libero', note: '自由に。' },
+    ],
+  },
+
+  'libre': {
+    lead: 'Libre はフランス語で「自由に」。イタリア語の libero に相当し、規則の枠から離れて演奏することを示します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の liber（自由な）に由来します。英語の liberty、liberal、deliver も同じ語根です。なお「本」を意味するラテン語 liber は綴りが同じですが別の語で、library はそちらから来ています。',
+      },
+      {
+        heading: '何から自由なのか',
+        body: 'この指示が解放しているのは、多くの場合テンポの厳密さです。拍を均等に刻むことから離れ、旋律の要求に応じて伸縮させます。ただし、和声の構造や書かれた音符そのものが自由になるわけではありません。何が自由で何がそうでないかを区別することが要点です。',
+      },
+      {
+        heading: 'フランス語の関連指示',
+        body: 'librement（自由に）という副詞形も用いられます。近い方向の指示として、sans rigueur（厳格さなしで）、à volonté（意のままに）があります。フランス語で書かれた楽譜では、こうした語句が文として書き込まれることが多くあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Libero', slug: 'libero', note: '自由に。対応するイタリア語。' },
+      { term: 'A piacere', slug: 'a-piacere', note: '好きなように。' },
+      { term: 'Rubato', slug: 'rubato', note: 'テンポを揺らす。時間を返す含みがある。' },
+    ],
+  },
+
+  'furieusement': {
+    lead: 'Furieusement はフランス語で「猛烈に、荒れ狂って」。イタリア語の furioso に相当します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の furia に由来し、これはローマ神話の復讐の女神たち（フーリアエ）の名でもあります。英語の fury、furious も同じ語源です。単なる怒りではなく、我を失った状態を含む語です。フランス語では形容詞 furieux に副詞語尾 -ment が付いて furieusement になります。',
+      },
+      {
+        heading: '制御を失うことと崩れること',
+        body: 'この指示は激しさを求めますが、演奏が崩れることを求めているわけではありません。制御を失っているように聞こえるためには、実際にはリズムと音程が保たれている必要があります。実際に崩れると、狂乱ではなく事故として受け取られます。',
+      },
+    ],
+    confusions: [
+      { term: 'Furioso', slug: 'furioso', note: '荒れ狂って。対応するイタリア語。' },
+      { term: 'Scatenato', slug: 'scatenato', note: '鎖を解かれて。奔放な力。' },
+      { term: 'Impetuoso', slug: 'impetuoso', note: '衝動的に。突発性が主体。' },
+    ],
+  },
+
+  'empressement': {
+    lead: 'Empressement はフランス語で「熱心さ、はやる気持ち」。presser（押す、急ぐ）を語根に持ちます。',
+    sections: [
+      {
+        heading: '「押される」という語源',
+        body: '再帰動詞 s\'empresser（急ぐ、いそしむ）から派生した名詞です。presser はラテン語の premere（押す）に由来し、英語の press、pressure、express も同じ語根です。したがってこの語は、内側から押されて前のめりになる状態を指します。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '前のめりのエネルギーが性質であるため、テンポが押し出される扱いになります。ただし加速そのものを指定する指示ではなく、急ぎたい気持ちが表れている状態です。イタリア語の incalzando（追い立てられて）が外から押される状態を指すのに対して、こちらは内側からの衝動です。',
+      },
+    ],
+    confusions: [
+      { term: 'Incalzando', slug: 'incalzando', note: 'せき立てて。外から追われる状態。' },
+      { term: 'Con impeto', slug: 'con-impeto', note: '衝動をもって。突進する勢い。' },
+      { term: 'Stringendo', slug: 'stringendo', note: '切迫して速く。テンポ変化を明示する。' },
+    ],
+  },
+
+  'brilliant': {
+    lead: 'Brilliant は英語で「輝かしい」。イタリア語の brillante の英語形で、技巧の華やかさを含みます。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'イタリア語の brillare（輝く）からフランス語の brillant を経て英語に入りました。宝石のブリリアントカットも同じ語で、光を反射させる形に由来します。したがってこの語が指す輝きは、自ら発光するのではなく、光を反射して煌めくという性質です。',
+      },
+      {
+        heading: '輝きは倍音から',
+        body: '輝かしい音は音量では作れません。高い倍音が豊かに含まれていることで煌めきが生まれます。ピアノでは打鍵を速くして立ち上がりを鋭くする、弦楽器では弓を駒寄りで速く動かすといった方法が有効です。音量を上げても倍音が乏しければ、大きいだけで輝きません。',
+      },
+      {
+        heading: '技巧との結びつき',
+        body: 'この語は、速い音型や華やかなパッセージと結びついて使われることが多くあります。技巧を見せる箇所であることが多いため、粒をそろえて明瞭に弾くことが前提になります。音が濁ると輝きが失われます。',
+      },
+    ],
+    confusions: [
+      { term: 'Brillante', slug: 'brillante', note: '輝かしく。イタリア語形。' },
+      { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+      { term: 'Festlich', slug: 'festlich', note: '祝祭的に。華やかさが近い。' },
+    ],
+  },
+
+  'calculated': {
+    lead: '感情に流されず、精密に組み立てられた演奏を求める指示です。語源は「小石」にあります。',
+    sections: [
+      {
+        heading: '「小石」という語源',
+        body: 'ラテン語の calculus（小石）に由来します。古代ローマでは計算に小石を使ったため、この語が計算を意味するようになりました。医学用語の結石も同じ calculus です。数学の微積分（calculus）も同語です。したがってこの語の原義は、数え上げる、勘定するという具体的な作業です。',
+      },
+      {
+        heading: '何を求めている指示か',
+        body: '感情の高まりに任せず、構造を明確に示すことを求めます。テンポを一定に保ち、音量の配分を設計し、各声部の関係を聞かせる扱いです。20世紀以降の作品や、構築性を前面に出す音楽で用いられます。',
+      },
+      {
+        heading: '無表情ではない',
+        body: '計算されていることは、表情がないことではありません。むしろ、どこで何が起きるかを把握したうえで配置するという意味です。行き当たりばったりの表情を排し、意図した効果を正確に出すことが求められています。',
+      },
+    ],
+    confusions: [
+      { term: 'Freddo', slug: 'freddo', note: '冷たく。感情の欠如を指す。' },
+      { term: 'Tempo giusto', slug: 'tempo-giusto', note: '正確なテンポで。' },
+      { term: 'Decorum', slug: 'decorum', note: '適切さ。行き過ぎを戒める。' },
+    ],
+  },
+
+  'groove': {
+    lead: 'グルーヴは、リズムが生む一体感やうねりを指す語です。語源はレコードの溝で、そこから比喩的な意味が生まれました。',
+    sections: [
+      {
+        heading: 'レコードの溝から',
+        body: 'groove はもともと溝を意味する語で、レコードの音溝を指しました。針が溝に収まって進むという像から、「決まった流れに乗っている」という比喩が生まれ、in the groove（調子に乗って）という表現になりました。そこからリズムの一体感を指す音楽用語として定着しています。',
+      },
+      {
+        heading: '正確さとは別',
+        body: 'グルーヴは、拍を機械的に正確に刻むことでは生まれません。実際の演奏では、各楽器がわずかに前後にずれた位置に音を置き、そのずれの関係が一定に保たれることでうねりが生じます。ドラムのスネアがわずかに後ろに置かれる、ベースが前に出るといった配置です。このずれは誤差ではなく、意図された配置です。',
+      },
+      {
+        heading: 'クラシックとの対応',
+        body: 'クラシック音楽でも、拍の内部での重心の置き方が音楽の性格を決めます。ウィンナワルツの2拍目が早めに来る慣習などがその例です。呼び名は違いますが、拍の内部の微細な配置が音楽を生かすという点は共通しています。',
+      },
+    ],
+    confusions: [
+      { term: 'Riff', slug: 'riff', note: '反復される土台となるフレーズ。' },
+      { term: 'Sync', slug: 'sync', note: '同期。固定された基準に合わせること。' },
+      { term: 'Rubato', slug: 'rubato', note: 'テンポを揺らす。クラシックでの時間の操作。' },
+    ],
+  },
+
+  'ethereal': {
+    lead: '「この世のものとは思えない、天上的な」。ギリシャ語の aithēr に由来し、天空を満たすと考えられた第五の元素を語源に持ちます。',
+    sections: [
+      {
+        heading: '第五元素という語源',
+        body: 'ギリシャ語の aithēr は上層の空気、天空を意味します。アリストテレスの自然学では、地上の四元素（土・水・空気・火）とは別に、天体の領域を満たす第五の元素としてエーテルが置かれました。したがってこの語の原義は、地上のものではないという意味です。19世紀の物理学で光の媒質として仮定されたエーテルも同じ語です。',
+      },
+      {
+        heading: '演奏で何を作るか',
+        body: '地上を離れた響きを作るには、重さを排することが基本になります。低音を厚く使わず、高音域を用い、音の立ち上がりを鋭くせず、輪郭を柔らげます。ペダルや残響で音を空間に溶かす扱いも有効です。ハーモニクスやフラジョレットのような倍音による音色が使われる箇所もあります。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'misterioso（神秘的に）は隠されていることが主体、sogno（夢のように）は輪郭の曖昧さが主体です。ethereal は重さのなさ、地上から離れていることが中心にあります。',
+      },
+    ],
+    confusions: [
+      { term: 'Celeste', slug: 'celeste', note: '天上の。同じ方向の語。' },
+      { term: 'Sogno', slug: 'sogno', note: '夢のように。輪郭の曖昧さ。' },
+      { term: 'Harmonics', slug: 'harmonics', note: '倍音。この響きを作る手段になる。' },
+    ],
+  },
+
+  'lo-fi': {
+    lead: 'Lo-fi は low fidelity（低忠実度）の略で、あえて音質を落とすことによる効果を指します。',
+    sections: [
+      {
+        heading: 'hi-fi の対として',
+        body: 'fidelity は「忠実さ」を意味し、録音再生の分野では原音にどれだけ忠実かを指します。20世紀半ばに high fidelity（hi-fi）が録音技術の目標として掲げられ、その対語として lo-fi が生まれました。当初は単に品質が低いことを指す否定的な語でしたが、後にその質感を積極的に選ぶ表現として使われるようになりました。',
+      },
+      {
+        heading: '何を加えているのか',
+        body: 'レコードの針音、テープのヒスノイズやわずかな速度の揺れ、周波数帯域の狭さ、機器の歪みといった要素です。これらはいずれも、忠実な再生からすれば欠陥です。それを意図的に残すことで、質感や時代の感触が加わります。デジタル録音が原理的に持たない要素を、あえて足しているという構造です。',
+      },
+      {
+        heading: '音楽史の中での位置',
+        body: '不完全さを表現として扱うこと自体は、この語に限りません。楽器の雑音成分を排さずに使う尺八のムラ息、弦楽器で意図的に雑音を残す奏法など、雑音を表現に組み込む例は各地にあります。lo-fi は、録音技術という文脈でその発想が現れたものです。',
+      },
+    ],
+    confusions: [
+      { term: 'Timbre', slug: 'timbre', note: '音色。lo-fi はこれを加工する。' },
+      { term: 'Shakuhachi', slug: 'shakuhachi', note: 'ムラ息。雑音を表現に用いる例。' },
+    ],
+  },
+
+  'lament': {
+    lead: '嘆きを表す楽曲、およびその様式を指します。下降する半音階の低音を伴うことが多く、これをラメント・バスと呼びます。',
+    sections: [
+      {
+        heading: 'ラメント・バス',
+        body: '主音から下へ半音ずつ、完全4度下の音まで下降する低音型です。ハ短調ならド・シ・シ♭・ラ♭・ソという動きになります。この下降が繰り返され、その上で旋律が嘆きを歌います。半音階的な下降そのものが悲哀と結びつけられ、17世紀以降の作曲家が共有する語法となりました。',
+      },
+      {
+        heading: '代表的な例',
+        body: 'パーセルのオペラ《ディドとエネアス》の終曲〈私が地に横たえられるとき〉は、この下降低音を用いた作品として知られています。バッハのミサ曲ロ短調の〈Crucifixus〉も同じ型の低音を持ちます。いずれも、繰り返される低音の上で声が嘆きを重ねる構造です。',
+      },
+      {
+        heading: 'なぜ下降なのか',
+        body: '下降する動きが悲しみと結びつく理由については、溜め息や身体が沈む動きとの対応が指摘されています。ただし、これが文化を越えた普遍的な対応なのか、西洋音楽の伝統の中で成立した約束なのかについては議論があります。少なくとも西洋音楽の中では、この結びつきが確立した語法として機能してきました。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '低音が繰り返し型であるため、機械的に弾くと退屈になります。同じ低音の上で上声部の和声と旋律が変わっていくため、その変化を聞かせることが要点です。低音は土台として保ち、変化は上で作ります。',
+      },
+    ],
+    confusions: [
+      { term: 'Lamentoso', slug: 'lamentoso', note: '嘆き悲しんで。表情の指示。' },
+      { term: 'Ostinato', slug: 'ostinato', note: '反復される音型。ラメント・バスもこの一種。' },
+      { term: 'Ground bass', slug: 'ground-bass', note: '反復する低音の上で変奏する形式。' },
+    ],
+  },
+
+  'underlining': {
+    lead: '映画音楽などで、画面上の感情や動きを音楽でなぞって強調することを指します。',
+    sections: [
+      {
+        heading: '何をする技法か',
+        body: '登場人物の感情の変化、視線の動き、物の落下といった出来事に、音楽を同期させて強調します。下線を引くように注意を集める働きから、この名で呼ばれます。同種の語に underscoring があり、こちらは映像の下で音楽が流れること全般を指す広い語です。',
+      },
+      {
+        heading: 'ミッキーマウシングとの関係',
+        body: '画面の動きを音で逐一なぞる手法は、アニメーション映画で多用されたことから、ミッキーマウシングと呼ばれることがあります。効果は明快ですが、過剰に使うと説明的になり、観客の解釈の余地を奪うという批判もあります。どこまでなぞり、どこを音楽に任せるかが判断になります。',
+      },
+      {
+        heading: '演奏との関係',
+        body: '録音では、映像のタイムコードに合わせて演奏する必要があります。指揮者はクリックトラックや画面のマーカーを見ながら進めます。音楽的な自然さと、映像との同期の要求が衝突することがあり、その調整が実務上の課題になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Sync', slug: 'sync', note: '同期。映像に合わせる作業。' },
+      { term: 'Evocative', slug: 'evocative', note: '喚起させるような。より間接的な働き。' },
+    ],
+  },
+
+  'evocative': {
+    lead: '何かの情景や記憶を呼び起こすような性質を指します。ラテン語の evocare（呼び出す）に由来します。',
+    sections: [
+      {
+        heading: '「呼び出す」という語源',
+        body: 'ex（外へ）と vocare（呼ぶ）から成ります。vocare は vox（声）を語根とし、英語の voice、vocal、vocation（神からの呼びかけ＝天職）も同じ系統です。原義は「呼び出す」で、そこにないものを現前させるという含みを持ちます。',
+      },
+      {
+        heading: '描写との違い',
+        body: '情景を直接描く（描写する）のではなく、聴き手の中にある像を呼び起こすという働きです。したがって、具体的に音を似せる必要はありません。むしろ具体的に描きすぎると、聴き手が自分の記憶を重ねる余地が失われます。示しすぎないことが効果につながる場合があります。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '呼び起こす対象は聴き手の側にあるため、演奏者ができるのは条件を整えることです。輪郭を作りすぎず、余白を残し、聴き手が入り込める状態にするという扱いになります。すべてを説明しきると、喚起ではなく提示になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Underlining', slug: 'underlining', note: '直接なぞって強調する技法。' },
+      { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。示しすぎない点で近い。' },
+      { term: 'Sogno', slug: 'sogno', note: '夢のように。' },
+    ],
+  },
+
+  'gently': {
+    lead: '英語で「穏やかに、優しく」。イタリア語の dolce に近い指示で、刺激を避けた扱いを求めます。',
+    sections: [
+      {
+        heading: '「生まれのよい」という語源',
+        body: 'gentle はラテン語の gentilis（同じ氏族の、生まれのよい）に由来します。gens（氏族）を語根とし、英語の gentleman、genteel、そして gentile も同じ系統です。「生まれがよい」から「礼儀正しい」を経て「穏やかな」という意味に移りました。穏やかさが身分の語から来ているのは、他の言語にも見られる現象です。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '刺激を避けることが性質であるため、音の立ち上がりを鋭くしない、音量の急な変化を作らない、角のある音を出さないという扱いになります。音量そのものの指定ではないため、ある程度の音量があっても成立します。',
+      },
+      {
+        heading: '英語で指示を書く流儀',
+        body: '19世紀末から20世紀にかけて、英語圏の作曲家の一部がイタリア語の伝統的な用語を自国語に置き換えて楽譜に書きました。パーシー・グレインジャーはこの方針を徹底しています。gently、flowing、moving はいずれもこの系列の語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Dolce', slug: 'dolce', note: '甘く、柔らかく。近いイタリア語。' },
+      { term: 'Zart', slug: 'zart', note: '優しく。ドイツ語。' },
+      { term: 'Flowing', slug: 'flowing', note: '流れるように。同じ英語の指示。' },
+    ],
+  },
+
+  'hocus-pocus': {
+    lead: '手品の呪文として使われる語で、音楽では意表を突く展開や魔法のような音色の変化を指します。',
+    sections: [
+      {
+        heading: '語源には諸説ある',
+        body: 'この語の由来については複数の説があり、確定していません。ミサの言葉 hoc est corpus meum（これは私の体である）が崩れたものとする説、17世紀の手品師の名に由来する説、意味のない造語とする説などが挙げられています。いずれの説も決定的な根拠を欠いており、語源は不明とするのが現状です。',
+      },
+      {
+        heading: '音楽での用法',
+        body: '楽譜の指示として現れる場合、種明かしのない転換、予想を外す展開、突然の音色の変化といった性質を指します。聴き手を煙に巻くようなユーモアを含む語であり、真面目な表情とは方向が違います。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '意表を突くことが効果であるため、そこまでの流れを自然に保ち、転換の瞬間だけ変えることが要点です。最初から仕掛けがあると分かるように弾くと、驚きが失われます。手品と同じく、種を見せないことが前提になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Capriccioso', slug: 'capriccioso', note: '気まぐれに。予測できなさが主体。' },
+      { term: 'Bruscamente', slug: 'bruscamente', note: '不意に。準備なく切り替える。' },
+      { term: 'Burlesco', slug: 'burlesco', note: 'おどけて。誇張による滑稽さ。' },
+    ],
+  },
+
+  'bacchante': {
+    lead: 'バッコスの信女を指す語で、理性を離れた熱狂的な高揚を求める指示として用いられます。',
+    sections: [
+      {
+        heading: 'バッコスの信女',
+        body: 'バッコス（ギリシャ神話のディオニュソス）を崇拝する女性たちを指す語です。マイナスとも呼ばれ、神に憑かれて我を忘れた状態で山野を巡ったと伝えられます。エウリピデスの悲劇《バッコスの信女》がこの題材を扱っています。したがってこの語が指すのは、制御された情熱ではなく、我を失った熱狂です。',
+      },
+      {
+        heading: 'ディオニュソス的という概念',
+        body: 'ニーチェは《悲劇の誕生》で、秩序と形式を担うアポロン的なものと、陶酔と混沌を担うディオニュソス的なものという対を提示しました。この枠組みは芸術論で広く参照されており、bacchante という語もその文脈で読まれることがあります。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '我を失った状態を表すためには、実際に崩れてしまってはいけません。制御を失っているように聞こえるためには、リズムと音程が保たれている必要があります。振れ幅を大きく取り、しかし骨格は保つという扱いになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Furioso', slug: 'furioso', note: '荒れ狂って。我を失った激しさ。' },
+      { term: 'Scatenato', slug: 'scatenato', note: '鎖を解かれて。' },
+      { term: 'Estatico', slug: 'estatico', note: '恍惚として。「外に立つ」が語源。' },
+    ],
+  },
+
+  'calma': {
+    lead: 'Calma はイタリア語で「静けさ、平穏」。con calma（落ち着いて）の形で用いられます。語源は「真昼の暑さ」です。',
+    sections: [
+      {
+        heading: '「焼けつく暑さ」という語源',
+        body: 'ギリシャ語の kauma（焼けつく暑さ）が後期ラテン語 cauma を経てイタリア語 calma になりました。真昼の暑い時間帯は人も動物も動きを止めて休むため、「暑さ」から「静けさ」へ意味が移りました。英語の calm、フランス語の calme も同じ経路です。風がやんだ海の状態を指す語としても使われます。',
+      },
+      {
+        heading: '静けさは音量ではない',
+        body: 'この語は音量記号ではありません。弱く弾いても落ち着きがなければ静けさは生まれず、ある程度の音量があっても動きが収まっていれば静けさは成立します。テンポの安定、音の立ち上がりの穏やかさ、フレーズの起伏の小ささが、この語に応える要素です。',
+      },
+      {
+        heading: '語形',
+        body: 'calma が名詞、calmo が形容詞です。楽譜では con calma（静けさをもって）、calmato（静まった）、calmando（静まりながら）といった形も現れます。',
+      },
+    ],
+    confusions: [
+      { term: 'Calme', slug: 'calme', note: 'フランス語で静かに。同じ語源。' },
+      { term: 'Tranquillo', slug: 'tranquillo', note: '静かに。状態そのものを指す。' },
+      { term: 'Quietamente', slug: 'quietamente', note: '静かに。' },
+    ],
+  },
+
+  'zingarese': {
+    lead: 'Alla zingarese は、19世紀のヨーロッパ音楽で「ジプシー風」と呼ばれた様式を指す語です。この呼称と実際の音楽の関係には注意が必要です。',
+    sections: [
+      {
+        heading: '呼称について',
+        body: 'イタリア語の zingaro はロマ（Roma）の人々を指す古い呼び方で、現在では侮蔑的な語とみなされます。当時の楽譜に書かれた語としてはこの形で残っていますが、実際の人々を指す語としては用いられません。',
+      },
+      {
+        heading: '音楽の実体',
+        body: 'ブラームスやリストが用いた「ジプシー風」の様式は、ハンガリーのヴェルブンコシュと呼ばれる音楽や、都市の楽団が演奏していたレパートリーを源としています。これらの楽団の担い手にはロマの音楽家が多くいましたが、様式そのものはハンガリーの都市音楽であり、ロマの人々の音楽そのものではありません。バルトークらの後の研究によって、この区別が明らかにされました。したがって「ジプシー風」という呼称は、19世紀のヨーロッパ側の想像を含んだ様式名として読むのが正確です。',
+      },
+      {
+        heading: '音楽的な特徴',
+        body: '様式として共有されていた要素は確認できます。増2度を含む音階（いわゆるハンガリー音階）、急な緩急の交替、装飾の多い旋律、鋭いアクセント、自由なテンポ（ラッサンとフリスカという緩急の対）などです。楽譜にこれらの書法があれば、それを生かすことが指示に応えることになります。',
+      },
+    ],
+    confusions: [
+      { term: 'Alla zingara', slug: 'alla-zingara', note: '同じ様式を指す語形。' },
+      { term: 'Rubato', slug: 'rubato', note: 'テンポの自由。この様式の特徴の一つ。' },
+      { term: 'Alla rustica', slug: 'alla-rustica', note: '田舎風に。民俗的な様式を模す指示。' },
+    ],
+  },
+
+  'addolorato': {
+    lead: 'Addolorato は「悲しみに満ちて」。dolore（痛み、苦しみ）を語根に持ち、深い悲痛を求めます。',
+    sections: [
+      {
+        heading: '語形の関係',
+        body: 'dolore（痛み）から動詞 addolorare（苦しめる）が作られ、その過去分詞が addolorato です。したがって原義は「苦しめられた」で、外から与えられた苦痛を受けている状態を指します。同じ語根から dolente（痛みを伴って）、doloroso（苦しげに）、con dolore（痛みをもって）といった語形が生まれています。',
+      },
+      {
+        heading: '過去分詞であること',
+        body: '過去分詞であるため、この語は苦しむ過程ではなく、苦しめられた状態を指します。すでに傷を負っている状態であり、その重みが響きに現れることが求められます。低音を厚く扱い、フレーズが上へ向かわない扱いが語に合います。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '溜め息のような下降音型が書かれていることが多く、それを生かすことがこの指示に応える方法です。フレーズの後半で押さずに抜けていく処理になります。ただし支えが失われると、悲痛ではなく弛緩になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Dolente', slug: 'dolente', note: '痛みを伴って。同じ語根。' },
+      { term: 'Con dolore', slug: 'con-dolore', note: '痛みをもって。' },
+      { term: 'Lagrimoso', slug: 'lagrimoso', note: '涙を流して。' },
+    ],
+  },
+
+  'accarezzevole': {
+    lead: 'Accarezzevole は「愛撫するように」。carezza（愛撫）を語根に持ち、触れ方の柔らかさを求めます。',
+    sections: [
+      {
+        heading: '触れる動作としての指示',
+        body: 'carezza は手で優しく撫でる動作を指す語で、英語の caress も同じ語源です。この指示が求めているのは感情ではなく、触れ方です。したがって、鍵盤や弦に接触する瞬間の扱いが直接この指示に対応します。押すのではなく撫でるという動作の違いが、音の立ち上がりに現れます。',
+      },
+      {
+        heading: 'carezzevole との関係',
+        body: 'carezzevole と accarezzevole は同じ語根から派生した語で、指示内容の違いはありません。接頭辞 a- が付いた形が accarezzevole です。同じ系統に carezzando（愛撫しながら）という現在分詞形もあります。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'tenero や dolce が音楽の性質を述べるのに対して、この語は動作を述べます。指示の抽象度が違うため、何をすべきかがより具体的に分かる語です。',
+      },
+    ],
+    confusions: [
+      { term: 'Carezzevole', slug: 'carezzevole', note: '同じ語根。指示内容は同じ。' },
+      { term: 'Carezzando', slug: 'carezzando', note: '愛撫しながら。現在分詞形。' },
+      { term: 'Zart', slug: 'zart', note: '優しく。ドイツ語。' },
+    ],
+  },
+
+  'agile': {
+    lead: 'Agile は「敏捷に、軽快に」。ラテン語の agere（動かす、行う）に由来し、動きの素早さと切り替えの容易さを指します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'agere は「動かす、行う」を意味するラテン語で、agilis は「動かしやすい」です。英語の agile、agility、agent、act、agenda はいずれも同じ語根を持ちます。示しているのは軽さではなく、動きの俊敏さです。',
+      },
+      {
+        heading: '軽さとの違い',
+        body: 'leggero（軽く）は重さを抜くこと、agile は素早く動くことを求めます。両者は同時に成立することが多いのですが、指示している内容は別です。重い音でも敏捷に動くことはでき、軽い音でもゆっくり動くことはできます。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '素早く動くには、動作の無駄を減らすことが基本です。運指を工夫して手の移動を減らし、必要以上の力を使わないことで、切り替えが速くなります。力を込めると動きが鈍るため、脱力が前提になります。',
+      },
+    ],
+    confusions: [
+      { term: 'Con agilità', slug: 'con-agilità', note: '敏捷に。名詞形を用いた指示。' },
+      { term: 'Agevole', slug: 'agevole', note: '楽に。同じ語根。容易さが主体。' },
+      { term: 'Lesto', slug: 'lesto', note: '素早く。' },
+    ],
+  },
+
+  'animando': {
+    lead: 'Animando は「生き生きとしながら」。animare（活気づける）の現在分詞で、変化していく過程を示します。',
+    sections: [
+      {
+        heading: '現在分詞であること',
+        body: '現在分詞であるため、この語は状態ではなく進行を示します。animato（生き生きと）が到達した状態を指すのに対して、animando はそこへ向かう過程です。したがってこの指示のある箇所では、次第に活気を増していくことが求められます。',
+      },
+      {
+        heading: 'テンポの変化を含む',
+        body: '活気が増すことは、実際にはテンポの前進を伴う場合が多くあります。イタリア語の accelerando が速度の増加を明示するのに対して、animando は性格の変化として書かれます。結果として速くなるとしても、目的は速度ではなく活気です。',
+      },
+      {
+        heading: '語源',
+        body: 'ラテン語の anima（息、生命、魂）に由来します。英語の animal、animate も同じ語根です。原義が「息」であることから、生きて動いているという含みを持ちます。',
+      },
+    ],
+    confusions: [
+      { term: 'Animato', slug: 'animato', note: '生き生きと。到達した状態。' },
+      { term: 'Accelerando', slug: 'accelerando', note: '速度を上げていく。テンポを明示する。' },
+      { term: 'Con anima', slug: 'con-anima', note: '魂をもって。解釈が分かれる語。' },
+    ],
+  },
+
+  'fastoso': {
+    lead: 'Fastoso は「華麗に、豪奢に」。ラテン語の fastus（誇り、壮麗さ）に由来します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の fastus は、誇り、尊大さ、壮麗さを意味する語です。イタリア語の fasto（華麗さ、壮麗さ）を経て fastoso が作られました。誇示するという含みを持つ語であり、控えめであることとは反対の方向にあります。',
+      },
+      {
+        heading: 'pomposo との違い',
+        body: 'pomposo は pompa（行列、儀式）を語根とし、儀式的な歩みという含みを持ちます。fastoso は壮麗さそのものを指し、歩みの性質は含みません。したがって pomposo が落ち着いたテンポを要求しがちなのに対して、fastoso は速い箇所でも成立します。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '誇示することが性質であるため、抑えて弾くと語の方向から外れます。音を十分に鳴らし、響きを厚く取ることで華麗さが出ます。ただし濁ると豪奢さではなく雑になるため、和音の配置や音量のバランスは保ちます。',
+      },
+    ],
+    confusions: [
+      { term: 'Pomposo', slug: 'pomposo', note: '壮麗に。行列という語源。' },
+      { term: 'Grandioso', slug: 'grandioso', note: '壮大に。規模が主体。' },
+      { term: 'Brillante', slug: 'brillante', note: '輝かしく。技巧の華やかさ。' },
+    ],
+  },
+
+  'freddo': {
+    lead: 'Freddo は「冷たく」。ラテン語の frigidus（冷たい）に由来し、感情を排した客観的な質感を求めます。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の frigidus に由来し、英語の frigid、refrigerate（冷やす）も同じ語根です。温度の語が感情の欠如を表すのは多くの言語に共通する現象で、日本語の「冷たい態度」も同じ構造を持ちます。',
+      },
+      {
+        heading: '無表情ではない',
+        body: '感情を排することは、何もしないことではありません。冷たさという質を作るには、意図的な操作が必要です。音の立ち上がりを均質にし、ビブラートを控え、音量の起伏を抑え、テンポを一定に保つといった扱いです。結果として温度のない響きが生まれます。単に平坦に弾くと、冷たいのではなく退屈になります。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'sombre（暗い）には感情があり、それが暗いという性質です。freddo は感情そのものがない状態を指します。calculated（計算された）は構造を明示する方向で、こちらは質感の指定です。',
+      },
+    ],
+    confusions: [
+      { term: 'Sombre', slug: 'sombre', note: '暗く。感情はある。' },
+      { term: 'Calculated', slug: 'calculated', note: '計算された。構造を明示する。' },
+      { term: 'Senza espressione', slug: 'espressione', note: '表情なしで。感情の排除を明示する。' },
+    ],
+  },
+
+  'impetuoso': {
+    lead: 'Impetuoso は「衝動的に、激しく」。ラテン語の impetus（突進）に由来し、前へ突き出す瞬間的な勢いを指します。',
+    sections: [
+      {
+        heading: '語源',
+        body: 'ラテン語の impetere（襲いかかる）から派生した impetus に由来します。in（〜へ向かって）と petere（求める、向かう）から成る語です。英語の impetus、impetuous、そして petition、appetite も同じ petere に連なります。原義は「向かっていく勢い」です。',
+      },
+      {
+        heading: '持続する熱との違い',
+        body: 'ardente（燃えている）が持続する熱を指すのに対して、impetuoso は瞬間的な勢いです。したがって加速を伴うことが多く、その箇所で音楽が押し出される形になります。長く保つ性質の語ではありません。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '衝動なので、準備されていないように聞こえることが効果になります。したがって、その手前で構えを見せると衝動性が失われます。前の箇所を平静に保ち、そこから突然出るという扱いが語に合います。',
+      },
+    ],
+    confusions: [
+      { term: 'Con impeto', slug: 'con-impeto', note: '衝動をもって。同じ語根。' },
+      { term: 'Ardente', slug: 'ardente', note: '燃えている。持続が主体。' },
+      { term: 'Empressement', slug: 'empressement', note: '熱心さ。内からの前のめり。' },
+    ],
+  },
+
+  'lesto': {
+    lead: 'Lesto は「素早く、器用に」。てきぱきとした機敏な動きを求めます。',
+    sections: [
+      {
+        heading: '速さと器用さ',
+        body: 'イタリア語の lesto は、動作が速いことと、身のこなしが器用であることの両方を意味します。速度だけを指す veloce や presto とは違い、手際のよさという含みがあります。したがってこの指示は、単に速く弾くことではなく、無駄なくさばくことを求めています。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '手際のよさを出すには、動作の無駄を減らすことが基本です。運指を整え、手の移動を最小にし、力を込めすぎないことで、軽快にさばけるようになります。速く弾こうとして力むと、素早さではなく忙しさになります。',
+      },
+      {
+        heading: '近い語との違い',
+        body: 'agile（敏捷に）は動きの俊敏さ、agevole（楽に）は容易さ、lesto は手際のよさが中心にあります。いずれも近い方向にありますが、強調点が異なります。',
+      },
+    ],
+    confusions: [
+      { term: 'Agile', slug: 'agile', note: '敏捷に。動きの俊敏さ。' },
+      { term: 'Veloce', slug: 'veloce', note: '速く。速度そのもの。' },
+      { term: 'Agevole', slug: 'agevole', note: '楽に。容易さが主体。' },
+    ],
+  },
+
   'bebung': {
     lead: 'Bebung はクラヴィコード固有のビブラートです。他の鍵盤楽器では原理的に不可能な奏法で、この楽器の構造がそのまま奏法になっています。',
     sections: [
