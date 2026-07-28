@@ -9005,8 +9005,8 @@ export const termsData = [
     "symbol": null,
     "category": "理論",
     "lang": "ドイツ語",
-    "meaning": "嬰へ音",
-    "detail": "C#（ハ音の半音上）。",
+    "meaning": "嬰ハ音",
+    "detail": "C#（ハ音の半音上）。ドイツ語では音名に -is を付けると半音上がり、-es を付けると半音下がります。",
     "color": "bg-slate-50",
     "id": 820
   },
