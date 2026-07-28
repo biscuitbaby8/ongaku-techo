@@ -184,15 +184,25 @@ export const termArticles = {
   },
 
   'breit': {
-    lead: 'Breit（ブライト）はドイツ語で「幅広く」を意味し、イタリア語のLargoに相当する速度指示。',
+    lead: 'Breit はドイツ語で「幅広く」。イタリア語の Largo に対応します。速さではなく空間の広さを表す語であり、そこが他の遅い速度用語との違いです。',
     sections: [
       {
-        heading: '語源',
-        body: '英語のbroadと同じゲルマン語の語根に由来する形容詞で、ゆったりと間を取った、どっしりとした歩みを表す。',
+        heading: '英語の broad と同じ語根',
+        body: 'ゲルマン語系の語で、英語の broad、breadth と語根を共有します。示しているのは長さや遅さではなく、幅です。Largo も同じく「広い」を意味するイタリア語であり、両者は語の性質まで一致しています。',
+      },
+      {
+        heading: '「遅い」ではなく「広い」',
+        body: 'langsam（遅く）が時間の進み方を指すのに対して、breit は空間の広がりを指します。したがってこの指示は、テンポを落とすことだけでは満たされません。音を十分に鳴らし、フレーズを大きく取り、間を詰めないことで幅が生まれます。速度を落としても音が細ければ、幅広くは聞こえません。',
+      },
+      {
+        heading: 'ドイツ語の速度語彙の中で',
+        body: 'ドイツ語圏の作曲家が自国語で指示を書く場合、schnell（速く）、langsam（遅く）、mäßig（中くらいに）、bewegt（動きをもって）、ruhig（静かに）と並んでこの語が使われます。breiter（より幅広く）という比較級の形で現れることもあります。',
       },
     ],
     confusions: [
-      { term: 'Largo', slug: 'largo', note: '同じ意味を持つイタリア語の標準的な指示。' },
+      { term: 'Largo', slug: 'largo', note: '対応するイタリア語。同じく「広い」が原義。' },
+      { term: 'Langsam', slug: 'langsam', note: 'ドイツ語で遅く。時間の進み方を指す。' },
+      { term: 'Largamente', slug: 'largamente', note: '幅広く。イタリア語の副詞形。' },
     ],
   },
 
@@ -424,15 +434,25 @@ export const termArticles = {
   },
 
   'modéré': {
-    lead: 'Modéré（モデレ）はフランス語で「中くらいの速さで」を意味し、イタリア語のModeratoに相当する速度指示。',
+    lead: 'Modéré はフランス語で「中くらいの速さで」。イタリア語の Moderato に対応します。行きすぎないことを求める語で、速さの中間点を指すだけの語ではありません。',
     sections: [
       {
-        heading: 'Modereとの関係',
-        body: 'アクサン記号を省いたModere（モデレ）という表記も同じ語を指し、意味に違いはない。',
+        heading: 'ラテン語 modus（尺度）から',
+        body: '動詞 modérer（節度を保つ、加減する）の過去分詞で、ラテン語の moderari に由来します。その語根は modus（尺度、限度）で、英語の moderate、mode、modest も同じ語根を持ちます。示しているのは「尺度の内に収まっている」状態であり、中間の速さはその結果です。',
+      },
+      {
+        heading: '節度という含み',
+        body: '語源に「限度を守る」という意味があるため、この指示は速度だけでなく表現の度合いにも及びます。極端に振らないこと、行きすぎないことが求められます。したがって、正しいテンポで弾いていても表情を過剰に付ければ、この語の方向から外れます。',
+      },
+      {
+        heading: '表記の揺れ',
+        body: 'この辞典にはアクサン記号を省いた Modere という表記も別項目として収録されています。同じ語であり、意味に違いはありません。フランス語として正しい綴りは Modéré です。',
       },
     ],
     confusions: [
-      { term: 'Moderato', slug: 'moderato', note: '同じ意味を持つイタリア語の標準的な指示。' },
+      { term: 'Moderato', slug: 'moderato', note: '対応するイタリア語。同じ語根。' },
+      { term: 'Modere', slug: 'modere', note: 'アクサン記号を省いた同じ語の表記。' },
+      { term: 'Comodo', slug: 'comodo', note: '無理のない速さで。こちらも modus を語根に持つ。' },
     ],
   },
 
@@ -463,15 +483,25 @@ export const termArticles = {
   },
 
   'calme': {
-    lead: 'Calme（カルム）はフランス語で「静かに、穏やかに」を意味し、イタリア語のTranquilloに相当する指示。',
+    lead: 'Calme はフランス語で「静かに、穏やかに」。イタリア語の Tranquillo に対応します。語源をたどると「真昼の暑さ」に行き着く語です。',
     sections: [
       {
-        heading: 'フランス近代音楽での使用',
-        body: 'ドビュッシーなど、フランス語の速度・性格指示を好んだ作曲家の楽譜に見られる語のひとつ。',
+        heading: '「真昼の暑さ」という語源',
+        body: 'ギリシャ語の kauma（焼けつく暑さ）が後期ラテン語 cauma を経てイタリア語 calma になり、フランス語に入りました。英語の calm も同じ経路です。真昼の暑い時間帯は人も動物も動きを止めて休むため、「暑さ」から「静けさ」へ意味が移りました。風がやんだ海の状態を指す語としても使われます。',
+      },
+      {
+        heading: '静けさは音量ではない',
+        body: 'この指示は音量記号ではありません。弱く弾いても落ち着きがなければ静けさは生まれず、ある程度の音量があっても動きが収まっていれば静けさは成立します。テンポの安定、音の立ち上がりの穏やかさ、フレーズの起伏の小ささが、この語に応える要素です。',
+      },
+      {
+        heading: 'フランス語の指示の中で',
+        body: 'フランス語で性格を指定する作曲家の楽譜では、très calme（とても静かに）や calme et doux（静かに柔らかく）のように、他の語と組み合わせて現れることがあります。フランス語の指示は、イタリア語の定型よりも文として書かれる傾向があります。',
       },
     ],
     confusions: [
-      { term: 'Tranquillo', slug: 'tranquillo', note: '同じ意味を持つイタリア語の標準的な指示。' },
+      { term: 'Tranquillo', slug: 'tranquillo', note: '対応するイタリア語。' },
+      { term: 'Calma', slug: 'calma', note: '同じ語根のイタリア語。' },
+      { term: 'Pacato', slug: 'pacato', note: '穏やかに。鎮まった状態を指す。' },
     ],
   },
 
@@ -617,15 +647,25 @@ export const termArticles = {
   },
 
   'tres-lent': {
-    lead: 'Tres lent（トレ・ラン、正しくは Très lent）はフランス語で「とても遅く」を意味する速度指示。',
+    lead: 'Très lent はフランス語で「とても遅く」。辞典にはアクサン記号のない Tres lent の形で収録されていますが、正しい綴りは Très lent です。',
     sections: [
       {
         heading: '成り立ち',
-        body: 'très（とても）+ lent（遅く）の組み合わせで、Lentよりもさらに遅い、深い静けさを伴うテンポを示す。',
+        body: 'très（とても）と lent（遅い）の組み合わせです。lent はラテン語の lentus（緩慢な、粘り気のある）に由来し、イタリア語の lento と同じ語根を持ちます。lentus には「粘る」という含みがあり、単に時間がかかることではなく、進みにくさを表す語です。',
+      },
+      {
+        heading: 'フランス語の程度副詞',
+        body: 'très は形容詞や副詞の前に置いて程度を強めます。イタリア語の molto、ドイツ語の sehr に対応する語です。フランス語で書かれた楽譜では、très calme（とても静かに）、très doux（とても柔らかく）のように、この語を伴った指示が頻繁に現れます。',
+      },
+      {
+        heading: '極端に遅いテンポの扱い',
+        body: 'テンポが遅くなるほど、拍の間隔が広がって拍節の感覚が失われやすくなります。この状態で各音を独立に置くと、音楽が進まなくなります。遅い箇所では、より大きな単位（2小節や4小節）を一つのまとまりとして感じることで、進行が保たれます。',
       },
     ],
     confusions: [
-      { term: 'Lent', slug: 'lent', note: 'Tres lentの元になった基本語。' },
+      { term: 'Lent', slug: 'lent', note: 'フランス語で遅く。très が付かない形。' },
+      { term: 'Lento', slug: 'lento', note: '対応するイタリア語。同じ語根。' },
+      { term: 'Largo', slug: 'largo', note: '幅広く。遅さではなく空間を指す。' },
     ],
   },
 
@@ -643,41 +683,72 @@ export const termArticles = {
   },
 
   'moving': {
-    lead: 'Moving（ムーヴィング）は英語で「動いて」を意味し、停滞せず前へ進む速度感を示す指示。',
+    lead: 'Moving は英語で「動いて」。停滞せず前へ進むことを求める指示です。イタリア語ではなく英語で速度を書く流儀があり、これはその一例です。',
     sections: [
       {
-        heading: '英語の速度用語',
-        body: 'イタリア語やドイツ語、フランス語に比べると使用例は少ないが、英語で書かれた楽譜や現代の作品で見られる表現のひとつ。',
+        heading: '英語で速度指示を書く流儀',
+        body: '19世紀末から20世紀にかけて、英語圏の作曲家の一部が、イタリア語の伝統的な速度用語を自国語に置き換えて楽譜に書きました。パーシー・グレインジャーはこの方針を徹底し、強弱や奏法の指示までイタリア語を避けて英語で記しています。演奏者が辞書を引かずに意図を受け取れることが、この流儀の狙いです。',
+      },
+      {
+        heading: 'con moto との対応',
+        body: 'イタリア語の con moto（動きをもって）が対応する指示です。どちらも絶対的な速さを指定せず、進行が止まらないことを求めます。したがって、テンポを速めることではなく、各音に留まらず次へ渡していくことがこの指示の内容になります。フレーズの中で音を溜めると、速度が保たれていても歩みが止まって聞こえます。',
+      },
+      {
+        heading: 'flowing との違い',
+        body: 'flowing は流れのなめらかさを指し、moving は前進そのものを指します。moving は角のある動きでも成立しますが、flowing は途切れのなさが要件になります。同じ英語の指示ですが、求めている性質が違います。',
       },
     ],
     confusions: [
-      { term: 'Flowing', slug: 'flowing', note: '同じく停滞のない動きを示す類語。' },
+      { term: 'Flowing', slug: 'flowing', note: 'なめらかさを求める英語の指示。moving は前進を求める。' },
+      { term: 'Con moto', slug: 'con-moto', note: 'イタリア語で対応する指示。' },
+      { term: 'Camminando', slug: 'camminando', note: '歩くように。止まらないことを求める点で近い。' },
     ],
   },
 
   'flowing': {
-    lead: 'Flowing（フローイング）は英語で「流れるように」を意味し、なめらかで途切れのない動きを示す指示。',
+    lead: 'Flowing は英語で「流れるように」。途切れのないなめらかな動きを求める指示で、イタリア語の伝統的な用語に代えて英語で書かれたものです。',
     sections: [
       {
-        heading: '英語の速度用語',
-        body: 'Movingと同様、イタリア語の伝統的な用語に代わって英語圏の作曲家が用いる表現のひとつ。',
+        heading: '何が「流れる」のか',
+        body: '流れが成立するには、音と音のあいだに切れ目がないこと、そして進行が止まらないことの両方が必要です。前者はレガートの問題であり、後者はテンポの問題です。片方だけでは流れになりません。音がつながっていても各音に留まれば淀み、前へ進んでいても切れていれば流れではなくなります。',
+      },
+      {
+        heading: '対応するイタリア語',
+        body: 'scorrevole（流れるように）が近い語です。また、フレーズを歌うようにつなぐという点では cantabile と重なります。英語で speaking よりも flowing が選ばれている箇所では、言葉としての区切りではなく、連続した線が求められていると読めます。',
+      },
+      {
+        heading: '演奏上の要点',
+        body: '流れを作るうえで問題になりやすいのは、小節線と拍の頭です。ここに自然な重心が来るため、意識しないと毎小節で区切りが生まれます。フレーズの行き先を先に決め、小節線を通過点として扱うと流れが保たれます。',
       },
     ],
     confusions: [
-      { term: 'Moving', slug: 'moving', note: '同じく停滞のない動きを示す類語。' },
+      { term: 'Moving', slug: 'moving', note: '前進を求める英語の指示。flowing はなめらかさを求める。' },
+      { term: 'Legato', slug: 'legato', note: '音をつなぐ指示。流れの半分を担う。' },
+      { term: 'Cantabile', slug: 'cantabile', note: '歌うように。連続した線を作る点で近い。' },
     ],
   },
 
   'un-poco': {
-    lead: 'Un poco（ウン・ポーコ）はイタリア語で「少し、わずかに」を意味する程度の副詞。冠詞unを伴わないPocoと同じ意味で使われる。',
+    lead: 'Un poco はイタリア語で「少し」。冠詞 un を伴わない poco と意味は同じで、Un poco allegro と Poco allegro は同じ内容を指します。',
     sections: [
       {
-        heading: 'Pocoとの違い',
-        body: '冠詞unの有無によって意味上の違いは生じず、Un poco allegroとPoco allegroは同じ内容を指す。',
+        heading: '冠詞の有無は意味を変えない',
+        body: 'poco は「少し」を意味する語で、un poco は不定冠詞を付けた形です。イタリア語として自然な言い方の違いであり、程度の差を示すものではありません。楽譜でどちらが書かれているかによって演奏を変える必要はありません。',
+      },
+      {
+        heading: '注意すべき別の語との違い',
+        body: '混同してはならないのが poco a poco（少しずつ）です。これは程度ではなく変化の速さを指す指示で、「行きすぎるな」という制動の意味を持ちます。また、否定を伴う poco meno（少し控えて）や、まったく別の意味になる pochissimo（きわめてわずかに）もあります。un poco と poco a poco の混同は、実際に起きやすい読み間違いです。',
+      },
+      {
+        heading: '程度を示す語の階層',
+        body: '弱いほうから pochissimo（きわめてわずかに）、appena（かろうじて）、poco / un poco（少し）、assai（十分に）、molto（非常に）という順に並びます。楽譜の中で複数の程度指示が現れる箇所では、この相対関係で読むことになります。',
       },
     ],
     confusions: [
-      { term: 'Poco', slug: 'poco', note: '冠詞を伴わない同義の形。' },
+      { term: 'Poco', slug: 'poco', note: '同じ意味。冠詞の有無だけの違い。' },
+      { term: 'Poco a poco', slug: 'poco-a-poco', note: '少しずつ。程度ではなく変化の速さを指す別の指示。' },
+      { term: 'Appena', slug: 'appena', note: 'かろうじて。poco より弱い。' },
+      { term: 'Molto', slug: 'molto', note: '非常に。poco の反対方向。' },
     ],
   },
 
@@ -696,10 +767,25 @@ export const termArticles = {
   },
 
   'as-sai': {
-    lead: 'As sai（アッサイ）は、イタリア語Assai（十分に、非常に）と同じ語を指す表記。語の途中に空白が入っている点を除き、意味や使われ方に違いはない。',
-    sections: [],
+    lead: 'As sai は Assai（十分に、非常に）と同じ語です。辞典には語の途中に空白が入った形で収録されていますが、これは表記の揺れであり、別の用語ではありません。',
+    sections: [
+      {
+        heading: '正しい綴りは Assai',
+        body: 'イタリア語の assai は1語で綴ります。ad（〜へ）と satis（十分）に由来し、英語の satisfy や satisfaction と語根を共有します。原義は「十分なところまで」で、そこから「非常に」という強意の意味が生じました。',
+      },
+      {
+        heading: '程度を強める語として',
+        body: '単独では使われず、他の指示に添えて程度を強めます。Allegro assai なら「十分に速く」、Adagio assai なら「十分に遅く」です。molto（非常に）と近い働きをしますが、assai は「足りている」という含みを持つため、際限なく強めるのではなく、その語が指す性格が十分に出ている状態を求めます。',
+      },
+      {
+        heading: '前に付くか後に付くか',
+        body: 'assai は修飾する語の後ろに置かれるのが通例です（Allegro assai）。molto は前に置かれることが多く（Molto allegro）、この語順の差が両者を見分ける手がかりになります。',
+      },
+    ],
     confusions: [
-      { term: 'Assai', slug: 'assai', note: '空白のない標準的な表記。' },
+      { term: 'Assai', slug: 'assai', note: '正しい綴り。内容はこちらを参照。' },
+      { term: 'Molto', slug: 'molto', note: '非常に。assai と近いが語順の慣習が異なる。' },
+      { term: 'Poco', slug: 'poco', note: '少し。assai の反対方向。' },
     ],
   },
 
@@ -731,15 +817,25 @@ export const termArticles = {
   },
 
   'eilen': {
-    lead: 'Eilen（アイレン）はドイツ語で「急ぐ、急き立てる」を意味する動詞で、速度指示としてはテンポを速めていくことを示す。',
+    lead: 'Eilen はドイツ語で「急ぐ」。速度指示としてはテンポを速めることを示しますが、楽譜では否定形の nicht eilen（急がないで）として現れることのほうが多い語です。',
     sections: [
       {
-        heading: 'Nicht eilenという指示',
-        body: '楽譜にはしばしば否定形のnicht eilen（急がないで）という形で現れ、演奏者が先走ってテンポを速めてしまわないよう釘を刺す注意書きとして使われる。',
+        heading: 'nicht eilen という書き方',
+        body: 'この語が否定形で使われるのは、演奏者が先走ってテンポを速めてしまいがちな箇所に釘を刺す目的です。マーラーは自作の楽譜に nicht eilen をはじめとする詳細なドイツ語の注意書きを多数記しており、演奏上の判断を細かく指定しています。否定形で書かれているということは、そこが実際に走りやすい箇所だという情報でもあります。',
+      },
+      {
+        heading: 'なぜ走るのか',
+        body: '音符が細かくなる箇所、音量が上がっていく箇所、そして緊張が高まる箇所では、テンポが自然に前へ出ます。演奏者が意図せず速めてしまうのは、身体が興奮に反応するためです。nicht eilen が書かれている箇所では、この反応を意識して抑える必要があります。',
+      },
+      {
+        heading: '関連するドイツ語の指示',
+        body: 'nicht schleppen（引きずらないで）が反対方向の注意書きで、遅くなりすぎることを禁じます。この二つが同じ楽譜に現れることがあり、その場合はテンポを両方向から固定していることになります。etwas（やや）、nicht zu（〜しすぎないで）といった限定の語も併用されます。',
       },
     ],
     confusions: [
-      { term: 'Accelerando', slug: 'accelerando', note: '同じくテンポを速めることを示すイタリア語の標準語。' },
+      { term: 'Accelerando', slug: 'accelerando', note: '速度を上げていく指示。eilen は多くの場合これを禁じる文脈で現れる。' },
+      { term: 'Stringendo', slug: 'stringendo', note: '切迫して速く。意図された加速。' },
+      { term: 'Geschwind', slug: 'geschwind', note: 'ドイツ語で速く。状態を指す形容詞。' },
     ],
   },
 
@@ -757,15 +853,25 @@ export const termArticles = {
   },
 
   'geschwind': {
-    lead: 'Geschwind（ゲシュヴィント）はドイツ語で「速く」を意味し、Schnellとほぼ同義の速度指示。',
+    lead: 'Geschwind はドイツ語で「速く」。Schnell とほぼ同じ意味ですが、現代の日常語としては schnell のほうが一般的で、geschwind は古い語感を持ちます。',
     sections: [
       {
-        heading: 'Schnellとの違い',
-        body: '意味の上での違いはほとんどないが、Geschwindの方がやや古風・文語的な響きを持つとされる。',
+        heading: 'ドイツ語で速度を書く流儀',
+        body: 'イタリア語の速度用語が国際的な標準として使われる一方で、ドイツ語圏の作曲家の一部は自国語で指示を書きました。schnell（速く）、langsam（遅く）、mäßig（中くらいに）、breit（幅広く）などがその語彙です。geschwind もこの系列に属します。',
+      },
+      {
+        heading: 'Schnell との関係',
+        body: '速度としての意味の範囲に違いはありません。両者が同じ曲の中で書き分けられている場合は何らかの区別が意図されている可能性がありますが、一般的な規則として定まったものはありません。楽譜でこの語を見たら Allegro に相当する速さと読むのが確実です。',
+      },
+      {
+        heading: '語の成り立ち',
+        body: '接頭辞 ge- を持つ形容詞で、ドイツ語では ge- が付くことで完了や集合の意味を帯びることがあります。現代ドイツ語では geschwind の使用頻度は schnell より低く、やや文語的な位置にあります。',
       },
     ],
     confusions: [
-      { term: 'Schnell', slug: 'schnell', note: '同じ意味を持つ、より一般的な語。' },
+      { term: 'Schnell', slug: 'schnell', note: 'ドイツ語で速く。こちらが一般的な語。' },
+      { term: 'Eilen', slug: 'eilen', note: '急ぐ。速度を上げていく動きを指す動詞。' },
+      { term: 'Allegro', slug: 'allegro', note: '対応するイタリア語の速度標語。' },
     ],
   },
 
@@ -791,15 +897,25 @@ export const termArticles = {
   },
 
   'cede': {
-    lead: 'Cede（セード、正しくは Cédez）はフランス語の動詞céder（譲る、緩める）に由来し、テンポを緩めることを示す指示。イタリア語のRitardandoに近い。',
+    lead: 'Cédez はフランス語の動詞 céder（譲る、緩める）の命令形で、テンポを緩めることを示します。辞典にはアクサン記号のない Cede の形で収録されています。',
     sections: [
       {
-        heading: 'フランス語の速度語彙として',
-        body: 'ドビュッシーやフォーレなど、フランス語の指示を用いる作曲家の楽譜に見られる表現のひとつ。',
+        heading: 'ラテン語 cedere（譲る、退く）から',
+        body: 'céder はラテン語の cedere に由来し、英語の cede、concede、recede、precede も同じ語根を持ちます。原義は「退く、場所を譲る」です。したがってこの指示は、単に遅くすることではなく、押していた力を引く動きを表します。',
+      },
+      {
+        heading: 'ritardando との違い',
+        body: 'ritardando は「遅らせる」で、テンポの数値が下がることを指します。cédez は「譲る」で、力を緩めた結果として速度が落ちます。前者はテンポの操作、後者は力の操作です。この差は、緩め方の質に現れます。cédez では音量や張りも同時に引くのが語の方向に沿った扱いになります。',
+      },
+      {
+        heading: '命令形で書かれる指示',
+        body: 'フランス語の楽譜では、動詞の命令形で指示が書かれることがあります。cédez（緩めて）、retenez（引き止めて）、pressez（急いで）、serrez（詰めて）などがその形です。イタリア語が現在分詞（ritardando、accelerando）で過程を示すのに対して、フランス語は演奏者への呼びかけとして書かれます。',
       },
     ],
     confusions: [
-      { term: 'Ritardando', slug: 'ritardando', note: '同じくテンポを緩めることを示すイタリア語の標準語。' },
+      { term: 'Ritardando', slug: 'ritardando', note: '遅らせる。テンポの操作を指す。' },
+      { term: 'Rallentando', slug: 'rallentando', note: '緩めていく。近い方向の指示。' },
+      { term: 'Calando', slug: 'calando', note: '弱めながら遅く。力を引く点で cédez に近い。' },
     ],
   },
 
@@ -830,15 +946,25 @@ export const termArticles = {
   },
 
   'con-fretta': {
-    lead: 'Con fretta（コン・フレッタ）はイタリア語で「急いで」を意味し、名詞fretta（急ぎ、慌ただしさ）を伴う速度指示。',
+    lead: 'Con fretta はイタリア語で「急いで」。名詞 fretta（急ぎ、慌ただしさ）を con（〜を伴って）で受けた形です。速さではなく、慌ただしさという心理的な質を指します。',
     sections: [
       {
-        heading: '語源',
-        body: 'con（~を伴って）+ fretta（急ぎ）という組み合わせで、con moto（動きを伴って）などと同じ文法構造を持つ。',
+        heading: '速さと慌ただしさは別',
+        body: 'この指示が示しているのは、テンポの数値ではなく状態です。fretta には落ち着きを失っているという含みがあり、余裕のなさが性格になります。したがって、単に速く弾くのではなく、追われているように聞こえることが求められます。逆に、遅いテンポの中でも慌ただしさは表現できます。',
+      },
+      {
+        heading: 'con ＋名詞という構造',
+        body: 'con moto（動きをもって）、con brio（活気をもって）、con fuoco（火をもって）と同じ文法構造です。con 自体には方向性がなく、後に続く名詞がすべてを決めます。したがって、この形の指示を読むときは名詞の意味を取ることが要点になります。',
+      },
+      {
+        heading: '近い指示との違い',
+        body: 'affrettando（急いていく）は現在分詞で、変化していく過程を示します。con fretta は状態を示すため、その区間を通してその性格が保たれます。stringendo は切迫して速度を上げることを明示する指示で、こちらはテンポの変化そのものを指定しています。',
       },
     ],
     confusions: [
-      { term: 'Affrettando', slug: 'affrettando', note: '同じ語根frettaを共有する類語。' },
+      { term: 'Affrettando', slug: 'affrettando', note: '同じ語根。急いでいく過程を示す。' },
+      { term: 'Stringendo', slug: 'stringendo', note: '切迫して速度を上げる。テンポ変化を明示する。' },
+      { term: 'Con', slug: 'con', note: '「〜を伴って」。この構造を作る前置詞。' },
     ],
   },
 
@@ -857,25 +983,48 @@ export const termArticles = {
   },
 
   'finalement': {
-    lead: 'Finalement（フィナルマン）はフランス語で「ついに、最後に」を意味する副詞。楽譜では、それまでの経過を経てある状態に至る終結部などに添えられる。',
+    lead: 'Finalement はフランス語で「ついに、最後に」。それまでの経過を経てある状態に至ることを示し、終結に向かう箇所に置かれます。',
     sections: [
       {
         heading: '語源',
-        body: '形容詞final（最後の）に副詞語尾-mentを付けた語で、英語のfinallyと同じ語根を持つ。',
+        body: '形容詞 final（最後の）に副詞語尾 -ment を付けた形です。ラテン語の finis（終わり、境界）に由来し、英語の final、finish、finite、そして音楽用語の fine も同じ語根を持ちます。finis の原義は「境界」で、そこから「終わり」の意味が生じました。',
       },
+      {
+        heading: '-ment というフランス語の副詞語尾',
+        body: 'フランス語では形容詞の女性形に -ment を付けて副詞を作ります。final → finalement、grave → gravement、doux → doucement がこの形です。イタリア語の -mente と同じラテン語起源の語尾で、両者は対応関係にあります。フランス語の楽譜で -ment で終わる語を見たら、元の形容詞を切り出せば意味が取れます。',
+      },
+      {
+        heading: '楽譜での位置',
+        body: 'この語は速度や音量を指定しません。示しているのは、その箇所が到達点にあたるということです。したがって、そこまでの経過があって初めて意味を持つ指示であり、前段をどう積み上げたかが結果を決めます。',
+      },
+    ],
+    confusions: [
+      { term: 'Fine', slug: 'fine', note: '曲の終わり。同じ finis を語根に持つ。' },
+      { term: 'Coda', slug: 'coda', note: '結尾部。楽曲構造上の区分。' },
+      { term: 'Gravement', slug: 'gravement', note: '同じ -ment 語尾を持つフランス語の副詞。' },
     ],
   },
 
   'gravement': {
-    lead: 'Gravement（グラーヴマン）はフランス語で「重々しく、深刻に」を意味する副詞で、イタリア語のGraveに相当する性格を示す。',
+    lead: 'Gravement はフランス語で「重々しく、荘重に」。イタリア語の Grave に相当します。フランス語の grave には「低い音の」という意味もあり、この語源が音楽と直接つながっています。',
     sections: [
       {
-        heading: '語源',
-        body: '形容詞grave（重い、深刻な）に副詞語尾-mentを付けた語。ラテン語gravis（重い）に由来し、イタリア語のGraveと語根を共有する。',
+        heading: 'ラテン語 gravis（重い）から',
+        body: '形容詞 grave に副詞語尾 -ment を付けた形です。ラテン語の gravis（重い）に由来し、英語の grave、gravity、gravitate も同じ語根を持ちます。重さという物理的な性質が、そのまま深刻さや荘重さという意味へ広がった語です。',
+      },
+      {
+        heading: '「低い音」という意味',
+        body: 'フランス語では son grave が「低い音」を意味し、高い音を指す aigu と対をなします。低音は物理的に振動が遅く、重い弦や長い管から出ます。重さと低さが同じ語で結ばれているのは、この物理的な対応があるためです。この語が付いた箇所で低音域が厚く書かれていることが多いのは偶然ではありません。',
+      },
+      {
+        heading: '演奏上の判断',
+        body: '重々しさは音量では作れません。テンポを広く取り、音を鳴らしきり、次の音へ急がないことで重心が生まれます。速く弾くと、音量が大きくても軽く聞こえます。逆に、遅くしただけで支えが抜けると、重さではなく緩みになります。',
       },
     ],
     confusions: [
-      { term: 'Grave', slug: 'grave', note: '同じ語根を持つイタリア語の標準的な指示。' },
+      { term: 'Grave', slug: 'grave', note: '対応するイタリア語。同じ語根。' },
+      { term: 'Pesante', slug: 'pesante', note: '重々しく。重量そのものを指す。' },
+      { term: 'Maestoso', slug: 'maestoso', note: '荘厳に。威厳と格式を含む。' },
     ],
   },
 
@@ -920,15 +1069,25 @@ export const termArticles = {
   },
 
   'rapidamente': {
-    lead: 'Rapidamente（ラピダメンテ）はイタリア語で「急速に」を意味する副詞。',
+    lead: 'Rapidamente はイタリア語で「急速に」。形容詞 rapido に副詞語尾 -mente を付けた形です。語源をたどると、単に速いことではなく「さらっていく」動きを指す語だと分かります。',
     sections: [
       {
-        heading: '語源',
-        body: '形容詞rapido（速い）に副詞語尾-menteを付けた語で、ラテン語rapidus（急激な、激しい）に由来する。',
+        heading: 'ラテン語 rapere（奪い去る）から',
+        body: 'rapido はラテン語の rapidus に由来し、これは動詞 rapere（つかむ、奪い去る）から派生した語です。英語の rapid、rapture はいずれも同じ語根を持ちます。原義は「さらっていくような」で、速度そのものより、勢いで運び去られる感覚を含みます。この含みが veloce（速い）との違いです。',
+      },
+      {
+        heading: 'veloce との違い',
+        body: 'veloce はラテン語 velox に由来し、速さそのものを指す語です。rapidamente は上記のとおり「奪い去る」という動きの質を含みます。したがって前者は速度の指定として読め、後者は勢いの指定として読めます。同じ速さでも、一音ずつ整えて速く弾くのが veloce、流れに押されて進むのが rapidamente に近い性格です。',
+      },
+      {
+        heading: '-mente という語尾',
+        body: 'イタリア語では形容詞の女性形に -mente を付けて副詞を作ります。rapido → rapidamente、dolce → dolcemente、delicato → delicatamente がこの形です。楽譜に -mente で終わる語が現れたら、元の形容詞を切り出せば意味が取れます。',
       },
     ],
     confusions: [
-      { term: 'Veloce', slug: 'veloce', note: '同じく速さを示す類語。' },
+      { term: 'Veloce', slug: 'veloce', note: '速さそのものを指す語。rapidamente は勢いを含む。' },
+      { term: 'Presto', slug: 'presto', note: '速度標語。rapidamente は性格の指示として添えられる。' },
+      { term: 'Con fretta', slug: 'con-fretta', note: '急いで。慌ただしさを含む。' },
     ],
   },
 
