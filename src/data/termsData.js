@@ -695,17 +695,6 @@ export const termsData = [
     "color": "bg-blue-300"
   },
   {
-    "id": 64,
-    "term": "L’istesso tempo",
-    "reading": "リステッソ・テンポ",
-    "symbol": null,
-    "category": "速度",
-    "lang": "イタリア語",
-    "meaning": "同じ速さで",
-    "detail": "拍子記号が変わっても、一拍（または小節）の単位時間は変えず、拍動を貫くための指示です。",
-    "color": "bg-teal-100"
-  },
-  {
     "id": 65,
     "term": "Legato",
     "reading": "レガート",
@@ -8285,17 +8274,6 @@ export const termsData = [
     "id": 754
   },
   {
-    "term": "Modere",
-    "reading": "モデレ",
-    "symbol": null,
-    "category": "速度",
-    "lang": "フランス語",
-    "meaning": "中くらいの速さで",
-    "detail": "Moderatoのフランス語。落ち着いた歩みを要求します。",
-    "color": "bg-yellow-50",
-    "id": 755
-  },
-  {
     "term": "Tres lent",
     "reading": "トレ・ラン",
     "symbol": null,
@@ -8934,17 +8912,6 @@ export const termsData = [
     "id": 813
   },
   {
-    "term": "As sai",
-    "reading": "アッサイ",
-    "symbol": null,
-    "category": "速度",
-    "lang": "イタリア語",
-    "meaning": "非常に、十分に",
-    "detail": "程度の強調。",
-    "color": "bg-rose-100",
-    "id": 814
-  },
-  {
     "term": "Bassa",
     "reading": "バッサ",
     "symbol": "8va bassa",
@@ -9075,17 +9042,6 @@ export const termsData = [
     "detail": "ティンパニ等に布を被せる指示。",
     "color": "bg-gray-500",
     "id": 826
-  },
-  {
-    "term": "Dampfer",
-    "reading": "デンプファー",
-    "symbol": null,
-    "category": "奏法",
-    "lang": "ドイツ語",
-    "meaning": "弱音器",
-    "detail": "Sordinoのドイツ語。",
-    "color": "bg-slate-500",
-    "id": 827
   },
   {
     "term": "Deselegante",
@@ -9559,17 +9515,6 @@ export const termsData = [
     "detail": "真鍮が鳴り響くような、バリバリとした強音。",
     "color": "bg-orange-600 text-white",
     "id": 870
-  },
-  {
-    "term": "Bourree",
-    "reading": "ブーレ",
-    "symbol": null,
-    "category": "形式",
-    "lang": "フランス語",
-    "meaning": "速い4/4（または2/2）拍子の舞曲",
-    "detail": "力強く、活気に満ちたリズム。",
-    "color": "bg-orange-100",
-    "id": 871
   },
   {
     "term": "Pavane",
@@ -10219,17 +10164,6 @@ export const termsData = [
     "detail": "ピアノ等で右手の使用を指示。",
     "color": "bg-blue-50",
     "id": 930
-  },
-  {
-    "term": "Coll’ ottava",
-    "reading": "コッロッターヴァ",
-    "symbol": "c.8va",
-    "category": "奏法",
-    "lang": "イタリア語",
-    "meaning": "オクターブを重ねて",
-    "detail": "1オクターブ足して弾くこと。",
-    "color": "bg-indigo-50",
-    "id": 931
   },
   {
     "term": "Come sopra",
@@ -10934,17 +10868,6 @@ export const termsData = [
     "detail": "鋭いアタックの連続。",
     "color": "bg-stone-500",
     "id": 995
-  },
-  {
-    "term": "Calandando",
-    "reading": "カランダンド",
-    "symbol": null,
-    "category": "速度",
-    "lang": "イタリア語",
-    "meaning": "弱めながら遅く",
-    "detail": "Calandoの進行形。",
-    "color": "bg-slate-300",
-    "id": 996
   },
   {
     "term": "Con afflizione",
