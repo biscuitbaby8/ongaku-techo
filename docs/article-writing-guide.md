@@ -194,7 +194,7 @@ thin.forEach(r=>console.log(' ',r[0],r[1]));
 
 次の両方を満たすこと。
 
-1. 全1,051語に `termArticles.js` の項目があること
+1. `termsData.js` の全語に `termArticles.js` の項目があること（語数は増減しうるため、固定の数字ではなくこの一致条件で判定する）
 2. 上の「要書き直し」リストが空であること
 
 両方を満たしたら Routine を停止する。
