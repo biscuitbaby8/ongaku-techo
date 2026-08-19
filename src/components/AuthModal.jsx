@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
 import { Mail, Lock, UserPlus, LogIn, X, Loader2, Info } from 'lucide-react';
-import { supabase } from '../lib/supabaseClient';
+import {
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
+    signOut,
+} from 'firebase/auth';
+import { auth, googleProvider } from '../lib/firebaseClient';
+
+function firebaseErrorToMessage(error) {
+    switch (error.code) {
+        case 'auth/invalid-credential':
+        case 'auth/wrong-password':
+        case 'auth/user-not-found':
+            return 'メールアドレスまたはパスワードが間違っています。';
+        case 'auth/email-already-in-use':
+            return 'このメールアドレスは既に登録されています。';
+        case 'auth/weak-password':
+            return 'パスワードは6文字以上で入力してください。';
+        default:
+            return error.message;
+    }
+}
 
 export default function AuthModal({ onClose, s, theme }) {
     const [email, setEmail] = useState('');
@@ -11,47 +33,53 @@ export default function AuthModal({ onClose, s, theme }) {
     const [successMsg, setSuccessMsg] = useState('');
 
     const handleGoogleLogin = async () => {
+        if (!auth) {
+            setErrorMsg('現在ログイン機能はご利用いただけません。');
+            return;
+        }
         setIsLoading(true);
         setErrorMsg('');
         try {
-            const { error } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
-                options: {
-                    redirectTo: window.location.origin,
-                },
-            });
-            if (error) throw error;
+            await signInWithPopup(auth, googleProvider);
+            // On success, App.jsx's onAuthStateChanged listener will catch it.
+            onClose();
         } catch (error) {
-            setErrorMsg(error.message);
+            if (error.code !== 'auth/popup-closed-by-user') {
+                setErrorMsg(firebaseErrorToMessage(error));
+            }
+        } finally {
             setIsLoading(false);
         }
     };
 
     const handleAuth = async (e) => {
         e.preventDefault();
+        if (!auth) {
+            setErrorMsg('現在ログイン機能はご利用いただけません。');
+            return;
+        }
         setIsLoading(true);
         setErrorMsg('');
         setSuccessMsg('');
 
         try {
             if (isLogin) {
-                const { error } = await supabase.auth.signInWithPassword({ email, password });
-                if (error) throw error;
-                // On success, App.jsx's onAuthStateChange listener will catch it.
+                const cred = await signInWithEmailAndPassword(auth, email, password);
+                if (!cred.user.emailVerified) {
+                    await signOut(auth);
+                    setErrorMsg('メールアドレスの確認が完了していません。確認メール内のリンクをご確認ください。');
+                    return;
+                }
+                // On success, App.jsx's onAuthStateChanged listener will catch it.
                 onClose();
             } else {
-                const { error } = await supabase.auth.signUp({ email, password });
-                if (error) throw error;
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                await sendEmailVerification(cred.user);
+                await signOut(auth);
                 setSuccessMsg('確認メールを送信しました。メールのリンクからログインしてください。');
             }
         } catch (error) {
-            if (error.message.includes('Invalid login credentials')) {
-                setErrorMsg('メールアドレスまたはパスワードが間違っています。');
-            } else if (error.message.includes('User already registered')) {
-                setErrorMsg('このメールアドレスは既に登録されています。');
-            } else {
-                setErrorMsg(error.message);
-            }
+            setErrorMsg(firebaseErrorToMessage(error));
         } finally {
             setIsLoading(false);
         }
