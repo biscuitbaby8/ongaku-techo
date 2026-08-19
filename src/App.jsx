@@ -8,7 +8,9 @@ import {
 import { Analytics } from '@vercel/analytics/react';
 
 import AuthModal from './components/AuthModal';
-import { supabase } from './lib/supabaseClient';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { auth, db } from './lib/firebaseClient';
 import { buildTermIndex, findDictionaryMatches } from './lib/termMatcher';
 
 // --- データのインポート ---
@@ -141,31 +143,29 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        loadCloudData(session.user.id);
+    if (!auth) {
+      // Firebase未設定（VITE_FIREBASE_*が無い）場合はログイン機能を無効化し、localStorageのみで動作する
+      setIsDataLoaded(true);
+      return;
+    }
+
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+      if (firebaseUser) {
+        loadCloudData(firebaseUser.uid);
       } else {
         setIsDataLoaded(true);
       }
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        loadCloudData(session.user.id);
-      } else {
-        setIsDataLoaded(true);
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   const loadCloudData = async (userId) => {
     try {
-      const { data, error } = await supabase.from('user_data').select('*').eq('user_id', userId).single();
-      if (data) {
+      const snap = await getDoc(doc(db, 'user_data', userId));
+      if (snap.exists()) {
+        const data = snap.data();
         setFavorites(prev => new Set([...prev, ...(data.favorites || [])]));
         setMastered(prev => new Set([...prev, ...(data.mastered || [])]));
         setMemos(prev => ({ ...prev, ...(data.memos || {}) }));
@@ -181,10 +181,7 @@ export default function App() {
   const saveToCloud = async (key, value) => {
     if (!user || !isDataLoaded) return;
     try {
-      await supabase.from('user_data').upsert({
-        user_id: user.id,
-        [key]: value
-      }, { onConflict: 'user_id' });
+      await setDoc(doc(db, 'user_data', user.uid), { [key]: value }, { merge: true });
     } catch (e) {
       console.error('Failed to sync', e);
     }
@@ -483,7 +480,7 @@ export default function App() {
                 {user ? (
                   <div className="bg-slate-50 p-4 rounded-xl shadow-sm text-center">
                     <p className="text-xs font-bold text-slate-600 mb-3 truncate">ログイン中: {user.email}</p>
-                    <button onClick={() => supabase.auth.signOut()} className={`w-full py-3 flex items-center justify-center gap-2 rounded-lg text-white font-bold text-xs ${s.accent}`}><User size={16} /> ログアウト</button>
+                    <button onClick={() => signOut(auth)} className={`w-full py-3 flex items-center justify-center gap-2 rounded-lg text-white font-bold text-xs ${s.accent}`}><User size={16} /> ログアウト</button>
                   </div>
                 ) : (
                   <button onClick={() => { setShowSettings(false); setShowAuthModal(true); }} className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white text-xs ${s.accent} shadow-sm`}><User size={18} /> ログインしてデータを保護</button>

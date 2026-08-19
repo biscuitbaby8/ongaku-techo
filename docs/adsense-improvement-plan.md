@@ -203,6 +203,10 @@ AdSense の審査ではプライバシーポリシーの内容も確認されま
 Vercel Analytics、GA記載の削除、LocalStorage 説明の条件付け）。
 法務的な文面としてご自身でも一度目を通してください。
 
+**追記（2026-08-19）**: Supabaseの無料プランのプロジェクト数上限により、認証・クラウド同期の
+バックエンドをSupabaseからFirebase（Google純正）へ移行した。`public/privacy.html`
+第7章もFirebase向けに更新済み。上表の「Supabase」はこの移行前の調査時点の記述として残す。
+
 ---
 
 ### 6. 【要対応】EEA/UK 向けの同意管理（CMP）がない
