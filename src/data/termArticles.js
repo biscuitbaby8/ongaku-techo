@@ -404,7 +404,7 @@ export const termArticles = {
       },
     ],
     works: [
-      { title: 'バッハ「マタイ受難曲」より Erbarme dich', note: 'ダ・カーポ形式によるアリアの中でも、感情表現の深さで知られる一曲です。' },
+      { title: 'ヘンデル「リナルド」より Lascia ch\'io pianga', note: '明確なA-B-A構造を持つ、ダ・カーポ・アリアの典型例として知られる一曲です。' },
       { title: 'ヘンデルのオペラ・アリア', note: 'バロック・オペラで標準的だったダ・カーポ・アリアの代表例が多数あります。' },
     ],
   },
@@ -480,7 +480,7 @@ export const termArticles = {
       },
     ],
     works: [
-      { title: 'ヴォルフの一部の歌曲', note: '有節形式でありながら、伴奏の変化で歌詞の展開を丁寧に描いた作品があります。' },
+      { title: 'ブラームス「子守歌」作品49の4', note: '2つの節をまったく同じ旋律で歌う、有節形式の分かりやすい例です。' },
       { title: 'シューベルトの一部の歌曲', note: '有節形式を用いて素朴な性格を表現している作品があります。' },
     ],
   },
@@ -1314,7 +1314,7 @@ export const termArticles = {
       },
     ],
     works: [
-      { title: 'ミヨー「スカラムーシュ」', note: 'ヴィブラフォンを含む編成でも演奏され、独特の柔らかい響きを加えます。' },
+      { title: 'スティーヴ・ライヒ「18人の音楽家のための音楽」', note: 'モーター無しで使うヴィブラフォンが、指揮者を置かずに次のセクションへの移行を合図する役割を担っています。' },
       { title: 'ジャズにおけるヴィブラフォン奏者', note: 'ライオネル・ハンプトンなどがこの楽器をジャズの主要楽器として定着させました。' },
     ],
   },
@@ -3297,7 +3297,7 @@ export const termArticles = {
       { term: 'Triplet', slug: 'triplet', note: '3連符。2分割の中に3分割を持ち込む。' },
     ],
     works: [
-      { title: 'ショパン 幻想即興曲', note: '右手4連符・左手3連符という2対3のポリリズムが全曲を通して使われています。' },
+      { title: 'ショパン 幻想即興曲', note: '右手が4連符、左手が3連符を刻む「4対3」のポリリズムが全曲を通して使われています。' },
     ],
   },
 
@@ -3559,7 +3559,7 @@ export const termArticles = {
       { term: 'Phrasing', slug: 'phrasing', note: 'フレーズのまとめ方。' },
     ],
     works: [
-      { title: 'モーツァルトの緩徐楽章全般', note: '簡潔で歌いやすい旋律の書法の見本とされます。' },
+      { title: 'モーツァルト ピアノ協奏曲第21番 第2楽章', note: '簡潔でありながら歌いやすい旋律の書法の見本として、しばしば引き合いに出される楽章です。' },
     ],
   },
 
@@ -3626,7 +3626,7 @@ export const termArticles = {
       { term: 'Mobile form', slug: 'mobile-form', note: '順序が可変な形式。' },
     ],
     works: [
-      { title: 'ソナタ形式の古典派作品全般', note: '提示・展開・再現という設計が最も明快に現れる形式です。' },
+      { title: 'モーツァルト 交響曲第40番 ト短調 第1楽章', note: '提示・展開・再現という設計が最も明快に現れる、ソナタ形式の教材として頻繁に使われる楽章です。' },
     ],
   },
 
@@ -4084,7 +4084,7 @@ export const termArticles = {
       { term: 'Trio sonata', slug: 'trio-sonata', note: '通奏低音を用いるバロック室内楽の形式。' },
     ],
     works: [
-      { title: 'バロック期の通奏低音パート全般', note: '数字付き低音は、バロック音楽のほぼすべての合奏で鍵盤・リュート奏者が使う標準的な記法でした。' },
+      { title: 'コレッリ ヴァイオリンソナタ集 作品5', note: 'ヴァイオリンパートに対し、鍵盤奏者が数字付き低音を見て和音を組み立てる通奏低音の実例です。' },
     ],
   },
 
@@ -4641,7 +4641,7 @@ export const termArticles = {
       { term: 'Molto', slug: 'molto', note: '非常に。量の増大を示す。' },
     ],
     works: [
-      { title: 'ben marcato（bene の短縮 ben + marcato）を含む楽譜', note: '「はっきりと際立たせて」という組み合わせでよく使われます。' },
+      { title: 'バルトーク「管弦楽のための協奏曲」第1楽章', note: '第1トランペットに ben marcato（十分に際立たせて）の指示がある箇所があり、この組み合わせの実例です。' },
     ],
   },
 
@@ -4741,7 +4741,7 @@ export const termArticles = {
       { term: 'Devoto', slug: 'devoto', note: '敬虔に。祈りの態度。' },
     ],
     works: [
-      { title: '結婚行進曲・戴冠式音楽の類', note: '儀式音楽には solenne な性格が求められることが多くあります。' },
+      { title: 'ヘンデル 戴冠式アンセム「Zadok the Priest」', note: '1727年以来、英国の戴冠式で歴代使われ続けている儀式音楽で、solenne な性格の典型です。' },
     ],
   },
 
@@ -4908,7 +4908,7 @@ export const termArticles = {
       { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
     ],
     works: [
-      { title: 'バロック期の対位法作品全般', note: '各声部が独立して聞こえることが求められ、distinto な演奏が必要とされます。' },
+      { title: 'バッハ「平均律クラヴィーア曲集」のフーガ', note: '各声部が独立して聞こえることが求められ、distinto な演奏が必要とされます。' },
     ],
   },
 
@@ -5648,7 +5648,7 @@ export const termArticles = {
       { term: 'Kraftvoll', slug: 'kraftvoll', note: '力強く。' },
     ],
     works: [
-      { title: 'ベートーヴェン ピアノソナタ第23番「熱情」', note: '英題は Appassionata。曲全体に leidenschaftlich な性格が貫かれています。' },
+      { title: 'ベートーヴェン ピアノソナタ第23番「熱情」', note: '通称 Appassionata（出版社が付けたイタリア語の愛称）。曲全体に leidenschaftlich な性格が貫かれています。' },
     ],
   },
 
@@ -6072,7 +6072,7 @@ export const termArticles = {
       { term: 'Freddo', slug: 'freddo', note: '冷たく。感情の欠如を含む。' },
     ],
     works: [
-      { title: 'フォーレ「レクイエム」', note: '陰影に富んだ暗い響きが全曲を通じて特徴的です。' },
+      { title: 'バーバー「弦楽のためのアダージョ」', note: '葬送や追悼の場で繰り返し使われてきた、暗く沈痛な響きの代表例です。' },
     ],
   },
 
@@ -11536,7 +11536,7 @@ export const termArticles = {
       { term: 'Dynamics', slug: 'dynamics', note: '強弱法全般。' },
     ],
     works: [
-      { title: 'フランスの作曲家による楽譜', note: 'フランス語の強弱指示として fort が用いられます。' },
+      { title: 'クープラン クラヴサン曲集', note: 'Fort（強く）・Doux（弱く）というフランス語の強弱指示が、イタリア語の代わりに使われています。' },
     ],
   },
 
@@ -11565,7 +11565,7 @@ export const termArticles = {
       { term: 'Piano', slug: 'piano', note: '弱く。sotto piano はその下。' },
     ],
     works: [
-      { title: '極めて弱い響きを要求する現代作品', note: 'p・pp よりさらに細かい弱音の段階を要求する楽譜に見られます。' },
+      { title: 'チャイコフスキー 交響曲第6番「悲愴」第1楽章', note: 'ファゴットに pppppp という前例のない弱音を要求する箇所があり、極端な弱音表現の代表例として知られます。' },
     ],
   },
 
@@ -11595,7 +11595,7 @@ export const termArticles = {
       { term: 'Morendo', slug: 'morendo', note: '死に絶えるように。' },
     ],
     works: [
-      { title: '印象主義的な作風の楽曲', note: '音が溶けるように消えていく効果を狙う場面で使われます。' },
+      { title: 'ドビュッシー「牧神の午後への前奏曲」', note: '曲の終わりに向けて音が溶けるように消えていく、diluendo に近い効果が書かれています。' },
     ],
   },
 
@@ -13464,7 +13464,7 @@ export const termArticles = {
       { term: 'Camminando', slug: 'camminando', note: '歩くように。止まらないことを求める点で近い。' },
     ],
     works: [
-      { title: '英語圏の作曲家による楽譜', note: 'イタリア語の代わりに英語の速度指示を用いる伝統に基づく用例です。' },
+      { title: 'パーシー・グレインジャーの楽譜', note: 'クレッシェンドを louden lots と表記するなど、イタリア語を避けて意図的に英語の指示を使ったことで知られる作曲家です。' },
     ],
   },
 
@@ -13630,7 +13630,7 @@ export const termArticles = {
       { term: 'Allegro', slug: 'allegro', note: '対応するイタリア語の速度標語。' },
     ],
     works: [
-      { title: 'モーツァルト・ハイドンの時代のドイツ語楽譜', note: '古典派期のドイツ語圏の楽譜に見られる速度指示です。' },
+      { title: 'ヨハン・ゴットフリート・ヴァルターの音楽辞典（1732年）', note: 'Andante を「Adagio より幾分 geschwind」と説明しており、当時この語がどう理解されていたかを示す資料です。' },
     ],
   },
 
@@ -13680,7 +13680,7 @@ export const termArticles = {
       { term: 'Calando', slug: 'calando', note: '弱めながら遅く。力を引く点で cédez に近い。' },
     ],
     works: [
-      { title: 'フランス歌曲・フランス印象派の作品', note: 'フランス語の速度指示を用いる作曲家の楽譜に見られます。' },
+      { title: 'ドビュッシー「前奏曲集」', note: 'フレーズの終わりでテンポを緩める cédez の指示が随所に見られます。' },
     ],
   },
 
@@ -13735,7 +13735,7 @@ export const termArticles = {
       { term: 'Con', slug: 'con', note: '「〜を伴って」。この構造を作る前置詞。' },
     ],
     works: [
-      { title: '劇的な緊迫感を要求する場面', note: 'オペラのアンサンブル場面などで、登場人物の焦りを表すために使われることがあります。' },
+      { title: 'オペラの追い込みの場面', note: '登場人物の焦りや切迫感を表すため、con fretta に近い性格の速い場面がしばしば置かれます。' },
     ],
   },
 
@@ -13864,7 +13864,7 @@ export const termArticles = {
       { term: 'Con fretta', slug: 'con-fretta', note: '急いで。慌ただしさを含む。' },
     ],
     works: [
-      { title: '練習曲（エチュード）の急速楽章', note: '技巧的な速いパッセージを持つ楽曲で頻出する指示です。' },
+      { title: 'ショパン 練習曲 作品10-4', note: '技巧的な速いパッセージが休みなく続く、rapidamente に近い性格を持つ代表的な練習曲です。' },
     ],
   },
 
@@ -18247,7 +18247,7 @@ export const termArticles = {
       { term: 'Dotted note', slug: 'dotted-note', note: '付点でも音を延ばせるが、小節をまたぐ場合はタイを使う。' },
     ],
     works: [
-      { title: 'シンコペーションを多用する曲全般', note: '拍をまたぐタイは、リズムに独特の推進力を与えるためによく使われます。' },
+      { title: 'スコット・ジョプリンのラグタイム曲', note: '拍をまたぐタイでシンコペーションを作る書法が、この様式の推進力の源になっています。' },
     ],
   },
 
@@ -18280,7 +18280,7 @@ export const termArticles = {
       { term: 'Compound meter', slug: 'compound-meter', note: '1拍が3等分されることが前提の拍子。3連符は2分割の拍子に3分割を持ち込む。' },
     ],
     works: [
-      { title: 'ショパン 幻想即興曲', note: '右手の16分音符に対し左手が3連符となる、2対3のポリリズムの代表例です。' },
+      { title: 'ショパン 幻想即興曲', note: '右手の16分音符（1拍4つ）に対し左手が3連符（1拍3つ）となる、4対3のポリリズムの代表例です。' },
     ],
   },
 
@@ -18489,7 +18489,7 @@ export const termArticles = {
       { term: 'Submediant', slug: 'submediant', note: '下中音。偽終止で進む先となる VI の和音の根音。' },
     ],
     works: [
-      { title: 'ヘンデル「メサイア」より Hallelujah', note: '曲中に偽終止が使われ、聴き手の予想を裏切りながら曲を引き延ばす効果を生んでいます。' },
+      { title: 'モーツァルト「アヴェ・ヴェルム・コルプス」K.618', note: '偽終止の例として音楽理論の教材でしばしば取り上げられる曲です。' },
     ],
   },
 
@@ -18522,7 +18522,7 @@ export const termArticles = {
       { term: 'Key signature', slug: 'key-signature', note: '移調すると調号が変わる。' },
     ],
     works: [
-      { title: '同じ曲の異なる調の版', note: '声楽曲は歌手の声域に合わせて複数の調で出版されることがあり、移調の実例として比較できます。' },
+      { title: 'シューベルトの歌曲', note: '歌手の声域に合わせ、高声用・低声用など異なる調に移調した版が出版社によって用意されることが多くあります。' },
     ],
   },
 
@@ -18628,7 +18628,7 @@ export const termArticles = {
       { term: 'Forte piano', slug: 'forte-piano', note: 'fp と略される別の指示。強く出してすぐ弱くする。' },
     ],
     works: [
-      { title: '古典派の楽譜', note: 'mf の代わりに poco forte（pf）が使われている場合があります。' },
+      { title: '古典派期の楽譜', note: 'mf の代わりに poco forte（pf）という表記が使われている場合があります。' },
     ],
   },
 
@@ -18686,7 +18686,7 @@ export const termArticles = {
       { term: 'Niente', slug: 'niente', note: '無音そのものを指す語。' },
     ],
     works: [
-      { title: 'クレッシェンドで始まる楽曲の冒頭', note: '静寂から音楽が生まれてくる効果を狙う作品に見られます。' },
+      { title: 'ラヴェル「ボレロ」', note: 'ほとんど聞こえない音量から始まり、曲全体を通じて一つのクレッシェンドを描く、dal niente の代表例です。' },
     ],
   },
 
@@ -20304,7 +20304,7 @@ export const termArticles = {
       { term: 'Canon', slug: 'canon', note: 'カノン。2声で書かれることが多く、bicinium の一形態にもなります。' },
     ],
     works: [
-      { title: 'ルネサンス期の教育用対位法作品', note: '2声の対位法教材として広く用いられました。' },
+      { title: 'ゲオルク・ラウ編「ビチニア集」（1545年）', note: '各国のビチニウムを集めた出版譜で、対位法教材として広く用いられました。' },
     ],
   },
 
