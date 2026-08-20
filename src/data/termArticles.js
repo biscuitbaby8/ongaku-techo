@@ -297,6 +297,9 @@ export const termArticles = {
         body: "動詞ritenere（保つ、抑える）の過去分詞形で、「抑えられた」状態そのものを表す語である。テンポを緩めた後、多くの場合はそのテンポのまま次の場面へと進む。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'rit. と略され rallentando と混同されますが、こちらは「即座に」抑える指示で、徐々に遅くする指示とは性格が異なります。' },
+    ],
     confusions: [
       {
         term: "Ritardando",
@@ -308,6 +311,9 @@ export const termArticles = {
         slug: "rallentando",
         note: "こちらも徐々に速度を緩める指示で、Ritardandoとほぼ同義とされる。",
       },
+    ],
+    works: [
+      { title: 'ショパンのノクターン・即興曲', note: 'ritenuto を用いて、フレーズの節目で一瞬テンポを抑える表現が多く見られます。' },
     ],
   },
 
@@ -386,12 +392,20 @@ export const termArticles = {
         body: "ヘンデルをはじめとするバロック期のオペラやオラトリオで広く用いられた標準的なアリアの形式であり、繰り返されるA部分での即興的な装飾が、歌手の技量を示す重要な見せ場となっていた。",
       },
     ],
+    instruments: [
+      { name: '通奏低音', tip: '繰り返しのAの部分では、歌手の即興的な装飾に合わせて伴奏側も柔軟にテンポを合わせる必要があります。' },
+      { name: '声楽', tip: '戻ってくる A の部分では、原則として装飾を加えて歌うのが様式上の慣習です。まったく同じに繰り返すのは避けます。' },
+    ],
     confusions: [
       {
         term: "Da capo",
         slug: "da-capo",
         note: "「頭から繰り返す」ことを示す一般的な指示。Da capo ariaはこの指示を構造の中心に据えたアリアの形式。",
       },
+    ],
+    works: [
+      { title: 'バッハ「マタイ受難曲」より Erbarme dich', note: 'ダ・カーポ形式によるアリアの中でも、感情表現の深さで知られる一曲です。' },
+      { title: 'ヘンデルのオペラ・アリア', note: 'バロック・オペラで標準的だったダ・カーポ・アリアの代表例が多数あります。' },
     ],
   },
 
@@ -449,12 +463,25 @@ export const termArticles = {
         body: "厳密にすべての節を同じ旋律にする場合だけでなく、節ごとに伴奏やわずかな装飾を変える「変形有節形式」も広く用いられており、歌詞の意味の変化にある程度対応できる柔軟さも持たせられる。",
       },
     ],
+    instruments: [
+      { name: 'ピアノ伴奏', tip: '旋律が同じでも、伴奏の音型を節ごとにわずかに変えることで、単調さを避ける工夫がよく行われます。' },
+      { name: '声楽', tip: '同じ旋律を繰り返しても、歌詞の内容に応じて表情や強弱を節ごとに変えると、単調にならずに済みます。' },
+    ],
     confusions: [
       {
         term: "Through-composed",
         slug: "through-composed",
         note: "歌詞の内容に応じて旋律が絶えず変化する形式。同じ旋律を繰り返す有節形式とは対照的。",
       },
+      {
+        term: "Variations",
+        slug: "variations",
+        note: "主題を毎回変化させて繰り返す形式。旋律自体は変えない有節形式とは、繰り返しの扱い方が逆になる。",
+      },
+    ],
+    works: [
+      { title: 'ヴォルフの一部の歌曲', note: '有節形式でありながら、伴奏の変化で歌詞の展開を丁寧に描いた作品があります。' },
+      { title: 'シューベルトの一部の歌曲', note: '有節形式を用いて素朴な性格を表現している作品があります。' },
     ],
   },
 
@@ -470,7 +497,21 @@ export const termArticles = {
         body: "この形式は特にバロック時代の合奏協奏曲や独奏協奏曲で発達し、合奏全体によるリトルネロと、独奏者が技巧を披露するエピソードとの対比が楽章全体を組み立てる基本原理となった。",
       },
     ],
-    confusions: [],
+    instruments: [
+      { name: '独奏', tip: 'エピソード（独奏部分）では、直前のリトルネロの調から離れていく過程を意識し、遠さを音楽的に表現します。' },
+      { name: '合奏', tip: 'リトルネロ（合奏の反復句）が戻ってくるたびに、独奏部分との音量・音色の対比をはっきりさせます。' },
+    ],
+    confusions: [
+      {
+        term: "Concerto grosso",
+        slug: "concerto-grosso",
+        note: "独奏群と合奏群を対比させる形式。リトルネロ形式はこの対比を実現するための構造的な仕組みにあたる。",
+      },
+    ],
+    works: [
+      { title: 'バッハ ブランデンブルク協奏曲', note: 'リトルネロ形式が明確な構造として各楽章に現れます。' },
+      { title: 'ヴィヴァルディ「四季」', note: '各楽章にリトルネロ形式が明確に使われています。' },
+    ],
   },
 
   'stretta': {
@@ -527,6 +568,10 @@ export const termArticles = {
         body: "登場人物の心理が物語の進行とともに変化していく過程を、レチタティーヴォによる状況説明からアリアによる感情の吐露へとつなげることで描き出す。19世紀のイタリア・オペラで特に発達した構成である。",
       },
     ],
+    instruments: [
+      { name: '管弦楽', tip: 'レチタティーヴォの伴奏は薄く、アリアに入ると厚みを増すのが通例です。伴奏側もこの切り替えを意識します。' },
+      { name: '声楽', tip: 'レチタティーヴォからアリアへ移る場所で、語りの発声から歌の発声へ切り替える準備をあらかじめしておきます。' },
+    ],
     confusions: [
       {
         term: "Recitative",
@@ -538,6 +583,10 @@ export const termArticles = {
         slug: "aria",
         note: "感情を歌い上げる独唱曲。Scenaの中に組み込まれる要素の一つ。",
       },
+    ],
+    works: [
+      { title: 'ヴェルディのオペラ・アリア', note: '複数の様式を組み合わせた大規模なシェーナが多くの作品に見られます。' },
+      { title: 'モーツァルトのオペラ・アリア', note: 'レチタティーヴォと複数の部分から成るシェーナが多く含まれます。' },
     ],
   },
 
@@ -1096,12 +1145,20 @@ export const termArticles = {
         body: "西アフリカの伝統楽器にルーツを持つとされ、アメリカ大陸に伝わったのち独自の発展を遂げた楽器である。19世紀のミンストレル・ショーを経て広く知られるようになり、現在ではブルーグラスやフォーク、ジャズなど幅広いジャンルで用いられている。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: '5弦バンジョーは最も短い弦（ドローン弦）が独特の響きを加えます。ブルーグラスの奏法で特徴的に使われます。' },
+      { name: 'バンジョー', tip: '膜を張った胴の共鳴が特徴的な明るい音を作ります。ピッキングの位置で音色の明るさが大きく変わります。' },
+    ],
     confusions: [
       {
         term: "Mandolino",
         slug: "mandolino",
         note: "同じ撥弦楽器だが、膜を張らない木製の共鳴胴を持ち、より丸みのある音色を持つ。",
       },
+    ],
+    works: [
+      { title: 'アール・スクラッグスの演奏', note: 'スリーフィンガー奏法を確立し、ブルーグラスにおけるバンジョーの地位を高めました。' },
+      { title: 'ディキシーランド・ジャズ', note: 'リズム楽器としてバンジョーが中心的な役割を果たすジャンルです。' },
     ],
   },
 
@@ -1117,12 +1174,20 @@ export const termArticles = {
         body: "劇的な頂点や、荘厳・不吉な雰囲気を演出する場面で使われることが多い。同じ金属打楽器のPiatti（シンバル）と混同されやすいが、円盤を打ち合わせるシンバルとは奏法も響きの性質も異なる。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: '打った直後にミュート（手や布で押さえる）すると音を即座に止められ、鳴らしっぱなしと使い分けられます。' },
+      { name: 'タムタム', tip: '音高を持たないため、強打すると倍音が複雑に鳴り響きます。フェルトマレットの硬さで音色を作り分けます。' },
+    ],
     confusions: [
       {
         term: "Piatti",
         slug: "piatti",
         note: "一対の金属円盤を打ち合わせるシンバル。Tam-tamは単体の吊り下げ式ゴングで、音の性質が異なる。",
       },
+    ],
+    works: [
+      { title: 'ホルスト「惑星」より 火星', note: '不穏で巨大な響きを作る場面でタムタムが効果的に使われています。' },
+      { title: 'チャイコフスキー 交響曲第6番「悲愴」', note: '終楽章でタムタムが劇的な効果を伴って使われます。' },
     ],
   },
 
@@ -1164,6 +1229,10 @@ export const termArticles = {
         body: "高音域で輝かしい彩りを添える楽器として、鐘の音を模した場面や、きらめくような効果を求める場面で使われる。モーツァルトの歌劇『魔笛』でパパゲーノが持つ「魔法の鈴」としても知られる。",
       },
     ],
+    instruments: [
+      { name: 'グロッケンシュピール', tip: '硬いマレットで叩くほど倍音が明るく響きます。曲の性格に合わせてマレットの硬さを選びます。' },
+      { name: '共通', tip: '音の減衰が速いため、和音を伸ばして聴かせたい場合はトレモロで補います。' },
+    ],
     confusions: [
       {
         term: "Vibrafono",
@@ -1175,6 +1244,10 @@ export const termArticles = {
         slug: "campana",
         note: "鐘そのもの、またはチャイムを指す語。Glockenspielはそれを鍵盤楽器として再現したもの。",
       },
+    ],
+    works: [
+      { title: 'モーツァルト「魔笛」', note: 'パパゲーノの魔法の鈴として、この楽器に近い響きが効果的に使われています。' },
+      { title: 'チャイコフスキー「くるみ割り人形」より 行進曲', note: '金属的で明るい音色が、行進曲の高揚感に彩りを添えています。' },
     ],
   },
 
@@ -1190,6 +1263,10 @@ export const termArticles = {
         body: "アフリカの民俗楽器を起源とし、中南米を経て発展した歴史を持つとされる。現代のオーケストラや吹奏楽、独奏楽器としても広く用いられている。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: '低音域は共鳴管が長く、音の立ち上がりがやや遅れるため、アンサンブルでは他パートよりわずかに早めに打鍵します。' },
+      { name: 'マリンバ', tip: '共鳴管があるぶん音の伸びが良く、シロフォンより柔らかいマレットを使って響きを活かします。' },
+    ],
     confusions: [
       {
         term: "Xilofono",
@@ -1201,6 +1278,10 @@ export const termArticles = {
         slug: "vibrafono",
         note: "金属音板を使う近縁の鍵盤打楽器。ヴィブラート機構を備える。",
       },
+    ],
+    works: [
+      { title: '安倍圭子の作品群', note: 'マリンバを独奏楽器として国際的に確立させた作曲家・奏者として知られています。' },
+      { title: '独奏マリンバのための現代作品', note: '20世紀以降、独奏楽器としてのレパートリーが大きく発展しました。' },
     ],
   },
 
@@ -1216,6 +1297,10 @@ export const termArticles = {
         body: "ピアノと同様のペダルを持ち、踏むことで音を伸ばし、離すことで音を止められる。マリンバやシロフォンにはない、鍵盤打楽器としては珍しい機構である。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'マレットを4本持つ奏法（4マレット奏法）では、和音を単独で演奏できます。' },
+      { name: 'ヴィブラフォン', tip: 'ペダルを踏んだまま音を伸ばし、モーターの速度でヴィブラートの深さを調整できます。' },
+    ],
     confusions: [
       {
         term: "Marimba",
@@ -1227,6 +1312,10 @@ export const termArticles = {
         slug: "glockenspiel",
         note: "金属音板を使う点は共通するが、共鳴管もヴィブラート機構も持たない。",
       },
+    ],
+    works: [
+      { title: 'ミヨー「スカラムーシュ」', note: 'ヴィブラフォンを含む編成でも演奏され、独特の柔らかい響きを加えます。' },
+      { title: 'ジャズにおけるヴィブラフォン奏者', note: 'ライオネル・ハンプトンなどがこの楽器をジャズの主要楽器として定着させました。' },
     ],
   },
 
@@ -1263,12 +1352,20 @@ export const termArticles = {
         body: "オーボエより一回り大きく、管の先端に丸い朝顔状の共鳴部（ベル）を持つ。音域はオーボエより完全5度低く、丸みを帯びた柔らかい音色を持つ。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'F管に移調して記譜されるため、実音はスコアより完全5度低くなります。合奏で音を合わせる際はこの点に注意します。' },
+      { name: 'イングリッシュホルン', tip: 'オーボエよりリードが大きく、息の使い方も異なります。哀愁を帯びた音色を活かした緩徐楽章で活躍します。' },
+    ],
     confusions: [
       {
         term: "Oboe",
         slug: "oboe",
         note: "同じダブルリードの木管楽器。Corno ingleseはこれより低いアルト音域を担う。",
       },
+    ],
+    works: [
+      { title: 'ロッシーニ「ウィリアム・テル」序曲', note: 'イングリッシュホルンの独奏的な旋律が印象的な箇所に使われています。' },
+      { title: 'ドヴォルザーク 交響曲第9番「新世界より」第2楽章', note: 'イングリッシュホルンの有名な旋律（「家路」）で知られます。' },
     ],
   },
 
@@ -1320,12 +1417,25 @@ export const termArticles = {
         body: "鋭く突き抜ける高音を持ち、強奏の中でも音を通す力がある。嵐や稲光といった鋭い情景描写や、フルートパートを1オクターブ上でなぞって輝きを加える場面で使われる。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: '記譜より1オクターブ高く実音が鳴るため、スコアを読むときはこの移調（実際にはオクターブ違い）を常に意識します。' },
+      { name: 'ピッコロ', tip: 'フルートより息の圧力が要求され、音程が上がりやすいため、特に強奏時の音程管理に注意します。' },
+    ],
     confusions: [
       {
         term: "Flauto",
         slug: "flauto",
         note: "フルート。Ottavinoはこれより1オクターブ高い音域を担う近縁の楽器。",
       },
+      {
+        term: "Recorder",
+        slug: "recorder",
+        note: "リコーダー。Ottavino（ピッコロ）とは発音の仕組み（リードの有無）が異なる別系統の楽器。",
+      },
+    ],
+    works: [
+      { title: 'ラヴェル「ボレロ」', note: 'ピッコロが加わる箇所で音色に鋭さと輝きが増します。' },
+      { title: 'スーザ「星条旗よ永遠なれ」', note: 'ピッコロの華やかな高音のオブリガートが特徴的に使われています。' },
     ],
   },
 
@@ -1476,6 +1586,10 @@ export const termArticles = {
         body: "この辞典には Gigelira という語も収録されているが、これはイタリア語で木琴を指す古い呼び方であり、現代の楽譜では Xilofono と表記されるのが一般的である。",
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'マレットの素材（ゴム・木・プラスチック）で音の硬さが変わります。曲想に合わせて持ち替えます。' },
+      { name: 'シロフォン', tip: '木製の音板は減衰が速いため、旋律をなめらかに聴かせるには、隣り合う音を重ねるように速く連打します。' },
+    ],
     confusions: [
       {
         term: "Gigelira",
@@ -1492,6 +1606,10 @@ export const termArticles = {
         slug: "vibrafono",
         note: "金属音板を使う近縁の鍵盤打楽器。",
       },
+    ],
+    works: [
+      { title: 'ハチャトゥリアン「剣の舞」', note: '鋭く機械的なリズムを刻む場面でシロフォンの音色が効果的に使われます。' },
+      { title: 'サン=サーンス「動物の謝肉祭」より 化石', note: '骨がカタカタ鳴る様子を、シロフォンの乾いた音色で描写しています。' },
     ],
   },
 
@@ -1516,11 +1634,18 @@ export const termArticles = {
         body: 'オペラの歴史は、言葉と音楽のどちらを優先するかという問いをめぐって展開してきました。モンテヴェルディのセコンダ・プラティカ、グルックの改革、ワーグナーの理念は、いずれもこの問いへの応答です。歌詞が聞き取れることと、音楽が自立して展開することは、しばしば衝突します。',
       },
     ],
+    instruments: [
+      { name: '声楽', tip: 'アリア（歌に重心）とレチタティーヴォ（台詞に近い歌唱）で発声の質を切り替える必要があります。' },
+      { name: '管弦楽', tip: 'オペラの管弦楽は歌手の伴奏に徹する場面と、前奏・間奏で主役になる場面があり、役割の切り替えを意識します。' },
+    ],
     confusions: [
       { term: 'Oratorio', slug: 'oratorio', note: '演技と舞台装置を伴わない宗教的声楽曲。' },
       { term: 'Camerata', slug: 'camerata', note: 'オペラ成立に関わった集まり。' },
       { term: 'Musical', slug: 'musical', note: '20世紀の舞台形式。台詞を語る点が違う。' },
       { term: 'Libretto', slug: 'libretto', note: '台本。' },
+    ],
+    works: [
+      { title: 'モーツァルト「フィガロの結婚」', note: '古典派オペラ・ブッファの代表作。会話のようなレチタティーヴォと歌に満ちたアリアが交互に現れます。' },
     ],
   },
 
@@ -1756,10 +1881,16 @@ export const termArticles = {
         body: '各変奏の性格を明確に区別することと、全体を1つの作品としてまとめることの両方が必要です。個々の変奏を独立に扱うと、断片の羅列になります。逆に均質に扱うと、変奏の意味が失われます。全体の配分を先に設計してから、各変奏の位置を決めることになります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '各変奏で「主題の何が保存され、何が変えられているか」（旋律か、和声か、低音か）を先に確認してから練習します。' },
+    ],
     confusions: [
       { term: 'Ground bass', slug: 'ground-bass', note: '反復する低音の上で変奏する形式。' },
       { term: 'Developing variation', slug: 'developing-variation', note: '区切りなく変形を続ける技法。' },
       { term: 'Ostinato', slug: 'ostinato', note: '反復される音型。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン「ディアベリ変奏曲」', note: '単純な主題から驚くほど多様な性格の変奏が生まれる代表作です。' },
     ],
   },
 
@@ -3157,10 +3288,16 @@ export const termArticles = {
         body: '西アフリカの太鼓音楽では、複数のリズム層が同時に進むことが構造の基礎になっています。ジャズやラテン音楽にもこの発想が受け継がれています。西洋のクラシック音楽では特殊な効果として扱われることが多い一方で、これらの音楽では常態です。',
       },
     ],
+    instruments: [
+      { name: '鍵盤', tip: '片手ずつ完全に独立して弾けるようになってから両手を合わせます。最初から両手で合わせようとすると、片方に引きずられます。' },
+    ],
     confusions: [
       { term: 'Additive rhythm', slug: 'additive-rhythm', note: '不規則な単位を積み上げるリズム。別の仕組み。' },
       { term: 'Phasing', slug: 'phasing', note: '位相のずれ。結果として生じる状態が近い。' },
       { term: 'Triplet', slug: 'triplet', note: '3連符。2分割の中に3分割を持ち込む。' },
+    ],
+    works: [
+      { title: 'ショパン 幻想即興曲', note: '右手4連符・左手3連符という2対3のポリリズムが全曲を通して使われています。' },
     ],
   },
 
@@ -3412,11 +3549,17 @@ export const termArticles = {
         body: 'ギリシャ語の melos（歌、旋律）と ōidē（歌うこと）から成る melōidia に由来します。ōidē は ode（頌歌）、rhapsody の語根でもあります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '旋律だけを歌ってみると、伴奏の中に埋もれていた音の方向性やフレーズの区切りが見えてきます。' },
+    ],
     confusions: [
       { term: 'Harmony', slug: 'harmony', note: '和声。垂直方向の重なり。' },
       { term: 'Counter-melody', slug: 'counter-melody', note: '主旋律を支える別の旋律。' },
       { term: 'Motive', slug: 'motive', note: '動機。旋律より小さい単位。' },
       { term: 'Phrasing', slug: 'phrasing', note: 'フレーズのまとめ方。' },
+    ],
+    works: [
+      { title: 'モーツァルトの緩徐楽章全般', note: '簡潔で歌いやすい旋律の書法の見本とされます。' },
     ],
   },
 
@@ -3440,11 +3583,17 @@ export const termArticles = {
         body: 'リズムの精度は、音程の精度と並んで演奏の基礎です。ただし機械的な正確さがそのまま音楽的な正しさではありません。拍の内部での微細な重心の置き方が音楽の性格を決めるため、正確に刻むことと、その上でどこに重みを置くかは別の課題になります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '音の高さを無視して、リズムだけを手拍子で叩く練習をすると、音程に気を取られて崩れていたリズムの正体が見えます。' },
+    ],
     confusions: [
       { term: 'Beat', slug: 'beat', note: '拍。規則的な刻み。' },
       { term: 'Time signature', slug: 'time-signature', note: '拍子記号。拍節の周期を決める。' },
       { term: 'Polyrhythm', slug: 'polyrhythm', note: '複数のリズムの同時進行。' },
       { term: 'Groove', slug: 'groove', note: 'リズムの一体感。' },
+    ],
+    works: [
+      { title: 'ストラヴィンスキー「春の祭典」', note: '不規則なアクセントの連続が、リズムそのものを楽曲の主役にしています。' },
     ],
   },
 
@@ -3468,10 +3617,16 @@ export const termArticles = {
         body: '形式が分かると、いまどの部分を弾いているかが分かります。提示部と再現部で同じ素材が現れるとき、2回目をどう扱うかは形式上の位置によって決まります。区切りの深さも、それが小さな段落か大きな部分の終わりかで変わります。形式の把握は、時間の配分を決める作業に直結します。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '譜読みの最初に、同じ素材が戻ってくる場所へ印を付けておくと、練習すべき分量が実際より少ないことが分かります。' },
+    ],
     confusions: [
       { term: 'Exposition', slug: 'exposition', note: '提示部。ソナタ形式の第1部。' },
       { term: 'Binary form', slug: 'binary-form', note: '二部形式。' },
       { term: 'Mobile form', slug: 'mobile-form', note: '順序が可変な形式。' },
+    ],
+    works: [
+      { title: 'ソナタ形式の古典派作品全般', note: '提示・展開・再現という設計が最も明快に現れる形式です。' },
     ],
   },
 
@@ -3745,10 +3900,16 @@ export const termArticles = {
         body: '歌詞の内容が音の形に反映されているため、まず詩を読むことが演奏の出発点になります。どの語がどう描かれているかを確認すれば、そこで何を強調すべきかが分かります。各声部が対等に扱われるため、和音として響かせるだけでなく、各声部の線が聞こえることも必要です。',
       },
     ],
+    instruments: [
+      { name: '声楽（アンサンブル）', tip: '各声部が独立した旋律を持つため、自分のパートだけでなく他の声部の動きも把握しておくと縦の響きが揃います。' },
+    ],
     confusions: [
       { term: 'Monody', slug: 'monody', note: '単旋律の独唱歌曲。マドリガーレの多声性への反発から生まれた。' },
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。マドリガーレの声部の書き方の基礎。' },
       { term: 'Seconda prattica', slug: 'seconda-prattica', note: '言葉を優先する新しい様式。マドリガーレをめぐる議論から生まれた。' },
+    ],
+    works: [
+      { title: 'モンテヴェルディのマドリガーレ集', note: '歌詞の内容を音楽で描写する「マドリガリズム」の手法が随所に見られます。' },
     ],
   },
 
@@ -3914,10 +4075,16 @@ export const termArticles = {
         body: 'イタリア語では basso continuo（続いていく低音）、ドイツ語では Generalbass、英語では figured bass または thoroughbass と呼ばれます。数字に注目した呼び方（figured）と、低音が曲を通して続くことに注目した呼び方（continuo、thorough）が併存しています。',
       },
     ],
+    instruments: [
+      { name: '鍵盤（通奏低音）', tip: '数字は和音の構成音を低音からの音程で示します。数字が無い場合は原則として三和音を弾きます。' },
+    ],
     confusions: [
       { term: 'Thoroughbass', slug: 'thoroughbass', note: '同じものを指す英語の呼び方。' },
       { term: 'First inversion', slug: 'first-inversion', note: '数字 6 で示される和音の形。' },
       { term: 'Trio sonata', slug: 'trio-sonata', note: '通奏低音を用いるバロック室内楽の形式。' },
+    ],
+    works: [
+      { title: 'バロック期の通奏低音パート全般', note: '数字付き低音は、バロック音楽のほぼすべての合奏で鍵盤・リュート奏者が使う標準的な記法でした。' },
     ],
   },
 
@@ -3987,10 +4154,17 @@ export const termArticles = {
         body: '対比が形式の中心であるため、2つの群の性格の違いを明確にすることが求められます。単に音量が変わるだけでなく、独奏群が出るところでは細部が聞こえ、合奏群では塊としての響きになるという扱いです。切り替わりの瞬間をぼかすと、形式が伝わりません。',
       },
     ],
+    instruments: [
+      { name: '独奏群（コンチェルティーノ）', tip: '少人数で前に出る場面なので、合奏部分より音色にニュアンスをつけ、対比を明確にします。' },
+      { name: '合奏群（リピエーノ）', tip: '独奏群が入ってきたら音量を一段引き、対比の土台に徹します。' },
+    ],
     confusions: [
       { term: 'Concerto', slug: 'concerto', note: '協奏曲。独奏者と管弦楽の対比。' },
       { term: 'Trio sonata', slug: 'trio-sonata', note: '同じ時代の室内楽形式。' },
       { term: 'Tutti', slug: 'tutti', note: '全員で。合奏群を指す語としても使われる。' },
+    ],
+    works: [
+      { title: 'コレッリ 合奏協奏曲集 作品6', note: 'この形式を確立した代表作。独奏群と合奏群の対比が明確に書かれています。' },
     ],
   },
 
@@ -4014,10 +4188,16 @@ export const termArticles = {
         body: '視覚的な情報がないため、音楽が場面と感情を担います。歌詞が何を語っているかを聴き手に届けることが優先されます。合唱は群衆として機能する箇所と、教訓を述べる箇所があり、その役割の違いを扱いに反映させることになります。',
       },
     ],
+    instruments: [
+      { name: '合唱', tip: '舞台演技が無い分、言葉の意味を声の表情だけで伝える必要があります。歌詞の内容を理解してから発声を決めます。' },
+    ],
     confusions: [
       { term: 'Opera', slug: 'opera', note: '演技と舞台装置を伴う。オラトリオは伴わない。' },
       { term: 'Mass', slug: 'mass', note: 'ミサ曲。典礼のための音楽。' },
       { term: 'Recitative', slug: 'recitative', note: '語るように歌う部分。物語を進める。' },
+    ],
+    works: [
+      { title: 'ヘンデル「メサイア」', note: 'オラトリオの代表作。合唱曲「ハレルヤ・コーラス」が特に有名です。' },
     ],
   },
 
@@ -4118,11 +4298,17 @@ export const termArticles = {
         body: '動機を聞き分けられると物語の理解が深まりますが、動機の一覧を作って当てはめるだけでは足りません。同じ動機がどう変形されているか、なぜその場面で現れるかを見ることが要点です。動機の同定そのものについても、研究者のあいだで見解が分かれる箇所があります。',
       },
     ],
+    instruments: [
+      { name: '管弦楽', tip: '同じ動機が違う楽器・違う和声で現れたとき、それが何を意味する変化なのかを台本や場面と照らして確認します。' },
+    ],
     confusions: [
       { term: 'Idée fixe', slug: 'idée-fixe', note: 'ベルリオーズの用語。先行する例。' },
       { term: 'Cyclic form', slug: 'cyclic-form', note: '全楽章に同じ動機を用いる形式。' },
       { term: 'Gesamtkunstwerk', slug: 'gesamtkunstwerk', note: 'ワーグナーの理念。総合芸術作品。' },
       { term: 'Motive', slug: 'motive', note: '動機。楽曲の最小の核。' },
+    ],
+    works: [
+      { title: 'ワーグナー「ニーベルングの指環」', note: '指環の動機、剣の動機など、多数のライトモティーフが登場人物や概念に結びついています。' },
     ],
   },
 
@@ -4219,10 +4405,16 @@ export const termArticles = {
         body: '19世紀には、音楽が音楽外の内容を描くべきかについて論争がありました。標題音楽を推す立場と、音楽の自律性を主張する絶対音楽の立場が対立し、交響詩はその論争の中心にありました。この論争は美学上の立場の違いであり、どちらかが正しいという決着はついていません。',
       },
     ],
+    instruments: [
+      { name: '管弦楽', tip: '標題（物語や情景）を先に読んでから演奏すると、音型が何を描写しているかが見えてきます。' },
+    ],
     confusions: [
       { term: 'Program music', slug: 'program-music', note: '標題音楽。交響詩はその代表的な形式。' },
       { term: 'Absolute music', slug: 'absolute-music', note: '絶対音楽。対立する立場。' },
       { term: 'Symphony', slug: 'symphony', note: '交響曲。複数楽章を持つ。' },
+    ],
+    works: [
+      { title: 'リスト「前奏曲」', note: '交響詩というジャンルを確立した作品の一つです。' },
     ],
   },
 
@@ -4246,10 +4438,16 @@ export const termArticles = {
         body: '標題を知ることで音楽の意図が分かる場合がありますが、標題に引きずられて音楽の構造を無視すると、かえって説得力を失います。標題が示す性格を、音楽の構造を通して実現することが求められます。',
       },
     ],
+    instruments: [
+      { name: '管弦楽', tip: '作曲家が残した標題や解説を読んでから練習すると、強弱や音色の指示の意図がつかみやすくなります。' },
+    ],
     confusions: [
       { term: 'Absolute music', slug: 'absolute-music', note: '絶対音楽。対立する立場。' },
       { term: 'Symphonic poem', slug: 'symphonic-poem', note: '交響詩。標題音楽の代表的な形式。' },
       { term: 'Idée fixe', slug: 'idée-fixe', note: 'ベルリオーズの用語。' },
+    ],
+    works: [
+      { title: 'ベルリオーズ「幻想交響曲」', note: '作曲家自身が詳細な標題を残しており、標題音楽の代表作とされます。' },
     ],
   },
 
@@ -4324,10 +4522,16 @@ export const termArticles = {
         body: '響きの質が中心になるため、音の立ち上がりを鋭くせず、ペダルで響きを重ねる扱いが用いられます。ただし輪郭を失うことと質感を作ることは別です。和声の変化が聞き取れなくなるまで混ぜると、色彩ではなく濁りになります。',
       },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '和音を輪郭立てて弾くより、ペダルを使って響きを溶け合わせるほうが、この様式の色彩感に近づきます。' },
+    ],
     confusions: [
       { term: 'Whole tone scale', slug: 'whole-tone-scale', note: '全音音階。この傾向で特徴的に用いられた。' },
       { term: 'Gamelan', slug: 'gamelan', note: 'インドネシアの合奏音楽。影響が論じられる。' },
       { term: 'Expressionism', slug: 'expressionism', note: '同時期のドイツ語圏の動向。方向が異なる。' },
+    ],
+    works: [
+      { title: 'ドビュッシー「映像」「前奏曲集」', note: '色彩的な和声と曖昧な調性感が特徴的な、印象主義の代表作群です。' },
     ],
   },
 
@@ -4428,10 +4632,16 @@ export const termArticles = {
         body: 'ラテン語の bene（よく）に由来し、bonus（良い）と同じ語根です。英語の benefit（利益＝よく為すこと）、benevolent（善意の）、benediction（祝福）も同じ語根を持ちます。反対の male（悪く）からは malicious、malady が派生しています。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '後に続く語を強める副詞なので、まず後続の指示そのものを丁寧に実行することを優先します。' },
+    ],
     confusions: [
       { term: 'Ben', slug: 'ben', note: '短縮形。楽譜ではこちらが一般的。' },
       { term: 'Ben marcato', slug: 'ben-marcato', note: '十分に際立たせて。この語を用いた指示。' },
       { term: 'Molto', slug: 'molto', note: '非常に。量の増大を示す。' },
+    ],
+    works: [
+      { title: 'ben marcato（bene の短縮 ben + marcato）を含む楽譜', note: '「はっきりと際立たせて」という組み合わせでよく使われます。' },
     ],
   },
 
@@ -4493,10 +4703,16 @@ export const termArticles = {
         body: '内向きの性格であるため、聴き手に向けて提示するのではなく、考えている過程が見えるような扱いになります。テンポを追わず、フレーズの区切りに間を残し、音量を抑えます。ただし停滞すると思索ではなく空白になるため、進んでいることは保ちます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'フレーズの合間にわずかな間を置き、次の音へすぐに進まないことで、思索的な間合いが生まれます。' },
+    ],
     confusions: [
       { term: 'Malinconico', slug: 'malinconico', note: '憂鬱に。晴れない状態を指す。' },
       { term: 'Con sentimento', slug: 'con-sentimento', note: '感情をもって。内側の状態。' },
       { term: 'Semplice', slug: 'semplice', note: '素朴に。飾りを排する。' },
+    ],
+    works: [
+      { title: 'リスト「巡礼の年」より 物思いに沈む人（Il Penseroso）', note: '曲名そのものがこの語に由来します。' },
     ],
   },
 
@@ -4516,10 +4732,16 @@ export const termArticles = {
         body: '儀式的な性格であるため、テンポは落ち着き、一歩ごとに重みが置かれます。速く駆け抜けると厳粛さが失われます。同時に、個人的な感情の表出を抑えることが求められます。maestoso が威厳、religioso が信仰を主体とするのに対して、solenne は儀式としての形式性が中心にあります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'テンポをやや遅めに保ち、和音の変化ごとに重みを置くと、儀式的な荘重さが生まれます。' },
+    ],
     confusions: [
       { term: 'Maestoso', slug: 'maestoso', note: '荘厳に。威厳が主体。' },
       { term: 'Religioso', slug: 'religioso', note: '宗教的に。信仰が主体。' },
       { term: 'Devoto', slug: 'devoto', note: '敬虔に。祈りの態度。' },
+    ],
+    works: [
+      { title: '結婚行進曲・戴冠式音楽の類', note: '儀式音楽には solenne な性格が求められることが多くあります。' },
     ],
   },
 
@@ -4677,10 +4899,16 @@ export const termArticles = {
         body: 'ピアノでは指の打鍵の立ち上がりをそろえることで各音が聞こえます。速いパッセージで音が埋もれるのは、指の独立が足りず打鍵の瞬間が曖昧になるためです。管楽器では舌の使い方、弦楽器では弓の圧力の変化、声楽では子音の明瞭さが対応します。',
       },
     ],
+    instruments: [
+      { name: '鍵盤', tip: '和音の各音を同時に、かつ粒を揃えて鳴らすことを意識します。ペダルで音を混ぜすぎないようにします。' },
+    ],
     confusions: [
       { term: 'Articolato', slug: 'articolato', note: 'はっきりと区切って。近い内容の指示。' },
       { term: 'Ben marcato', slug: 'ben-marcato', note: '十分に際立たせて。輪郭を作る。' },
       { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
+    ],
+    works: [
+      { title: 'バロック期の対位法作品全般', note: '各声部が独立して聞こえることが求められ、distinto な演奏が必要とされます。' },
     ],
   },
 
@@ -5411,10 +5639,16 @@ export const termArticles = {
         body: 'ドイツ語圏の作曲家は、イタリア語の定型に加えて自国語で細かい指示を書くことがあります。leidenschaftlich、zart（優しく）、kraftvoll（力強く）、ruhig（静かに）、bewegt（動きをもって）などがその語彙です。マーラーの楽譜は、この種のドイツ語による指示が特に詳細に書き込まれた例として知られています。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '感情を大きく見せることより、音の立ち上がりを速くし、テンポの推進力を保つことのほうが「情熱的」に聞こえます。' },
+    ],
     confusions: [
       { term: 'Appassionato', slug: 'appassionato', note: 'イタリア語で情熱的に。同じく「苦しむ」を語根に持つ。' },
       { term: 'Begeistert', slug: 'begeistert', note: '感激して。Geist（精神）を語根に持つ。' },
       { term: 'Kraftvoll', slug: 'kraftvoll', note: '力強く。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン ピアノソナタ第23番「熱情」', note: '英題は Appassionata。曲全体に leidenschaftlich な性格が貫かれています。' },
     ],
   },
 
@@ -5526,10 +5760,16 @@ export const termArticles = {
         body: 'risoluto（決然と）、deciso（きっぱりと）が対応する語です。risoluto は risolvere（解決する）を語根に持ち、決意が固まった状態を指します。bestimmt は「定められた」で、外から見て確定していることを指す点にわずかな違いがあります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'テンポの揺れを排し、拍の輪郭をはっきりさせることで、迷いのない決然とした性格が生まれます。' },
+    ],
     confusions: [
       { term: 'Risoluto', slug: 'risoluto', note: '決然と。決意が固まった状態。' },
       { term: 'Determinatamente', slug: 'determinatamente', note: 'きっぱりと。イタリア語の副詞形。' },
       { term: 'Kraftvoll', slug: 'kraftvoll', note: '力強く。力が主体。' },
+    ],
+    works: [
+      { title: 'シューマンのピアノ曲', note: 'ドイツ語の性格指示を多用する作曲家で、bestimmt もその一つとして現れます。' },
     ],
   },
 
@@ -5664,10 +5904,16 @@ export const termArticles = {
         body: 'kräftig（力強い）がほぼ同義で、こちらのほうが楽譜での使用頻度が高くなります。energisch（精力的に）、markig（芯のある）も近い方向の語です。',
       },
     ],
+    instruments: [
+      { name: '弦楽器', tip: '弓の重さをしっかり弦に伝え、スピードを保ったまま弾くと、力みではなく充実した力強さが出ます。' },
+    ],
     confusions: [
       { term: 'Kräftig', slug: 'kräftig', note: '力強い。ほぼ同義でより一般的な語形。' },
       { term: 'Energico', slug: 'energico', note: '精力的に。対応するイタリア語。' },
       { term: 'Con forza', slug: 'con-forza', note: '力をもって。力の投入を指す。' },
+    ],
+    works: [
+      { title: 'ブラームスの交響曲全般', note: 'kraftvoll な性格を持つ力強い主題が多く見られます。' },
     ],
   },
 
@@ -5817,10 +6063,16 @@ export const termArticles = {
         body: 'misterioso（神秘的に）は隠されていることが主体で、輪郭をぼかす方向にあります。sombre は暗さそのものであり、輪郭は明確なままでも成立します。freddo（冷たく）は温度の語で、感情の欠如を含みます。sombre には感情があり、それが暗いという点が違います。',
       },
     ],
+    instruments: [
+      { name: '弦楽器', tip: '弓のスピードを落とし、駒からやや離れた位置で弾くと、暗く沈んだ音色が作りやすくなります。' },
+    ],
     confusions: [
       { term: 'Oscuro', slug: 'oscuro', note: '暗く。対応するイタリア語。' },
       { term: 'Mystérieux', slug: 'mystérieux', note: '神秘的に。輪郭をぼかす方向。' },
       { term: 'Freddo', slug: 'freddo', note: '冷たく。感情の欠如を含む。' },
+    ],
+    works: [
+      { title: 'フォーレ「レクイエム」', note: '陰影に富んだ暗い響きが全曲を通じて特徴的です。' },
     ],
   },
 
@@ -5867,10 +6119,17 @@ export const termArticles = {
         body: '奏者が音色を変えるのは、倍音の配分を変える操作です。弦楽器で弓を弾く位置を変える（駒寄りで倍音が増え、指板寄りで減る）、管楽器で息の速度や口の形を変える、ピアノで打鍵の速度と指の当て方を変えるといった方法があります。いずれも物理的な操作に基づいています。',
       },
     ],
+    instruments: [
+      { name: '弦楽器', tip: '弓の位置（駒寄りか指板寄りか）を変えるだけで、同じ音高でも含まれる倍音の割合が変わり、音色が大きく変化します。' },
+      { name: '管楽器', tip: 'アンブシュアと息のスピードの組み合わせを変えることで、同じ運指でも異なる音色を作れます。' },
+    ],
     confusions: [
       { term: 'Harmonics', slug: 'harmonics', note: '倍音。音色を決める要素。' },
       { term: 'Nuance', slug: 'nuance', note: '微妙な変化。音色の細部に関わる。' },
       { term: 'Register', slug: 'register', note: '音域。音色が変わる区分。' },
+    ],
+    works: [
+      { title: 'ラヴェル「ボレロ」', note: '同じ旋律を異なる楽器の組み合わせで繰り返し、音色そのものを主題として扱った代表作です。' },
     ],
   },
 
@@ -5890,10 +6149,16 @@ export const termArticles = {
         body: '音量とテンポだけでは nuance は作れません。音色、音の立ち上がり、音の終わり方、和音の中の各音のバランス、わずかな時間の伸縮といった要素が関わります。これらは連続的に変えられるため、段階を持ちません。楽譜に書かれていない部分がここに属します。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '大きな強弱の変化ではなく、同じ p の中での微妙な音色の違いを作る練習が、ニュアンスを豊かにします。' },
+    ],
     confusions: [
       { term: 'Timbre', slug: 'timbre', note: '音色。nuance の主要な要素。' },
       { term: 'Espressivo', slug: 'espressivo', note: '表情豊かに。nuance を求める指示。' },
       { term: 'Dynamics', slug: 'dynamics', note: '強弱法。段階を持つ体系。' },
+    ],
+    works: [
+      { title: 'フォーレの歌曲・室内楽', note: '微妙な陰影の変化を重視する作風で知られます。' },
     ],
   },
 
@@ -5913,10 +6178,16 @@ export const termArticles = {
         body: 'quasi が付いているということは、完全にそうではないという留保です。quasi recitativo なら、レチタティーヴォのように自由に扱いながらも、拍節の枠は保つという読みになります。この留保を無視して完全にその様式で演奏すると、指示を超えることになります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '後に続く語（quasi recitativo, quasi niente など）を先に確認し、比喩の対象になっている様式や状態を具体的にイメージしてから演奏します。' },
+    ],
     confusions: [
       { term: 'Come prima', slug: 'come-prima', note: '前と同じように。比較の指示。' },
       { term: 'Fantasie', slug: 'fantasie', note: '幻想曲。quasi una fantasia の参照先。' },
       { term: 'Recitative', slug: 'recitative', note: 'レチタティーヴォ。quasi recitativo の参照先。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン ピアノソナタ第14番「月光」', note: '第1楽章に Quasi una fantasia（幻想曲風に）という副題の指示があります。' },
     ],
   },
 
@@ -6184,10 +6455,16 @@ export const termArticles = {
         body: '低音が繰り返し型であるため、機械的に弾くと退屈になります。同じ低音の上で上声部の和声と旋律が変わっていくため、その変化を聞かせることが要点です。低音は土台として保ち、変化は上で作ります。',
       },
     ],
+    instruments: [
+      { name: '鍵盤・弦楽器', tip: '下降する半音階の低音（ラメント・バス）が土台にある場合、その低音を目立たせつつ、上声部は抑えた音色で歌わせます。' },
+    ],
     confusions: [
       { term: 'Lamentoso', slug: 'lamentoso', note: '嘆き悲しんで。表情の指示。' },
       { term: 'Ostinato', slug: 'ostinato', note: '反復される音型。ラメント・バスもこの一種。' },
       { term: 'Ground bass', slug: 'ground-bass', note: '反復する低音の上で変奏する形式。' },
+    ],
+    works: [
+      { title: 'パーセル「ディドとエネアス」より When I Am Laid in Earth', note: '下降する半音階のラメント・バスの上に歌われる、この様式の代表的な例です。' },
     ],
   },
 
@@ -6344,10 +6621,16 @@ export const termArticles = {
         body: '様式として共有されていた要素は確認できます。増2度を含む音階（いわゆるハンガリー音階）、急な緩急の交替、装飾の多い旋律、鋭いアクセント、自由なテンポ（ラッサンとフリスカという緩急の対）などです。楽譜にこれらの書法があれば、それを生かすことが指示に応えることになります。',
       },
     ],
+    instruments: [
+      { name: '弦楽器', tip: 'テンポの急激な緩急、装飾的なグリッサンドやポルタメントを効果的に使うと、この様式の性格が出ます。' },
+    ],
     confusions: [
       { term: 'Alla zingara', slug: 'alla-zingara', note: '同じ様式を指す語形。' },
       { term: 'Rubato', slug: 'rubato', note: 'テンポの自由。この様式の特徴の一つ。' },
       { term: 'Alla rustica', slug: 'alla-rustica', note: '田舎風に。民俗的な様式を模す指示。' },
+    ],
+    works: [
+      { title: 'ブラームス ピアノ四重奏曲第1番 第4楽章「ロンド・アラ・ジンガレーゼ」', note: '曲名にこの語が直接使われています。' },
     ],
   },
 
@@ -6555,10 +6838,16 @@ export const termArticles = {
         body: 'クラヴィコードは音量が非常に小さく、演奏会用ではなく個人の練習や作曲に用いられました。表現の細やかさと引き換えに、ホールで聞かせることができない楽器です。',
       },
     ],
+    instruments: [
+      { name: 'クラヴィコード', tip: '鍵盤を押したまま指先を上下に微妙に揺らし、弦を押すタンジェントの圧力を変えることで音高をわずかに揺らします。' },
+    ],
     confusions: [
       { term: 'Vibrato', slug: 'vibrato', note: '音の高さを揺らす奏法全般。' },
       { term: 'Clavicembalo', slug: 'clavicembalo', note: 'チェンバロ。爪ではじく機構のため bebung はできない。' },
       { term: 'Harpsichord', slug: 'harpsichord', note: '同じくこの奏法が成立しない楽器。' },
+    ],
+    works: [
+      { title: 'C.P.E.バッハのクラヴィコード曲', note: '繊細な表現を得意としたこの作曲家の作品で、この奏法が効果的に使われます。' },
     ],
   },
 
@@ -7165,10 +7454,16 @@ export const termArticles = {
         body: '「受けている」という語源を踏まえると、この指示は感情を誇張して見せることとは違います。抑えきれずに溢れているように聞こえるためには、枠が保たれている必要があります。テンポやリズムが崩れると、耐えている状態ではなく制御を失った状態になります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '大げさに感情を作るのではなく、フレーズの緊張と弛緩をはっきり作ることで、内側から込み上げるような表現になります。' },
+    ],
     confusions: [
       { term: 'Appassionato', slug: 'appassionato', note: '情熱的に。passio も「受ける」が原義。' },
       { term: 'Dolente', slug: 'dolente', note: '痛みを伴う悲しみ。' },
       { term: 'Maestoso', slug: 'maestoso', note: '荘厳に。規模と格式。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン ピアノソナタ第8番「悲愴」', note: '原題 Grande Sonate Pathétique。patetico な性格がそのまま曲名になっています。' },
     ],
   },
 
@@ -7257,10 +7552,16 @@ export const termArticles = {
         body: '落ち着かない状態を作るには、テンポや音量が微妙に定まらないことが有効です。ただし崩れることとは違い、安定しようとして安定できないという動きが必要です。均等に不安定にすると、それ自体が一つの状態になってしまい、落ち着かなさが消えます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'テンポを完全に一定に保たず、わずかな揺れを残すことで落ち着かない性格が表現できます。ただし崩れすぎないよう注意します。' },
+    ],
     confusions: [
       { term: 'Agitato', slug: 'agitato', note: '興奮して。外から揺さぶられる状態。' },
       { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。不穏さを含む点で近い。' },
       { term: 'Affannato', slug: 'affannato', note: '息を切らして。動揺が身体に出た状態。' },
+    ],
+    works: [
+      { title: 'バルトークの弦楽四重奏曲', note: '不安定なリズムと不協和音が、inquieto な性格を作り出しています。' },
     ],
   },
 
@@ -8128,10 +8429,17 @@ export const termArticles = {
         body: 'ジャズでは七の和音が基本的な単位として扱われ、三和音のほうがむしろ特殊です。さらに9度・11度・13度を積み重ねた和音も日常的に使われます。クラシックが緊張と解決の道具として扱う和音を、ジャズは色彩そのものとして扱っている点が違います。',
       },
     ],
+    instruments: [
+      { name: '鍵盤', tip: '4音を同時に押すのではなく、下から積み上げるように順に鳴らすと、和音の色彩の変化がよく分かります。' },
+      { name: '合奏', tip: '7度の音（不協和な音）を担当するパートは、その音が次でどこへ動くかを把握してから弾くと、解決の方向が揃います。' },
+    ],
     confusions: [
       { term: 'Triad', slug: 'triad', note: '3音の和音。七の和音の土台。' },
       { term: 'Dominant seventh', slug: 'dominant-seventh', note: '属音を根音とする七の和音。最も推進力が強い。' },
       { term: 'Diminished chord', slug: 'diminished-chord', note: '減七の和音は不安定さがさらに強い。' },
+    ],
+    works: [
+      { title: 'ドビュッシー「亜麻色の髪の乙女」', note: '属七以外の七の和音（長七・短七）が多用され、独特の色彩を作っています。' },
     ],
   },
 
@@ -9465,10 +9773,16 @@ export const termArticles = {
         body: 'シェーンベルクが確立した十二音技法では、音列を原形（Prime）・逆行（Retrograde）・反行（Inversion）・逆行反行（Retrograde Inversion）の4つの基本操作で展開する。反行はそのうちの一つで、これに移調を組み合わせて素材を広げていく。',
       },
     ],
+    instruments: [
+      { name: '鍵盤', tip: '原形の旋律と反行形を両手で同時に弾くと、フーガなどでの実際の使われ方が体感できます。' },
+    ],
     confusions: [
       { term: 'Retrograde', slug: 'retrograde', note: '音程ではなく音の順序を反転させる技法。' },
       { term: 'Retrograde inversion', slug: 'retrograde-inversion', note: '反行と逆行を両方重ねた形。' },
       { term: 'Counterpoint', slug: 'counterpoint', note: '転回対位法（invertible counterpoint）は声部の上下を入れ替える別の技法。' },
+    ],
+    works: [
+      { title: 'バッハ「フーガの技法」', note: '主題の反行形が随所で使われ、対位法の技法として体系的に示されています。' },
     ],
   },
 
@@ -11161,10 +11475,16 @@ export const termArticles = {
         body: 'バロック期の鍵盤楽器は打鍵で音量を変えられず、強弱は段階的に切り替わりました。連続的な増減が書かれるようになるのは、それが可能な楽器と編成が整ってからです。楽譜に強弱記号が少ない古い作品は、指示が省略されているのではなく、当時の楽器と様式を前提としています。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '個々の記号を単発で処理するのではなく、曲全体の中での最大値と最小値を先に決めてから、途中の記号の強さを相対的に配分します。' },
+    ],
     confusions: [
       { term: 'Crescendo', slug: 'crescendo', note: 'だんだん強く。変化を示す記号。' },
       { term: 'Terraced dynamics', slug: 'terraced-dynamics', note: '段階的に切り替わる強弱。バロックの書法。' },
       { term: 'Forte', slug: 'forte', note: '強く。段階を示す記号の一つ。' },
+    ],
+    works: [
+      { title: 'ハイドンの交響曲', note: '「驚愕交響曲」のような、強弱の落差そのものを効果として使った作品があります。' },
     ],
   },
 
@@ -11207,10 +11527,16 @@ export const termArticles = {
         body: 'fort はフランス語で副詞として「非常に」の意味でも使われます。fort doux なら「非常に柔らかく」であり、この場合は音量を上げる指示ではありません。後に続く語があるかどうかで意味が変わるため、単独か修飾かを確認する必要があります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'イタリア語の forte と同じ意味なので、演奏上の扱いは forte と同様に考えて差し支えありません。' },
+    ],
     confusions: [
       { term: 'Forte', slug: 'forte', note: '対応するイタリア語。同じ語源。' },
       { term: 'Con forza', slug: 'con-forza', note: '力をもって。同じ fortis を語根に持つ。' },
       { term: 'Dynamics', slug: 'dynamics', note: '強弱法全般。' },
+    ],
+    works: [
+      { title: 'フランスの作曲家による楽譜', note: 'フランス語の強弱指示として fort が用いられます。' },
     ],
   },
 
@@ -11230,10 +11556,16 @@ export const termArticles = {
         body: '極端な弱音では、音量を落とすほど音の芯が失われやすくなります。支えを保ったまま量だけを落とすことが要点で、支えが抜けると音が鳴らずに雑音になります。ホールでは近くで聞こえる以上に遠くへ届かないため、実際には想定より鳴らす必要があります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'p よりもさらに一段抑える指示なので、直前直後の p との明確な違いを作れるよう、あらかじめ音量の段階を決めておきます。' },
+    ],
     confusions: [
       { term: 'Pianissimo', slug: 'pianissimo', note: '音量の段階としての非常に弱い指示。' },
       { term: 'Sotto voce', slug: 'sotto-voce', note: '同じ sotto を使った語。声の質を指す。' },
       { term: 'Piano', slug: 'piano', note: '弱く。sotto piano はその下。' },
+    ],
+    works: [
+      { title: '極めて弱い響きを要求する現代作品', note: 'p・pp よりさらに細かい弱音の段階を要求する楽譜に見られます。' },
     ],
   },
 
@@ -11253,11 +11585,17 @@ export const termArticles = {
         body: '溶けていくという性質から、音を切って終わるのではなく、周囲に混ざって輪郭が消えていくように扱います。ペダルや残響を使って音の縁を和らげると、この方向に近づきます。輪郭を保ったまま音量だけを落とすと、薄まるのではなく単に小さくなった印象になります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '音量を減らすだけでなく、音の輪郭そのものをぼかしていくイメージで演奏すると、この語の性格に近づきます。' },
+    ],
     confusions: [
       { term: 'Diminuendo', slug: 'diminuendo', note: 'だんだん弱く。量の操作。' },
       { term: 'Perdendosi', slug: 'perdendosi', note: '消えゆくように。テンポの緩みも含む。' },
       { term: 'Smorzando', slug: 'smorzando', note: '消すように弱めていく。' },
       { term: 'Morendo', slug: 'morendo', note: '死に絶えるように。' },
+    ],
+    works: [
+      { title: '印象主義的な作風の楽曲', note: '音が溶けるように消えていく効果を狙う場面で使われます。' },
     ],
   },
 
@@ -11277,11 +11615,17 @@ export const termArticles = {
         body: '極限の弱音では、音を出すこと自体が不安定になります。支えを保ったまま量を最小にする技術が要求され、支えが抜けると音が消えるのではなく鳴らなくなります。また、消えた後も動作と緊張を保つことで、消えていった軌跡が伝わります。切って終わると、絶え入ったのではなく止めたように聞こえます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '音量だけでなく、音の生気そのものを失わせるイメージで演奏します。テンポもわずかに緩めることが多いです。' },
+    ],
     confusions: [
       { term: 'Morendo', slug: 'morendo', note: '死んでいく過程を示す現在分詞。' },
       { term: 'Al niente', slug: 'al-niente', note: '無になるまで。到達点を明示する。' },
       { term: 'Niente', slug: 'niente', note: '無。' },
       { term: 'Perdendosi', slug: 'perdendosi', note: '見失うように消える。' },
+    ],
+    works: [
+      { title: 'マーラーの交響曲第9番 終楽章', note: '曲の最後、estinto に近い消え入るような指示で締めくくられます。' },
     ],
   },
 
@@ -12596,10 +12940,16 @@ export const termArticles = {
         body: 'ドイツ語圏の作曲家が自国語で指示を書く場合、schnell（速く）、langsam（遅く）、mäßig（中くらいに）、bewegt（動きをもって）、ruhig（静かに）と並んでこの語が使われます。breiter（より幅広く）という比較級の形で現れることもあります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '遅くするのではなく空間的に広げる意識を持つと、breit の性格が伝わります。音の密度を保ったまま間隔を広げるイメージです。' },
+    ],
     confusions: [
       { term: 'Largo', slug: 'largo', note: '対応するイタリア語。同じく「広い」が原義。' },
       { term: 'Langsam', slug: 'langsam', note: 'ドイツ語で遅く。時間の進み方を指す。' },
       { term: 'Largamente', slug: 'largamente', note: '幅広く。イタリア語の副詞形。' },
+    ],
+    works: [
+      { title: 'ブルックナーの交響曲', note: 'Breit の指示が随所に見られ、壮大な広がりを求める場面で使われます。' },
     ],
   },
 
@@ -12633,13 +12983,24 @@ export const termArticles = {
     lead: 'Ad libitum（アド・リビトゥム、略号ad lib.）はラテン語で「望むがままに」を意味し、テンポ・装飾・楽器編成などについて演奏者に裁量の余地を認める指示。',
     sections: [
       {
+        heading: '記譜との関係',
+        body: 'ad libitum な箇所は、多くの場合、拍子やリズムが通常より簡略に、あるいは曖昧に記譜される。演奏者はそこから、様式に合った具体的なテンポやリズムを自分で補って再構成する必要がある。',
+      },
+      {
         heading: '及ぶ範囲の広さ',
         body: 'テンポを自由にする用法のほか、カデンツァの長さや即興的な装飾を演奏者に委ねる用法、パート譜で特定の楽器の演奏を任意（省略可）とする用法など、ad libitumが指す自由の種類は文脈によって異なる。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '自由と言っても無秩序ではなく、様式感の範囲内での裁量です。同じ様式の他の演奏を参考にしてから判断します。' },
+    ],
     confusions: [
       { term: 'A bene placito', slug: 'a-bene-placito', note: '同じくイタリア語で自由な演奏を示す表現。' },
       { term: 'Cadenza', slug: 'cadenza', note: 'ad libitumで自由が認められることが多い箇所の代表例。' },
+      { term: 'A piacere', slug: 'a-piacere', note: '「好きなように」。ad libitum とほぼ同義で、テンポや装飾の裁量を演奏者に委ねる表現。' },
+    ],
+    works: [
+      { title: 'バロック期の装飾を伴う楽章', note: '演奏者が自由に装飾を加えることを前提とした楽章に、この指示が見られます。' },
     ],
   },
 
@@ -12661,12 +13022,22 @@ export const termArticles = {
     lead: 'Metronome（メトロノーム）は一定の拍を機械的に刻む道具。作曲家が意図したテンポを、演奏者が離れた時代・場所でも数値として再現できるようにする。',
     sections: [
       {
+        heading: '厳密さと音楽性の緊張関係',
+        body: '20世紀に入ると、メトロノームどおりに機械的に演奏することへの反発から、あえて数値から外れたテンポで演奏する奏者も現れた。数値は出発点であり、そこからどれだけ、どう外れるかに演奏者の解釈が表れる。',
+      },
+      {
         heading: '発明をめぐる経緯',
         body: '現在広く知られる振り子式メトロノームは、1815年にヨハン・ネポムク・メルツェルが特許を取得して普及させたが、その基本的な仕組みはディートリヒ・ニコラウス・ヴィンケルが先に考案していたとされ、両者の間で発明の先後をめぐる論争があったことが知られている。ベートーヴェンの楽譜に付された「M.M.」という表記はメルツェルの頭文字に由来する。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'メトロノーム記号の数値は、版によって作曲家自身のものか校訂者のものか異なることがあるので、原典に近い版で確認します。' },
+    ],
     confusions: [
       { term: 'Metronome mark', slug: 'metronome-mark', note: 'メトロノームの数値で示されるテンポ表記。' },
+    ],
+    works: [
+      { title: 'ベートーヴェンの後期作品', note: 'メトロノーム記号を積極的に使った初期の作曲家の一人で、その数値の解釈は今も議論されています。' },
     ],
   },
 
@@ -12890,10 +13261,16 @@ export const termArticles = {
         body: 'フランス語で性格を指定する作曲家の楽譜では、très calme（とても静かに）や calme et doux（静かに柔らかく）のように、他の語と組み合わせて現れることがあります。フランス語の指示は、イタリア語の定型よりも文として書かれる傾向があります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '音量を落とすだけでなく、フレーズの起伏を穏やかにし、アタックを柔らかくすると calme な性格が出ます。' },
+    ],
     confusions: [
       { term: 'Tranquillo', slug: 'tranquillo', note: '対応するイタリア語。' },
       { term: 'Calma', slug: 'calma', note: '同じ語根のイタリア語。' },
       { term: 'Pacato', slug: 'pacato', note: '穏やかに。鎮まった状態を指す。' },
+    ],
+    works: [
+      { title: 'ドビュッシー「月の光」', note: 'calme に近い穏やかな性格が全体を通じて求められます。' },
     ],
   },
 
@@ -13078,10 +13455,16 @@ export const termArticles = {
         body: 'flowing は流れのなめらかさを指し、moving は前進そのものを指します。moving は角のある動きでも成立しますが、flowing は途切れのなさが要件になります。同じ英語の指示ですが、求めている性質が違います。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '停滞を避ける指示なので、長い音符でも次の音への意識を持ち続け、音楽を前へ運ぶ意識で演奏します。' },
+    ],
     confusions: [
       { term: 'Flowing', slug: 'flowing', note: 'なめらかさを求める英語の指示。moving は前進を求める。' },
       { term: 'Con moto', slug: 'con-moto', note: 'イタリア語で対応する指示。' },
       { term: 'Camminando', slug: 'camminando', note: '歩くように。止まらないことを求める点で近い。' },
+    ],
+    works: [
+      { title: '英語圏の作曲家による楽譜', note: 'イタリア語の代わりに英語の速度指示を用いる伝統に基づく用例です。' },
     ],
   },
 
@@ -13124,11 +13507,17 @@ export const termArticles = {
         body: '弱いほうから pochissimo（きわめてわずかに）、appena（かろうじて）、poco / un poco（少し）、assai（十分に）、molto（非常に）という順に並びます。楽譜の中で複数の程度指示が現れる箇所では、この相対関係で読むことになります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'un poco が付く指示は、その語だけの指示より控えめに解釈します（例: un poco allegro は allegro より少し抑えたテンポ）。' },
+    ],
     confusions: [
       { term: 'Poco', slug: 'poco', note: '同じ意味。冠詞の有無だけの違い。' },
       { term: 'Poco a poco', slug: 'poco-a-poco', note: '少しずつ。程度ではなく変化の速さを指す別の指示。' },
       { term: 'Appena', slug: 'appena', note: 'かろうじて。poco より弱い。' },
       { term: 'Molto', slug: 'molto', note: '非常に。poco の反対方向。' },
+    ],
+    works: [
+      { title: 'ベートーヴェンのピアノソナタ全般', note: 'Un poco の付いた速度・性格指示が頻出します。' },
     ],
   },
 
@@ -13190,10 +13579,16 @@ export const termArticles = {
         body: 'nicht schleppen（引きずらないで）が反対方向の注意書きで、遅くなりすぎることを禁じます。この二つが同じ楽譜に現れることがあり、その場合はテンポを両方向から固定していることになります。etwas（やや）、nicht zu（〜しすぎないで）といった限定の語も併用されます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'nicht eilen（急がないで）と書かれている箇所は、走りたくなる衝動を抑える必要がある場所だと理解して臨みます。' },
+    ],
     confusions: [
       { term: 'Accelerando', slug: 'accelerando', note: '速度を上げていく指示。eilen は多くの場合これを禁じる文脈で現れる。' },
       { term: 'Stringendo', slug: 'stringendo', note: '切迫して速く。意図された加速。' },
       { term: 'Geschwind', slug: 'geschwind', note: 'ドイツ語で速く。状態を指す形容詞。' },
+    ],
+    works: [
+      { title: 'マーラーの交響曲', note: 'nicht eilen という指示がしばしば見られ、感情的に走りやすい箇所への注意喚起として使われます。' },
     ],
   },
 
@@ -13226,10 +13621,16 @@ export const termArticles = {
         body: '接頭辞 ge- を持つ形容詞で、ドイツ語では ge- が付くことで完了や集合の意味を帯びることがあります。現代ドイツ語では geschwind の使用頻度は schnell より低く、やや文語的な位置にあります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'schnell とほぼ同義ですが、古い時代の楽譜での用例が多いため、様式に合った軽やかさを意識すると自然です。' },
+    ],
     confusions: [
       { term: 'Schnell', slug: 'schnell', note: 'ドイツ語で速く。こちらが一般的な語。' },
       { term: 'Eilen', slug: 'eilen', note: '急ぐ。速度を上げていく動きを指す動詞。' },
       { term: 'Allegro', slug: 'allegro', note: '対応するイタリア語の速度標語。' },
+    ],
+    works: [
+      { title: 'モーツァルト・ハイドンの時代のドイツ語楽譜', note: '古典派期のドイツ語圏の楽譜に見られる速度指示です。' },
     ],
   },
 
@@ -13270,10 +13671,16 @@ export const termArticles = {
         body: 'フランス語の楽譜では、動詞の命令形で指示が書かれることがあります。cédez（緩めて）、retenez（引き止めて）、pressez（急いで）、serrez（詰めて）などがその形です。イタリア語が現在分詞（ritardando、accelerando）で過程を示すのに対して、フランス語は演奏者への呼びかけとして書かれます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'テンポを譲る（緩める）指示なので、直後の a tempo や cédez の解除の位置を先に確認してから減速の量を決めます。' },
+    ],
     confusions: [
       { term: 'Ritardando', slug: 'ritardando', note: '遅らせる。テンポの操作を指す。' },
       { term: 'Rallentando', slug: 'rallentando', note: '緩めていく。近い方向の指示。' },
       { term: 'Calando', slug: 'calando', note: '弱めながら遅く。力を引く点で cédez に近い。' },
+    ],
+    works: [
+      { title: 'フランス歌曲・フランス印象派の作品', note: 'フランス語の速度指示を用いる作曲家の楽譜に見られます。' },
     ],
   },
 
@@ -13319,10 +13726,16 @@ export const termArticles = {
         body: 'affrettando（急いていく）は現在分詞で、変化していく過程を示します。con fretta は状態を示すため、その区間を通してその性格が保たれます。stringendo は切迫して速度を上げることを明示する指示で、こちらはテンポの変化そのものを指定しています。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '単なる速さではなく慌ただしさを表す語なので、フレーズの終わりを丁寧に処理せず、次へ次へと急く感覚を意識します。' },
+    ],
     confusions: [
       { term: 'Affrettando', slug: 'affrettando', note: '同じ語根。急いでいく過程を示す。' },
       { term: 'Stringendo', slug: 'stringendo', note: '切迫して速度を上げる。テンポ変化を明示する。' },
       { term: 'Con', slug: 'con', note: '「〜を伴って」。この構造を作る前置詞。' },
+    ],
+    works: [
+      { title: '劇的な緊迫感を要求する場面', note: 'オペラのアンサンブル場面などで、登場人物の焦りを表すために使われることがあります。' },
     ],
   },
 
@@ -13442,10 +13855,16 @@ export const termArticles = {
         body: 'イタリア語では形容詞の女性形に -mente を付けて副詞を作ります。rapido → rapidamente、dolce → dolcemente、delicato → delicatamente がこの形です。楽譜に -mente で終わる語が現れたら、元の形容詞を切り出せば意味が取れます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '単に速く弾くのではなく、フレーズ全体が一気に流れ去るような勢いを意識すると、語源の「さらっていく」感覚に近づきます。' },
+    ],
     confusions: [
       { term: 'Veloce', slug: 'veloce', note: '速さそのものを指す語。rapidamente は勢いを含む。' },
       { term: 'Presto', slug: 'presto', note: '速度標語。rapidamente は性格の指示として添えられる。' },
       { term: 'Con fretta', slug: 'con-fretta', note: '急いで。慌ただしさを含む。' },
+    ],
+    works: [
+      { title: '練習曲（エチュード）の急速楽章', note: '技巧的な速いパッセージを持つ楽曲で頻出する指示です。' },
     ],
   },
 
@@ -15764,9 +16183,15 @@ export const termArticles = {
         body: '重なりを増やしていくと、どこかで濁りが表現を損ないます。どこまで重ねられるかは、音域と和声によって変わります。低音域では倍音が多く濁りやすいため重なりを控え、高音域では多めに取れます。和声的に協和する音の連続なら重ねやすく、不協和な音がぶつかる箇所では抑える、という判断になります。',
       },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '次の音を弾く直前まで前の音の鍵盤を保持し、指の重心を滑らかに受け渡すように移動させます。' },
+    ],
     confusions: [
       { term: 'Legato', slug: 'legato', note: '音を切らずにつなぐ指示。legatissimo はさらに重ねる。' },
       { term: 'Portato', slug: 'portato', note: 'つなぎながらも各音を軽く分ける奏法。legatissimo とは逆方向。' },
+    ],
+    works: [
+      { title: 'ショパンのノクターン全般', note: '旋律線を極めてなめらかに歌わせるため legatissimo に近い扱いが求められます。' },
     ],
   },
 
@@ -15786,10 +16211,17 @@ export const termArticles = {
         body: '速い楽章では、staccato と staccatissimo の絶対的な長さの差はわずかになります。それでも指示が書き分けられているのは、音の性格が違うためです。遅い楽章のほうが差を作りやすく、記号の意図がはっきり伝わります。',
       },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '鍵盤を弾いた瞬間に手首を跳ね上げるように離すと、staccato よりさらに短く鋭い音が出ます。' },
+      { name: '弦楽器', tip: '弓を弦に置く時間を極限まで短くし、跳ねさせるように弾きます（跳弓に近い扱い）。' },
+    ],
     confusions: [
       { term: 'Staccato', slug: 'staccato', note: '音を切って演奏する指示。staccatissimo はさらに短く鋭い。' },
       { term: 'Spiccato', slug: 'spiccato', note: '弦楽器で弓を弦から跳ばす奏法。記譜が似るが弓の使い方の指示。' },
       { term: 'Martellato', slug: 'martellato', note: '槌で打つような強い切り方。鋭さより重さが主体。' },
+    ],
+    works: [
+      { title: 'プロコフィエフのピアノ曲全般', note: '鋭く機械的な音の切り方が求められる場面が多くあります。' },
     ],
   },
 
@@ -15809,10 +16241,17 @@ export const termArticles = {
         body: '楽譜のアクセントには、少なくとも二つの目的があります。ひとつは、拍節上は弱いはずの位置を強調してリズムを組み替えるもの。もうひとつは、和声上の重要な音や旋律の頂点を示すものです。前者はリズムの位置を伝えるためなので鋭さが要り、後者は音楽的な重心を示すため厚みが要ります。記号は同じでも、扱いは変わります。',
       },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '鍵盤を叩く速度を一瞬だけ上げることで、周囲より重みのある音を作ります。' },
+      { name: '弦楽器', tip: '弓のスピードと圧をその音だけ一瞬強めます。次の音へは通常の状態に戻すことを忘れないようにします。' },
+    ],
     confusions: [
       { term: 'Sforzando', slug: 'sforzando', note: '突発的で衝撃的な強調。アクセントより鋭い。' },
       { term: 'Marcato', slug: 'marcato', note: '一連の音を際立たせる指示。アクセントは一音ごと。' },
       { term: 'Tenuto', slug: 'tenuto', note: '音を保つ指示。長さで際立たせる点が近い。' },
+    ],
+    works: [
+      { title: 'ベートーヴェンの交響曲全般', note: '弱拍に置かれるアクセント（シンコペーション的な強調）が多用されます。' },
     ],
   },
 
@@ -15836,10 +16275,16 @@ export const termArticles = {
         body: 'イタリアの作曲家ドメニコ・アルベルティの名に由来する呼称です。ただし、この伴奏形を最初に用いた人物であるという意味ではなく、後世に付けられた名称です。',
       },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '単調にならないよう、パターンの中の最も低い音（多くは根音）をわずかに支えとして意識すると、伴奏に芯が生まれます。' },
+    ],
     confusions: [
       { term: 'Arpeggio', slug: 'arpeggio', note: '和音を下から順に分散させる。アルベルティ・バスは上下に往復する。' },
       { term: 'Broken chord', slug: 'broken-chord', note: '和音を崩して弾くことの総称。アルベルティ・バスはその特定の型。' },
       { term: 'Ostinato', slug: 'ostinato', note: '同じ形を繰り返す音型。アルベルティ・バスも繰り返しを前提とする。' },
+    ],
+    works: [
+      { title: 'モーツァルト ピアノソナタ K.545 第1楽章', note: '左手の伴奏が典型的なアルベルティ・バスで書かれています。' },
     ],
   },
 
@@ -15917,10 +16362,16 @@ export const termArticles = {
         body: '断ち切ることが目的なので、余韻を残して自然に消えるのではなく、明確に止めます。管楽器や声楽ではここで息を取れますが、間の長さを息継ぎの必要から決めると音楽的な意図と合わなくなることがあります。劇的な場面転換に使われる記号なので、間の長さがそのまま効果を決めます。短すぎれば断ち切った感じにならず、長すぎれば流れが失われます。',
       },
     ],
+    instruments: [
+      { name: '合奏', tip: 'カエスーラの間は指揮者の合図を待ちます。長さは記譜されないため、その場の判断に委ねられます。' },
+    ],
     confusions: [
       { term: 'Fermata', slug: 'fermata', note: '音や休符を延ばす指示。カエスーラは流れを断つ。' },
       { term: 'Generalpause', slug: 'generalpause', note: '全員が休止すること。G.P. と書かれる。' },
       { term: 'Breath mark', slug: 'breath-mark', note: '息継ぎの位置を示す記号。カエスーラより短い区切り。' },
+    ],
+    works: [
+      { title: 'マーラーの交響曲', note: '劇的な効果を狙ってカエスーラが効果的に使われる場面があります。' },
     ],
   },
 
@@ -15944,10 +16395,17 @@ export const termArticles = {
         body: 'フレーズの終わりは、和声が一区切りつく場所（終止）と重なることが多くあります。旋律が下降して落ち着く、音価が長くなる、同じ形が新たに始まる、といった箇所も手がかりです。歌詞のある曲なら、言葉の区切りがそのまま答えになります。器楽曲でも、旋律を声で歌ってみるとどこで息を取りたくなるかが分かり、それがフレーズの区切りと一致することが多くあります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '歌詞の無い器楽曲でも、旋律に架空の歌詞や言葉を当てはめてみると、どこで息を継ぎ、どこをひとまとまりにするかが決めやすくなります。' },
+      { name: '管楽器・弦楽器', tip: '実際の呼吸や弓の返しの位置が、そのままフレーズの区切りの候補になります。' },
+    ],
     confusions: [
       { term: 'Articolato', slug: 'articolato', note: '一音単位の明瞭さ。フレージングは句単位のまとめ方。' },
       { term: 'Legato', slug: 'legato', note: '音のつなぎ方。スラーが示すのは奏法で、フレーズの区切りとは別。' },
       { term: 'Breath mark', slug: 'breath-mark', note: '息継ぎの位置。フレーズの区切りと一致することが多い。' },
+    ],
+    works: [
+      { title: 'バッハ 無伴奏チェロ組曲', note: 'スラーの指示が少なく、演奏者自身がフレージングを判断する余地が大きい代表例です。' },
     ],
   },
 
@@ -15967,9 +16425,16 @@ export const termArticles = {
         body: '複数の奏者が同時に音を出すとき、音が鳴った瞬間をそろえようとしても遅れます。楽器によって、動作を始めてから音が鳴るまでの時間が違うためです。管楽器は息が管を通る時間があり、弦楽器は弓が弦を動かし始める時間があります。実際には、音が鳴る瞬間を予測して動作を先に始めることでそろえます。指揮の動きは、この予測のための共通の基準として働きます。',
       },
     ],
+    instruments: [
+      { name: '弦楽器', tip: '弓を弦に置く位置と速度の組み合わせで、柔らかいアタックから鋭いアタックまで作り分けられます。' },
+      { name: '管楽器', tip: 'タンギングの強さと息の立ち上がりの速さが、アタックの質を決めます。' },
+    ],
     confusions: [
       { term: 'Release', slug: 'release', note: '音の終わり方。アタックと対になる。' },
       { term: 'Accent', slug: 'accent', note: 'その音を際立たせる指示。アタックの操作がその手段になる。' },
+    ],
+    works: [
+      { title: 'バルトークの弦楽四重奏曲', note: '意図的に鋭いアタックを要求する箇所が多く見られます。' },
     ],
   },
 
@@ -16131,11 +16596,18 @@ export const termArticles = {
         body: '装着すると楽器の鳴りが変わるため、同じ吹き方・弾き方では音程や反応が変わります。特に金管楽器のミュートは音程を変化させるものがあり、装着した状態での調整が必要です。また着脱に時間がかかるため、楽譜の指示がある箇所では前後の余裕を確認しておきます。',
       },
     ],
+    instruments: [
+      { name: '金管楽器', tip: 'ミュートの種類（ストレート、カップ、ハーモンなど）によって求められる音色がまったく異なるため、指定を必ず確認します。' },
+      { name: '弦楽器', tip: '装着・脱着に時間がかかるため、指示の少し前から準備しておく必要があります。' },
+    ],
     confusions: [
       { term: 'Con sordino', slug: 'con-sordino', note: 'イタリア語で弱音器を付ける指示。' },
       { term: 'Dämpfer', slug: 'dämpfer', note: 'ドイツ語で弱音器。' },
       { term: 'Open', slug: 'open', note: '弱音器を外す指示。' },
       { term: 'Stopped', slug: 'stopped', note: 'ホルンで手をベルに差し込む奏法。器具は使わない。' },
+    ],
+    works: [
+      { title: 'マイルス・デイヴィスのトランペット演奏', note: 'ハーモンミュートを使った独特の音色が広く知られています。' },
     ],
   },
 
@@ -16228,9 +16700,15 @@ export const termArticles = {
         body: 'フルート、トランペット、ホルン、トロンボーンなど多くの管楽器で使われます。リード楽器では、口の中の状態がリードの振動に影響するため、この技法の使い方が金管楽器とは異なります。',
       },
     ],
+    instruments: [
+      { name: '金管・木管楽器', tip: '「トゥクトゥク」を一定のリズムでゆっくり発音する練習から始め、徐々に速度を上げていきます。' },
+    ],
     confusions: [
       { term: 'Flutter-tongue', slug: 'flutter-tongue', note: '舌を震わせて唸る音を出す技法。速度のためではなく音色のため。' },
       { term: 'Slap tongue', slug: 'slap-tongue', note: '舌をリードから急に離して打撃音を出す技法。' },
+    ],
+    works: [
+      { title: 'リムスキー=コルサコフ「熊蜂の飛行」', note: '金管楽器での演奏では、ダブルタンギングが使われることがあります。' },
     ],
   },
 
@@ -16509,9 +16987,15 @@ export const termArticles = {
         body: '息継ぎのための時間は、直前の音を短くして作るのが基本です。次の音を遅らせるとテンポが崩れます。ただし、フレーズの終わりで意図的に間を取る場合は別です。どちらの扱いなのかは、その箇所がフレーズの内部か区切りかで決まります。',
       },
     ],
+    instruments: [
+      { name: '管楽器・声楽', tip: '記号のある場所で必ず息を吸う必要はなく、フレーズの都合で別の場所に移すこともあります。あくまで目安です。' },
+    ],
     confusions: [
       { term: 'Caesura', slug: 'caesura', note: '流れを完全に断ち切る記号。ブレスマークより長い間。' },
       { term: 'Phrasing', slug: 'phrasing', note: 'フレーズのまとめ方。息継ぎの位置はその判断に含まれる。' },
+    ],
+    works: [
+      { title: '声楽曲・管楽器曲全般', note: '長いフレーズの中で自然に息継ぎができる位置を示すために使われます。' },
     ],
   },
 
@@ -16618,10 +17102,16 @@ export const termArticles = {
         body: '独奏箇所では、それまで合わせることに注意を向けていたところから、自分が音楽を導く立場に切り替わります。テンポの取り方、フレーズの作り方の主導権が移るため、伴奏側はこちらに合わせます。逆に solo が終わる箇所では、主導権を戻す必要があり、この移り目の処理がアンサンブルの質を決めます。',
       },
     ],
+    instruments: [
+      { name: '合奏', tip: 'Solo と書かれたパートは音量を落とさず前に出て、他のパートはそれに合わせて一段控えます。' },
+    ],
     confusions: [
       { term: 'Tutti', slug: 'tutti', note: '全員で演奏すること。solo の反対。' },
       { term: 'Divisi', slug: 'divisi', note: 'パートを複数に分けること。solo は一人に絞ること。' },
       { term: 'Concerto', slug: 'concerto', note: '独奏と管弦楽が対比される形式。' },
+    ],
+    works: [
+      { title: '協奏曲のカデンツァ', note: '独奏楽器が完全に前に出て自由に演奏する、Solo の性格が最も強く現れる箇所です。' },
     ],
   },
 
@@ -16645,10 +17135,16 @@ export const termArticles = {
         body: 'イタリア語では clavicembalo または cembalo、フランス語では clavecin、ドイツ語では Cembalo。日本語では「チェンバロ」が定着していますが、これはドイツ語・イタリア語由来の呼び方です。',
       },
     ],
+    instruments: [
+      { name: 'ハープシコード', tip: '音量で強弱を作れない代わりに、アーティキュレーション（音の長さと切り方）で強弱に相当する表情を作ります。' },
+    ],
     confusions: [
       { term: 'Clavicembalo', slug: 'clavicembalo', note: 'イタリア語で同じ楽器。' },
       { term: 'Terraced dynamics', slug: 'terraced-dynamics', note: '段で切り替わる強弱。この楽器の構造から生まれた考え方。' },
       { term: 'Fortepiano', slug: 'fortepiano', note: '打鍵で音量を変えられる初期のピアノ。' },
+    ],
+    works: [
+      { title: 'バッハ「ゴルトベルク変奏曲」', note: 'もともとハープシコードのために書かれた代表的な作品です。' },
     ],
   },
 
@@ -16672,9 +17168,15 @@ export const termArticles = {
         body: '音量が小さいため、オーケストラの中で聞こえる箇所は限られます。作曲者はこの楽器を使うとき、周囲の編成を薄くするか、他の楽器と重ねて音色を加える形で書きます。',
       },
     ],
+    instruments: [
+      { name: 'チェレスタ', tip: '音量の幅が狭い楽器なので、オーケストラの中では他の楽器が薄い部分に配置されることが多く、バランスに注意します。' },
+    ],
     confusions: [
       { term: 'Celeste', slug: 'celeste', note: '「天上の」を意味する語。楽器名の由来。' },
       { term: 'Glass harmonica', slug: 'glass-harmonica', note: 'ガラスを擦って鳴らす楽器。澄んだ音色という点で近い。' },
+    ],
+    works: [
+      { title: 'チャイコフスキー「くるみ割り人形」より 金平糖の踊り', note: 'チェレスタの澄んだ音色を印象的に使った代表作です。' },
     ],
   },
 
@@ -17130,10 +17632,17 @@ export const termArticles = {
         body: 'ある調の属音を新しい調の主音として扱うと、シャープが1つ増える方向へ、つまり五度圏を時計回りに1つ進んだ調へ移ります。ハ長調からト長調への移行がこれです。ソナタ形式の提示部で第1主題から第2主題へ移るとき、長調の曲では属調へ行くのが基本形とされてきました。属調は最も近い親戚のような調であり、離れすぎないまま景色を変えられます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '半終止で止まる場所を先に見つけ、そこで音楽を終わらせないよう、和音を保ったまま次への意識を残す練習をします。' },
+      { name: '鍵盤', tip: '属和音から主和音へ進む瞬間、導音（第7音）を意識的にわずかに高めに取ると、解決の引力がはっきり聞こえます。' },
+    ],
     confusions: [
       { term: 'Tonic', slug: 'tonic', note: '主音。属和音が向かっていく先であり、決着の場所。' },
       { term: 'Subdominant', slug: 'subdominant', note: '下属音（第4音）。属音とは主音を挟んで対称の位置にあり、緊張ではなく開放感を担う。' },
       { term: 'Dominant seventh', slug: 'dominant-seventh', note: '属音を根音とする七の和音。主和音への引力が最も強い和音。' },
+    ],
+    works: [
+      { title: 'モーツァルト ピアノソナタ K.545', note: '提示部が属調（ト長調）へ移る場所が分かりやすく、属音の働きを耳で確認できます。' },
     ],
   },
 
@@ -17157,9 +17666,16 @@ export const termArticles = {
         body: 'IV の和音が出てきたところで音量を落とすと、和音が持つ広がりが消えてしまいます。逆に属和音と同じように前へ押すと、行き先のない緊張になります。外へ開く方向の動きだと捉え、音を広く取って豊かに鳴らすと、この和音の性格が出ます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '主和音→下属和音→主和音（I-IV-I）の進行だけを弾き、属和音を挟んだ進行と聴き比べると、開放感の違いが体感できます。' },
+      { name: '鍵盤・合唱', tip: 'アーメン終止（IV→I）は、教会音楽の「アーメン」に多用されます。属七を使う終止より柔らかく響きます。' },
+    ],
     confusions: [
       { term: 'Dominant', slug: 'dominant', note: '属音（第5音）。主音を挟んで下属音と対称の位置にあり、主和音へ強く引き寄せられる。' },
       { term: 'Plagal cadence', slug: 'plagal-cadence', note: '下属和音から主和音へ進む終止。変格終止、アーメン終止。' },
+    ],
+    works: [
+      { title: '讃美歌のアーメン終止', note: '下属和音から主和音へ進む進行は、多くの讃美歌の末尾に使われています。' },
     ],
   },
 
@@ -17183,10 +17699,17 @@ export const termArticles = {
         body: '日本語では導音、英語では leading tone（アメリカ）または leading note（イギリス）と呼ばれます。同じ音を指す語で、意味の違いはありません。',
       },
     ],
+    instruments: [
+      { name: '弦楽器・声楽', tip: '導音は平均律よりやや高めに取ると、主音へ向かう引力が強調され、解決の瞬間が際立ちます。' },
+      { name: '鍵盤', tip: '導音を含む和音の直後に主和音が来る箇所を探し、そこだけ取り出して「引き寄せられる感覚」を確認してから通して弾きます。' },
+    ],
     confusions: [
       { term: 'Tonic', slug: 'tonic', note: '主音。導音が向かっていく先。' },
       { term: 'Harmonic minor', slug: 'harmonic-minor', note: '自然短音階の第7音を半音上げ、導音を作った音階。' },
       { term: 'Dominant', slug: 'dominant', note: '属音。属和音の中に導音が含まれるため、主和音への引力が生まれる。' },
+    ],
+    works: [
+      { title: 'バッハ コラール', note: '各フレーズの終止で導音が主音へ半音進行する形が繰り返し現れます。' },
     ],
   },
 
@@ -17350,10 +17873,17 @@ export const termArticles = {
         body: 'この音程は解決を前提として書かれています。したがって、含まれる和音でテンポを緩めたり音量を落としたりすると、行き先を失って響きだけが濁ります。緊張を保ったまま次の和音へ渡すのが基本です。20世紀以降の作品では解決を伴わずに使われることもあり、その場合は不安定さそのものが目的になっています。',
       },
     ],
+    instruments: [
+      { name: '声楽', tip: '中世には「悪魔の音程（diabolus in musica）」と呼ばれ、避けられていました。単独で歌う練習をすると、その不安定さがよく分かります。' },
+      { name: '鍵盤', tip: '属七の和音の中にある三全音（第3音と第7音）を弾き、その2音だけを解決させる練習をすると、和声進行の推進力の正体が見えてきます。' },
+    ],
     confusions: [
       { term: 'Perfect fifth', slug: 'perfect-fifth', note: '最も協和的な音程。半音1つ狭めると減5度になる。' },
       { term: 'Dominant seventh', slug: 'dominant-seventh', note: '三全音を含む和音。この音程が主和音への推進力を生む。' },
       { term: 'Diminished chord', slug: 'diminished-chord', note: '外側の音程が減5度になる不安定な和音。' },
+    ],
+    works: [
+      { title: 'バーンスタイン「ウエストサイド物語」より Maria', note: '冒頭の跳躍が増4度（三全音）で、不安定な響きが劇的な効果として使われています。' },
     ],
   },
 
@@ -17419,10 +17949,16 @@ export const termArticles = {
         body: '短調の曲で第7音に臨時記号のシャープが付いているのは、和声的短音階の音を使っているためです。調号には含まれず、必要な箇所ごとに臨時記号で書かれるのが慣習です。イ短調の楽譜でソ♯が繰り返し現れるのは作曲者の気分ではなく、その箇所が属和音を経由していることの表示です。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '第6音と第7音（増2度）の跳躍がこの音階特有の響きを作ります。ゆっくりこの2音だけを繰り返し弾いて耳に馴染ませます。' },
+    ],
     confusions: [
       { term: 'Natural minor', slug: 'natural-minor', note: '第7音を上げていない短音階。主音への引力が弱い。' },
       { term: 'Melodic minor', slug: 'melodic-minor', note: '第6音と第7音の広い跳躍を避けるため、上行時に第6音も上げる。' },
       { term: 'Leading tone', slug: 'leading-tone', note: '主音の半音下の音。和声的短音階はこの音を作るための操作。' },
+    ],
+    works: [
+      { title: 'バッハ「トッカータとフーガ ニ短調」', note: '和声的短音階の増2度が生む緊張感が、曲の劇的な性格を支えています。' },
     ],
   },
 
@@ -17600,10 +18136,16 @@ export const termArticles = {
         body: '臨時記号の付いた音がタイで次の小節へつながっている場合、その音は臨時記号の高さを保ちます。ただし、そのタイが切れた後に同じ高さの音が改めて出てきたときは、効力は残りません。この箇所は誤読が起きやすいため、慎重な楽譜では改めて記号が書かれます。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '臨時記号は同じ小節・同じ高さの音にのみ有効です。オクターブ違いの同名音には効力が及ばないため、初見では特に注意します。' },
+    ],
     confusions: [
       { term: 'Key signature', slug: 'key-signature', note: '曲全体に効く記号。臨時記号は一時的な変更。' },
       { term: 'Double sharp', slug: 'double-sharp', note: '半音2つ上げる臨時記号。' },
       { term: 'Double flat', slug: 'double-flat', note: '半音2つ下げる臨時記号。' },
+    ],
+    works: [
+      { title: 'ショパンの作品全般', note: '転調が多く、臨時記号が密集する箇所が随所にあります。' },
     ],
   },
 
@@ -17697,9 +18239,15 @@ export const termArticles = {
         body: '臨時記号の付いた音がタイで次の小節へつながる場合、その音は臨時記号の高さを保ちます。タイが切れた後に同じ高さの音が改めて出てきたときは、効力は残りません。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'タイでつながれた音は、2つ目の音符を弾き直しません。小節をまたぐタイは特に見落としやすいので、初見の段階で丸で囲んでおきます。' },
+    ],
     confusions: [
       { term: 'Legato', slug: 'legato', note: '音をつなげて演奏する指示。スラーがこれを表し、タイとは別物。' },
       { term: 'Dotted note', slug: 'dotted-note', note: '付点でも音を延ばせるが、小節をまたぐ場合はタイを使う。' },
+    ],
+    works: [
+      { title: 'シンコペーションを多用する曲全般', note: '拍をまたぐタイは、リズムに独特の推進力を与えるためによく使われます。' },
     ],
   },
 
@@ -17723,9 +18271,16 @@ export const termArticles = {
         body: '片手が3連符、もう片手が8分音符や16分音符という書き方があります。この場合、両方の最初の音だけが拍の頭で一致し、あいだの音は互いにずれます。それぞれを別々に正確に刻み、頭だけを合わせるという意識で扱います。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '「ト・ラ・ソ」のような3音節の言葉を当てはめて数えると、3等分の感覚がつかみやすくなります。' },
+      { name: '合奏', tip: '2連符と3連符が同時に鳴るポリリズムの箇所では、片方のパートを一定に保ったまま、もう片方だけをゆっくり重ねる練習が有効です。' },
+    ],
     confusions: [
       { term: 'Dotted note', slug: 'dotted-note', note: '付点は2分割の枠内で長さを配分する。3連符は枠そのものを3分割する。' },
       { term: 'Compound meter', slug: 'compound-meter', note: '1拍が3等分されることが前提の拍子。3連符は2分割の拍子に3分割を持ち込む。' },
+    ],
+    works: [
+      { title: 'ショパン 幻想即興曲', note: '右手の16分音符に対し左手が3連符となる、2対3のポリリズムの代表例です。' },
     ],
   },
 
@@ -17749,10 +18304,17 @@ export const termArticles = {
         body: '同じ音符の並びでも、拍子が違えばどこに重心が来るかが変わります。4分の3と4分の4では、強拍の周期が3拍ごとか4拍ごとかで違い、フレーズの区切りも変わります。拍子記号を読むことは、小節のどこに重みがあるかを確認する作業です。曲の途中で拍子が変わる箇所は、その重心の周期が切り替わる場所です。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '拍子が変わる箇所では、変わる前の最後の拍で次の拍子の単位を頭の中で先取りしておくと、つまずきません。' },
+      { name: '合奏', tip: '4分の3から8分の6のように単純拍子と複合拍子のあいだで変わる場合、どの音価が共通になるか（指揮者の指示）を事前に全員で確認します。' },
+    ],
     confusions: [
       { term: 'Simple meter', slug: 'simple-meter', note: '1拍が2等分される拍子。' },
       { term: 'Compound meter', slug: 'compound-meter', note: '1拍が3等分される拍子。' },
       { term: 'Downbeat', slug: 'downbeat', note: '小節の1拍目。拍子記号はこの周期を決める。' },
+    ],
+    works: [
+      { title: 'ストラヴィンスキー「春の祭典」', note: '拍子が小節ごとに目まぐるしく変わる代表例です。' },
     ],
   },
 
@@ -17842,10 +18404,16 @@ export const termArticles = {
         body: 'この終止は決着を示す場所なので、そこへ向かってフレーズを収める必要があります。しかし曲の途中にある完全終止をすべて曲の終わりのように扱うと、音楽が何度も止まってしまいます。段落の終わりなのか楽章の終わりなのかを見極め、収め方の深さを変えることが求められます。属和音から主和音へ移るときにわずかな時間を取るかどうかも、決着の重さを調整する手段です。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '曲の最後の完全終止だけを取り出し、和音が変わる瞬間にわずかに間を作ると、決着感がより明確に伝わります。' },
+    ],
     confusions: [
       { term: 'Plagal cadence', slug: 'plagal-cadence', note: 'IV から I へ進む終止。決着より余韻を残す。' },
       { term: 'Half cadence', slug: 'half-cadence', note: 'V で止まる終止。続きを期待させる。' },
       { term: 'Deceptive cadence', slug: 'deceptive-cadence', note: 'V から I へ行くと思わせて別の和音へ進む終止。' },
+    ],
+    works: [
+      { title: '古典派交響曲の終楽章', note: 'ほぼ例外なく完全終止で締めくくられ、聴き手に「終わった」ことを明確に伝えます。' },
     ],
   },
 
@@ -17913,9 +18481,15 @@ export const termArticles = {
         body: '英語では interrupted cadence（イギリス）や deceptive cadence とも呼ばれます。V から VI への進行を指す場合に interrupted、より広く予想を外す終止を指す場合に deceptive を使う例がありますが、用語の範囲は文献によって異なります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: '偽終止の直前で、聴き手（自分自身も含む）が完全終止を予期するように、少しテンポを落として「終わりそうな」空気を作ると効果が際立ちます。' },
+    ],
     confusions: [
       { term: 'Perfect cadence', slug: 'perfect-cadence', note: '予想どおり V から I へ進む終止。偽終止はこれを外す。' },
       { term: 'Submediant', slug: 'submediant', note: '下中音。偽終止で進む先となる VI の和音の根音。' },
+    ],
+    works: [
+      { title: 'ヘンデル「メサイア」より Hallelujah', note: '曲中に偽終止が使われ、聴き手の予想を裏切りながら曲を引き延ばす効果を生んでいます。' },
     ],
   },
 
@@ -17939,9 +18513,16 @@ export const termArticles = {
         body: '移調は曲全体を別の調へ移すことで、曲の中の調関係は変わりません。転調は曲の途中で調が移ることで、曲の構造そのものの一部です。ハ長調の曲をニ長調に移調しても、途中の転調は同じ関係のまま移動します。',
       },
     ],
+    instruments: [
+      { name: '鍵盤・合唱伴奏', tip: '声域に合わせて曲を移調する場面が多く、まず主音の位置を新しい調で確認してから、和音の型を横にスライドさせるように弾くと速く対応できます。' },
+      { name: '管楽器', tip: '移調楽器の奏者は、記譜と実音の関係を常に頭の中で変換しています。合奏スコアを読むときはこの変換を逆に行う必要があります。' },
+    ],
     confusions: [
       { term: 'Modulation', slug: 'modulation', note: '曲の途中で調が変わること。移調は曲全体を移すこと。' },
       { term: 'Key signature', slug: 'key-signature', note: '移調すると調号が変わる。' },
+    ],
+    works: [
+      { title: '同じ曲の異なる調の版', note: '声楽曲は歌手の声域に合わせて複数の調で出版されることがあり、移調の実例として比較できます。' },
     ],
   },
 
@@ -18039,9 +18620,15 @@ export const termArticles = {
         body: 'pf という略号は、楽器のピアノフォルテを指す略記としても使われます。また forte-piano（強く出してすぐ弱く）を fp と書くため、それとの混同も起こります。楽譜で pf を見たときは、前後の音量指示との関係から判断します。単独の音に付いているのか、区間に対する指示なのかも手がかりになります。',
       },
     ],
+    instruments: [
+      { name: '共通', tip: 'mf に近い音量ですが、mf よりやや前に出る明るい質感が求められることが多い指示です。' },
+    ],
     confusions: [
       { term: 'Mezzo forte', slug: 'mezzo-forte', note: '中間の音量。poco forte は forte から少し控えた方向。' },
       { term: 'Forte piano', slug: 'forte-piano', note: 'fp と略される別の指示。強く出してすぐ弱くする。' },
+    ],
+    works: [
+      { title: '古典派の楽譜', note: 'mf の代わりに poco forte（pf）が使われている場合があります。' },
     ],
   },
 
@@ -18061,10 +18648,17 @@ export const termArticles = {
         body: '弦楽器では、弓の圧力を抜きすぎると音が鳴らずに雑音になります。圧力を減らしながら弓速を保つことで、音の輪郭を残したまま量を落とせます。管楽器では、息の量を減らすと音程が下がるため、支えを保ったまま量だけを落とす技術が要ります。ピアノでは減衰が自然に起こるため、打鍵をどこまで弱くできるかと、ペダルで残響をどう扱うかが問題になります。',
       },
     ],
+    instruments: [
+      { name: '管楽器', tip: '息の量を減らしながらも支えを保ち、音程が下がらないよう最後まで意識を保ちます。' },
+      { name: '弦楽器', tip: '弓の速度を保ったまま圧だけを減らしていくと、音が痩せずに自然に消えていきます。' },
+    ],
     confusions: [
       { term: 'Niente', slug: 'niente', note: '無音そのものを指す語。al niente はそこへ向かう指示。' },
       { term: 'Dal niente', slug: 'dal-niente', note: '無から音が生まれてくる指示。al niente の逆。' },
       { term: 'Morendo', slug: 'morendo', note: '死に絶えるように。テンポの緩みも含むことが多い。' },
+    ],
+    works: [
+      { title: 'シベリウスの交響曲の終結部', note: 'al niente に近い、音が消え入るような終わり方をする楽章があります。' },
     ],
   },
 
@@ -18084,9 +18678,15 @@ export const termArticles = {
         body: 'ゼロから立ち上げる音は、会場の静けさに依存します。客席の物音や空調の音がある中では、聞こえ始める地点そのものが変わります。実際の演奏では、その場の静けさの水準に合わせて開始の音量を決めることになります。',
       },
     ],
+    instruments: [
+      { name: '管楽器', tip: '無音から発音する瞬間、息を出しすぎないよう、極めて少量の息から徐々に増やしていきます。' },
+    ],
     confusions: [
       { term: 'Al niente', slug: 'al-niente', note: '無へ向かって消えていく指示。dal niente の逆。' },
       { term: 'Niente', slug: 'niente', note: '無音そのものを指す語。' },
+    ],
+    works: [
+      { title: 'クレッシェンドで始まる楽曲の冒頭', note: '静寂から音楽が生まれてくる効果を狙う作品に見られます。' },
     ],
   },
 
@@ -18125,9 +18725,16 @@ export const termArticles = {
         body: '器楽の楽譜にこの指示がある場合、楽器を鳴らしきらずに響きを抑えるという意味になります。弦楽器なら弓の圧力を控えめにし、管楽器なら息の量を抑えます。単に小さく弾くのではなく、余力を残した状態で鳴らすことが求められています。',
       },
     ],
+    instruments: [
+      { name: '声楽', tip: '全力で歌う声とささやく声の中間で、支えは保ったまま音量だけを抑えます。' },
+      { name: '器楽', tip: '声楽由来の語なので、歌うようなニュアンスを保ちながら音量を抑えることを意識します。' },
+    ],
     confusions: [
       { term: 'Sotto voce', slug: 'sotto-voce', note: '押し殺した声。mezzo voce より秘めた性格が強い。' },
       { term: 'Mezzo piano', slug: 'mezzo-piano', note: '音量の段階を示す指示。mezzo voce は声の使い方を示す。' },
+    ],
+    works: [
+      { title: 'イタリア・オペラのアリア', note: '感情を抑えて内面的に歌う場面で mezzo voce の指示が使われます。' },
     ],
   },
 
@@ -18147,9 +18754,16 @@ export const termArticles = {
         body: 'ピアノでバロック作品を弾くとき、この楽器はクレッシェンドが可能です。そこで連続的な音量変化を加えるかどうかは、演奏者の判断になります。段を明確に保つことで当時の響きの構造を示す立場と、現代の楽器の可能性を使う立場があり、どちらが正しいという結論は出ていません。少なくとも、楽譜に書かれた強弱の切り替わりが段として意図されていることは、楽器の構造から確認できる事実です。',
       },
     ],
+    instruments: [
+      { name: 'ハープシコード・オルガン', tip: 'ストップや鍵盤段を切り替えて段差を作ります。滑らかな移行は構造上できません。' },
+      { name: '合奏', tip: 'トゥッティとソロが交替する箇所で、なめらかにつなげず、はっきりとした音量の切り替えを意識します。' },
+    ],
     confusions: [
       { term: 'Crescendo', slug: 'crescendo', note: '連続的に強くしていく指示。階段状の強弱とは対になる考え方。' },
       { term: 'Clavicembalo', slug: 'clavicembalo', note: 'チェンバロ。打鍵で音量を変えられない構造がこの表現の背景にある。' },
+    ],
+    works: [
+      { title: 'ヘンデルの合奏協奏曲', note: 'トゥッティとソロの交替が階段状の強弱として機能しています。' },
     ],
   },
 
@@ -19606,6 +20220,9 @@ export const termArticles = {
         body: 'fugal な箇所では、フーガと同じ原則が適用されます。つまり、いま主題がどの声部にあるかを聴き手に伝えることが最優先になります。主題を担当する声部をわずかに前に出し、他を控える。この処理をしないと、複数の線が混ざって和音の連続に聞こえてしまいます。',
       },
     ],
+    instruments: [
+      { name: '合奏', tip: 'フーガ的な書法が始まる箇所を見つけたら、主題を持つパートを意識的に前に出す、フーガの演奏と同じ配慮をします。' },
+    ],
     confusions: [
       { term: 'Fugue', slug: 'fugue', note: 'フーガ。形式そのものを指します。fugal はその技法を部分的に用いた状態です。' },
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。fugal な書法はこの技法の一部です。' },
@@ -19628,9 +20245,15 @@ export const termArticles = {
         body: '現代の日本語で「バラード」と言えば、叙情的なゆったりした歌を指すことが多くなります。しかし語をたどると、この ballata や、物語を歌う各国の伝統的な歌に行き着きます。ショパンのバラードのように、器楽で物語性を持つ作品を指す用法もあり、時代によって意味が変化してきた語です。',
       },
     ],
+    instruments: [
+      { name: '声楽', tip: '踊りの拍子感が語源にあるため、テンポを揺らしすぎず、一定の拍節感を保つと様式に合います。' },
+    ],
     confusions: [
       { term: 'Ballade', slug: 'ballade', note: 'バラード。物語を歌う、あるいは物語性を持つ器楽曲を指します。' },
       { term: 'Canto', slug: 'canto', note: '歌、主旋律。ballata は歌われる形式の一つです。' },
+    ],
+    works: [
+      { title: 'ランディーニのバッラータ', note: '14世紀イタリア・トレチェント音楽の代表的な作曲家による作品です。' },
     ],
   },
 
@@ -19645,6 +20268,9 @@ export const termArticles = {
         heading: '「優雅な」という語感',
         body: 'galant はフランス語で「優雅な、洗練された」を意味します。これらの挿入曲が、標準の4舞曲より軽く親しみやすい性格を持つことから、この名で呼ばれます。演奏でも、重厚に構えるより軽やかに扱うほうが性格に合います。',
       },
+    ],
+    instruments: [
+      { name: '鍵盤', tip: '標準的な舞曲より軽やかで装飾的な性格を持つため、タッチを軽くし、装飾音を優雅に処理します。' },
     ],
     confusions: [
       { term: 'Minuet', slug: 'minuet', note: 'メヌエット。ガランテリーとして最も多く用いられる舞曲です。' },
@@ -19669,10 +20295,16 @@ export const termArticles = {
         body: '2声では、どちらかが伴奏に回ることはありません。常に両方が主役であり、互いの動きを聴き合う必要があります。片方が動いているときは他方が静止する、といった役割の交替が頻繁に起こるため、その受け渡しを明確にすることが演奏の中心的な課題になります。',
       },
     ],
+    instruments: [
+      { name: '鍵盤・アンサンブル', tip: '2声のみのシンプルな書法だからこそ、各声部の独立性がはっきり聞こえるよう、声部ごとに音色や強弱を分けます。' },
+    ],
     confusions: [
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。bicinium はその最小構成にあたります。' },
       { term: 'Duo', slug: 'duo', note: '二重奏。編成としては同じ2人ですが、bicinium は書法を指す語です。' },
       { term: 'Canon', slug: 'canon', note: 'カノン。2声で書かれることが多く、bicinium の一形態にもなります。' },
+    ],
+    works: [
+      { title: 'ルネサンス期の教育用対位法作品', note: '2声の対位法教材として広く用いられました。' },
     ],
   },
 
