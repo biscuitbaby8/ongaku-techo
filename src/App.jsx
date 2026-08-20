@@ -15,10 +15,18 @@ import { buildTermIndex, findDictionaryMatches } from './lib/termMatcher';
 
 // --- データのインポート ---
 import { termsData as INITIAL_TERMS, CATEGORIES, ALPHABET } from './data/termsData';
-import { termArticles } from './data/termArticles';
+// 詳しい解説の本文（termArticles.js）は1.8MBあるため、ここでは読み込まない。
+// アプリ側で必要なのは「その用語に個別ページがあるか」だけなので、
+// 自動生成されたスラッグ一覧だけを参照する。
+import { FEATURED_SLUGS } from './data/featuredTerms';
 
 const slugOf = (term) => term.toLowerCase().replace(/\s+/g, '-');
-const articleOf = (item) => (item ? termArticles[slugOf(item.term)] : null);
+// 個別ページを持たない用語は、カテゴリ一覧ページの該当項目へ送る。
+const termHref = (item) =>
+  FEATURED_SLUGS.has(slugOf(item.term))
+    ? `/term/${slugOf(item.term)}/`
+    : `/index/${encodeURIComponent(item.category)}/#${slugOf(item.term)}`;
+const hasOwnPage = (item) => Boolean(item) && FEATURED_SLUGS.has(slugOf(item.term));
 
 // カメラスキャン照合用のインデックス（モジュール読み込み時に一度だけ構築）
 const TERM_INDEX = buildTermIndex(INITIAL_TERMS);
@@ -444,7 +452,7 @@ export default function App() {
             </button>
           </div>
         </div>
-        <p className="text-[10px] font-bold mt-2 opacity-80 uppercase tracking-[0.3em] relative z-10 font-mono italic text-center">Search Optimized v8.0</p>
+        <p className="text-[10px] font-bold mt-2 opacity-80 tracking-[0.2em] relative z-10 text-center">楽譜の指示語を、演奏の判断に変える</p>
       </header>
 
       {!hasAcceptedCookies && (
@@ -528,7 +536,7 @@ export default function App() {
               <section className={`${theme === 'kawaii' ? 'bg-white/50 border-rose-100' : 'bg-slate-50 border-slate-200'} p-6 rounded-[2.5rem] border-2 border-dashed mb-8 text-center`}>
                 <h3 className={`text-sm font-black ${s.accentText} uppercase tracking-widest mb-3 flex items-center justify-center gap-2`}><Info size={16} /> 音楽手帳について</h3>
                 <p className="text-[11px] text-slate-600 font-bold leading-relaxed px-2">
-                  1000語以上の膨大な用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。<br />さらに、日々の練習に必須の<strong>「高精度クロマチックチューナー」</strong>と<strong>「メトロノーム」</strong>を搭載。これひとつで音楽ライフをサポートする、本格的なデジタル音楽手帳プロジェクトです。
+                  楽譜に書かれた指示語を、訳語で終わらせずに「演奏で何をすることになるのか」まで解説しています。よく使う用語には、語源・楽器別の演奏のヒント・混同しやすい用語・実際に使われている曲を加えた詳しい解説ページがあります。<br />あわせて、日々の練習に使う<strong>「クロマチックチューナー」</strong>と<strong>「メトロノーム」</strong>を搭載しています。
                 </p>
               </section>
             )}
@@ -559,7 +567,7 @@ export default function App() {
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
                         <h3 className="font-bold text-slate-800 leading-tight truncate text-base">{item.term}</h3>
-                        {articleOf(item) && (
+                        {hasOwnPage(item) && (
                           <span className={`shrink-0 px-1.5 py-0.5 rounded-md text-[8px] font-black tracking-wider ${theme === 'kawaii' ? 'bg-rose-100 text-rose-500' : 'bg-indigo-100 text-indigo-600'}`}>詳解</span>
                         )}
                       </div>
@@ -635,7 +643,7 @@ export default function App() {
                       音楽の道は終わりのない旅のようなものです。この手帳が、あなたの譜読みを助け、音を研ぎ澄ませ、毎日の練習を少しでも楽しく彩る存在になれば幸いです。
                     </p>
                     <p className="mt-4 text-[10px] opacity-60">
-                      ※このアプリは、現役の奏者や講師の監修を元に、biscuitbaby / ongaku-techo Projectが運営しています。
+                      ※このアプリは biscuitbaby / ongaku-techo Project が個人で制作・運営しています。解説はすべて自身で執筆しており、誤りのご指摘はお問い合わせからお寄せください。
                     </p>
                   </section>
                 </div>
@@ -729,17 +737,17 @@ export default function App() {
               </div>
 
               <a
-                href={`/term/${slugOf(selectedTerm.term)}/`}
+                href={termHref(selectedTerm)}
                 className={`flex items-center justify-between gap-3 p-5 ${theme === 'kawaii' ? 'bg-gradient-to-br from-rose-50 to-orange-50 border-rose-100 rounded-[2rem]' : 'bg-slate-50 border-slate-200 rounded-xl'} border-2 no-underline active:scale-95 transition-all`}
               >
                 <div className="text-left">
                   <p className={`text-[10px] font-black ${s.accentText} uppercase tracking-widest mb-1 flex items-center gap-1`}>
-                    <BookOpen size={12} /> {articleOf(selectedTerm) ? '詳しい解説を読む' : '用語ページを開く'}
+                    <BookOpen size={12} /> {hasOwnPage(selectedTerm) ? '詳しい解説を読む' : `${selectedTerm.category}の用語一覧で見る`}
                   </p>
                   <p className="text-xs font-bold text-slate-600 leading-relaxed">
-                    {articleOf(selectedTerm)
+                    {hasOwnPage(selectedTerm)
                       ? '語源・演奏のコツ・混同しやすい用語・使われている曲まで解説しています。'
-                      : '関連する用語と合わせて、この用語のページを開きます。'}
+                      : `「${selectedTerm.category}」の読み方の解説と、この用語を含む一覧ページを開きます。`}
                   </p>
                 </div>
                 <ChevronRight size={20} className="text-slate-300 shrink-0" />
@@ -808,7 +816,7 @@ export default function App() {
         </div>
       )}
 
-      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">Terms: {INITIAL_TERMS.length} / v8.0</p></div>
+      <div className={`fixed bottom-0 left-0 right-0 ${theme === 'kawaii' ? 'bg-white/70 text-rose-300' : 'bg-slate-900/80 text-slate-400'} backdrop-blur-md py-1.5 text-center pointer-events-none md:hidden border-t border-white/10 z-40`}><p className="text-[8px] font-black tracking-[0.4em] uppercase">{INITIAL_TERMS.length} terms</p></div>
       <Analytics />
 
       {/* --- Tuner Logic & UI --- */}

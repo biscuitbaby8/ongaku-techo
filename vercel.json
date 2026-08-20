@@ -48,7 +48,11 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api|term|index|ads\\.txt|robots\\.txt|sitemap\\.xml|assets|privacy|about|contact|manifest|icon|vite|google).*)",
+      "source": "/term/:slug*",
+      "destination": "/api/term-redirect?slug=:slug*"
+    },
+    {
+      "source": "/((?!api|term|index|guide|ads\\.txt|robots\\.txt|sitemap\\.xml|assets|privacy|about|contact|manifest|icon|vite|google).*)",
       "destination": "/index.html"
     }
   ]

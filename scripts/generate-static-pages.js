@@ -1,9 +1,18 @@
 /**
- * Static HTML Page Generator for AdSense SEO
- * 
- * Generates standalone HTML pages for every term and category index page
- * so that Google's crawler can see actual content without executing JavaScript.
- * 
+ * Static HTML Page Generator
+ *
+ * 生成するもの:
+ *   /term/{slug}/       … 個別ページ（scripts/article-quality.js の基準を満たす用語のみ）
+ *   /index/            … 用語さくいん（全カテゴリの一覧）
+ *   /index/{カテゴリ}/  … カテゴリ解説 + そのカテゴリの全用語（解説文つき）
+ *   /guide/            … 読み物記事の一覧
+ *   /guide/{slug}/     … 読み物記事
+ *   /                  … トップページ（ビルド済み index.html に静的コンテンツを追記）
+ *
+ * 個別ページを絞っている理由は docs/adsense-2026-08-investigation.md を参照。
+ * 基準を満たさない用語は個別ページを持たず、カテゴリ一覧ページ内で解説する。
+ * 旧URL（/term/{slug}/）は api/term-redirect.js が 301 でその位置へ転送する。
+ *
  * Run after `vite build`: node scripts/generate-static-pages.js
  */
 
@@ -12,6 +21,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { termsData, CATEGORIES } from '../src/data/termsData.js';
 import { termArticles } from '../src/data/termArticles.js';
+import { categoryIntros } from '../src/data/categoryIntros.js';
+import { guideArticles } from '../src/data/guideArticles.js';
+import { FEATURED_SLUGS } from '../src/data/featuredTerms.js';
+import { computeFeaturedSlugs, articleLength, MIN_ARTICLE_LENGTH } from './article-quality.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,6 +46,8 @@ function findBuiltCssHref() {
 }
 const BUILT_CSS_HREF = findBuiltCssHref();
 
+const REAL_CATEGORIES = CATEGORIES.filter((c) => c !== 'All' && c !== 'お気に入り');
+
 // --- Helper: Escape HTML ---
 function esc(str) {
     if (!str) return '';
@@ -48,8 +63,23 @@ function termSlug(term) {
     return term.term.toLowerCase().replace(/\s+/g, '-');
 }
 
+// スラッグ → 用語。リンク先の解決に使う。
+const bySlug = new Map(termsData.map((t) => [termSlug(t), t]));
+
+/**
+ * 用語へのリンク先。
+ * 個別ページを持つ用語はそのページへ、持たない用語はカテゴリ一覧ページの
+ * 該当項目（アンカー）へ。存在しない用語は null（リンクを張らない）。
+ */
+function termUrl(slug) {
+    const term = bySlug.get(slug);
+    if (!term) return null;
+    if (FEATURED_SLUGS.has(slug)) return `/term/${slug}/`;
+    return `/index/${encodeURIComponent(term.category)}/#${slug}`;
+}
+
 // --- Shared HTML head ---
-function htmlHead({ title, description, canonicalPath, ogImagePath }) {
+function htmlHead({ title, description, canonicalPath, ogType = 'article' }) {
     return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -61,11 +91,11 @@ function htmlHead({ title, description, canonicalPath, ogImagePath }) {
   <meta name="description" content="${esc(description)}">
 
   <link rel="canonical" href="${BASE_URL}${canonicalPath}">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="${ogType}">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${BASE_URL}${canonicalPath}">
-  <meta property="og:image" content="${BASE_URL}${ogImagePath || '/og-image.png'}">
+  <meta property="og:image" content="${BASE_URL}/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="manifest" href="/manifest.json">
@@ -79,6 +109,7 @@ function htmlHead({ title, description, canonicalPath, ogImagePath }) {
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     a { text-decoration: none; }
     .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    :target { scroll-margin-top: 24px; }
   </style>
 </head>`;
 }
@@ -89,7 +120,7 @@ function siteHeader() {
   <header class="bg-rose-300 rounded-b-[50px] shadow-inner text-white pt-10 pb-16 px-6 relative overflow-hidden">
     <div class="max-w-2xl mx-auto relative z-20">
       <a href="/" class="text-2xl font-black tracking-widest flex items-center gap-2 text-white">🎵 おんがく手帳</a>
-      <p class="text-xs font-bold text-white/70 mt-1">1000語以上の音楽用語辞典 &amp; チューナー・メトロノーム</p>
+      <p class="text-xs font-bold text-white/70 mt-1">音楽用語辞典 &amp; チューナー・メトロノーム</p>
     </div>
   </header>`;
 }
@@ -101,6 +132,7 @@ function siteFooter() {
     <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
       <a href="/" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">Home</a>
       <a href="/index/" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">用語さくいん</a>
+      <a href="/guide/" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">読みもの</a>
       <a href="/about.html" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">About</a>
       <a href="/contact.html" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">Contact</a>
       <a href="/privacy.html" class="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-rose-400">Privacy</a>
@@ -111,29 +143,31 @@ function siteFooter() {
 
 // --- Shared Navigation ---
 function categoryNav(activeCategory) {
-    const cats = CATEGORIES.filter(c => c !== 'All' && c !== 'お気に入り');
     return `
     <nav class="flex gap-2 overflow-x-auto pb-2 mb-6">
       <a href="/index/" class="px-4 py-2 rounded-2xl text-sm font-bold whitespace-nowrap ${!activeCategory ? 'bg-rose-400 text-white' : 'bg-white text-slate-500 border border-slate-200'}">全カテゴリ</a>
-      ${cats.map(cat => `<a href="/index/${encodeURIComponent(cat)}/" class="px-4 py-2 rounded-2xl text-sm font-bold whitespace-nowrap ${activeCategory === cat ? 'bg-rose-400 text-white' : 'bg-white text-slate-500 border border-slate-200'}">${esc(cat)}</a>`).join('\n      ')}
+      ${REAL_CATEGORIES.map((cat) => `<a href="/index/${encodeURIComponent(cat)}/" class="px-4 py-2 rounded-2xl text-sm font-bold whitespace-nowrap ${activeCategory === cat ? 'bg-rose-400 text-white' : 'bg-white text-slate-500 border border-slate-200'}">${esc(cat)}</a>`).join('\n      ')}
     </nav>`;
 }
 
-// --- 詳しい解説（termArticles.js に項目がある用語だけ） ---
-function articleHtml(article) {
-    if (!article) return '';
-
-    const sections = article.sections.map(sec => `
+// --- 見出し + 本文のセクション群（記事・カテゴリ解説で共用） ---
+function sectionsHtml(sections) {
+    return (sections || []).map((sec) => `
       <section class="mb-8">
         <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">${esc(sec.heading)}</h2>
         <p class="text-sm text-slate-600 leading-loose">${esc(sec.body)}</p>
       </section>`).join('');
+}
+
+// --- 詳しい解説 ---
+function articleHtml(article) {
+    if (!article) return '';
 
     const instruments = article.instruments?.length ? `
       <section class="mb-8">
         <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">演奏のヒント</h2>
         <div class="grid gap-3">
-          ${article.instruments.map(i => `
+          ${article.instruments.map((i) => `
           <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
             <p class="text-xs font-black text-rose-500 mb-1">${esc(i.name)}</p>
             <p class="text-sm text-slate-600 leading-relaxed">${esc(i.tip)}</p>
@@ -145,11 +179,17 @@ function articleHtml(article) {
       <section class="mb-8">
         <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">混同しやすい用語</h2>
         <div class="grid gap-3">
-          ${article.confusions.map(c => `
-          <a href="/term/${esc(c.slug)}/" class="block bg-white rounded-2xl p-4 border border-slate-100 hover:border-rose-200 transition-all">
+          ${article.confusions.map((c) => {
+        const href = termUrl(c.slug);
+        const inner = `
             <p class="text-sm font-black text-slate-800 mb-1">${esc(c.term)}</p>
-            <p class="text-sm text-slate-600 leading-relaxed">${esc(c.note)}</p>
-          </a>`).join('')}
+            <p class="text-sm text-slate-600 leading-relaxed">${esc(c.note)}</p>`;
+        return href
+            ? `<a href="${href}" class="block bg-white rounded-2xl p-4 border border-slate-100 hover:border-rose-200 transition-all">${inner}
+          </a>`
+            : `<div class="bg-white rounded-2xl p-4 border border-slate-100">${inner}
+          </div>`;
+    }).join('')}
         </div>
       </section>` : '';
 
@@ -157,7 +197,7 @@ function articleHtml(article) {
       <section class="mb-8">
         <h2 class="text-base font-black text-slate-800 mb-3 pl-3 border-l-4 border-rose-300">この指示が使われる曲</h2>
         <div class="grid gap-3">
-          ${article.works.map(w => `
+          ${article.works.map((w) => `
           <div class="bg-amber-50/50 rounded-2xl p-4 border border-amber-100">
             <p class="text-sm font-black text-amber-700 mb-1">${esc(w.title)}</p>
             <p class="text-sm text-slate-600 leading-relaxed">${esc(w.note)}</p>
@@ -168,24 +208,24 @@ function articleHtml(article) {
     return `
     <div class="bg-white rounded-3xl shadow-xl border border-slate-50 p-8 mb-8">
       <p class="text-sm text-slate-700 font-bold leading-loose mb-8 pb-8 border-b border-slate-100">${esc(article.lead)}</p>
-      ${sections}${instruments}${confusions}${works}
+      ${sectionsHtml(article.sections)}${instruments}${confusions}${works}
     </div>`;
 }
 
 // =============================================
-// 1. Generate Individual Term Pages
+// 1. 個別の用語ページ（基準を満たした用語のみ）
 // =============================================
 function generateTermPage(term) {
     const slug = termSlug(term);
     const article = termArticles[slug];
+
+    // 関連用語は、同カテゴリで個別ページを持つ用語から選ぶ（リンク切れを作らない）。
     const related = termsData
-        .filter(t => t.category === term.category && t.id !== term.id)
+        .filter((t) => t.category === term.category && t.id !== term.id && FEATURED_SLUGS.has(termSlug(t)))
         .slice(0, 8);
 
     const title = `${term.term}（${term.reading}）の意味・解説 | おんがく手帳`;
-    const description = article
-        ? `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${article.lead.substring(0, 90)}`
-        : `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${term.detail.substring(0, 80)}`;
+    const description = `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${article.lead.substring(0, 90)}`;
 
     const html = `${htmlHead({ title, description, canonicalPath: `/term/${slug}/` })}
 <body class="bg-[#FFFDF9] text-slate-700">
@@ -238,7 +278,7 @@ function generateTermPage(term) {
     <section class="mb-12">
       <h2 class="text-lg font-black text-slate-800 mb-4">❤️ 関連する${esc(term.category)}用語</h2>
       <div class="grid grid-cols-2 gap-3">
-        ${related.map(r => `
+        ${related.map((r) => `
         <a href="/term/${termSlug(r)}/" class="block p-4 bg-white rounded-2xl shadow-sm border border-slate-50 hover:shadow-md hover:border-rose-100 transition-all">
           <p class="text-sm font-black text-slate-700 truncate">${esc(r.term)}</p>
           <p class="text-xs text-slate-400 font-bold mt-1">${esc(r.reading)}</p>
@@ -248,7 +288,7 @@ function generateTermPage(term) {
     </section>` : ''}
 
     <div class="text-center">
-      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-rose-400 text-white rounded-2xl font-black text-sm shadow-lg hover:bg-rose-500 transition-all">← 辞書のトップへ戻る</a>
+      <a href="/index/${encodeURIComponent(term.category)}/" class="inline-flex items-center gap-2 px-6 py-3 bg-rose-400 text-white rounded-2xl font-black text-sm shadow-lg hover:bg-rose-500 transition-all">← ${esc(term.category)}の用語一覧へ</a>
     </div>
   </main>
 
@@ -274,21 +314,16 @@ function generateTermPage(term) {
 }
 
 // =============================================
-// 2. Generate Index Pages (All + Per Category)
+// 2-a. カテゴリ一覧ページ（解説 + そのカテゴリの全用語）
 // =============================================
-function generateIndexPage(category) {
-    const isAll = !category;
-    const filtered = isAll
-        ? termsData
-        : termsData.filter(t => t.category === category);
+function generateCategoryPage(category) {
+    const filtered = termsData.filter((t) => t.category === category);
+    const intro = categoryIntros[category];
+    const featuredCount = filtered.filter((t) => FEATURED_SLUGS.has(termSlug(t))).length;
 
-    const title = isAll
-        ? '音楽用語さくいん（全カテゴリ）| おんがく手帳'
-        : `${category}の音楽用語一覧 | おんがく手帳`;
-    const description = isAll
-        ? `1000語以上の音楽用語を五十音順・カテゴリ別に一覧で紹介。強弱、速度、奏法、表情、構成の各カテゴリから探せます。`
-        : `「${category}」に関する音楽用語を一覧で紹介。${filtered.length}語の解説を掲載中。`;
-    const canonicalPath = isAll ? '/index/' : `/index/${encodeURIComponent(category)}/`;
+    const title = `${category}の音楽用語 — ${intro.title} | おんがく手帳`;
+    const description = `${intro.lead.substring(0, 110)}`;
+    const canonicalPath = `/index/${encodeURIComponent(category)}/`;
 
     const html = `${htmlHead({ title, description, canonicalPath })}
 <body class="bg-[#FFFDF9] text-slate-700">
@@ -296,26 +331,47 @@ function generateIndexPage(category) {
 
   <main class="max-w-2xl mx-auto px-6 -mt-8 relative z-20 pb-12">
     <div class="pt-12">
-      <h1 class="text-2xl font-black text-slate-800 mb-2">${isAll ? '🔍 音楽用語さくいん' : `📁 ${esc(category)}の用語一覧`}</h1>
-      <p class="text-sm text-slate-500 font-bold mb-6">${filtered.length}語を掲載中</p>
+      <nav class="flex items-center gap-1 text-xs font-bold text-slate-400 mb-4">
+        <a href="/" class="hover:text-rose-400">トップ</a>
+        <span>/</span>
+        <a href="/index/" class="hover:text-rose-400">用語さくいん</a>
+        <span>/</span>
+        <span class="text-slate-600">${esc(category)}</span>
+      </nav>
 
-      ${categoryNav(category || null)}
+      <h1 class="text-2xl font-black text-slate-800 mb-2">${esc(category)}の音楽用語</h1>
+      <p class="text-sm text-slate-500 font-bold mb-6">${filtered.length}語を掲載（うち${featuredCount}語は詳しい解説ページつき）</p>
 
+      ${categoryNav(category)}
+
+      <!-- カテゴリ解説 -->
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-50 p-8 mb-10">
+        <h2 class="text-lg font-black text-slate-800 mb-4">${esc(intro.title)}</h2>
+        <p class="text-sm text-slate-700 font-bold leading-loose mb-8 pb-8 border-b border-slate-100">${esc(intro.lead)}</p>
+        ${sectionsHtml(intro.sections)}
+      </div>
+
+      <h2 class="text-lg font-black text-slate-800 mb-4">${esc(category)}の用語一覧</h2>
       <div class="space-y-3">
-        ${filtered.map(item => `
-        <a href="/term/${termSlug(item)}/" class="block bg-white p-4 rounded-2xl shadow-sm border-2 border-transparent hover:border-rose-100 transition-all">
-          <div class="flex items-center gap-4">
-            ${item.symbol ? `<div class="w-12 h-12 ${item.color || 'bg-rose-50 text-rose-500'} rounded-2xl flex items-center justify-center font-serif italic font-black text-lg flex-shrink-0">${esc(item.symbol)}</div>` : `<div class="w-12 h-12 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center font-black text-lg flex-shrink-0">♪</div>`}
+        ${filtered.map((item) => {
+        const slug = termSlug(item);
+        const featured = FEATURED_SLUGS.has(slug);
+        return `
+        <article id="${slug}" class="bg-white p-5 rounded-2xl shadow-sm border-2 border-transparent">
+          <div class="flex items-start gap-4">
+            ${item.symbol
+                ? `<div class="w-12 h-12 ${item.color || 'bg-rose-50 text-rose-500'} rounded-2xl flex items-center justify-center font-serif italic font-black text-lg flex-shrink-0">${esc(item.symbol)}</div>`
+                : `<div class="w-12 h-12 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center font-black text-lg flex-shrink-0">♪</div>`}
             <div class="min-w-0 flex-1">
-              <h2 class="font-bold text-slate-800 leading-tight text-base">${esc(item.term)}</h2>
-              <p class="text-xs font-bold text-slate-400 mt-0.5">${esc(item.reading)} ・ ${esc(item.meaning)}</p>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-slate-300 text-xs font-black uppercase tracking-widest">${esc(item.category)}</span>
-                <span class="text-rose-400 text-xs font-bold">${esc(item.lang)}</span>
-              </div>
+              <h3 class="font-black text-slate-800 leading-tight text-base">${esc(item.term)}</h3>
+              <p class="text-xs font-bold text-slate-400 mt-0.5">${esc(item.reading)} ・ ${esc(item.lang)}</p>
+              <p class="text-sm font-black text-slate-700 mt-2">${esc(item.meaning)}</p>
+              <p class="text-sm text-slate-600 leading-relaxed mt-1">${esc(item.detail)}</p>
+              ${featured ? `<a href="/term/${slug}/" class="inline-block mt-3 text-xs font-black text-rose-500 hover:text-rose-600">→ ${esc(item.term)} の詳しい解説を読む</a>` : ''}
             </div>
           </div>
-        </a>`).join('')}
+        </article>`;
+    }).join('')}
       </div>
     </div>
   </main>
@@ -335,25 +391,208 @@ function generateIndexPage(category) {
 </body>
 </html>`;
 
-    const dir = isAll
-        ? path.join(DIST, 'index')
-        : path.join(DIST, 'index', category);
+    const dir = path.join(DIST, 'index', category);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), html);
 }
 
 // =============================================
-// 3. Generate Homepage (with content)
+// 2-b. 用語さくいん（全カテゴリ）
+// =============================================
+function generateIndexPage() {
+    const intro = categoryIntros['All'];
+    const title = `音楽用語さくいん — ${intro.title} | おんがく手帳`;
+    const description = `${intro.lead.substring(0, 110)}`;
+
+    const html = `${htmlHead({ title, description, canonicalPath: '/index/' })}
+<body class="bg-[#FFFDF9] text-slate-700">
+  ${siteHeader()}
+
+  <main class="max-w-2xl mx-auto px-6 -mt-8 relative z-20 pb-12">
+    <div class="pt-12">
+      <h1 class="text-2xl font-black text-slate-800 mb-2">🔍 音楽用語さくいん</h1>
+      <p class="text-sm text-slate-500 font-bold mb-6">${termsData.length}語を掲載中</p>
+
+      ${categoryNav(null)}
+
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-50 p-8 mb-10">
+        <h2 class="text-lg font-black text-slate-800 mb-4">${esc(intro.title)}</h2>
+        <p class="text-sm text-slate-700 font-bold leading-loose mb-8 pb-8 border-b border-slate-100">${esc(intro.lead)}</p>
+        ${sectionsHtml(intro.sections)}
+      </div>
+
+      <h2 class="text-lg font-black text-slate-800 mb-4">カテゴリから探す</h2>
+      <div class="grid gap-3 mb-10">
+        ${REAL_CATEGORIES.map((cat) => {
+        const count = termsData.filter((t) => t.category === cat).length;
+        const ci = categoryIntros[cat];
+        return `
+        <a href="/index/${encodeURIComponent(cat)}/" class="block bg-white p-5 rounded-2xl shadow-sm border-2 border-transparent hover:border-rose-100 transition-all">
+          <p class="font-black text-slate-800">${esc(cat)}<span class="text-xs font-bold text-slate-400 ml-2">${count}語</span></p>
+          <p class="text-sm font-black text-rose-500 mt-1">${esc(ci.title)}</p>
+          <p class="text-sm text-slate-600 leading-relaxed mt-1">${esc(ci.lead.substring(0, 120))}…</p>
+        </a>`;
+    }).join('')}
+      </div>
+
+      <h2 class="text-lg font-black text-slate-800 mb-4">全用語（${termsData.length}語）</h2>
+      <div class="space-y-2">
+        ${termsData.map((item) => {
+        const slug = termSlug(item);
+        const href = termUrl(slug);
+        return `
+        <a href="${href}" class="block bg-white px-4 py-3 rounded-xl shadow-sm border-2 border-transparent hover:border-rose-100 transition-all">
+          <span class="font-bold text-slate-800 text-sm">${esc(item.term)}</span>
+          <span class="text-xs font-bold text-slate-400 ml-2">${esc(item.reading)}</span>
+          <span class="text-xs text-slate-500 ml-2">${esc(item.meaning)}</span>
+          <span class="text-[10px] font-black text-rose-300 ml-2 uppercase tracking-widest">${esc(item.category)}</span>
+        </a>`;
+    }).join('')}
+      </div>
+    </div>
+  </main>
+
+  ${siteFooter()}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "${esc(title)}",
+    "description": "${esc(description)}",
+    "url": "${BASE_URL}/index/",
+    "numberOfItems": ${termsData.length}
+  }
+  </script>
+</body>
+</html>`;
+
+    const dir = path.join(DIST, 'index');
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+}
+
+// =============================================
+// 3. 読み物記事
+// =============================================
+function generateGuidePage(guide) {
+    const related = (guide.relatedTerms || [])
+        .map((slug) => ({ slug, term: bySlug.get(slug), href: termUrl(slug) }))
+        .filter((r) => r.term && r.href);
+
+    const html = `${htmlHead({ title: `${guide.title} | おんがく手帳`, description: guide.description, canonicalPath: `/guide/${guide.slug}/` })}
+<body class="bg-[#FFFDF9] text-slate-700">
+  ${siteHeader()}
+
+  <main class="max-w-2xl mx-auto px-6 -mt-8 relative z-20 pb-12">
+    <div class="pt-12">
+      <nav class="flex items-center gap-1 text-xs font-bold text-slate-400 mb-4">
+        <a href="/" class="hover:text-rose-400">トップ</a>
+        <span>/</span>
+        <a href="/guide/" class="hover:text-rose-400">読みもの</a>
+        <span>/</span>
+        <span class="text-slate-600 truncate">${esc(guide.title)}</span>
+      </nav>
+
+      <article class="bg-white rounded-3xl shadow-xl border border-slate-50 p-8 mb-8">
+        <h1 class="text-xl font-black text-slate-800 leading-relaxed mb-2">${esc(guide.title)}</h1>
+        <p class="text-xs font-bold text-slate-400 mb-6">公開 ${esc(guide.published)}</p>
+        <p class="text-sm text-slate-700 font-bold leading-loose mb-8 pb-8 border-b border-slate-100">${esc(guide.lead)}</p>
+        ${sectionsHtml(guide.sections)}
+      </article>
+
+      ${related.length ? `
+      <section class="mb-10">
+        <h2 class="text-lg font-black text-slate-800 mb-4">この記事に出てくる用語</h2>
+        <div class="grid grid-cols-2 gap-3">
+          ${related.map((r) => `
+          <a href="${r.href}" class="block p-4 bg-white rounded-2xl shadow-sm border border-slate-50 hover:border-rose-100 transition-all">
+            <p class="text-sm font-black text-slate-700 truncate">${esc(r.term.term)}</p>
+            <p class="text-xs text-slate-400 font-bold mt-1">${esc(r.term.reading)}</p>
+            <p class="text-xs text-slate-500 font-bold mt-1 line-clamp-2">${esc(r.term.meaning)}</p>
+          </a>`).join('')}
+        </div>
+      </section>` : ''}
+
+      <div class="text-center">
+        <a href="/guide/" class="inline-flex items-center gap-2 px-6 py-3 bg-rose-400 text-white rounded-2xl font-black text-sm shadow-lg hover:bg-rose-500 transition-all">← 読みものの一覧へ</a>
+      </div>
+    </div>
+  </main>
+
+  ${siteFooter()}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${esc(guide.title)}",
+    "description": "${esc(guide.description)}",
+    "datePublished": "${esc(guide.published)}",
+    "url": "${BASE_URL}/guide/${guide.slug}/",
+    "author": { "@type": "Organization", "name": "ongaku-techo Project" },
+    "publisher": { "@type": "Organization", "name": "ongaku-techo Project", "url": "${BASE_URL}" }
+  }
+  </script>
+</body>
+</html>`;
+
+    const dir = path.join(DIST, 'guide', guide.slug);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+}
+
+function generateGuideIndex() {
+    const title = '読みもの — 練習と譜読みのための記事 | おんがく手帳';
+    const description = '用語の定義ではなく、その用語や道具を実際の練習でどう使うかを扱った記事の一覧。メトロノーム練習の設計、チューナーのセント表示の読み方、譜読みの手順など。';
+
+    const html = `${htmlHead({ title, description, canonicalPath: '/guide/' })}
+<body class="bg-[#FFFDF9] text-slate-700">
+  ${siteHeader()}
+
+  <main class="max-w-2xl mx-auto px-6 -mt-8 relative z-20 pb-12">
+    <div class="pt-12">
+      <h1 class="text-2xl font-black text-slate-800 mb-2">📝 読みもの</h1>
+      <p class="text-sm text-slate-500 font-bold mb-8">用語の意味そのものではなく、それを練習でどう使うかを扱った記事です。</p>
+
+      <div class="grid gap-4">
+        ${guideArticles.map((g) => `
+        <a href="/guide/${g.slug}/" class="block bg-white p-6 rounded-2xl shadow-sm border-2 border-transparent hover:border-rose-100 transition-all">
+          <h2 class="font-black text-slate-800 leading-relaxed">${esc(g.title)}</h2>
+          <p class="text-xs font-bold text-slate-400 mt-1">${esc(g.published)}</p>
+          <p class="text-sm text-slate-600 leading-relaxed mt-2">${esc(g.description)}</p>
+        </a>`).join('')}
+      </div>
+    </div>
+  </main>
+
+  ${siteFooter()}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "${esc(title)}",
+    "description": "${esc(description)}",
+    "url": "${BASE_URL}/guide/",
+    "numberOfItems": ${guideArticles.length}
+  }
+  </script>
+</body>
+</html>`;
+
+    const dir = path.join(DIST, 'guide');
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+}
+
+// =============================================
+// 4. トップページ
 // =============================================
 function generateHomepage() {
-    const title = '音楽手帳 (ongaku-techo) | 1000語以上の音楽用語辞典 & チューナー・メトロノーム';
-    const description = '音楽家・学生のためのデジタル音楽用語辞典。1000語以上の詳細な解説付き用語検索、高精度クロマチックチューナー、メトロノーム、AI演奏支援、カメラによる用語スキャン機能を搭載。';
+    // 個別ページを持つ用語から抜粋する（リンク先が必ず存在するように）。
+    const previewTerms = termsData.filter((t) => FEATURED_SLUGS.has(termSlug(t))).slice(0, 24);
 
-    // Show first 50 terms as a taste of content
-    const previewTerms = termsData.slice(0, 50);
-    const cats = CATEGORIES.filter(c => c !== 'All' && c !== 'お気に入り');
-
-    // Read the existing dist/index.html
     const existingHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
 
     // トップページに置く静的コンテンツ。
@@ -381,20 +620,32 @@ function generateHomepage() {
       </style>
       <p class="section-title">🎵 おんがく手帳 — 音楽用語辞典</p>
 
-      <p>音楽家・学生のためのデジタル音楽用語辞典。1000語以上の用語に対し、現役の奏者や講師の視点から「演奏に役立つ独自解説」を執筆しました。高精度クロマチックチューナーとメトロノーム機能も搭載しています。</p>
-      
-      <h2>📁 カテゴリで探す</h2>
+      <p>楽譜に書かれた指示語を、訳語ではなく「演奏で何をすることになるのか」まで踏み込んで解説しています。${termsData.length}語を収録し、そのうち${FEATURED_SLUGS.size}語には語源・楽器別の演奏のヒント・混同しやすい用語・実際に使われている曲を含む詳しい解説ページを用意しました。高精度クロマチックチューナーとメトロノームも搭載しています。</p>
+
+      <h2>📁 カテゴリごとの解説</h2>
       <div class="cat-links">
-        <a href="/index/" class="cat-link">全カテゴリ (${termsData.length}語)</a>
-        ${cats.map(cat => {
-        const count = termsData.filter(t => t.category === cat).length;
+        <a href="/index/" class="cat-link">用語さくいん (${termsData.length}語)</a>
+        ${REAL_CATEGORIES.map((cat) => {
+        const count = termsData.filter((t) => t.category === cat).length;
         return `<a href="/index/${encodeURIComponent(cat)}/" class="cat-link">${esc(cat)} (${count}語)</a>`;
     }).join('\n        ')}
       </div>
+      <p>各カテゴリのページには、そこに含まれる用語をどう読めばいいのかという解説をつけています。たとえば「強弱」なら、p や f が音量の絶対値ではないこと、「速度」なら Allegro が速さではなく性格を指す語であることから説明しています。</p>
 
-      <h2>📖 音楽用語一覧（一部抜粋）</h2>
+      <h2>📝 読みもの</h2>
       <ul>
-        ${previewTerms.map(t => `
+        ${guideArticles.map((g) => `
+        <li>
+          <a href="/guide/${g.slug}/">
+            <span class="term-name">${esc(g.title)}</span>
+            <p class="term-meaning">${esc(g.description)}</p>
+          </a>
+        </li>`).join('')}
+      </ul>
+
+      <h2>📖 詳しい解説のある用語（抜粋）</h2>
+      <ul>
+        ${previewTerms.map((t) => `
         <li>
           <a href="/term/${termSlug(t)}/">
             <span class="term-name">${esc(t.term)}</span>
@@ -403,26 +654,27 @@ function generateHomepage() {
           </a>
         </li>`).join('')}
       </ul>
-      <p><a href="/index/">→ 全${termsData.length}語の一覧を見る</a></p>
+      <p><a href="/index/">→ 全${termsData.length}語のさくいんを見る</a></p>
 
       <h2>🔧 このアプリの機能</h2>
       <ul>
-        <li><strong>1000語以上の音楽用語辞典</strong> — 独自に執筆した分かりやすい解説と、演奏に役立つアドバイスを掲載</li>
-        <li><strong>高精度クロマチックチューナー</strong> — 練習に妥協しない、プロ品質の精度を追求</li>
-        <li><strong>メトロノーム</strong> — 正確なリズム感を養うための必須ツール</li>
-        <li><strong>AIスマートスキャン</strong> — 楽譜をカメラで撮るだけで用語を即座に解析</li>
-        <li><strong>レッスン予定管理カレンダー</strong> — 日々のレッスンスケジュールを管理</li>
+        <li><strong>音楽用語辞典</strong> — ${termsData.length}語を収録。うち${FEATURED_SLUGS.size}語は詳しい解説ページつき</li>
+        <li><strong>高精度クロマチックチューナー</strong> — マイクを使ってリアルタイムに音程を判定</li>
+        <li><strong>メトロノーム</strong> — BPMと拍子を設定でき、視覚的なビート表示に対応</li>
+        <li><strong>AIスマートスキャン</strong> — 楽譜をカメラで撮って用語を解析</li>
+        <li><strong>レッスン予定管理カレンダー</strong> — 練習やレッスンのスケジュール管理</li>
       </ul>
 
       <h2>ℹ️ サイト情報</h2>
       <nav class="seo-nav" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px;">
         <a href="/">Home</a>
         <a href="/index/">用語さくいん</a>
+        <a href="/guide/">読みもの</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
         <a href="/privacy.html">Privacy Policy</a>
       </nav>
-      <p style="text-align: center; font-size: 12px;">© 2026 ongaku-techo / biscuitbaby. 現役の奏者や講師の監修を元に制作されています。</p>
+      <p style="text-align: center; font-size: 12px;">© 2026 ongaku-techo / biscuitbaby</p>
     </div>`;
 
     // #root のあとに挿入する（利用者もクローラーも同じものを見る）
@@ -435,77 +687,103 @@ function generateHomepage() {
 }
 
 // =============================================
+// ビルド時チェック
+// =============================================
+function runGuards() {
+    const errors = [];
+
+    // 1. スラッグの重複。放置すると片方のページが上書きされて消える。
+    const slugOwners = new Map();
+    termsData.forEach((term) => {
+        const slug = termSlug(term);
+        if (slugOwners.has(slug)) errors.push(`URLスラッグが重複しています: ${slug} (id:${slugOwners.get(slug)} と id:${term.id})`);
+        else slugOwners.set(slug, term.id);
+    });
+
+    // 2. CATEGORIES に無いカテゴリ。一覧ページが作られず、パンくずが404になる。
+    const unknownCategories = new Set();
+    termsData.forEach((term) => {
+        if (!CATEGORIES.includes(term.category)) unknownCategories.add(term.category);
+    });
+    unknownCategories.forEach((cat) => errors.push(`CATEGORIES に登録されていないカテゴリがあります: "${cat}"`));
+
+    // 3. カテゴリ解説の欠落。導入文の無い一覧ページを作らない。
+    REAL_CATEGORIES.forEach((cat) => {
+        if (!categoryIntros[cat]) errors.push(`categoryIntros.js に "${cat}" の解説がありません`);
+    });
+    if (!categoryIntros['All']) errors.push('categoryIntros.js に "All" の解説がありません');
+
+    // 4. termArticles のリンク切れ。
+    Object.entries(termArticles).forEach(([key, article]) => {
+        if (!slugOwners.has(key)) errors.push(`記事のキー "${key}" に対応する用語がありません`);
+        (article.confusions || []).forEach((c) => {
+            if (!slugOwners.has(c.slug)) errors.push(`"${key}" の関連リンク "${c.slug}"（${c.term}）が存在しません`);
+        });
+    });
+
+    // 5. featuredTerms.js が古くなっていないか。
+    //    記事を書き足したら node scripts/generate-featured-terms.js を再実行する。
+    const expected = computeFeaturedSlugs(termArticles);
+    const actual = [...FEATURED_SLUGS].sort();
+    if (expected.length !== actual.length || expected.some((s, i) => s !== actual[i])) {
+        const missing = expected.filter((s) => !FEATURED_SLUGS.has(s));
+        const extra = actual.filter((s) => !expected.includes(s));
+        errors.push(
+            `src/data/featuredTerms.js が最新ではありません（不足 ${missing.length}件 / 余分 ${extra.length}件）。` +
+            ' node scripts/generate-featured-terms.js を実行してください'
+        );
+    }
+
+    // 6. 個別ページを持つ用語が基準を満たしているか（薄いページを作らない）。
+    FEATURED_SLUGS.forEach((slug) => {
+        const article = termArticles[slug];
+        if (!article) { errors.push(`featuredTerms に記事の無いスラッグがあります: ${slug}`); return; }
+        const len = articleLength(article);
+        if (len < MIN_ARTICLE_LENGTH) errors.push(`個別ページの本文が短すぎます: ${slug} (${len}文字 < ${MIN_ARTICLE_LENGTH})`);
+    });
+
+    // 7. 読み物記事のスラッグ重複と、参照している用語の存在確認。
+    const guideSlugs = new Set();
+    guideArticles.forEach((g) => {
+        if (guideSlugs.has(g.slug)) errors.push(`読み物記事のスラッグが重複しています: ${g.slug}`);
+        guideSlugs.add(g.slug);
+        (g.relatedTerms || []).forEach((s) => {
+            if (!slugOwners.has(s)) errors.push(`読み物 "${g.slug}" が参照する用語 "${s}" が存在しません`);
+        });
+    });
+
+    if (errors.length) {
+        console.error('❌ 静的ページを生成できません:');
+        errors.forEach((e) => console.error(`   - ${e}`));
+        process.exit(1);
+    }
+}
+
+// =============================================
 // Main
 // =============================================
 function main() {
-    console.log('🔨 Generating static HTML pages for SEO...');
-    console.log(`   Terms: ${termsData.length}`);
+    console.log('🔨 静的HTMLページを生成します...');
+    runGuards();
 
-    // 0. スラッグの重複チェック。重複を放置すると片方のページが
-    //    もう片方に上書きされて消え、sitemap と実ページが食い違う。
-    const slugOwners = new Map();
-    const collisions = [];
-    termsData.forEach(term => {
-        const slug = termSlug(term);
-        if (slugOwners.has(slug)) collisions.push(`${slug} (id:${slugOwners.get(slug)} と id:${term.id})`);
-        else slugOwners.set(slug, term.id);
-    });
-    if (collisions.length) {
-        console.error('❌ 重複したURLスラッグがあります。termsData.js を修正してください:');
-        collisions.forEach(c => console.error(`   - ${c}`));
-        process.exit(1);
-    }
+    const featuredTerms = termsData.filter((t) => FEATURED_SLUGS.has(termSlug(t)));
+    featuredTerms.forEach(generateTermPage);
+    console.log(`   ✅ 用語の個別ページ ${featuredTerms.length}枚（全${termsData.length}語中）`);
+    console.log(`      残り${termsData.length - featuredTerms.length}語はカテゴリ一覧ページ内で解説（旧URLは301転送）`);
 
-    // 0-1b. CATEGORIES に登録されていないカテゴリのチェック。
-    //       登録漏れがあると、そのカテゴリの一覧ページが生成されず、
-    //       用語ページのパンくずリンクが404になる。
-    const unknownCategories = new Map();
-    termsData.forEach(term => {
-        if (!CATEGORIES.includes(term.category)) {
-            unknownCategories.set(term.category, (unknownCategories.get(term.category) || 0) + 1);
-        }
-    });
-    if (unknownCategories.size) {
-        console.error('❌ CATEGORIES に登録されていないカテゴリがあります（一覧ページが作られず、パンくずが404になります）:');
-        unknownCategories.forEach((count, cat) => console.error(`   - "${cat}" (${count}語)`));
-        process.exit(1);
-    }
+    generateIndexPage();
+    REAL_CATEGORIES.forEach(generateCategoryPage);
+    console.log(`   ✅ さくいん・カテゴリ一覧 ${REAL_CATEGORIES.length + 1}枚`);
 
-    // 0-2. 詳しい解説（termArticles.js）のリンク切れチェック。
-    //      存在しないスラッグを指していると、リンク先が404になる。
-    const brokenLinks = [];
-    Object.entries(termArticles).forEach(([key, article]) => {
-        if (!slugOwners.has(key)) brokenLinks.push(`記事のキー "${key}" に対応する用語がありません`);
-        (article.confusions || []).forEach(c => {
-            if (!slugOwners.has(c.slug)) brokenLinks.push(`"${key}" の関連リンク "${c.slug}"（${c.term}）が存在しません`);
-        });
-    });
-    if (brokenLinks.length) {
-        console.error('❌ termArticles.js にリンク切れがあります:');
-        brokenLinks.forEach(b => console.error(`   - ${b}`));
-        process.exit(1);
-    }
+    generateGuideIndex();
+    guideArticles.forEach(generateGuidePage);
+    console.log(`   ✅ 読み物記事 ${guideArticles.length}本 + 一覧1枚`);
 
-    // 1. Generate all term pages
-    let termCount = 0;
-    termsData.forEach(term => {
-        generateTermPage(term);
-        termCount++;
-    });
-    console.log(`   ✅ Generated ${termCount} term pages`);
-
-    // 2. Generate index pages
-    generateIndexPage(null); // All terms
-    const cats = CATEGORIES.filter(c => c !== 'All' && c !== 'お気に入り');
-    cats.forEach(cat => generateIndexPage(cat));
-    console.log(`   ✅ Generated ${cats.length + 1} index pages`);
-
-    // 3. Enhance homepage with noscript content
     generateHomepage();
-    console.log('   ✅ Appended static term listing to the homepage');
+    console.log('   ✅ トップページに静的コンテンツを追記');
 
-    console.log(`\n🎉 Total: ${termCount + cats.length + 2} static pages generated!`);
-    console.log('   Google crawler will now see full content on every page.');
+    const total = featuredTerms.length + REAL_CATEGORIES.length + 1 + guideArticles.length + 1 + 1;
+    console.log(`\n🎉 合計 ${total} ページ`);
 }
 
 main();

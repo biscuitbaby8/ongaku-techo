@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "node scripts/generate-sitemap.js && vite build && node scripts/generate-static-pages.js",
+    "featured": "node scripts/generate-featured-terms.js",
     "preview": "vite preview"
   },
   "dependencies": {
