@@ -5999,6 +5999,12 @@ export const termArticles = {
       { term: 'Assai', slug: 'assai', note: '十分に。「足りている」という含み。' },
       { term: 'Wenig', slug: 'wenig', note: '少し。sehr の反対方向。' },
     ],
+    instruments: [
+      { name: '声楽・器楽共通', tip: 'sehr が添えられた語は、その語だけを演奏したときより一段階強く扱います。zart（繊細に）に sehr が付けば、通常の繊細さの限界に近いところまで踏み込むという読み方になります。' },
+    ],
+    works: [
+      { title: 'マーラー 交響曲第4番 終楽章', note: '主題の変奏箇所に "Sehr zart und geheimnisvoll"（非常に繊細に、神秘的に）という指示があり、sehr が他の語と組んで程度を押し上げる例として知られます。' },
+    ],
   },
 
   'wenig': {
@@ -6067,6 +6073,12 @@ export const termArticles = {
       { term: 'Lamentoso', slug: 'lamentoso', note: '嘆き悲しんで。対応するイタリア語。' },
       { term: 'Mesto', slug: 'mesto', note: '沈んだ悲しみ。内向き。' },
       { term: 'Gemendo', slug: 'gemendo', note: 'うめくように。' },
+    ],
+    instruments: [
+      { name: '弦楽器・声楽', tip: '訴えかける方向を保つには、音を小さくするだけでなく、フレーズの先に向かって進んでいく感覚を残します。単に音量を落とすと、訴えではなく単なる弱奏になります。' },
+    ],
+    works: [
+      { title: 'マーラー 交響曲第5番 第1楽章', note: '葬送行進曲の中間部、ティンパニの不穏なロールの上に置かれた歌うような旋律に klagend の指示があり、外へ向かう嘆きを示す例として知られます。' },
     ],
   },
 
@@ -6588,6 +6600,12 @@ export const termArticles = {
       { term: 'Sync', slug: 'sync', note: '同期。固定された基準に合わせること。' },
       { term: 'Rubato', slug: 'rubato', note: 'テンポを揺らす。クラシックでの時間の操作。' },
     ],
+    instruments: [
+      { name: 'リズム隊全般', tip: '各パートがどこにわずかにずれて置かれるかを固定して繰り返すことがグルーヴを生みます。毎回ずれ方が変わると、単なる不揃いになります。' },
+    ],
+    works: [
+      { title: 'ジェームス・ブラウン「Papa\'s Got a Brand New Bag」（1965年）', note: '強拍を2拍・4拍目ではなく1拍目（"the one"）に置く扱いを前面に出し、ファンクのグルーヴという語法を確立した曲として知られます。' },
+    ],
   },
 
   'ethereal': {
@@ -6739,6 +6757,12 @@ export const termArticles = {
       { term: 'Dolce', slug: 'dolce', note: '甘く、柔らかく。近いイタリア語。' },
       { term: 'Zart', slug: 'zart', note: '優しく。ドイツ語。' },
       { term: 'Flowing', slug: 'flowing', note: '流れるように。同じ英語の指示。' },
+    ],
+    instruments: [
+      { name: 'ピアノ・器楽全般', tip: '角のなさを保つには、鍵盤や弦に触れる瞬間の速度を一定に抑えます。途中で力を抜いても、触れる瞬間が鋭ければ穏やかさは失われます。' },
+    ],
+    works: [
+      { title: 'パーシー・グレインジャー「Country Gardens」', note: 'スコアに "very gently and smoothly"（きわめて穏やかに、滑らかに）という英語の指示があり、イタリア語を自国語に置き換える方針の具体例として知られます。' },
     ],
   },
 
@@ -7869,6 +7893,12 @@ export const termArticles = {
       { term: 'Morendo', slug: 'morendo', note: '死に絶えるように。衰弱の極。' },
       { term: 'Sospirando', slug: 'sospirando', note: '溜め息をつくように。' },
     ],
+    instruments: [
+      { name: '弦楽器', tip: '求めながら力を失っていく性質を出すには、弓の速度を落としながらも圧力を完全には抜かないことが有効です。圧力まで抜くと、憧れが消えて単なる脱力になります。' },
+    ],
+    works: [
+      { title: 'ワーグナー「トリスタンとイゾルデ」前奏曲', note: 'チェロで提示される「憧れ（Sehnsucht）」の動機が、上行してから半音階的に力を失っていく、languente の性質をよく示す例として知られます。' },
+    ],
   },
 
   'leggiadro': {
@@ -7909,6 +7939,12 @@ export const termArticles = {
         heading: '綴りについて',
         body: 'leggero と leggiero はどちらも用いられる綴りで、意味に違いはありません。最上級も leggerissimo、leggierissimo の両形が見られます。',
       },
+    ],
+    instruments: [
+      { name: '弦楽器・木管楽器', tip: '弱奏を保ったまま速い動きを続けるには、腕の重さを楽器に預けず、指先や息のスピードだけで発音を作ります。力を入れて小さくしようとすると、かえって音が硬くなります。' },
+    ],
+    works: [
+      { title: 'メンデルスゾーン「真夏の夜の夢」より スケルツォ', note: 'ほとんど piano を超えない音量で書かれた妖精の音楽で、木管楽器を中心にこの上ない軽やかさが求められる代表例です。' },
     ],
     confusions: [
       { term: 'Leggero', slug: 'leggero', note: '軽く。leggierissimo はその最上級。' },
