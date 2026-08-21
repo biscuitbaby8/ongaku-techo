@@ -2537,6 +2537,12 @@ export const termArticles = {
       { term: 'Tonality', slug: 'tonality', note: '調性。この和音はその枠を緩める例。' },
       { term: 'Dissonanza', slug: 'dissonanza', note: '不協和。解決されない用法。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: 'この和音を演奏する際は、解決を先送りにする緊張感を保つため、音量を早く落とさず、次の和音へ向かう推進力を残したまま鳴らし続けます。' },
+    ],
+    works: [
+      { title: 'ワーグナー「トリスタンとイゾルデ」終幕「愛の死」', note: '前奏曲冒頭で提示されたトリスタン和音の緊張が、オペラ全曲を通してようやくこの終幕で解決を迎えます。作品全体が1つの和音の解決を待つ構造になっている例として知られます。' },
+    ],
   },
 
   'humoreske': {
@@ -3507,6 +3513,12 @@ export const termArticles = {
       { term: 'Atonality', slug: 'atonality', note: '無調。調の中心を持たない状態。' },
       { term: 'Dissonanza', slug: 'dissonanza', note: '不協和。複調で生じる響き。' },
     ],
+    instruments: [
+      { name: 'ピアノ・オーケストラ全般', tip: '2つの調の層を弾き分ける際は、片方をやや前に、もう片方を控えめに配置すると、聴き手にとって層の重なりが「濁り」ではなく「2つの調」として認識されやすくなります。' },
+    ],
+    works: [
+      { title: 'ストラヴィンスキー「ペトルーシュカ」', note: '離れた2つの調（ハ長調と嬰ヘ長調）の三和音を組み合わせた響きが現れ、後に「ペトルーシュカ和音」と呼ばれるようになりました。複調書法の代表例として知られます。' },
+    ],
   },
 
   'gamelan': {
@@ -4013,6 +4025,12 @@ export const termArticles = {
       { term: 'Organum', slug: 'organum', note: 'これに先行する初期の多声音楽。' },
       { term: 'Cantus firmus', slug: 'cantus-firmus', note: '土台に置かれる既存の旋律。' },
     ],
+    instruments: [
+      { name: '合唱・アンサンブル', tip: 'アイソリズムで書かれた声部は音価が長く、単独では拍節感がつかみにくいため、他の声部の動きと合わせて自分の音がタレアの何拍目にあたるかを常に把握しておく必要があります。' },
+    ],
+    works: [
+      { title: 'マショー「ノートルダム・ミサ曲」', note: '単独の作曲家によるミサ曲全曲の作例として最初期のものとされ、アイソリズムを用いた楽章を含む、アルス・ノヴァを代表する作品です。' },
+    ],
   },
 
   'cantus-firmus': {
@@ -4434,6 +4452,12 @@ export const termArticles = {
       { term: 'Recitative', slug: 'recitative', note: 'ヴェリズモではアリアとの区分が曖昧になる。' },
       { term: 'Expressionism', slug: 'expressionism', note: '内面の直接的な表出という点で近い動向。' },
     ],
+    instruments: [
+      { name: '声楽', tip: 'ヴェリズモの歌唱では、美しさより感情の直接性が優先されます。叫びに近づく箇所では、声を保護する支えを保ったまま、抑えすぎない発声が求められます。' },
+    ],
+    works: [
+      { title: 'マスカーニ「カヴァレリア・ルスティカーナ」（1890年初演）', note: 'ヴェルガの文学作品に基づき、シチリアの農民の嫉妬と殺人を描いた、ヴェリズモ・オペラの出発点とされる作品です。' },
+    ],
   },
 
   'leitmotif': {
@@ -4718,6 +4742,12 @@ export const termArticles = {
       { term: 'Atonality', slug: 'atonality', note: '無調。この動向の帰結。' },
       { term: 'Dodecaphony', slug: 'dodecaphony', note: '12音技法。無調を組織化する方法。' },
     ],
+    instruments: [
+      { name: '声楽', tip: 'シュプレッヒシュティンメでは、指定された音高に触れながらもすぐに離れる扱いをします。歌としてしっかり保つと語りの性格が失われ、逆に無視すると単なる朗読になります。' },
+    ],
+    works: [
+      { title: 'シェーンベルク「月に憑かれたピエロ」（1912年）', note: '歌でも語りでもないシュプレッヒシュティンメの発声法を用い、内面の不安を極限まで押し出した表現主義の代表作です。' },
+    ],
   },
 
   'neo-classicism': {
@@ -4745,6 +4775,12 @@ export const termArticles = {
       { term: 'Galant style', slug: 'galant-style', note: '18世紀の様式。参照の対象。' },
       { term: 'Expressionism', slug: 'expressionism', note: '主観の表出を重んじる方向。反対の立場。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '古典的な枠と現代的な中身のずれを聴かせるには、和声やリズムが「外れる」瞬間を明確に示しつつ、全体の様式感（明快な形式、抑制された編成）は崩さないことが要点です。' },
+    ],
+    works: [
+      { title: 'ストラヴィンスキー「プルチネッラ」（1920年）', note: '18世紀の作品（当時ペルゴレージ作とされた旋律）を素材に、現代的な語法で書き直した作品で、新古典主義への転換点とされています。' },
+    ],
   },
 
   'dodecaphony': {
@@ -4771,6 +4807,12 @@ export const termArticles = {
       { term: 'Atonality', slug: 'atonality', note: '無調。12音技法より先に現れた状態。' },
       { term: 'Expressionism', slug: 'expressionism', note: '無調へ至った動向。' },
       { term: 'Developing variation', slug: 'developing-variation', note: '少数の素材から全体を導く点で連続性が指摘される。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: '音列を演奏する際は、和声的な予測が効かないため、跳躍する音程を正確に取ることがそのまま音楽の骨格を伝えることに直結します。' },
+    ],
+    works: [
+      { title: 'シェーンベルク「ピアノ組曲」作品25（1923年）', note: '全5楽章のすべてを通して単一の音列に基づいて書かれた、最初の完全な12音技法による作品として知られます。' },
     ],
   },
 
