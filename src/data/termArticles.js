@@ -2104,6 +2104,12 @@ export const termArticles = {
       { term: 'Harmonics', slug: 'harmonics', note: '倍音。ファンファーレの音型を規定する。' },
       { term: 'Festlich', slug: 'festlich', note: '祝祭的に。ファンファーレの性格。' },
     ],
+    instruments: [
+      { name: '金管楽器', tip: '倍音列に基づく音型は、隣り合う倍音の間隔が広いため、唇の締め方（アンブシュア）の切り替えを事前に決めておくと、跳躍で音を外しにくくなります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン「フィデリオ」', note: '舞台裏で吹かれるトランペットのファンファーレが、大臣の到着＝救援の到来を告げる劇的な合図として使われる、この用法の代表例です。' },
+    ],
   },
 
   'air': {
@@ -2669,6 +2675,12 @@ export const termArticles = {
       { term: 'Minimal music', slug: 'minimal-music', note: '反復による音楽。手法が重なる。' },
       { term: 'Chill out', slug: 'chill-out', note: '落ち着いた電子音楽。' },
     ],
+    instruments: [
+      { name: '制作・録音全般', tip: '和声の変化を緩やかにするには、次の和音へ移る前に十分に長く留まらせ、変化の瞬間を強調しないことが有効です。急な変化は環境音楽としての性質を壊します。' },
+    ],
+    works: [
+      { title: 'ブライアン・イーノ「Ambient 1: Music for Airports」（1978年）', note: 'イーノ自身がこのアルバムの解説文で「アンビエント」の語の意味を定義した、この用法の出発点となる作品です。' },
+    ],
   },
 
   'techno': {
@@ -3084,6 +3096,12 @@ export const termArticles = {
       { term: 'Indeterminacy', slug: 'indeterminacy', note: 'ケージが演奏段階の不確定性に用いた語。' },
       { term: 'Mobile form', slug: 'mobile-form', note: '断片の順序を奏者が選ぶ形式。' },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '偶然の手続きで決められた音であっても、演奏者はそれを迷わず明確に弾きます。ためらいを見せると、偶然の結果ではなく不確かな演奏に聞こえてしまいます。' },
+    ],
+    works: [
+      { title: 'ケージ「変化の音楽」（1951年）', note: '易経（I Ching）で得た卦を用いて音・長さ・強弱などをすべて偶然の手続きで決めた作品で、通作にわたって偶然性を用いた最初の器楽作品として知られます。' },
+    ],
   },
 
   'aleatory-music': {
@@ -3203,6 +3221,12 @@ export const termArticles = {
       { term: 'Phasing', slug: 'phasing', note: '位相のずれ。ライヒが用いた手法。' },
       { term: 'Ostinato', slug: 'ostinato', note: '反復される音型。ミニマリズムの基礎。' },
     ],
+    instruments: [
+      { name: 'アンサンブル全般', tip: '各演奏者が自分の速度で音型を進める作品では、周囲に合わせようとせず、自分のテンポを一定に保つことに集中します。全員が周囲に合わせようとすると、意図されたずれが生まれません。' },
+    ],
+    works: [
+      { title: 'テリー・ライリー「In C」（1964年）', note: '53の短い音型を、演奏者が各自の速度で進めていく作品で、ミニマリズムの出発点の一つとされます。' },
+    ],
   },
 
   'minimal-music': {
@@ -3225,6 +3249,12 @@ export const termArticles = {
       { term: 'Minimalism', slug: 'minimalism', note: '同じ傾向を指す語。詳しい説明はこちら。' },
       { term: 'Phasing', slug: 'phasing', note: '位相のずれ。' },
       { term: 'Loop', slug: 'loop', note: '反復。同じ発想に基づく手法。' },
+    ],
+    instruments: [
+      { name: 'ピアノ（2台）', tip: '位相をずらす奏者は、テンポを一気に変えず、ごくわずかに速めて少しずつずれを広げます。急に速度を変えると、ずれの過程そのものが聞こえなくなります。' },
+    ],
+    works: [
+      { title: 'スティーヴ・ライヒ「ピアノ・フェイズ」（1967年）', note: '2人の奏者が同じ音型を斉奏で始め、一方がわずかに速度を上げてずれを作っていく作品で、ライヒの位相技法をライブ演奏に応用した初期の代表作です。' },
     ],
   },
 
@@ -3276,6 +3306,12 @@ export const termArticles = {
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。各線が聞き取れることを前提とする。' },
       { term: 'Spektralmusik', slug: 'spektralmusik', note: '倍音構造を素材とする様式。' },
     ],
+    instruments: [
+      { name: '弦楽器合奏', tip: '個々の線が聞こえない書法でも、自分の音程とリズムを正確に保つことが全体の質を決めます。指揮者の合図と楽譜の指示を頼りに、自分の役割を機械的にでも正確に遂行します。' },
+    ],
+    works: [
+      { title: 'リゲティ「アトモスフェール」（1961年）', note: '多数の声部が密集して動くマイクロポリフォニーの代表作で、映画『2001年宇宙の旅』に使用されたことで広く知られるようになりました。' },
+    ],
   },
 
   'cluster': {
@@ -3302,6 +3338,12 @@ export const termArticles = {
       { term: 'Micropolyphony', slug: 'micropolyphony', note: '密集した声部が塊になる書法。' },
       { term: 'Chord', slug: 'chord', note: '和音。各音が識別される。' },
       { term: 'Dissonanza', slug: 'dissonanza', note: '不協和。クラスターは解決を前提としない。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: '腕や拳で鍵盤を鳴らす際は、狙う範囲の両端を目で確認してから下ろします。力任せに叩くと範囲が意図せず広がり、クラスターの輪郭が崩れます。' },
+    ],
+    works: [
+      { title: 'ヘンリー・カウエルのピアノ作品群', note: '20世紀前半にクラスター奏法を用いた作品を書き、その理論的な説明も著書『新しい音楽資源』に残した、この手法の先駆者として知られます。' },
     ],
   },
 
@@ -3356,6 +3398,12 @@ export const termArticles = {
       { term: 'Computer music', slug: 'computer-music', note: '計算機を用いた音楽。後の展開。' },
       { term: 'Sampling', slug: 'sampling', note: '既存の音源を素材に使う手法。発想が連続する。' },
       { term: 'Timbre', slug: 'timbre', note: '音色。この方向で中心的な要素になる。' },
+    ],
+    instruments: [
+      { name: '録音・制作', tip: '素材の出所（電車、鐘、話し声など）を聴き手にすぐ連想させたくない場合は、再生速度を変える、逆再生する、断片を短く切り出すといった加工で、音の「意味」より「質」が前面に出るようにします。' },
+    ],
+    works: [
+      { title: 'シェフェール「鉄道のエチュード」（1948年）', note: '駅で録音した蒸気機関車の音を素材に構成した、ミュジック・コンクレートの最初期の作品として知られます。' },
     ],
   },
 
@@ -3975,6 +4023,12 @@ export const termArticles = {
       { term: 'Cantus firmus', slug: 'cantus-firmus', note: '多声音楽の土台に置かれる既存の旋律。聖歌が用いられた。' },
       { term: 'Anglican chant', slug: 'anglican-chant', note: '英国国教会の聖歌。和声を伴う点が違う。' },
     ],
+    instruments: [
+      { name: '声楽', tip: '拍子を持たない旋律を歌うには、言葉の自然な抑揚とアクセントに沿って音を運びます。均等な拍で割り切ろうとすると、この聖歌本来の自由な流れが失われます。' },
+    ],
+    works: [
+      { title: '死者のためのミサ曲より「怒りの日（ディエス・イレ）」', note: 'グレゴリオ聖歌の旋律の中でも特によく知られ、ベルリオーズ「幻想交響曲」やリスト「死の舞踏」、ラフマニノフの複数の作品など、後世の多くの作曲家が引用した旋律です。' },
+    ],
   },
 
   'organum': {
@@ -3997,6 +4051,12 @@ export const termArticles = {
       { term: 'Gregorian chant', slug: 'gregorian-chant', note: '単旋律の聖歌。オルガヌムの土台になる。' },
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。オルガヌムから発展した。' },
       { term: 'Cantus firmus', slug: 'cantus-firmus', note: '土台に置かれる既存の旋律。' },
+    ],
+    instruments: [
+      { name: '合唱', tip: '極端に引き伸ばされた低声部を歌う際は、上声部の細かい動きに惑わされず、自分の音を長い単位で捉えて安定させることが土台としての役割を果たします。' },
+    ],
+    works: [
+      { title: 'ペロティヌス「ヴィデルント・オムネス」（1198年、クリスマス用）', note: '現存する4声のオルガヌム（オルガヌム・クアドルプルム）のうち数少ない例の一つで、ノートルダム楽派の複雑な多声書法を代表する作品です。' },
     ],
   },
 
@@ -4538,6 +4598,12 @@ export const termArticles = {
       { term: 'Leitmotif', slug: 'leitmotif', note: '多数の動機の体系。こちらは単一の旋律。' },
       { term: 'Program music', slug: 'program-music', note: '物語を描く音楽。《幻想交響曲》はその代表。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '終楽章で旋律が歪められて現れる箇所では、元の姿との共通点（音程の輪郭）を保ちながら、性格だけを変えることを意識すると、変形の意図が聴き手に伝わります。' },
+    ],
+    works: [
+      { title: 'ベルリオーズ「幻想交響曲」（1830年）', note: '主人公が思う相手を表す旋律が第1楽章で示され、以降の全楽章で姿を変えて現れる、イデー・フィクスの語が生まれた作品です。' },
+    ],
   },
 
   'cyclic-form': {
@@ -4564,6 +4630,12 @@ export const termArticles = {
       { term: 'Idée fixe', slug: 'idée-fixe', note: 'ベルリオーズの用語。先行例。' },
       { term: 'Leitmotif', slug: 'leitmotif', note: '動機の体系。オペラで用いられる。' },
       { term: 'Developing variation', slug: 'developing-variation', note: '動機を発展させる技法。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル全般', tip: '離れた楽章で同じ主題が戻ってくる箇所では、以前の楽章での扱いを踏まえ、そこからどう変化したかが聞き取れるような音色や強弱の選び方をします。' },
+    ],
+    works: [
+      { title: 'フランク「交響曲 ニ短調」', note: '複数の楽章にわたって共通の主題が姿を変えて現れる、循環形式を体系的に用いた代表作です。' },
     ],
   },
 
