@@ -726,8 +726,18 @@ export const termArticles = {
         heading: "不安定さを生かした用法",
         body: "協和音に比べて強い緊張感を持ち、多くの場合は別の和音へ解決することを前提に用いられる。この不安定さと、転回による響きの均質さを利用して、遠い調への転調の橋渡しとして使われることも多い。",
       },
+      {
+        heading: "半音ずつ動く導音",
+        body: "この和音の各音は、多くの場合、解決先の和音の音へ半音で動く。4つの音すべてが半音の引力を持っているため、和音全体が次の和音へ吸い寄せられるように進む。この半音ごとの求心力が、対称的な構造から生まれる不安定さを、実際の解決へと結びつけている。",
+      },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: '対称的な構造ゆえに和音そのものは方向を持ちません。次にどの和音へ解決するかを演奏者が把握しておき、その解決先に向かう緊張として弾くと、単なる不協和音ではなく劇的な効果になります。' },
     ],
     confusions: [],
+    works: [
+      { title: 'モーツァルト 歌劇「ドン・ジョヴァンニ」終幕', note: '死んだ騎士長の石像が蘇り主人公を地獄へ引きずり込む場面で、減七の和音が恐怖を演出する劇的な効果として使われています。' },
+    ],
   },
 
   'secondary-dominant': {
@@ -741,6 +751,10 @@ export const termArticles = {
         heading: "転調との違い",
         body: "副次ドミナントは一瞬だけ別の調のドミナントを借りてくる技法であり、調そのものが移り変わる転調とは異なる。すぐに元の調の和声進行に戻ることが前提となっている。",
       },
+      {
+        heading: "どの和音にも作れる",
+        body: "副次ドミナントは V の和音だけでなく、II・III・IV・VI といった主和音以外のどの和音に対しても作ることができる。それぞれ V/ii、V/iii のように、対象となる和音を分母に見立てた記号で表記される。曲中に現れる臨時記号の多くは、この仕組みによって生じている。",
+      },
     ],
     confusions: [
       {
@@ -748,6 +762,12 @@ export const termArticles = {
         slug: "modulation",
         note: "調そのものが移り変わる技法。副次ドミナントは一時的な借用にとどまる点で異なる。",
       },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: '副次ドミナントが現れる箇所は、一瞬だけ別の調に触れる場所です。その和音を気づかせるように、わずかに音色や強さを変えると、進行の方向づけがはっきり伝わります。' },
+    ],
+    works: [
+      { title: 'バッハのコラール（讃美歌）', note: '副次ドミナントの実例として、音楽理論の授業で最も頻繁に教材に使われる曲集です。' },
     ],
   },
 
@@ -18062,6 +18082,12 @@ export const termArticles = {
       { term: 'Tritone', slug: 'tritone', note: '完全5度を半音狭めた減5度。最も不安定な音程。' },
       { term: 'Circle of fifths', slug: 'circle-of-fifths', note: '完全5度を積み重ねた巡回を図にしたもの。' },
     ],
+    instruments: [
+      { name: '弦楽器', tip: '開放弦同士を同時に鳴らして調弦するとき、完全5度がわずかにずれると「うなり」がはっきり聞こえます。うなりが消えるところまで丁寧に合わせる感覚を身につけると、他の音程の精度も上がります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第9番 第1楽章', note: '第3音を欠いた裸の完全5度（A・E）だけで始まり、長調とも短調とも判別できない響きから曲が立ち上がります。' },
+    ],
   },
 
   'major-third': {
@@ -18085,6 +18111,12 @@ export const termArticles = {
       { term: 'Perfect fifth', slug: 'perfect-fifth', note: '和音の骨格を作る音程。3度は表情を決める。' },
       { term: 'Mediant', slug: 'mediant', note: '音階の第3音。主音との音程が長3度か短3度かで調の明暗が決まる。' },
     ],
+    instruments: [
+      { name: '管楽器', tip: '下降する長3度の跳躍は、次の音への息の支えを緩めがちです。跳躍の前後で息の速さを変えないよう意識すると、音程も安定します。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第6番「田園」第2楽章', note: '終盤、2本のクラリネットが下降する長3度でカッコウの鳴き声を模しています。' },
+    ],
   },
 
   'minor-third': {
@@ -18106,6 +18138,12 @@ export const termArticles = {
     confusions: [
       { term: 'Major third', slug: 'major-third', note: '短3度より半音広い音程。長三和音の性格を決める。' },
       { term: 'Diminished chord', slug: 'diminished-chord', note: '短3度を2つ積み重ねた和音。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: '短3度の下降・上昇は民謡的な素朴さを持つ音程です。強く押し出すより、語りかけるような柔らかいアタックのほうが、この音程の性格に合うことが多くあります。' },
+    ],
+    works: [
+      { title: 'ブラームス 交響曲第3番 第1楽章', note: '冒頭の F・A♭・F という動機は、短3度を含む「自由に、しかし喜ばしく」を意味する自筆の標語に基づくとされます。' },
     ],
   },
 
@@ -18164,6 +18202,12 @@ export const termArticles = {
       { term: 'Key signature', slug: 'key-signature', note: 'どの音に♯や♭を付ければ長音階の間隔が保たれるかを示すもの。' },
       { term: 'Diatonic', slug: 'diatonic', note: 'この音階に含まれる音だけで構成されている状態。' },
     ],
+    instruments: [
+      { name: '共通', tip: '第3音と第4音、第7音と主音のあいだの半音を、意識してわずかに狭く感じながら弾く（歌う）と、音階の輪郭がはっきり伝わります。' },
+    ],
+    works: [
+      { title: 'バッハ「平均律クラヴィーア曲集」第1巻 前奏曲第1番', note: 'ハ長調で書かれた、この音階を基礎とする作品として広く知られています。' },
+    ],
   },
 
   'natural-minor': {
@@ -18186,6 +18230,12 @@ export const termArticles = {
       { term: 'Harmonic minor', slug: 'harmonic-minor', note: '第7音を半音上げ、導音を作った短音階。' },
       { term: 'Melodic minor', slug: 'melodic-minor', note: '上行と下行で形が変わる短音階。下行時は自然短音階に戻る。' },
       { term: 'Relative keys', slug: 'relative-keys', note: '同じ調号を共有する長調と短調の関係。' },
+    ],
+    instruments: [
+      { name: '共通', tip: '導音が無いぶん、和声的短音階のような強い解決感は出せません。無理に主音へ引き寄せようとせず、素朴な旋律線として流れに任せるほうがこの音階の性格に合います。' },
+    ],
+    works: [
+      { title: 'グリーグ「山の魔王の宮殿にて」（劇音楽「ペール・ギュント」より）', note: '主要な和音（I・IV・V）がすべて短三和音で、導音を持たない自然短音階の性格がそのまま曲の不気味さに直結しています。' },
     ],
   },
 
@@ -18260,6 +18310,12 @@ export const termArticles = {
       { term: 'Whole tone scale', slug: 'whole-tone-scale', note: 'すべて全音で並ぶ6音の音階。こちらも中心を持たない。' },
       { term: 'Diatonic', slug: 'diatonic', note: '調の音階に含まれる音だけを使う状態。半音階的の対義語。' },
     ],
+    instruments: [
+      { name: '共通', tip: '半音の連続は指がかりが不規則になりやすい箇所です。あらかじめ運指を固定して練習し、速度が上がっても迷わず弾けるようにしておきます。' },
+    ],
+    works: [
+      { title: 'リムスキー=コルサコフ「熊蜂の飛行」', note: '曲全体を通してほぼ途切れることなく続く半音階的な走句が、この曲の代名詞になっています。' },
+    ],
   },
 
   'whole-tone-scale': {
@@ -18282,6 +18338,12 @@ export const termArticles = {
       { term: 'Chromatic scale', slug: 'chromatic-scale', note: 'すべて半音で並ぶ12音の音階。こちらも中心を持たない。' },
       { term: 'Pentatonic scale', slug: 'pentatonic-scale', note: '半音を含まない5音の音階。全音音階と同じく濁りにくい。' },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '主音への引力が無いため、指の力で押し切るように弾くと不自然な強調になります。どの音も同格であるという性質を活かし、粒を均等に、水平に流れるようなタッチを心がけます。' },
+    ],
+    works: [
+      { title: 'ドビュッシー「前奏曲集」第1巻より 帆（Voiles）', note: '曲のほぼ全体が全音音階だけで書かれた、この音階の代表作として広く知られています。' },
+    ],
   },
 
   'pentatonic-scale': {
@@ -18303,6 +18365,12 @@ export const termArticles = {
     confusions: [
       { term: 'Gapped scale', slug: 'gapped-scale', note: '特定の音を抜いた音階の総称。五音音階はその代表例。' },
       { term: 'Major scale', slug: 'major-scale', note: '五音音階は長音階から第4音と第7音を抜いた形にあたる。' },
+    ],
+    instruments: [
+      { name: '鍵盤楽器', tip: 'ピアノの黒鍵5つ（嬰ヘ・嬰ト・変ロ・変ハ・変ニなど、異名同音で数えれば5つ）だけを使うと、この音階の「外れがない」性質を指の感覚で体験できます。' },
+    ],
+    works: [
+      { title: 'ショパン 練習曲 作品10-5「黒鍵」', note: '右手が終始黒鍵だけを弾く、五音音階的な構成の実例として知られる作品です。' },
     ],
   },
 
@@ -18369,6 +18437,12 @@ export const termArticles = {
     confusions: [
       { term: 'Treble clef', slug: 'treble-clef', note: '第2線をGに固定した記号。' },
       { term: 'Bass clef', slug: 'bass-clef', note: '第4線をFに固定した記号。' },
+    ],
+    instruments: [
+      { name: 'ヴィオラ', tip: 'ト音記号に持ち替える高音域の passage では、中央ハがアルト記号とト音記号のどちらの五線でも表せる位置にあることを意識すると、記号の切り替わりに惑わされにくくなります。' },
+    ],
+    works: [
+      { title: 'ベルリオーズ「イタリアのハロルド」', note: 'ヴィオラを独奏楽器として扱う、この楽器とアルト記号の代表的な組み合わせを示す作品です。' },
     ],
   },
 
@@ -18693,6 +18767,12 @@ export const termArticles = {
       { term: 'Perfect cadence', slug: 'perfect-cadence', note: 'V から I へ進む終止。導音があるため決着が強い。' },
       { term: 'Subdominant', slug: 'subdominant', note: '下属音。変格終止の起点となる和音の根音。' },
     ],
+    instruments: [
+      { name: '合唱・アンサンブル', tip: '完全終止のような鋭い決着を狙わず、和音を広く豊かに保ったまま主和音へ収めます。音量を急に落とすより、響きの密度を保ちながら着地させるほうがこの終止の性格に合います。' },
+    ],
+    works: [
+      { title: 'ヘンデル「メサイア」より Amen', note: '「アーメン終止」という呼び名そのものの由来になった、この終止形の代表例として知られる合唱曲です。' },
+    ],
   },
 
   'half-cadence': {
@@ -18714,6 +18794,12 @@ export const termArticles = {
     confusions: [
       { term: 'Perfect cadence', slug: 'perfect-cadence', note: 'V から I へ進み完結する終止。' },
       { term: 'Dominant', slug: 'dominant', note: '属音。半終止はこの和音で止まる。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: 'ここで完全に止まってしまうと、続く音楽が唐突に聞こえます。フレーズの終わりであっても、体の緊張や呼吸を完全には解かず、次のフレーズへの準備を保ったまま一区切りをつけます。' },
+    ],
+    works: [
+      { title: 'モーツァルト「アイネ・クライネ・ナハトムジーク」第2楽章', note: '前半のフレーズが半終止で区切られ、後半のフレーズが完全終止で締めくくられる、対になった構成の教材としてよく取り上げられます。' },
     ],
   },
 
