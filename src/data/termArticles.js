@@ -14083,6 +14083,12 @@ export const termArticles = {
       { term: 'Legato', slug: 'legato', note: '音をつなぐ指示。流れの半分を担う。' },
       { term: 'Cantabile', slug: 'cantabile', note: '歌うように。連続した線を作る点で近い。' },
     ],
+    instruments: [
+      { name: '弦楽器・声楽', tip: '小節線ごとに区切れないためには、フレーズの頂点を先に決めておき、途中の小節線ではそこへ向かう動きを緩めないことが有効です。' },
+    ],
+    works: [
+      { title: 'パーシー・グレインジャー「コロニアル・ソング」', note: '副詞形の "flowingly" という指示が冒頭に置かれ、イタリア語の伝統的な用語を自国語に置き換える方針の具体例として知られます。' },
+    ],
   },
 
   'un-poco': {

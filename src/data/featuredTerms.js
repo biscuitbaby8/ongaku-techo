@@ -159,6 +159,7 @@ export const FEATURED_SLUGS = new Set([
     'fisarmonica',
     'flautando',
     'flauto',
+    'flowing',
     'form',
     'fort',
     'forte',
