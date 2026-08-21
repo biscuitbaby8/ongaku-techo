@@ -8633,6 +8633,12 @@ export const termArticles = {
       { term: 'Root position', slug: 'root-position', note: '基本形。配置の一つの側面。' },
       { term: 'Range', slug: 'range', note: '音域。どの範囲に配置するかに関わる。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '同じ旋律を別の楽器へ受け渡す際は、音域と音色の違いに応じて周囲の伴奏の厚みも調整すると、受け渡しが唐突にならず、色の変化として聞こえます。' },
+    ],
+    works: [
+      { title: 'ラヴェル「ボレロ」', note: '2つの主題を繰り返しながら、フルート・クラリネット・サクソフォーンなど毎回異なる楽器の組み合わせに担当を移すことで、和声はほとんど変えずに色彩だけで変化を作った作品です。' },
+    ],
   },
 
   'range': {
@@ -8656,6 +8662,12 @@ export const termArticles = {
       { term: 'Pitch', slug: 'pitch', note: '音の高さそのもの。' },
       { term: 'Altissimo', slug: 'altissimo', note: '通常の音域を超えた最上部。' },
     ],
+    instruments: [
+      { name: '声楽', tip: '音域の上端に近い音を歌う箇所では、その少し前から発声の準備（呼吸と共鳴の位置）を整えておくことで、無理な力みなしに届かせやすくなります。' },
+    ],
+    works: [
+      { title: 'モーツァルト「魔笛」より「夜の女王のアリア」', note: 'F4からF6までの2オクターブを要求し、頂点のF6は最も高いソプラノの音域として恐れられる、声域の広さを示す代表例です。' },
+    ],
   },
 
   'pitch': {
@@ -8678,6 +8690,12 @@ export const termArticles = {
       { term: 'Range', slug: 'range', note: '音域。出せる高さの幅。' },
       { term: 'Octave', slug: 'octave', note: '振動数が2倍になる関係。' },
       { term: 'Equal temperament', slug: 'equal-temperament', note: 'オクターブを12等分する調律法。' },
+    ],
+    instruments: [
+      { name: '声楽', tip: '基準ピッチが高いオーケストラと共演する場合、声にとっては負担が増します。本番前に基準ピッチを確認し、発声の準備をそれに合わせておくことが実務上重要です。' },
+    ],
+    works: [
+      { title: 'ヴェルディ「レクイエム」', note: 'ヴェルディは1884年の書簡で、当時広まりつつあった高めの基準ピッチに反対し、歌手の声を守るためフランスの「ディアパゾン・ノルマル」（A＝435Hz）に近い低めの基準を求めました。' },
     ],
   },
 
@@ -8730,6 +8748,12 @@ export const termArticles = {
       { term: 'First inversion', slug: 'first-inversion', note: '第3音を最低音に置いた形。' },
       { term: 'Perfect cadence', slug: 'perfect-cadence', note: '完全終止。両和音が基本形であることが条件。' },
       { term: 'Voicing', slug: 'voicing', note: '和音の音の配置。転回もその一部。' },
+    ],
+    instruments: [
+      { name: '合唱・アンサンブル', tip: '終止で基本形に戻る箇所では、低音を他の声部よりわずかに厚く響かせると、決着の感覚がはっきり伝わります。' },
+    ],
+    works: [
+      { title: 'バッハの371のコラール（4声体）', note: '終止では基本形、経過では転回形という使い分けが一貫して見られる、和声学の標準的な教材です。' },
     ],
   },
 
