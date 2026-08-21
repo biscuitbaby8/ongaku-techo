@@ -6572,6 +6572,12 @@ export const termArticles = {
       { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
       { term: 'Festlich', slug: 'festlich', note: '祝祭的に。華やかさが近い。' },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '速いパッセージで輝きを出すには、指の先端を鍵盤に鋭く当て、粒をそろえたまま音量よりも音の立ち上がりの速さを優先します。' },
+    ],
+    works: [
+      { title: 'ショパン「アンダンテ・スピアナートと華麗な大ポロネーズ」作品22', note: '後半のポロネーズ部分に brillante の指示があり、前半 spianato（平らな）の対として、技巧の華やかさを前面に出す性格を持ちます。' },
+    ],
   },
 
   'calculated': {
@@ -7888,6 +7894,12 @@ export const termArticles = {
       { term: 'Piangendo', slug: 'piangendo', note: '泣きながら。より直接的に泣く動作を指す。' },
       { term: 'Dolente', slug: 'dolente', note: '痛みを伴う悲しみ。' },
       { term: 'Sospirando', slug: 'sospirando', note: '溜め息をつくように。' },
+    ],
+    instruments: [
+      { name: '合唱・オーケストラ', tip: '涙がこぼれる動きを表すには、フレーズを完全に言い切らず、頂点のあとにわずかに力を抜いて下ることが有効です。' },
+    ],
+    works: [
+      { title: 'モーツァルト「レクイエム」より ラクリモサ', note: 'ラテン語の lacrimosa（涙にあふれた）が lagrimoso と同じ lacrima を語根に持ちます。モーツァルトが作曲したのは冒頭8小節までで、続きはジュスマイヤーが補筆しました。' },
     ],
   },
 
@@ -16588,6 +16600,12 @@ export const termArticles = {
       { term: 'Stopped', slug: 'stopped', note: '英語で同じホルンの奏法。' },
       { term: 'Open', slug: 'open', note: '開いた状態に戻す指示。' },
       { term: 'Horn', slug: 'horn', note: 'この奏法を用いる楽器。' },
+    ],
+    instruments: [
+      { name: 'ホルン', tip: '手を深く差し込むほど音程が上がり音色が暗くなります。半音上がる分の運指補正を事前に決めておくと、開いた音との音程の連続性が保てます。' },
+    ],
+    works: [
+      { title: 'ブラームス「ホルン三重奏曲」作品40', note: 'バルブのない自然ホルンのために書かれ、手を使って音程を作る奏法（gestopft）による暗く柔らかい音色を前提とした作品として知られます。' },
     ],
   },
 
