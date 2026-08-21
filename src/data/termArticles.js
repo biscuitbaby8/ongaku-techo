@@ -4976,6 +4976,12 @@ export const termArticles = {
       { term: 'Open', slug: 'open', note: '英語で開いた状態。弱音器を外す指示。' },
       { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
     ],
+    instruments: [
+      { name: 'ホルン', tip: '手を抜いて開いた状態に戻す瞬間、音量や音色が急に変わらないよう、直前の chiuso の音色から滑らかに移行することを意識します。' },
+    ],
+    works: [
+      { title: 'ブラームス「ホルン三重奏曲」作品40', note: '自然ホルンのための作品で、手を抜いた開放音（aperto）と、手を入れたストップ音（chiuso）の音色の対比を前提に書かれています。' },
+    ],
   },
 
   'chiaro': {
@@ -6966,6 +6972,12 @@ export const termArticles = {
       { term: 'Con agilità', slug: 'con-agilità', note: '敏捷に。名詞形を用いた指示。' },
       { term: 'Agevole', slug: 'agevole', note: '楽に。同じ語根。容易さが主体。' },
       { term: 'Lesto', slug: 'lesto', note: '素早く。' },
+    ],
+    instruments: [
+      { name: '弦楽器・木管楽器', tip: '半音階の連続する動きを俊敏にさばくには、指の交換を最小にする運指をあらかじめ決めておきます。速さを優先して運指を場当たりにすると、かえって動きが鈍くなります。' },
+    ],
+    works: [
+      { title: 'リムスキー＝コルサコフ「熊蜂の飛行」', note: '半音階的な動きがほぼ途切れず続く楽曲で、速さそのものより、動きの粒をそろえたまま俊敏にさばき続けることが要求される代表例です。' },
     ],
   },
 
