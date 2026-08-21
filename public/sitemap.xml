@@ -679,6 +679,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ongakutecho.com/term/lontano/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ongakutecho.com/term/ostinato/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -686,6 +692,12 @@
   </url>
   <url>
     <loc>https://ongakutecho.com/term/parlante/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ongakutecho.com/term/pasticcio/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -703,7 +715,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ongakutecho.com/term/spianato/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ongakutecho.com/term/alberti-bass/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ongakutecho.com/term/alla-marcia/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

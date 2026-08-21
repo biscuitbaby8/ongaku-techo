@@ -7678,6 +7678,12 @@ export const termArticles = {
       { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。輪郭をぼかす点で近い。' },
       { term: 'Morendo', slug: 'morendo', note: '消えゆくように。減衰の指示。' },
     ],
+    instruments: [
+      { name: '弦楽器・管楽器', tip: '弦は指板寄りで弓を動かし（sul tasto）、管は息の速度を落として輪郭を鈍らせると、音量を大きく下げなくても距離感を作れます。' },
+    ],
+    works: [
+      { title: 'プッチーニ「トスカ」第3幕冒頭', note: 'ト書きに "Si odono, lontane, le campanelle d\'un armento"（羊の群れの鈴が、遠くから聞こえる）とあり、鐘の音と羊飼いの歌が舞台裏から遠く響く場面として書かれています。' },
+    ],
   },
 
   'patetico': {
@@ -7729,6 +7735,12 @@ export const termArticles = {
       { term: 'Tranquillo', slug: 'tranquillo', note: '静かに。落ち着きが主体。' },
       { term: 'Legato', slug: 'legato', note: '音をつなぐ。なめらかさの手段になる。' },
       { term: 'Semplice', slug: 'semplice', note: '素朴に。飾りを排する。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: '起伏を作らないためには、指の重さをフレーズの途中で変えず、同じ深さで鍵盤を捉え続けることが有効です。減衰にまかせて自然に弱まる分は問題ありませんが、意図して膨らませると平らさが崩れます。' },
+    ],
+    works: [
+      { title: 'ショパン「アンダンテ・スピアナートと華麗な大ポロネーズ」作品22', note: '曲名に spianato を用いた作品そのものです。冒頭のアンダンテ部分が、起伏の少ない平らな性格を体現しています。' },
     ],
   },
 
@@ -8108,6 +8120,12 @@ export const termArticles = {
       { term: 'Alla rustica', slug: 'alla-rustica', note: '田舎風に。同じ alla の形。' },
       { term: 'Marcato', slug: 'marcato', note: '際立たせて。行進の性格を作る手段。' },
     ],
+    instruments: [
+      { name: '打楽器・低音楽器', tip: '拍の輪郭を作る役割の楽器（低音、打楽器）が最初にわずかに音を立てて拍の位置を明確にすると、他の声部がその上でテンポを保ちやすくなります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第9番 第4楽章', note: '"Alla marcia" と記された箇所で、トライアングル・シンバル・大太鼓というトルコ風の打楽器編成とテノール独唱を伴う行進曲が現れます。交響曲にこの種の編成を持ち込んだ最初期の例として知られます。' },
+    ],
   },
 
   'alla-rustica': {
@@ -8191,6 +8209,12 @@ export const termArticles = {
       { term: 'Opera', slug: 'opera', note: '寄せ集めのオペラという形式があった。' },
       { term: 'Juxtaposition', slug: 'juxtaposition', note: '並置。異なる素材を隣り合わせる手法。' },
       { term: 'Fantasie', slug: 'fantasie', note: '自由な構成を持つ楽曲。' },
+    ],
+    instruments: [
+      { name: '声楽・器楽全般', tip: '寄せ集めの性格を生かすには、場面ごとの様式の違いをならさず、それぞれの出所の書法をはっきり弾き分けることが有効です。全体を一つの語法で均すと、pasticcio らしさが消えます。' },
+    ],
+    works: [
+      { title: '《ムツィオ・シェヴォラ》（1721年、ロンドン）', note: '第1幕をアマデイ、第2幕をボノンチーニ、第3幕をヘンデルがそれぞれ作曲した、当時の劇場実務に根ざしたパスティッチョ・オペラの代表例です。' },
     ],
   },
 
