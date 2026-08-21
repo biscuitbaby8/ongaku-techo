@@ -4942,10 +4942,16 @@ export const termArticles = {
         body: '鐘の音は、打撃の瞬間が明確で、その後に長い余韻が残ります。したがってこの効果を作るには、立ち上がりを鋭くしつつ、音を切らずに残すことが必要です。ピアノではペダルの扱いが要点になります。濁らせずに残響を保つため、和声の変わり目でペダルを踏み替えます。',
       },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '高音域の同音連打が続くため、指を替えて（1本の指で連打しない）弾くと、速いテンポでも音が詰まらず、鐘の澄んだ余韻を保てます。' },
+    ],
     confusions: [
       { term: 'Campana', slug: 'campana', note: '鐘。campanella はその縮小形。' },
       { term: 'Celeste', slug: 'celeste', note: '天上の。澄んだ響きという点で近い。' },
       { term: 'Harmonics', slug: 'harmonics', note: '倍音。鐘の音色に関わる。' },
+    ],
+    works: [
+      { title: 'リスト「パガニーニによる大練習曲」第3番「ラ・カンパネッラ」', note: 'パガニーニのヴァイオリン協奏曲第2番終楽章の鐘を模した主題を基にした、この語の代表作です。' },
     ],
   },
 
@@ -5633,6 +5639,12 @@ export const termArticles = {
       { term: 'Parlante', slug: 'parlante', note: '語るように。cantando と対になる。' },
       { term: 'Canto', slug: 'canto', note: '歌。同じ語根。' },
     ],
+    instruments: [
+      { name: '器楽全般', tip: '実際に声に出してその旋律を歌ってみると、どこで息が続かなくなるかが分かります。その位置がそのままフレーズの区切りの目安になります。' },
+    ],
+    works: [
+      { title: 'ショパンのノクターン', note: '器楽でありながら歌うような旋律線を持つ、この語の性格を体現する代表的な作品群です。' },
+    ],
   },
 
   'ballando': {
@@ -5831,6 +5843,12 @@ export const termArticles = {
       { term: 'Leidenschaftlich', slug: 'leidenschaftlich', note: '情熱的に。「苦しむ」を語根に持つ。' },
       { term: 'Con brio', slug: 'con-brio', note: '活気をもって。' },
     ],
+    instruments: [
+      { name: 'アンサンブル', tip: '高揚を作ろうとして力任せに弾くと、骨格が崩れて単なる乱れになります。テンポや音量の振れ幅は大きく取りつつ、拍そのものは仲間と共有しておくことで、制御を失わない高揚感が保てます。' },
+    ],
+    works: [
+      { title: 'シューマンのピアノ曲', note: '感情の高揚を細かく描き分けたドイツ語の性格指示を多用する作曲家として知られます。' },
+    ],
   },
 
   'enthousiasme': {
@@ -5899,6 +5917,12 @@ export const termArticles = {
       { term: 'Calando', slug: 'calando', note: '弱めながら遅く。近い内容のイタリア語。' },
       { term: 'Pacato', slug: 'pacato', note: '穏やかに。鎮まった状態を指す。' },
       { term: 'Tranquillo', slug: 'tranquillo', note: '静かに。到達点としての静けさ。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: '過程を示す指示なので、一気に音量とテンポを落とすと「鎮まっていく」動きが感じられなくなります。数小節かけて少しずつ緩めていく設計をあらかじめ決めておきます。' },
+    ],
+    works: [
+      { title: 'マーラーの交響曲', note: 'イタリア語の記号に加え、beruhigend を含む多くのドイツ語の性格指示を用いる作曲家として知られます。' },
     ],
   },
 
@@ -6180,6 +6204,12 @@ export const termArticles = {
       { term: 'Espressione', slug: 'espressione', note: '表情。名詞形。' },
       { term: 'Con sentimento', slug: 'con-sentimento', note: '感情をもって。内側の状態を指す。' },
     ],
+    instruments: [
+      { name: '共通', tip: '何を表現するかが指定されていない指示なので、和声の緊張がどこにあるかを先に分析し、その緊張の高まりに合わせて音量や間を調整すると、抽象的な指示を具体的な演奏に落とし込みやすくなります。' },
+    ],
+    works: [
+      { title: 'ドビュッシー「前奏曲集」', note: 'フランス語の性格指示を多用する作曲家の代表例で、expressif もしばしば見られます。' },
+    ],
   },
 
   'espressione': {
@@ -6202,6 +6232,12 @@ export const termArticles = {
       { term: 'Espressivo', slug: 'espressivo', note: '形容詞形。こちらが一般的な表記。' },
       { term: 'Con espressione', slug: 'con-espressione', note: '前置詞句としての形。' },
       { term: 'Expressif', slug: 'expressif', note: 'フランス語で表情豊かに。' },
+    ],
+    instruments: [
+      { name: '共通', tip: '同じ「表情をもって」でも、直前直後の音楽の性格によって求められる表情は変わります。指示そのものより、その箇所が曲全体のどの位置にあるかを先に把握します。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 後期ピアノソナタ', note: 'espressivo（および名詞形 espressione）の指示が随所に見られる作品群です。' },
     ],
   },
 
@@ -6369,6 +6405,12 @@ export const termArticles = {
       { term: 'Terraced dynamics', slug: 'terraced-dynamics', note: '段階的な強弱。エコーの前提となる。' },
       { term: 'Lontano', slug: 'lontano', note: '遠くから。距離を作る扱いが共通する。' },
       { term: 'Simile', slug: 'simile', note: '同様に。繰り返しを示す語。' },
+    ],
+    instruments: [
+      { name: 'チェンバロ・オルガン', tip: '2段鍵盤の場合、1回目を主鍵盤、2回目を副鍵盤（弱い音栓）で弾き分けます。切り替えの瞬間に音が途切れないよう、次の鍵盤に手を移すタイミングをあらかじめ決めておきます。' },
+    ],
+    works: [
+      { title: 'バッハ「フランス風序曲」BWV 831 より Echo', note: '曲名がそのまま「エコー」と付けられた、2段鍵盤チェンバロの段階的な強弱を活かす代表例です。' },
     ],
   },
 
@@ -6590,6 +6632,12 @@ export const termArticles = {
     confusions: [
       { term: 'Timbre', slug: 'timbre', note: '音色。lo-fi はこれを加工する。' },
       { term: 'Shakuhachi', slug: 'shakuhachi', note: 'ムラ息。雑音を表現に用いる例。' },
+    ],
+    instruments: [
+      { name: '録音・制作', tip: 'ノイズを足す場合、曲全体に均一にかけるより、静かな箇所でわずかに存在感を強めると、質感として意識されやすくなります。均一すぎるノイズは単なる録音の悪さにしか聞こえません。' },
+    ],
+    works: [
+      { title: 'ガイデッド・バイ・ヴォイシズ「Bee Thousand」（1994年）', note: '宅録・低品質な録音をあえて美学として提示し、lo-fi というジャンル・語の定着に大きく貢献したアルバムです。' },
     ],
   },
 
@@ -7479,6 +7527,12 @@ export const termArticles = {
       { term: 'Declamando', slug: 'declamando', note: '朗読するように。より力強い語り。' },
       { term: 'Recitative', slug: 'recitative', note: '語るように歌う部分。' },
     ],
+    instruments: [
+      { name: '声楽', tip: '歌詞をまず普通の話し言葉として朗読してみて、そのときの強弱やアクセントの位置を確認します。その通りに音を乗せると、parlante の性格が自然に出ます。' },
+    ],
+    works: [
+      { title: 'ヴェルディの中期以降のオペラ', note: '《マクベス》以降、旋律を担うオーケストラに対し声部が語るように動く parlante の書法を発展させたことで知られます。' },
+    ],
   },
 
   'giusto': {
@@ -7501,6 +7555,12 @@ export const termArticles = {
       { term: 'Tempo giusto', slug: 'tempo-giusto', note: '正確なテンポで。この語を用いた定型句。' },
       { term: 'Rubato', slug: 'rubato', note: 'テンポを揺らす。giusto と反対方向。' },
       { term: 'A piacere', slug: 'a-piacere', note: '奏者の自由に。' },
+    ],
+    instruments: [
+      { name: '共通', tip: '直前に rubato の箇所があった場合、tempo giusto は「元のテンポに戻る」合図でもあります。戻る瞬間のテンポを、曲の最初に示されたテンポと同じに揃えておくと、指示の意図が明確に伝わります。' },
+    ],
+    works: [
+      { title: 'ショパン ワルツ 作品70の2', note: 'tempo giusto の指示が現れる、この語の実例として知られる作品です。' },
     ],
   },
 
