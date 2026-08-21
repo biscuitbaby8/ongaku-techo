@@ -649,6 +649,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ongakutecho.com/term/malinconico/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ongakutecho.com/term/a-piacere/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -926,6 +932,12 @@
   </url>
   <url>
     <loc>https://ongakutecho.com/term/sehr/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ongakutecho.com/term/heiter/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1610,6 +1622,12 @@
   </url>
   <url>
     <loc>https://ongakutecho.com/term/fugal/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ongakutecho.com/term/galante/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

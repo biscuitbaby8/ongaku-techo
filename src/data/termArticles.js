@@ -5139,6 +5139,12 @@ export const termArticles = {
       { term: 'Grazioso', slug: 'grazioso', note: '優雅に。' },
       { term: 'Minuet', slug: 'minuet', note: 'この様式と結びついた舞曲。' },
     ],
+    instruments: [
+      { name: '鍵盤楽器', tip: '対位法的な均等さを避け、旋律の声部をはっきり歌わせて伴奏を軽く添えることで、ギャラント様式の明快さが出ます。全声部を同じ重みで弾くと、バロック的な響きに戻ってしまいます。' },
+    ],
+    works: [
+      { title: 'J.C.バッハ「鍵盤協奏曲」作品13第2番', note: '「ロンドンのバッハ」と呼ばれたヨハン・クリスティアンによる、明快な旋律と単純な伴奏を特徴とするギャラント様式の代表的な作品です。' },
+    ],
   },
 
   'scatenato': {
@@ -6056,6 +6062,12 @@ export const termArticles = {
       { term: 'Giocoso', slug: 'giocoso', note: '遊び心をもって。冗談の要素がある。' },
       { term: 'Chiaro', slug: 'chiaro', note: '澄んだ。濁りのなさを指す。' },
       { term: 'Behaglich', slug: 'behaglich', note: '心地よく。くつろぎが主体。' },
+    ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '曇りのなさを保つには、和声を濁らせる楽器の重ね方を避け、各声部の音量のバランスを軽く保ちます。低音を厚く鳴らすと、晴れやかさより落ち着きが前面に出ます。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第6番「田園」第1楽章', note: '楽章名 "Erwachen heiterer Empfindungen bei der Ankunft auf dem Lande"（田舎に着いたときの朗らかな感情の目覚め）に heiter が使われており、曇りのない明るさを描いた作品として知られます。' },
     ],
   },
 
@@ -15368,6 +15380,12 @@ export const termArticles = {
       { term: 'Con malinconia', slug: 'con-malinconia', note: '名詞形を使った同内容の指示。' },
       { term: 'Mesto', slug: 'mesto', note: '沈んだ悲しみ。対象がある。' },
       { term: 'Languido', slug: 'languido', note: '気だるい。力の抜けた状態。' },
+    ],
+    instruments: [
+      { name: '弦楽四重奏', tip: '原因の特定されない沈んだ状態を出すには、和声が着地せず宙づりのまま進む箇所で、テンポを揺らしすぎずに響きの不安定さそのものを聞かせることが有効です。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 弦楽四重奏曲第6番 作品18-6 終楽章「ラ・マリンコニア」', note: '楽章の序奏部分に "La Malinconia" という表題が付され、大胆な和声転換と沈黙を伴う、憂鬱そのものを描いた序奏として知られます。' },
     ],
   },
 
