@@ -8554,6 +8554,12 @@ export const termArticles = {
       { term: 'Tritone', slug: 'tritone', note: '三全音。最も不安定な音程。' },
       { term: 'Passing tone', slug: 'passing-tone', note: '経過音。一時的な不協和として扱われる。' },
     ],
+    instruments: [
+      { name: '弦楽四重奏', tip: '不協和な半音階の重なりを演奏する際は、音程を曖昧にせず正確に取ることで、緊張感が濁りではなく「不協和として意図されたもの」に聞こえます。' },
+    ],
+    works: [
+      { title: 'モーツァルト 弦楽四重奏曲第19番 K.465「不協和音」', note: '序奏で半音階的な不協和が次々に重なり、出版社が誤植と疑って送り返したと伝えられるほど当時としては異例だった作品です。この序奏を理由に「不協和音」の愛称で呼ばれます。' },
+    ],
   },
 
   'consonante': {
@@ -8576,6 +8582,12 @@ export const termArticles = {
       { term: 'Dissonanza', slug: 'dissonanza', note: '不協和。協和と対をなす。' },
       { term: 'Perfect fifth', slug: 'perfect-fifth', note: '2対3の比を持つ完全協和音程。' },
       { term: 'Interval', slug: 'interval', note: '音程。協和・不協和はその性質。' },
+    ],
+    instruments: [
+      { name: '弦楽器・鍵盤楽器', tip: '協和音程を美しく響かせるには、音程を完全に合わせることが何より重要です。わずかなずれでもうなりが生じ、溶け合いが崩れます。' },
+    ],
+    works: [
+      { title: 'アルヴォ・ペルト「シュピーゲル・イム・シュピーゲル」', note: '単純な三和音を軸にした「ティンティナブリ様式」で書かれ、不協和をほとんど用いない澄んだ協和音の響きを特徴とする作品です。' },
     ],
   },
 
@@ -8908,6 +8920,12 @@ export const termArticles = {
       { term: 'Time signature', slug: 'time-signature', note: '拍子記号。分割の仕方も決める。' },
       { term: 'Triplet', slug: 'triplet', note: '単純拍子の中に3分割を持ち込む記法。' },
     ],
+    instruments: [
+      { name: '弦楽器・管楽器', tip: '4分の3拍子の単純拍子では、1拍目に重心を置きつつ2拍目・3拍目は軽くすることで、拍子固有の弾みが生まれます。3拍を均等に扱うと重心が消えます。' },
+    ],
+    works: [
+      { title: 'ヨハン・シュトラウス2世「美しく青きドナウ」', note: '4分の3拍子（単純三拍子）で書かれたウィンナ・ワルツの代表作で、1拍が2等分される単純拍子の中で3拍子特有の弾みを作る例として知られます。' },
+    ],
   },
 
   'quarter-rest': {
@@ -9059,6 +9077,12 @@ export const termArticles = {
       { term: 'Quarter note', slug: 'quarter-note', note: '全音符の4分の1。' },
       { term: 'Breve', slug: 'breve', note: '全音符より長い音符。かつての基準。' },
       { term: 'Time signature', slug: 'time-signature', note: '全音符が何拍になるかを決める。' },
+    ],
+    instruments: [
+      { name: 'コントラバス', tip: '全音符を何小節も保つ持続音では、弓を使い切らないよう配分し、隣の奏者と弓を返すタイミングをずらす（分奏）ことで、音を途切れさせずに保てます。' },
+    ],
+    works: [
+      { title: 'ワーグナー「ラインの黄金」前奏曲', note: '変ホ長調の和音を136小節にわたって保続する、演奏会用作品の中でも最も長いとされるドローン（持続音）です。' },
     ],
   },
 
