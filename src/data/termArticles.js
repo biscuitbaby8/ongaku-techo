@@ -707,6 +707,12 @@ export const termArticles = {
         note: "独立した複数の旋律線を組み合わせる技法全般。Species counterpointはそれを学ぶための段階的な方法。",
       },
     ],
+    instruments: [
+      { name: 'アンサンブル・合唱', tip: '各声部を単独で美しい旋律として歌える（弾ける）ことを確認してから重ねると、声部の独立性という species counterpoint の目的が実感しやすくなります。' },
+    ],
+    works: [
+      { title: 'フックス「パルナッソス山への階梯」（1725年）', note: 'この学習法を体系化した理論書。ハイドン・モーツァルト・ベートーヴェンをはじめ、後世の多くの作曲家がこの本で対位法を学んだとされます。' },
+    ],
   },
 
   'diminished-seventh-chord': {
@@ -756,6 +762,10 @@ export const termArticles = {
         heading: "バロック以前の慣習",
         body: "ルネサンスからバロック期にかけて広く用いられた終止法で、当時は短三和音の響きが不安定・不完全なものとみなされていたことが背景にあるとされる。「ピカルディ」という地名との結びつきの正確な由来は定かではない。",
       },
+      {
+        heading: "古典派以降の扱い",
+        body: "18世紀後半になると短三和音自体が不完全とはみなされなくなり、この慣習は徐々に廃れていく。それでも、教会音楽や瞑想的な性格の楽曲の終わりに、救済や解決を象徴する効果として意図的に使われることがある。",
+      },
     ],
     confusions: [
       {
@@ -763,6 +773,12 @@ export const termArticles = {
         slug: "neapolitan-sixth-chord",
         note: "短調に現れる別の借用和音。こちらは音を半音下げる点で方向性が逆になる。",
       },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: 'それまで短調で進んできた響きが、最後の一音だけ長三和音に変わります。準備なく訪れても唐突にならないよう、その和音に至る直前でわずかにテンポを落とし、変化を聴き手に印象づけると効果的です。' },
+    ],
+    works: [
+      { title: 'バッハ「幻想曲とフーガ ト短調」BWV 542', note: 'フーガの結尾がピカルディの三度で締めくくられる、この技法の代表例として知られます。' },
     ],
   },
 
@@ -784,6 +800,12 @@ export const termArticles = {
         slug: "tierce-de-picardie",
         note: "短調の終止を長三和音に変える別の借用技法。半音を上げるか下げるかの方向性が逆になる。",
       },
+    ],
+    instruments: [
+      { name: '鍵盤楽器', tip: 'この和音は緊張の頂点として使われることが多く、通常の下属和音よりわずかに強調して弾くと、そこから属和音へ向かう緊張の高まりがはっきり伝わります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン ピアノソナタ第14番「月光」第1楽章', note: 'ナポリの六度が印象的に使われる代表例として、音楽理論の教材でしばしば取り上げられます。' },
     ],
   },
 
@@ -8081,6 +8103,12 @@ export const termArticles = {
       { term: 'Enharmonic', slug: 'enharmonic', note: '同じ高さを別の音名で書く関係。Cis と Des は異名同音。' },
       { term: 'Key signature', slug: 'key-signature', note: '調号。ドイツ語の調名と対応させて読む。' },
     ],
+    instruments: [
+      { name: '共通', tip: 'ドイツ語文献で調名を見たときは、まず H と B を英語式に読み替えてから確認する習慣をつけると、思わぬ読み違いを防げます。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン ピアノソナタ第14番「月光」', note: '嬰ハ短調（cis-Moll）で書かれた作品で、ドイツ語文献ではこの表記で呼ばれます。' },
+    ],
   },
 
   'libretto': {
@@ -8149,6 +8177,12 @@ export const termArticles = {
       { term: 'Ostinato', slug: 'ostinato', note: '同じ音型の反復。アイソリズムはリズムと音高を分けて繰り返す。' },
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。同時期に発達した多声書法。' },
       { term: 'Canon', slug: 'canon', note: 'カノン。規則に基づく構成技法という点で近い。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル・合唱', tip: 'タレアの反復はテノール声部の長い音価に埋め込まれています。担当する声部を歌う（弾く）ときは、その音がタレアの何音目にあたるかを把握しておくと、他の声部との噛み合わせが安定します。' },
+    ],
+    works: [
+      { title: 'マショー「ノートルダム・ミサ曲」よりキリエ', note: '28音のコロールに対し4音のタレアを7回反復させる、アイソリズムの構造がよく示された箇所として知られます。' },
     ],
   },
 
@@ -8654,6 +8688,12 @@ export const termArticles = {
       { term: 'Dotted note', slug: 'dotted-note', note: '付点8分音符と組み合わせて頻出する。' },
       { term: 'Triplet', slug: 'triplet', note: '3連符。分割の仕組みが違う。' },
     ],
+    instruments: [
+      { name: '共通', tip: '速いパッセージほど、拍の頭の音を意識から外しがちです。16分音符4つのうち1音目だけをわずかに意識しておくと、粒が揃っていても拍の輪郭を失いません。' },
+    ],
+    works: [
+      { title: 'リムスキー=コルサコフ「熊蜂の飛行」', note: '曲全体を通してほぼ途切れることなく16分音符が続く、この音符の代表的な使用例として知られます。' },
+    ],
   },
 
   'eighth-note': {
@@ -8676,6 +8716,12 @@ export const termArticles = {
       { term: 'Quarter note', slug: 'quarter-note', note: '8分音符の2倍。旗を持たない。' },
       { term: 'Sixteenth note', slug: 'sixteenth-note', note: '8分音符の半分。旗が2本。' },
       { term: 'Triplet', slug: 'triplet', note: '8分3連符は1拍を3等分する。' },
+    ],
+    instruments: [
+      { name: '共通', tip: '8分音符が連続する箇所は、1拍を2つに割る感覚を保つことが安定の鍵です。1拍ごとに数字を数えるより、拍の裏（オフビート）を感じながら弾くと、走ったり縮んだりしにくくなります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第5番 第1楽章', note: '冒頭の動機は8分音符3つと、それに続く長い音という単純なリズムから成り立っています。' },
     ],
   },
 
@@ -8850,6 +8896,12 @@ export const termArticles = {
       { term: 'Major scale', slug: 'major-scale', note: '7音の全音階。ここから音を抜いた形になる。' },
       { term: 'Scale', slug: 'scale', note: '音階全般。' },
     ],
+    instruments: [
+      { name: '鍵盤楽器', tip: 'ピアノの黒鍵5つは、そのままG♭（嬰ヘ）を主音とする五音音階を作ります。黒鍵だけを使えば、この音階の性質（半音を含まず、どの音を選んでも大きく外れない）を指の感覚で確認できます。' },
+    ],
+    works: [
+      { title: 'ショパン 練習曲 作品10-5「黒鍵」', note: '右手が黒鍵だけを弾く、gapped scale（五音音階的な構成）の実例として知られる作品です。' },
+    ],
   },
 
   'parallel-keys': {
@@ -8872,6 +8924,12 @@ export const termArticles = {
       { term: 'Relative keys', slug: 'relative-keys', note: '平行調。調号が同じで主音が違う。' },
       { term: 'Modulation', slug: 'modulation', note: '転調。同主調への移行もその一種。' },
       { term: 'Key signature', slug: 'key-signature', note: '同主調では調号が変わる。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: '同主調への転換は、和声としては小さな変化でも性格の変化としては大きな出来事です。転換の直前で音量やテンポを不用意に動かさず、和音そのものの色の変化に語らせるほうが効果的です。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第5番', note: 'ハ短調で始まり、終楽章でハ長調に転じる。同主調の交替を曲全体の構成に用いた代表例として知られます。' },
     ],
   },
 
@@ -8897,6 +8955,12 @@ export const termArticles = {
       { term: 'Harmonic minor', slug: 'harmonic-minor', note: '和声的短音階。第7音を上げて導音を作る。' },
       { term: 'Relative keys', slug: 'relative-keys', note: '同じ調号を共有する長調と短調。' },
     ],
+    instruments: [
+      { name: 'アンサンブル', tip: '短調の曲でも、劇的な緊張と暗さは別のものです。強奏だからといって音を荒く鳴らすのではなく、和声がどこへ向かおうとしているかを聴きながら緊張を作ると、単調な「暗さ」に陥りません。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第5番', note: 'ハ短調で書かれ、激しさと劇的な展開を持つ、短調が単に暗いだけではないことを示す代表作です。' },
+    ],
   },
 
   'major-key': {
@@ -8920,6 +8984,12 @@ export const termArticles = {
       { term: 'Major scale', slug: 'major-scale', note: '長音階。長調の土台。' },
       { term: 'Dur', slug: 'dur', note: 'ドイツ語で長調。' },
       { term: 'Parallel keys', slug: 'parallel-keys', note: '主音が同じ長調と短調の関係。' },
+    ],
+    instruments: [
+      { name: 'アンサンブル', tip: '長調だからといって全体を均一に明るく弾くと単調になります。第7音（導音）が主音へ帰る力を意識すると、和声の推進力が生まれ、単なる「明るさ」以上の説得力が出ます。' },
+    ],
+    works: [
+      { title: 'モーツァルト 交響曲第41番「ジュピター」', note: 'ハ長調で書かれ、明るさと構築性を兼ね備えた、長調の交響曲の到達点として知られる作品です。' },
     ],
   },
 
@@ -8947,6 +9017,12 @@ export const termArticles = {
       { term: 'Major key', slug: 'major-key', note: '長調。英語での呼び方。' },
       { term: 'Cis', slug: 'cis', note: 'ドイツ語の音名。調名で Dur と組み合わせる。' },
       { term: 'Major scale', slug: 'major-scale', note: '長音階。長調の土台となる音の並び。' },
+    ],
+    instruments: [
+      { name: '共通', tip: 'ドイツ語圏の作曲家の自筆譜や初版譜を参照するときは、調名の大文字・小文字（長調・短調の区別）まで正確に読み取ると、写譜や校訂で取り違えを防げます。' },
+    ],
+    works: [
+      { title: 'バッハ「平均律クラヴィーア曲集」第1巻 前奏曲第1番', note: 'ハ長調（C-Dur）で書かれた、この調で最も広く知られる作品の一つです。' },
     ],
   },
 
