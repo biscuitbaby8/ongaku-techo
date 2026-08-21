@@ -5976,6 +5976,12 @@ export const termArticles = {
       { term: 'Delicatamente', slug: 'delicatamente', note: '繊細に。細心の扱いを求める。' },
       { term: 'Carezzevole', slug: 'carezzevole', note: '愛撫するように。触れ方を述べる。' },
     ],
+    instruments: [
+      { name: '弦楽器・声楽', tip: '触れる瞬間の速度を落とし、角のない立ち上がりを作ります。音量を落とすだけで触れ方が乱暴なままだと、zart には聞こえません。' },
+    ],
+    works: [
+      { title: 'マーラー 交響曲第4番 終楽章', note: '"Sehr zart und geheimnisvoll"（非常に繊細に、神秘的に）という指示があり、zart が壊れやすいものを扱うような繊細さを求める語であることを示す例として知られます。' },
+    ],
   },
 
   'sehr': {
@@ -6890,6 +6896,12 @@ export const termArticles = {
       { term: 'Dolente', slug: 'dolente', note: '痛みを伴って。同じ語根。' },
       { term: 'Con dolore', slug: 'con-dolore', note: '痛みをもって。' },
       { term: 'Lagrimoso', slug: 'lagrimoso', note: '涙を流して。' },
+    ],
+    instruments: [
+      { name: '声楽・弦楽器', tip: '下降する溜め息の音型では、頂点の音を強く突かず、そこから力を抜きながら下ることで、外から押しつけられた重さが表現できます。' },
+    ],
+    works: [
+      { title: 'ペルゴレージ「スターバト・マーテル」', note: '歌い出しの歌詞 "Stabat mater dolorosa"（悲しみの母が立っていた）の dolorosa が addolorato と同じ dolore を語根に持ち、この語の指す深い悲痛を音楽と言葉の両面で示す作品として知られます。' },
     ],
   },
 
@@ -8056,6 +8068,12 @@ export const termArticles = {
       { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。隠されていることが主体。' },
       { term: 'Lontano', slug: 'lontano', note: '遠くから。輪郭をぼかす点で近い。' },
       { term: 'Fantastico', slug: 'fantastico', note: '幻想的に。論理を離れる。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: '輪郭をぼかすには、打鍵の速度を落として音の立ち上がりを穏やかにし、ペダルで持続音を混ぜます。ただし和音の芯まで曖昧にすると、構造が失われて単に不明瞭な演奏になります。' },
+    ],
+    works: [
+      { title: 'シューマン「子供の情景」より トロイメライ', note: 'ドイツ語題は「夢見ること」を意味し、sogno と同じ内容を指す語です。輪郭の柔らかい和声進行で、覚醒と眠りの境目のような時間感覚を作っている作品として知られます。' },
     ],
   },
 
@@ -16241,6 +16259,12 @@ export const termArticles = {
       { term: 'Fantasie', slug: 'fantasie', note: '自由な構成を持つ楽曲の型。同じ語根。' },
       { term: 'Capriccioso', slug: 'capriccioso', note: '気まぐれに。予測できなさが主体。' },
       { term: 'Misterioso', slug: 'misterioso', note: '神秘的に。隠されていることが主体。' },
+    ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '唐突な転換を生かすには、その直前まで通常どおりの流れを保ち、変化の瞬間だけ質を変えます。徐々に予兆を示すと、幻想的な唐突さが薄れます。' },
+    ],
+    works: [
+      { title: 'ベルリオーズ「幻想交響曲」', note: 'フランス語題 Symphonie fantastique の fantastique が fantastico と同じ語根です。固定楽想（イデー・フィクス）が場面ごとに姿を変えて現れる、予測しにくい構成を持つ作品として知られます。' },
     ],
   },
 

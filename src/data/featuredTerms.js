@@ -22,6 +22,7 @@ export const FEATURED_SLUGS = new Set([
     'ad-libitum',
     'adagietto',
     'adagio',
+    'addolorato',
     'agitato',
     'al-niente',
     'alberti-bass',
@@ -134,6 +135,7 @@ export const FEATURED_SLUGS = new Set([
     'fagotto',
     'fandango',
     'fantasie',
+    'fantastico',
     'fermata',
     'figured-bass',
     'fine',
@@ -288,6 +290,7 @@ export const FEATURED_SLUGS = new Set([
     'singspiel',
     'sixteenth-note',
     'smorzando',
+    'sogno',
     'solenne',
     'solo',
     'sombre',
@@ -347,6 +350,7 @@ export const FEATURED_SLUGS = new Set([
     'vocalise',
     'whole-tone-scale',
     'xilofono',
+    'zart',
     'zingarese',
 ]);
 
