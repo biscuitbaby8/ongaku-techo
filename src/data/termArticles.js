@@ -3148,6 +3148,12 @@ export const termArticles = {
       { term: 'Mobile form', slug: 'mobile-form', note: '断片の順序を奏者が選ぶ形式。' },
       { term: 'Graphic notation', slug: 'graphic-notation', note: '図形による記譜。解釈が開かれている。' },
     ],
+    instruments: [
+      { name: 'ピアノ・オーケストラ', tip: '凡例に基づいて自分の選択肢を確認したら、演奏中に迷いを見せず一つの解釈を貫きます。自由が許されていることと、優柔不断に演奏することは別です。' },
+    ],
+    works: [
+      { title: 'ケージ「ピアノと管弦楽のためのコンサート」（1958年）', note: 'ケージ自身が「その演奏において不確定な作品」と説明した作品で、ピアノパートは84種の記譜法を凡例で示す形で書かれ、演奏のたびに結果が変わります。' },
+    ],
   },
 
   'graphic-notation': {
@@ -3171,6 +3177,12 @@ export const termArticles = {
       { term: 'Mobile form', slug: 'mobile-form', note: '断片の順序を奏者が選ぶ形式。' },
       { term: 'Staff', slug: 'staff', note: '五線。図形記譜が離れる対象。' },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '図形だけが手がかりの楽譜では、まず自分なりに図形と音の対応の規則を決め、演奏を通してその規則を守ります。その場ごとに対応を変えると、一貫性のない演奏になります。' },
+    ],
+    works: [
+      { title: 'アール・ブラウン「1952年12月」', note: '正方形の紙に、大きさと向きの異なる黒い矩形が並べられただけの楽譜で、明確な凡例を持たない図形記譜の最初期の例として知られます。' },
+    ],
   },
 
   'mobile-form': {
@@ -3193,6 +3205,12 @@ export const termArticles = {
       { term: 'Indeterminacy', slug: 'indeterminacy', note: '演奏ごとに結果が変わる状態。' },
       { term: 'Aleatory', slug: 'aleatory', note: '偶然に任せること。' },
       { term: 'Form', slug: 'form', note: '楽曲の構成。モビール形式ではこれが可変になる。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: 'どの断片を選ぶか迷って間が空くと、モビールという発想の軽やかさが失われます。目についた断片へ、ためらわず進むという姿勢が要点です。' },
+    ],
+    works: [
+      { title: 'シュトックハウゼン「ピアノ曲XI」（1956年）', note: '大きな1枚の紙に19の断片が並べられ、奏者が目についた順に演奏し、いずれかの断片が3回演奏された時点で終わるという作品です。モビール形式の代表例として知られます。' },
     ],
   },
 
@@ -3427,6 +3445,12 @@ export const termArticles = {
       { term: 'Concrete music', slug: 'concrete-music', note: '録音音を素材とする方向。先行する動向。' },
       { term: 'Spektralmusik', slug: 'spektralmusik', note: '音響分析を前提とする様式。' },
       { term: 'Glitch', slug: 'glitch', note: '機器のエラーを素材とする手法。' },
+    ],
+    instruments: [
+      { name: '独奏楽器（電子処理を伴う）', tip: '演奏した音がリアルタイムで加工されて別の位置から返ってくる作品では、加工後の音を聞いてから次の音を出すタイミングを調整する必要があり、通常より一拍遅れて反応する感覚を持つと合わせやすくなります。' },
+    ],
+    works: [
+      { title: 'ブーレーズ「レポン」（1981年）', note: 'IRCAMが開発した4Xという計算機システムを世界で初めて用いた作品で、独奏楽器群の音をリアルタイムで加工し、空間内を移動させる形で客席を取り囲んで演奏されます。' },
     ],
   },
 
@@ -3996,6 +4020,12 @@ export const termArticles = {
       { term: 'Phasing', slug: 'phasing', note: '位相のずれ。ループを利用した手法。' },
       { term: 'Sampling', slug: 'sampling', note: '既存の音源の一部を用いる手法。' },
     ],
+    instruments: [
+      { name: '録音・制作', tip: 'ループの継ぎ目が聞こえないようにするには、波形の切り出し位置を音の立ち上がりや無音部分に合わせると、つなぎ目でのクリック音や不自然な段差を防げます。' },
+    ],
+    works: [
+      { title: 'ライヒ「イッツ・ゴナ・レイン」（1965年）', note: '街頭で録音した説教師の声のテープループを2台の再生機で同時に鳴らしたところ、機械のわずかな速度差でずれが生じ、それを意図的に利用した作品です。ライヒの位相技法の出発点になりました。' },
+    ],
   },
 
   'gregorian-chant': {
@@ -4113,6 +4143,12 @@ export const termArticles = {
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。定旋律に声部を付ける技法。' },
       { term: 'Gregorian chant', slug: 'gregorian-chant', note: 'カントゥス・フィルムスに用いられた旋律の主な出所。' },
       { term: 'Ground bass', slug: 'ground-bass', note: '反復する低音。旋律を土台にする点で近い。' },
+    ],
+    instruments: [
+      { name: '合唱', tip: '定旋律を歌う声部は、他の声部より長い音価で書かれていることが多く、その音を保ちながらも他の声部の動きに耳を傾け、和声が変わる瞬間を感じ取ることが求められます。' },
+    ],
+    works: [
+      { title: '世俗歌曲「武装した人（ラ・オム・アルメ）」に基づくミサ曲群', note: 'デュファイ、オケゲム、ジョスカン、パレストリーナら世代を超えた多数の作曲家が同じ旋律を定旋律に用い、40曲以上のミサ曲を書きました。同じ素材の扱い方を比較できる代表例です。' },
     ],
   },
 
@@ -4574,6 +4610,12 @@ export const termArticles = {
       { term: 'Leitmotif', slug: 'leitmotif', note: '動機による構造。ワーグナーの手法。' },
       { term: 'Opera', slug: 'opera', note: 'ワーグナーは自作を楽劇と呼び区別した。' },
       { term: 'Camerata', slug: 'camerata', note: '古代ギリシャ悲劇を参照した点が共通する。' },
+    ],
+    instruments: [
+      { name: 'オーケストラ・演出全般', tip: '音楽と舞台の要素を対等に扱う理念のもとでは、演奏がどれほど優れていても、演出や台本との整合が崩れれば全体の効果が損なわれます。個々の要素だけでなく全体の一致を意識します。' },
+    ],
+    works: [
+      { title: 'ワーグナー「ニーベルングの指環」四部作とバイロイト祝祭劇場', note: '台本・作曲・演出・劇場建築のすべてに作曲者自身が関わった、ゲザムトクンストヴェルクの理念を最も具体的に実現した例です。' },
     ],
   },
 
