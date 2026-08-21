@@ -18268,6 +18268,12 @@ export const termArticles = {
       { term: 'Minor third', slug: 'minor-third', note: '主音から第3音までが短3度なら短調になる。' },
       { term: 'Submediant', slug: 'submediant', note: '下中音（第6音）。主音を挟んで中音と対称の位置にある。' },
     ],
+    instruments: [
+      { name: '合唱・アンサンブル', tip: '第3音を担当する声部は、和音の長短を決める音を担っていることを意識し、周囲に埋もれないだけの音量を保ちつつ、根音より一歩控えた重さで鳴らします。' },
+    ],
+    works: [
+      { title: 'バッハの371のコラール（4声体）', note: '主和音の第3音の配置や、第3音を根音とする III の和音の使い方が、和声学の標準的な教材として見られる作品群です。' },
+    ],
   },
 
   'submediant': {
@@ -18294,6 +18300,12 @@ export const termArticles = {
       { term: 'Mediant', slug: 'mediant', note: '中音（第3音）。主音を挟んで下中音と対称の位置にある。' },
       { term: 'Deceptive cadence', slug: 'deceptive-cadence', note: 'V から VI へ進む偽終止。下中音の和音が使われる。' },
       { term: 'Relative keys', slug: 'relative-keys', note: '長調の第6音を主音とする短調が平行調にあたる。' },
+    ],
+    instruments: [
+      { name: '合唱・アンサンブル', tip: '偽終止で VI の和音が現れる瞬間は、それまでと音色を変えて、聴き手の予想が外れたことが伝わるようにします。' },
+    ],
+    works: [
+      { title: 'モーツァルト「アヴェ・ヴェルム・コルプス」K.618', note: '属和音から下中音の和音へ進む偽終止の例として、音楽理論の教材でしばしば取り上げられる曲です。' },
     ],
   },
 
@@ -18940,6 +18952,12 @@ export const termArticles = {
       { term: 'Upbeat', slug: 'upbeat', note: '小節の最後の弱拍。次の強拍へ向かう拍。' },
       { term: 'Anacrusis', slug: 'anacrusis', note: '弱拍から始まること。最初の強拍が小節の2つ目以降に来る。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '強拍をわざとずらしたアクセントを演奏する場合、他の拍は淡々と保ちつつ、ずらした箇所だけ音の立ち上がりを鋭くすると、規則からの逸脱がはっきり伝わります。' },
+    ],
+    works: [
+      { title: 'ストラヴィンスキー「春の祭典」より「春のきざし」', note: '弦楽器の刻みに対して、ホルンによる強いアクセントが小節の1拍目からずれた位置に不規則に置かれ、拍節感を意図的に揺さぶる書法として知られます。' },
+    ],
   },
 
   'upbeat': {
@@ -18961,6 +18979,12 @@ export const termArticles = {
     confusions: [
       { term: 'Downbeat', slug: 'downbeat', note: '小節の1拍目。弱拍が向かっていく先。' },
       { term: 'Anacrusis', slug: 'anacrusis', note: '曲やフレーズが弱拍から始まること。' },
+    ],
+    instruments: [
+      { name: '指揮・アンサンブル全般', tip: '弱拍を軽く出すには、そこで音量を作りきらず、次の1拍目に向けてまだ伸びしろを残しておく意識を持ちます。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第5番 第1楽章冒頭', note: '「動機」の最初の3つの短い音符が弱拍（アウフタクト）にあたり、続く長い音が強拍に落ちる構造になっています。' },
     ],
   },
 
@@ -19135,6 +19159,12 @@ export const termArticles = {
       { term: 'Major scale', slug: 'major-scale', note: '全音階的な音の集まりの代表例。' },
       { term: 'Accidental', slug: 'accidental', note: '調の外の音を示す記号。全音階的かどうかの手がかりになる。' },
     ],
+    instruments: [
+      { name: '声楽・器楽全般', tip: '楽譜を見て臨時記号のない箇所を確認しておくと、そこが調の枠の中にとどまっている区間だと分かり、音程を取る際の目安になります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第9番より「歓喜の歌」主題', note: '臨時記号を一切用いず、調の音階内の音だけで書かれた旋律で、全音階的な書法の分かりやすい例として知られます。' },
+    ],
   },
 
   'tonality': {
@@ -19157,6 +19187,12 @@ export const termArticles = {
       { term: 'Atonality', slug: 'atonality', note: '調の中心を持たない音楽。20世紀に現れた。' },
       { term: 'Tonic', slug: 'tonic', note: '調の中心となる音。' },
       { term: 'Modulation', slug: 'modulation', note: '曲の途中で調の中心が移ること。' },
+    ],
+    instruments: [
+      { name: '鍵盤楽器', tip: '主和音へ帰る箇所では低音をしっかり鳴らして着地を明確にし、属和音の箇所ではそれよりわずかに軽く扱うと、調の階層が響きの違いとして伝わります。' },
+    ],
+    works: [
+      { title: 'バッハ「平均律クラヴィーア曲集」', note: '長調・短調あわせて24のすべての調で1曲ずつ前奏曲とフーガを書いた作品集で、調性という体系そのものを網羅的に示した例として知られます。' },
     ],
   },
 
