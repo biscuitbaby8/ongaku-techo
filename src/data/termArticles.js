@@ -6810,6 +6810,12 @@ export const termArticles = {
       { term: 'Scatenato', slug: 'scatenato', note: '鎖を解かれて。' },
       { term: 'Estatico', slug: 'estatico', note: '恍惚として。「外に立つ」が語源。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '熱狂を作るには、テンポを速めるだけでなく、リズムの反復を執拗に保つことが有効です。オーボエなど特定の楽器に異国的な旋律を担わせ、そこに打楽器の反復リズムを重ねる書法が伝統的に用いられてきました。' },
+    ],
+    works: [
+      { title: 'サン＝サーンス「サムソンとデリラ」より バッカナール', note: 'ダゴン神への礼拝が熱狂的な乱舞へと変わる場面の舞踏音楽で、bacchante の性格を音で表した代表例として知られます。' },
+    ],
   },
 
   'calma': {
@@ -8097,6 +8103,12 @@ export const termArticles = {
       { term: 'Grandioso', slug: 'grandioso', note: '壮大に。規模が主体。' },
       { term: 'Alla marcia', slug: 'alla-marcia', note: '行進曲風に。歩みという点で近い。' },
     ],
+    instruments: [
+      { name: '金管楽器・打楽器', tip: '行列の重みを出すには、和音を十分に伸ばし、次の和音へ移る瞬間をやや余裕を持たせて置きます。急いで詰めると、儀式的な落ち着きが失われます。' },
+    ],
+    works: [
+      { title: 'エルガー「威風堂々」第1番', note: '英語題の Pomp（豪華、儀式的な華やかさ）は pomposo と同じラテン語 pompa に由来する語で、堂々とした行進の性格を持つ曲として知られます。' },
+    ],
   },
 
   'alla-marcia': {
@@ -8148,6 +8160,12 @@ export const termArticles = {
       { term: 'Alla marcia', slug: 'alla-marcia', note: '行進曲風に。同じ alla の形。' },
       { term: 'Semplice', slug: 'semplice', note: '素朴に。飾りを排する点で近い。' },
       { term: 'Barbaro', slug: 'barbaro', note: '未開の。洗練を排する方向。' },
+    ],
+    instruments: [
+      { name: '弦楽器', tip: '民俗楽器の響きに寄せるには、五度の重音を素朴に鳴らし、ヴィブラートを控えます。整えすぎたヴィブラートは、田舎風の質感を消してしまいます。' },
+    ],
+    works: [
+      { title: 'ヴィヴァルディ「協奏曲 ト長調《アルラ・ルスティカ》」RV151', note: '曲名にこの語をそのまま用いた合奏協奏曲です。標題的な説明を伴わないまま、素朴で牧歌的な性格が音楽そのものから伝わる作品として知られます。' },
     ],
   },
 
@@ -15525,6 +15543,12 @@ export const termArticles = {
     confusions: [
       { term: 'Feroce', slug: 'feroce', note: '獣のような荒々しさ。洗練を排する点で近い。' },
       { term: 'Pesante', slug: 'pesante', note: '重々しく。重量感を作る点で組み合わせやすい。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: '打楽器的な扱いを作るには、指を寝かせず、鍵盤の底を突くように打鍵します。ただし手首を固めると怪我につながるため、打った直後に力を抜くことが必要です。' },
+    ],
+    works: [
+      { title: 'バルトーク「アレグロ・バルバロ」', note: '曲名にこの語をそのまま用いた作品です。打楽器的な連打と強いアクセントの和音を特徴とし、洗練を排した原初的な力を音にしています。' },
     ],
   },
 
