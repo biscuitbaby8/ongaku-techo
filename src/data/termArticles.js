@@ -8961,6 +8961,12 @@ export const termArticles = {
       { term: 'Rest', slug: 'rest', note: '休符全般。' },
       { term: 'Generalpause', slug: 'generalpause', note: '全員が休止すること。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '休符を挟んだ和音の連なりでは、休符の間も次の和音への緊張を保ち続けます。休符で気が抜けると、次の和音が唐突な入りになってしまいます。' },
+    ],
+    works: [
+      { title: 'シベリウス 交響曲第5番 終楽章の終結部', note: '広い間隔を置いて配置された和音の連なりを休符で区切る、異例なほど間（休止）を前面に押し出した終わり方として知られます。' },
+    ],
   },
 
   'sixteenth-note': {
@@ -9072,6 +9078,12 @@ export const termArticles = {
       { term: 'Quarter note', slug: 'quarter-note', note: '2分音符の半分の長さ。' },
       { term: 'Dotted note', slug: 'dotted-note', note: '付点2分音符は3拍分になる。' },
     ],
+    instruments: [
+      { name: '吹奏楽全般', tip: 'アラ・ブレーヴェ（2分の2拍子）の楽譜では、4分音符ではなく2分音符を1拍として数えると、実際のテンポ感と体の動きが一致します。' },
+    ],
+    works: [
+      { title: 'スーザ「星条旗よ永遠なれ」', note: '2分の2拍子（アラ・ブレーヴェ）で書かれた行進曲の代表例で、2分音符を1拍とする速い足取りを持つ作品として知られます。' },
+    ],
   },
 
   'whole-note': {
@@ -9158,6 +9170,12 @@ export const termArticles = {
       { term: 'Staff', slug: 'staff', note: '五線。加線はこれを延長する。' },
       { term: 'Alto clef', slug: 'alto-clef', note: '音部記号を変えることで加線を減らせる。' },
       { term: 'Octave', slug: 'octave', note: 'オクターブ記号でも加線を回避できる。' },
+    ],
+    instruments: [
+      { name: 'コントラバス', tip: '加線の多い高音域を弾く際は、五線内の基準になる音から数えるより、その音域特有の指のポジション（ハーモニクスの位置など）を目印にするほうが速く正確に読めます。' },
+    ],
+    works: [
+      { title: 'ボッテジーニ「グランド・アレグロ」', note: '冒頭のアルペッジョがト音記号の上に加線4本という高さまで達する箇所があり、低音楽器の記譜における加線の限界に近い例として知られます。' },
     ],
   },
 
