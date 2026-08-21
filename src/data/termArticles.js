@@ -8600,6 +8600,12 @@ export const termArticles = {
       { term: 'Dissonanza', slug: 'dissonanza', note: '不協和。経過音は一時的な不協和にあたる。' },
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。非和声音の扱いが規則として整理されている。' },
     ],
+    instruments: [
+      { name: '声楽・合唱', tip: '経過音は通過点なので、他の声部より少し軽く発音すると、和声の骨格が濁らずに聞こえます。' },
+    ],
+    works: [
+      { title: 'バッハの371のコラール（4声体）', note: '経過音をはじめとする非和声音の扱いが整理された形で見られる作品群で、和声学の教材として広く使われています。' },
+    ],
   },
 
   'voicing': {
@@ -8696,6 +8702,12 @@ export const termArticles = {
       { term: 'Triad', slug: 'triad', note: '三和音。転回する対象。' },
       { term: 'Voicing', slug: 'voicing', note: '和音の音の配置全般。' },
     ],
+    instruments: [
+      { name: '鍵盤楽器', tip: '第1転回形へ移る際は、低音の指を隣の音へ滑らかに運び、上声部の和音は保ったまま最低音だけが動いている感覚を持つと、経過的な性格が伝わります。' },
+    ],
+    works: [
+      { title: 'バッハの371のコラール（4声体）', note: '低音の旋律線をなめらかにする目的で転回形が使い分けられている、和声学の標準的な教材です。' },
+    ],
   },
 
   'root-position': {
@@ -8742,6 +8754,12 @@ export const termArticles = {
       { term: 'Whole tone scale', slug: 'whole-tone-scale', note: '全音音階。増三和音を含む。' },
       { term: 'Major third', slug: 'major-third', note: 'この和音を構成する音程。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '根音が確定しない性質を生かすには、和音の中の特定の音を強調しすぎないことが有効です。どれかの音を根音のように扱うと、あいまいさが消えてしまいます。' },
+    ],
+    works: [
+      { title: 'リスト「ファウスト交響曲」冒頭', note: '22小節にわたって増三和音が連続し、半音階的に移動しながら12音すべてを提示する序奏として知られます。調性の輪郭を意図的にぼかす、この和音の用途を示す代表例です。' },
+    ],
   },
 
   'diminished-chord': {
@@ -8768,6 +8786,12 @@ export const termArticles = {
       { term: 'Augmented chord', slug: 'augmented-chord', note: '長3度を2つ積んだ和音。外側が増5度。' },
       { term: 'Tritone', slug: 'tritone', note: '減5度。この和音の不安定さの源。' },
       { term: 'Triad', slug: 'triad', note: '三和音全般。' },
+    ],
+    instruments: [
+      { name: '声楽・合唱', tip: '導音を含む和音であるため、その音を次の和音の音へ向かう途中として扱い、そこで止まらずに解決の方向へ運ぶ意識を持つと、緊張が生きたまま次へつながります。' },
+    ],
+    works: [
+      { title: 'バッハの371のコラール（4声体）', note: '導音を含む減三和音が属和音の代わりとして使われる、和声学の標準的な教材です。' },
     ],
   },
 
@@ -18887,6 +18911,12 @@ export const termArticles = {
     confusions: [
       { term: 'Upbeat', slug: 'upbeat', note: '小節の最後の弱拍。アウフタクトはこの位置から始まること。' },
       { term: 'Downbeat', slug: 'downbeat', note: '小節の1拍目。アウフタクトが向かっていく先。' },
+    ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: 'アウフタクトの音を軽く出すには、その前にわずかに間を置き、次の1拍目へ向かう方向をあらかじめ体で示しておくと、演奏者間でずれずに揃います。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第5番 第1楽章冒頭', note: '「動機」は8分休符に続く3つの短い音符から始まり、その音符群がアウフタクトとして長い音へ向かいます。世界で最もよく知られたアウフタクトの例の一つです。' },
     ],
   },
 
