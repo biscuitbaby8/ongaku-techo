@@ -2083,6 +2083,12 @@ export const termArticles = {
       { term: 'Overture', slug: 'overture', note: '序曲。開始前に演奏される。' },
       { term: 'Opera', slug: 'opera', note: 'アントラクトが置かれる形式。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '前の幕の余韻を保ちながら次の幕の気分へ移るには、冒頭を前の幕の最後の和声や音色に近づけ、そこから徐々に新しい場面の色へ変えていくと自然な橋渡しになります。' },
+    ],
+    works: [
+      { title: 'ビゼー「カルメン」第3幕・第4幕への前奏曲', note: '本編から独立して演奏会でも取り上げられる、アントラクトの代表例です。' },
+    ],
   },
 
   'fanfare': {
@@ -2143,6 +2149,12 @@ export const termArticles = {
       { term: 'Air on the G String', slug: 'air-on-the-g-string', note: 'バッハの Air の編曲。' },
       { term: 'Cantabile', slug: 'cantabile', note: '歌うように。air の性格に対応する。' },
     ],
+    instruments: [
+      { name: '弦楽合奏', tip: '舞曲のような明確な重心がない楽章では、旋律の呼吸に合わせてテンポをわずかに伸縮させることで、拍節に縛られない流れが生まれます。' },
+    ],
+    works: [
+      { title: 'バッハ「管弦楽組曲第3番」第2曲 アリア', note: '舞曲の並びの中に置かれた緩やかな楽章で、19世紀にヴィルヘルミが独奏ヴァイオリン用に編曲し「G線上のアリア」として広く知られるようになりました。' },
+    ],
   },
 
   'climax': {
@@ -2169,6 +2181,12 @@ export const termArticles = {
       { term: 'Crescendo', slug: 'crescendo', note: 'だんだん強く。頂点へ向かう手段。' },
       { term: 'Dynamics', slug: 'dynamics', note: '強弱法。頂点の設計に関わる。' },
       { term: 'Form', slug: 'form', note: '形式。頂点の位置は構造から導かれる。' },
+    ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '長い一つの高揚を作る場合、序盤で音量を出しすぎないことが最重要です。最初から強く始めると、頂点で行き場がなくなります。' },
+    ],
+    works: [
+      { title: 'ラヴェル「ボレロ」', note: '楽器を少しずつ加えながら1つの長いクレッシェンドを作り、終盤でハ長調からホ長調へ一時的に転じたのち、頂点で半音下がってハ長調へ戻るという設計で、頂点の作り方が明快な代表例です。' },
     ],
   },
 
@@ -2481,6 +2499,12 @@ export const termArticles = {
       { term: 'Die Forelle', slug: 'die-forelle', note: 'シューベルトの歌曲。性格が対照的。' },
       { term: 'Declamando', slug: 'declamando', note: '語るように。役の描き分けに関わる扱い。' },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: '3連符の連打を最後まで保つには、手首の力を抜いて指の付け根から動かすことが要点です。腕全体で押すと長く続けたときに疲労で音が乱れます。' },
+    ],
+    works: [
+      { title: 'カール・レーヴェ「魔王」（1817〜18年）', note: '同じゲーテの詩に基づく、シューベルト作に次いで有名な別の付曲です。ゲーテ自身はレーヴェの曲をより高く評価したと伝えられ、シューベルトが疾走する馬の蹄を強調するのに対し、レーヴェは不気味な木の葉のざわめきから始めるなど、扱いの違いが対比されます。' },
+    ],
   },
 
   'die-forelle': {
@@ -2503,6 +2527,12 @@ export const termArticles = {
       { term: 'Erlkönig', slug: 'erlkönig', note: 'シューベルトの歌曲。性格が対照的。' },
       { term: 'Variations', slug: 'variations', note: '変奏。五重奏曲での扱い。' },
       { term: 'Winterreise', slug: 'winterreise', note: 'シューベルトの歌曲集。' },
+    ],
+    instruments: [
+      { name: '室内楽全般', tip: '水の跳ねる音型は軽く弾みをつけて弾き、暗転する箇所では同じ音型でも重さと粘りを加えることで、伴奏の性格の変化がそのまま情景の変化として伝わります。' },
+    ],
+    works: [
+      { title: 'ピアノ五重奏曲 イ長調 D.667「ます」', note: 'ヴィオラ・チェロ・コントラバスを含む通常とは異なる編成で書かれ、歌曲「ます」の旋律を第4楽章の変奏主題として再利用した作品です。' },
     ],
   },
 
@@ -2531,6 +2561,12 @@ export const termArticles = {
       { term: 'Oratorio', slug: 'oratorio', note: '大規模な声楽曲。' },
       { term: 'Eroico', slug: 'eroico', note: '英雄的に。ベートーヴェンの交響曲第3番の副題に関わる語。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '単純な旋律に楽器が少しずつ加わっていく箇所では、新しく入る楽器を強く出しすぎず、すでに鳴っている響きに溶け込ませてから徐々に厚みを増すと、旋律の単純さが保たれたまま高揚が作れます。' },
+    ],
+    works: [
+      { title: 'カラヤン編曲による「欧州の歌（欧州連合の歌）」（1972年）', note: '欧州評議会の依頼でカラヤンが独奏ピアノ・吹奏楽・管弦楽の3種の編曲を作り、器楽のみで演奏される公式の欧州アンセムとして採用されました。' },
+    ],
   },
 
   'kinderszenen': {
@@ -2557,6 +2593,12 @@ export const termArticles = {
       { term: 'Dichterliebe', slug: 'dichterliebe', note: 'シューマンの歌曲集。' },
       { term: 'Biedermeier', slug: 'biedermeier', note: '家庭を中心とする当時の文化。' },
       { term: 'Hausmusik', slug: 'hausmusik', note: '家庭で演奏される音楽。' },
+    ],
+    instruments: [
+      { name: 'ピアノ', tip: '短い小品が並ぶ曲集では、曲間の間の長さと質を曲ごとに変えることで、13の情景が単調に並ぶのではなく、それぞれ独立した回想として立ち上がります。' },
+    ],
+    works: [
+      { title: '第7曲「トロイメライ（夢見ること）」', note: '曲集の中でも単独で広く演奏される曲で、覚醒と眠りの境目のような柔らかい和声進行が特徴です。' },
     ],
   },
 
@@ -3811,6 +3853,12 @@ export const termArticles = {
       { term: 'Ground bass', slug: 'ground-bass', note: '反復する低音。こちらは動く。' },
       { term: 'Forniture', slug: 'forniture', note: 'オルガンの混合ストップ。' },
     ],
+    instruments: [
+      { name: '鍵盤楽器', tip: '持続する低音を表すには、その音を弾いたら鍵盤を押さえたまま（あるいはペダルで）保ち続け、上声部の和声が変わってもその低音を動かさないことが要点です。' },
+    ],
+    works: [
+      { title: 'バッハ「イギリス組曲第3番」ガヴォットII「あるいはミュゼット」', note: 'フランスのバグパイプ（ミュゼット）を模した曲で、低音がソの音の持続（ドローン）に固定されたまま上声部の旋律が動く構造を持ちます。' },
+    ],
   },
 
   'melody': {
@@ -4248,6 +4296,12 @@ export const termArticles = {
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。プリマ・プラティカの技術的基礎。' },
       { term: 'Madrigal', slug: 'madrigal', note: 'この論争の舞台となった形式。' },
     ],
+    instruments: [
+      { name: '合唱', tip: '不協和音は必ず準備してから鳴らし、次の和音へ順次進行で解決させます。跳躍による不用意な不協和は、この様式の規則から外れます。' },
+    ],
+    works: [
+      { title: 'パレストリーナのミサ曲・モテット集', note: '不協和音の準備と解決を厳格に守った書法の模範とされ、後の対位法教育（フックスの厳格対位法）の規範になりました。' },
+    ],
   },
 
   'seconda-prattica': {
@@ -4275,6 +4329,12 @@ export const termArticles = {
       { term: 'Monody', slug: 'monody', note: '単旋律の独唱歌曲。この考え方と結びついた。' },
       { term: 'Stilo rappresentativo', slug: 'stilo-rappresentativo', note: '語るような様式。初期オペラの基礎。' },
     ],
+    instruments: [
+      { name: '声楽', tip: '準備なしの不協和音を歌う箇所では、歌詞の意味を先に理解し、その感情の激しさを音程の正確さと引き換えにしないことが要点です。音程を犠牲にすると単なる歌唱の失敗になります。' },
+    ],
+    works: [
+      { title: 'モンテヴェルディ「マドリガーレ集第5巻」序文（1605年）', note: '理論家アルトゥージからの不協和音批判に応え、言葉の表現を優先する「セコンダ・プラティカ」の考えを初めて明示した文献です。' },
+    ],
   },
 
   'monody': {
@@ -4297,6 +4357,12 @@ export const termArticles = {
       { term: 'Seconda prattica', slug: 'seconda-prattica', note: '言葉を優先する考え方。モノディの背景にある。' },
       { term: 'Stilo rappresentativo', slug: 'stilo-rappresentativo', note: '当時使われた呼び方の一つ。' },
       { term: 'Recitative', slug: 'recitative', note: '語るように歌う部分。モノディから発展した。' },
+    ],
+    instruments: [
+      { name: '声楽', tip: '通奏低音の伴奏の上で歌う際は、拍を機械的に刻まず、言葉の自然な間と抑揚に合わせて音の長さを伸縮させることが、この様式の要点です。' },
+    ],
+    works: [
+      { title: 'カッチーニ「レ・ヌオーヴェ・ムジケ（新しい音楽）」（1602年出版）', note: '序文で言葉を語るように歌う方法を説明した歌曲集で、モノディ様式の代表的な作例とされます。' },
     ],
   },
 
@@ -4321,6 +4387,12 @@ export const termArticles = {
       { term: 'Recitative', slug: 'recitative', note: 'この様式が発展した形。' },
       { term: 'Seconda prattica', slug: 'seconda-prattica', note: '言葉を優先する考え方。' },
     ],
+    instruments: [
+      { name: '通奏低音楽器', tip: '歌い手の語りの間に合わせて和音を差し出すには、歌詞の区切りを事前に把握し、歌い手が言葉を発する直前に和音を準備しておくことが要点です。' },
+    ],
+    works: [
+      { title: 'モンテヴェルディ「オルフェオ」（1607年）', note: 'フィレンツェのカメラータに始まる初期オペラの試みを大規模な作品として結実させ、この様式を用いた代表作とされます。' },
+    ],
   },
 
   'camerata': {
@@ -4343,6 +4415,12 @@ export const termArticles = {
       { term: 'Monody', slug: 'monody', note: '単旋律の独唱歌曲。この会の議論から生まれた方向。' },
       { term: 'Intermedio', slug: 'intermedio', note: '幕間劇。オペラ成立に関わったもう一つの流れ。' },
       { term: 'Opera', slug: 'opera', note: 'この動向から生まれた形式。' },
+    ],
+    instruments: [
+      { name: '声楽', tip: '古代ギリシャ悲劇の再現を目指した理念に沿うなら、旋律の美しさより言葉が正確に聞き取れることを優先し、子音をはっきり発音することが要点になります。' },
+    ],
+    works: [
+      { title: 'ペーリ「エウリディーチェ」（1600年）', note: 'カメラータの理念を受けたペーリとリヌッチーニによる作品で、全曲の音楽が現存する最古のオペラとされます。' },
     ],
   },
 
