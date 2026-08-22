@@ -1859,6 +1859,12 @@ export const termArticles = {
       { term: 'Musical', slug: 'musical', note: '歌と舞踊と台詞による舞台形式。' },
       { term: 'Ballando', slug: 'ballando', note: '踊るように。同じ語根。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '振付の尺に音楽を合わせる曲では、指揮者がテンポを踊り手の動きに応じて柔軟に調整することが前提になるため、奏者もテンポの揺れに即座に反応できるよう楽譜の目印を把握しておきます。' },
+    ],
+    works: [
+      { title: 'チャイコフスキー「白鳥の湖」', note: '舞踊の伴奏という枠を超え、演奏会でも単独で取り上げられる交響的な内容を持つバレエ音楽の代表例です。' },
+    ],
   },
 
   'pantomime': {
@@ -1886,6 +1892,12 @@ export const termArticles = {
       { term: 'Gesticulante', slug: 'gesticulante', note: '身振りたっぷりに。動きを音で示す指示。' },
       { term: 'Underlining', slug: 'underlining', note: '動きを音でなぞる技法。' },
     ],
+    instruments: [
+      { name: 'フルート', tip: '身振りに寄り添う独奏では、拍を機械的に刻まず、舞台上の動きの間合いに合わせて音の長さを伸縮させることが、身振りの説明という役割に合います。' },
+    ],
+    works: [
+      { title: 'ラヴェル「ダフニスとクロエ」より「パントマイム」', note: 'ダフニスがパン神を、クロエがニンフのシランクスを演じる場面で、フルート独奏が身振りによる物語を音で語ります。' },
+    ],
   },
 
   'jig': {
@@ -1908,6 +1920,12 @@ export const termArticles = {
       { term: 'Compound meter', slug: 'compound-meter', note: '1拍が3等分される拍子。ジグの前提。' },
       { term: 'Bourrée', slug: 'bourrée', note: '組曲に含まれる舞曲。' },
       { term: 'Ballando', slug: 'ballando', note: '踊るように。' },
+    ],
+    instruments: [
+      { name: '鍵盤楽器', tip: '複合拍子の速い動きでは、8分音符を1つずつ数えるより、1拍を大きな単位として捉え、その中で3つの音が流れるという感覚を持つと、舞曲らしい弾みが出ます。' },
+    ],
+    works: [
+      { title: 'バッハ「フランス組曲第5番」BWV816 終曲ジーグ', note: '16分の12拍子で書かれた3声のフーガになっており、主題がソプラノ・アルト・バスの順に現れる、舞曲と対位法が結びついた例として知られます。' },
     ],
   },
 
@@ -2717,6 +2735,12 @@ export const termArticles = {
       { term: 'Air on the G String', slug: 'air-on-the-g-string', note: '編曲。原曲との区別が問題になる例。' },
       { term: 'Figured bass', slug: 'figured-bass', note: '実現譜と原典の違いが生じる領域。' },
     ],
+    instruments: [
+      { name: '鍵盤楽器', tip: '原典版と実用譜（校訂者の指使いやペダルが書き込まれた版）を見比べると、どこまでが作曲者の指示でどこからが後世の提案かが分かり、自分の解釈を作る手がかりになります。' },
+    ],
+    works: [
+      { title: 'G.ヘンレ社「原典版（Urtext）」シリーズ（1948年創業）', note: '創業者ギュンター・ヘンレが、当時の実用譜に後世の編集者による不正確な加筆が多いことを問題視して立ち上げた出版社で、原典版という考え方を広めた代表的な存在です。' },
+    ],
   },
 
   'bebop': {
@@ -2743,6 +2767,12 @@ export const termArticles = {
       { term: 'Fusion', slug: 'fusion', note: 'ジャズと他ジャンルの融合。後の展開。' },
       { term: 'Groove', slug: 'groove', note: 'リズムの一体感。' },
       { term: 'Lick', slug: 'lick', note: '即興で使う定型句。' },
+    ],
+    instruments: [
+      { name: 'サクソフォン', tip: '和音の高次の音（9度・11度・13度）を旋律線に使う際は、その音が和音のどの機能に属するかを把握してから吹くと、複雑な音の選択でも和声から外れずに聞こえます。' },
+    ],
+    works: [
+      { title: 'チャーリー・パーカー「コーコー」（1945年）', note: 'レイ・ノーブル「チェロキー」の和声進行の上に新しい旋律線を即興で作った作品（コントラファクト）で、ビバップを代表する録音の一つです。' },
     ],
   },
 
@@ -2799,6 +2829,12 @@ export const termArticles = {
       { term: 'Acid', slug: 'acid', note: '特定の機材の音色による様式。' },
       { term: 'Minimal music', slug: 'minimal-music', note: '反復による音楽。発想が近い。' },
       { term: 'Glitch', slug: 'glitch', note: '機器のエラーを素材とする手法。' },
+    ],
+    instruments: [
+      { name: 'シンセサイザー・ドラムマシン', tip: '4つ打ちの均質な刻みを作るには、機械の打ち込みのタイミングを一切ずらさないことが要点です。人が演奏するときのような微細な揺れを加えると、この様式の狙いから外れます。' },
+    ],
+    works: [
+      { title: 'サイボトロン「クリア」（1983年）', note: 'ホアン・アトキンスとリック・デイヴィスによる楽曲で、デトロイト・テクノの土台を築いた作品として知られます。' },
     ],
   },
 
