@@ -4099,6 +4099,12 @@ export const termArticles = {
       { term: 'Counterpoint', slug: 'counterpoint', note: '対位法。各声部が対等に扱われる。' },
       { term: 'En dehors', slug: 'en-dehors', note: '特定の声部を浮かび上がらせる指示。' },
     ],
+    instruments: [
+      { name: '器楽（弦・鍵盤）', tip: '流れる音型で主旋律を包む対旋律は、主旋律の音の長さが伸びる箇所でこそ動きを止めず、その隙間を埋め続けることで、全体の推進力を保ちます。' },
+    ],
+    works: [
+      { title: 'バッハ「主よ、人の望みの喜びよ」（カンタータ第147番より）', note: '8分音符の3連符が曲全体を通して途切れずに流れ、コラール旋律を包む対旋律として機能する代表例です。' },
+    ],
   },
 
   'motive': {
@@ -4125,6 +4131,12 @@ export const termArticles = {
       { term: 'Melody', slug: 'melody', note: '旋律。動機より大きい単位。' },
       { term: 'Leitmotif', slug: 'leitmotif', note: '特定の対象と結びついた動機。' },
       { term: 'Developing variation', slug: 'developing-variation', note: '動機を絶えず変形する技法。' },
+    ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '同じ動機が繰り返される箇所では、2回目をまったく同じに弾くのではなく、和声や音域の変化に応じてわずかに性格を変えると、変形が積み重なっていく過程が聴き手に伝わります。' },
+    ],
+    works: [
+      { title: 'ベートーヴェン 交響曲第5番', note: '冒頭の4音の音型が、リズムを保ったまま音程や和声を変えながら全曲を通して現れ続ける、動機労作の代表例として広く知られています。' },
     ],
   },
 
@@ -4972,6 +4984,12 @@ export const termArticles = {
       { term: 'Developing variation', slug: 'developing-variation', note: 'ブラームスの動機展開の技法。' },
       { term: 'Symphony', slug: 'symphony', note: '絶対音楽の代表的な形式。' },
     ],
+    instruments: [
+      { name: 'オーケストラ全般', tip: '物語や情景を想定せずに演奏する場合、動機がどう展開し和声がどう進むかという音の運動そのものを聴き手に示すことが表現の中心になります。' },
+    ],
+    works: [
+      { title: 'ハンスリック『音楽美論』（1854年）', note: '音楽の美は音の形式そのものにあり、感情の描写ではないと論じた著作で、絶対音楽という考え方の理論的な支柱になりました。' },
+    ],
   },
 
   'developing-variation': {
@@ -4999,6 +5017,12 @@ export const termArticles = {
       { term: 'Absolute music', slug: 'absolute-music', note: 'ブラームスが代表とされた立場。' },
       { term: 'Dodecaphony', slug: 'dodecaphony', note: '12音技法。シェーンベルクが連続性を見た。' },
       { term: 'Motive', slug: 'motive', note: '動機。発展の素材となる。' },
+    ],
+    instruments: [
+      { name: '弦楽四重奏', tip: '変形が連続する箇所を演奏する際は、直前の形との共通点（音程の輪郭やリズムの骨格）を保ちながら弾くことで、区切りのない変化の連続が聴き手に伝わります。' },
+    ],
+    works: [
+      { title: 'ブラームス 弦楽四重奏曲第2番 第2楽章', note: 'シェーンベルクが評論「進歩主義者ブラームス」（1947年）でアンダンテの主題を分析し、発展的変奏の具体例として取り上げた楽章です。' },
     ],
   },
 
