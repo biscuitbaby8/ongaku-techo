@@ -1969,6 +1969,12 @@ export const termArticles = {
       { term: 'Quartett', slug: 'quartett', note: '四重奏。和音を完全に構成できる。' },
       { term: 'Chamber music', slug: 'chamber-music', note: '室内楽。' },
     ],
+    instruments: [
+      { name: '声楽（2声）', tip: '2人の登場人物が異なる思惑を持って歌う二重唱では、相手の言葉を聞き流さず、相手が歌い終えた瞬間の反応として自分の声を出すと、対話としての緊張が生まれます。' },
+    ],
+    works: [
+      { title: 'モーツァルト「ドン・ジョヴァンニ」より「手をとりあって」', note: 'ドン・ジョヴァンニがツェルリーナを誘惑する場面の二重唱で、フルートが男声に、ファゴットが女声に寄り添うように書かれています。' },
+    ],
   },
 
   'part': {
@@ -3702,6 +3708,12 @@ export const termArticles = {
       { term: 'Equal temperament', slug: 'equal-temperament', note: '12等分の調律。ガムランはこれと異なる。' },
       { term: 'Microtone', slug: 'microtone', note: '半音より狭い音程。' },
     ],
+    instruments: [
+      { name: 'ピアノ', tip: 'ガムランの銅鑼を模す低音は、ペダルを深く踏んで残響を混ぜることで、輪郭のはっきりした打鍵音ではなく、余韻を帯びた響きに近づけられます。' },
+    ],
+    works: [
+      { title: 'ドビュッシー「版画」より「塔（パゴダ）」', note: 'ピアノの黒鍵による五音音階でスレンドロの調律を模し、低音の保続音でゴングの周期を表すなど、ガムランの要素を取り入れた作品として知られます。' },
+    ],
   },
 
   'coda-sign': {
@@ -4501,6 +4513,12 @@ export const termArticles = {
       { term: 'Baroque', slug: 'baroque', note: '通奏低音が基礎であった時代。' },
       { term: 'Ground bass', slug: 'ground-bass', note: '反復する低音。通奏低音とは別の概念。' },
     ],
+    instruments: [
+      { name: 'チェンバロ', tip: '通奏低音を弾く際は、独奏楽器の動きを聞きながら和音の厚みと装飾の量を調整します。独奏部では控えめに、合奏の支えが必要な箇所では厚く弾くという判断が求められます。' },
+    ],
+    works: [
+      { title: 'バッハ「ブランデンブルク協奏曲第5番」', note: 'それまで通奏低音の「便利な和声担当」だったチェンバロを独奏楽器の地位へ引き上げた最初期の協奏曲として知られます。' },
+    ],
   },
 
   'trio-sonata': {
@@ -4523,6 +4541,12 @@ export const termArticles = {
       { term: 'Figured bass', slug: 'figured-bass', note: '通奏低音の記法。この形式の前提。' },
       { term: 'Concerto grosso', slug: 'concerto-grosso', note: '独奏群と合奏群を対比させる形式。' },
       { term: 'Chamber music', slug: 'chamber-music', note: '室内楽。トリオ・ソナタはその一形式。' },
+    ],
+    instruments: [
+      { name: 'ヴァイオリン（2）', tip: '上2声が対等に絡み合う書法では、相手が動機を提示したら自分がそれを模倣で受け取る、という受け渡しの意識を持つと、どちらか一方が主旋律に固定される演奏にならずに済みます。' },
+    ],
+    works: [
+      { title: 'コレッリ「教会ソナタ集」作品1・作品3', note: '1681年出版の作品1をはじめとする曲集で、この形式の基礎を築き、18世紀を通して広く模倣される規範となりました。弦楽四重奏はトリオ・ソナタの「子」にあたるとも言われます。' },
     ],
   },
 
