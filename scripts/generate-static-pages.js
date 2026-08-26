@@ -32,6 +32,7 @@ const DIST = path.resolve(__dirname, '../dist');
 
 const BASE_URL = 'https://ongakutecho.com';
 const ADSENSE_ID = 'ca-pub-2953839366795600';
+const GA_MEASUREMENT_ID = 'G-2KC3RV4HX7';
 
 // vite build が出力したCSSファイル名はハッシュ付きで毎回変わるため、
 // dist/assets を実際に見て見つける（決め打ちしない）。
@@ -104,6 +105,14 @@ function htmlHead({ title, description, canonicalPath, ogType = 'article' }) {
 
   <link rel="stylesheet" href="${BUILT_CSS_HREF}">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}" crossorigin="anonymous"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}');
+  </script>
 
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
