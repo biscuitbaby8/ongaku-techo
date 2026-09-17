@@ -48,6 +48,10 @@
   ],
   "rewrites": [
     {
+      "source": "/term/:slug*/",
+      "destination": "/api/term-redirect?slug=:slug*"
+    },
+    {
       "source": "/term/:slug*",
       "destination": "/api/term-redirect?slug=:slug*"
     },
