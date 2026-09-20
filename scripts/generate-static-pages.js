@@ -233,7 +233,11 @@ function generateTermPage(term) {
         .filter((t) => t.category === term.category && t.id !== term.id && FEATURED_SLUGS.has(termSlug(t)))
         .slice(0, 8);
 
-    const title = `${term.term}（${term.reading}）の意味・解説 | おんがく手帳`;
+    // 検索の主意図は「意味」なので答えをtitleに入れる。長すぎる場合は検索結果で切れるため定型にフォールバック。
+    const meaningTitle = `${term.term}（${term.reading}）とは？「${term.meaning}」の意味｜音楽用語`;
+    const title = [...meaningTitle].length <= 45
+        ? meaningTitle
+        : `${term.term}（${term.reading}）とは？音楽用語の意味・解説 | おんがく手帳`;
     const description = `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${article.lead.substring(0, 90)}`;
 
     const html = `${htmlHead({ title, description, canonicalPath: `/term/${slug}/` })}
