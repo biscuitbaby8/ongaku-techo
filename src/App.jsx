@@ -234,29 +234,20 @@ export default function App() {
     let script = document.getElementById(scriptId);
     if (script) script.remove();
 
+    // サイト全体のWebSiteスキーマは index.html に静的に入っている。ここでは用語表示時のみ出す。
+    if (!selectedTerm) return;
+
     script = document.createElement('script');
     script.id = scriptId;
     script.type = 'application/ld+json';
 
     const baseSchema = {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "おんがく手帳",
-      "url": "https://ongakutecho.com",
-      "description": "1000語以上の音楽用語を網羅した、音楽家・学生のためのデジタルツール。",
-      "publisher": {
-        "@type": "Organization",
-        "name": "ongaku-techo Project",
-        "logo": "https://ongakutecho.com/icon-192.png"
-      }
+      "@type": "DefinedTerm",
+      "name": selectedTerm.term,
+      "description": selectedTerm.meaning,
+      "inDefinedTermSet": "https://ongakutecho.com"
     };
-
-    if (selectedTerm) {
-      baseSchema["@type"] = "DefinedTerm";
-      baseSchema["name"] = selectedTerm.term;
-      baseSchema["description"] = selectedTerm.meaning;
-      baseSchema["inDefinedTermSet"] = "https://ongakutecho.com";
-    }
 
     script.text = JSON.stringify(baseSchema);
     document.head.appendChild(script);
