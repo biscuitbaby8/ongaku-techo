@@ -109,6 +109,7 @@ export default function App() {
   const [memos, setMemos] = useState(() => JSON.parse(localStorage.getItem('music-memos') || '{}'));
   const [lessons, setLessons] = useState(() => JSON.parse(localStorage.getItem('music-lessons') || '{}'));
   const [hasAcceptedCookies, setHasAcceptedCookies] = useState(() => localStorage.getItem('music-cookies') === 'true');
+  const [showLoginAnnouncement, setShowLoginAnnouncement] = useState(() => localStorage.getItem('login-announcement-dismissed') !== 'true');
 
   const [user, setUser] = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -448,13 +449,45 @@ export default function App() {
 
       {!hasAcceptedCookies && (
         <div className="max-w-md mx-auto px-4 mb-4">
-          <div className="bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-4 border border-white/10">
-            <Cookie size={40} className="text-yellow-400 shrink-0" />
-            <div className="flex-1 text-left">
-              <p className="text-xs font-bold">お気に入りや学習記録は、お使いのブラウザ内に保存されます。また広告配信のためにCookieが使用されることがあります。</p>
-              <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-yellow-400 underline mt-1 inline-block">プライバシーポリシーを見る</a>
+          <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border border-white/10">
+            <div className="flex items-start gap-3">
+              <Cookie size={22} className="text-yellow-400 shrink-0 mt-0.5" />
+              <div className="flex-1 text-left">
+                <p className="text-xs font-bold leading-relaxed">お気に入りや学習記録は、お使いのブラウザ内に保存されます。また広告配信のためにCookieが使用されることがあります。</p>
+                <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-yellow-400 underline mt-1 inline-block">プライバシーポリシーを見る</a>
+              </div>
             </div>
-            <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-8 py-3 rounded-2xl font-black text-xs shrink-0`}>OK</button>
+            <div className="flex justify-end mt-3">
+              <button onClick={() => setHasAcceptedCookies(true)} className={`${s.accent} px-6 py-2 rounded-xl font-black text-xs`}>OK</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {auth && !user && showLoginAnnouncement && (
+        <div className="max-w-md mx-auto px-4 mb-4">
+          <div className="bg-white p-4 rounded-2xl shadow-lg border border-rose-100 relative">
+            <button
+              onClick={() => { setShowLoginAnnouncement(false); localStorage.setItem('login-announcement-dismissed', 'true'); }}
+              className="absolute top-3 right-3 text-slate-300 hover:text-slate-500 active:scale-90"
+            >
+              <X size={16} />
+            </button>
+            <div className="flex items-start gap-3 pr-6">
+              <Sparkles size={20} className={`${s.accentText} shrink-0 mt-0.5`} />
+              <div className="flex-1 text-left">
+                <p className="text-xs font-black text-slate-800">ログイン機能が復活しました</p>
+                <p className="text-[11px] font-bold text-slate-500 leading-relaxed mt-1">ログインすると、お気に入り・習得チェック・じぶんメモ・レッスン予定を、機種変更やキャッシュ削除の後も、他の端末に引き継げます。</p>
+              </div>
+            </div>
+            <div className="flex justify-end mt-3">
+              <button
+                onClick={() => { setShowLoginAnnouncement(false); localStorage.setItem('login-announcement-dismissed', 'true'); setShowAuthModal(true); }}
+                className={`${s.accent} px-6 py-2 rounded-xl font-black text-xs`}
+              >
+                今すぐログイン
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -482,7 +515,10 @@ export default function App() {
                     <button onClick={() => signOut(auth)} className={`w-full py-3 flex items-center justify-center gap-2 rounded-lg text-white font-bold text-xs ${s.accent}`}><User size={16} /> ログアウト</button>
                   </div>
                 ) : (
-                  <button onClick={() => { setShowSettings(false); setShowAuthModal(true); }} className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white text-xs ${s.accent} shadow-sm`}><User size={18} /> ログインしてデータを保護</button>
+                  <>
+                    <p className="text-[11px] font-bold text-slate-400 leading-relaxed mb-3">ログインすると、お気に入り・習得チェック・じぶんメモ・レッスン予定を、機種変更やキャッシュ削除の後も、他の端末に引き継げます。</p>
+                    <button onClick={() => { setShowSettings(false); setShowAuthModal(true); }} className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white text-xs ${s.accent} shadow-sm`}><User size={18} /> ログインしてデータを保護</button>
+                  </>
                 )}
               </section>
               <section className="pt-4 border-t border-slate-100">
