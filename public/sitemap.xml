@@ -196,6 +196,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ongakutecho.com/term/perdendosi/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ongakutecho.com/term/sotto-voce/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -622,6 +627,11 @@
   </url>
   <url>
     <loc>https://ongakutecho.com/term/patetico/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ongakutecho.com/term/piacevole/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1476,6 +1486,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ongakutecho.com/term/just-intonation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ongakutecho.com/term/madrigal/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -2107,6 +2122,11 @@
   </url>
   <url>
     <loc>https://ongakutecho.com/term/saltando/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ongakutecho.com/term/ben-marcato/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
