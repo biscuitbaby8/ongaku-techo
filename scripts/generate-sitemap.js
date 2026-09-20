@@ -20,7 +20,7 @@ const BASE_URL = 'https://ongakutecho.com';
 
 function generateSitemap() {
   const termSlug = (t) => t.term.toLowerCase().replace(/\s+/g, '-');
-  const today = new Date().toISOString().split('T')[0];
+  // lastmod は出さない。ビルド日を全URLに入れると実際の更新と一致せず、Googleに無視される。
 
   const entries = [
     { loc: '/', changefreq: 'weekly', priority: '1.0' },
@@ -53,7 +53,6 @@ function generateSitemap() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries.map((e) => `  <url>
     <loc>${BASE_URL}${e.loc}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
   </url>`).join('\n')}

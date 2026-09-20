@@ -240,6 +240,17 @@ function generateTermPage(term) {
         : `${term.term}（${term.reading}）とは？音楽用語の意味・解説 | おんがく手帳`;
     const description = `${term.term}（${term.reading}）は「${term.meaning}」という意味の${term.lang}の音楽用語です。${article.lead.substring(0, 90)}`;
 
+    // 画面上のパンくず（トップ / カテゴリ / 用語）と同じ階層。
+    const breadcrumbJsonLd = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'トップ', item: `${BASE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: term.category, item: `${BASE_URL}/index/${encodeURIComponent(term.category)}/` },
+            { '@type': 'ListItem', position: 3, name: term.term, item: `${BASE_URL}/term/${slug}/` },
+        ],
+    }).replace(/</g, '\\u003c');
+
     const html = `${htmlHead({ title, description, canonicalPath: `/term/${slug}/` })}
 <body class="bg-[#FFFDF9] text-slate-700">
   ${siteHeader()}
@@ -317,6 +328,9 @@ function generateTermPage(term) {
     "inDefinedTermSet": "${BASE_URL}",
     "url": "${BASE_URL}/term/${slug}/"
   }
+  </script>
+  <script type="application/ld+json">
+  ${breadcrumbJsonLd}
   </script>
 </body>
 </html>`;
